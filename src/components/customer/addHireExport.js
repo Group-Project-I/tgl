@@ -1,5 +1,9 @@
 import React, {Component} from 'react'
-import Datetime from 'react-datetime'
+import {Redirect} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {addExportHires} from '../../store/actions/customerHireActions'
+import {firestoreConnect} from 'react-redux-firebase'
+import {compose} from 'redux'
 // import {connect} from 'react-redux'
 
 class AddHireExport extends Component {
@@ -11,13 +15,9 @@ class AddHireExport extends Component {
         weight: '',
         loadingPort: '',
         loadingDatetime: '',
-        driverId: '',
-        customerId: '',
-        vehicleId: '',
         remarks: '',
-        completed: '0',
-        driverAccepted: '0',
-        declined: '0',
+        loading: 1,
+        redir: 0
     }
 
     handleChange = (e) => {
@@ -29,20 +29,19 @@ class AddHireExport extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         // console.log(this.state);
-        this.props.addExportHire(this.state)
+        this.props.addExportHires(this.state)
     }
 
-    handlePickupDate = (e) => {
-        this.setState({
-            pickupDatetime: e._d
-        })
+    handleDate = (e) => {
+        e.preventDefault();
+        e.target.type = 'datetime-local'
     }
 
-    handleLoadingDate = (e) => {
-        this.setState({
-            loadingDatetime: e._d
-        })
-    }
+    // handleLoadingDate = (e) => {
+    //     this.setState({
+    //         loadingDatetime: e._d
+    //     })
+    // }
 
     handleContainerType = (e) => {
         if(e.target.value){
@@ -51,29 +50,49 @@ class AddHireExport extends Component {
             })
         }
     }
+    componentWillReceiveProps(nextProps) {
+
+        if(this.props.customers && this.props.drivers){
+            this.setState({
+                loading: 0,
+            });
+        }
+
+    }
 
     render() {
+        if(this.state.redir === 1){
+            return <Redirect to='/cust/Home' />
+        }
+
         return (
-            <div>
-                <br/><br/>
-                <h2 className="center">Add Export</h2><br/><br/>
+            <div className="form wrapper zzz delay-1s ">
+                <div className="yyy ">
+                <br/><br/><br/><br/>
+                <h1 className="center fadeIn animated slow add_head">Add Export</h1><br/><br/><br/>
+                    <div className="row fadeIn animated slow zzz1">
+                        <div className="bg col-6 ">
+                            <img className="image2 responsive2" src={require('../../img/exportreq.jpg')} width={450} />
+                        </div>
+                        <div className="bg col-6">
                 <form onSubmit={this.handleSubmit} >
-                    <div className="row col-4">
-                        <select className="form-control" placeholder="Container Type" id="containerType" onChange={this.handleContainerType} required>
+                    <h5 className="topic">Container Type</h5> <br/>
+                    <div className="row col-6">
+                        <select className="form-control select1" placeholder="Container Type" id="containerType" onChange={this.handleContainerType} required>
                             <option value="20">20ft</option>
                             <option value="40">40ft</option>
                         </select>
                     </div>
-                    <br/><hr/><h5>Container Pickup Details</h5> <br/>
+                    <br/><hr/><h5 className="topic"> Container Pickup Details</h5> <br/>
                     <div className="row">
                         <div className="input-field col-6">
-                            <input placeholder="Pickup Location" type="text" id="pickupLocation" onChange={this.handleChange} required />
+                            <input className="placeholder" placeholder="Pickup Location" type="text" id="pickupLocation" onChange={this.handleChange} required />
                         </div>
                         <div className="input-field col-6">
-                            <Datetime id="pickupDatetime" onChange={this.handlePickupDate} required></Datetime>
+                            <input className="placeholder" placeholder="Pickup Date and Time" onFocus={this.handleDate} ref="pickup" type="text" id="pickupDatetime"  onChange={this.handleChange} required />
                         </div>
                     </div>
-                    <br/><hr/><h5>Cargo Details</h5> <br/>
+                    <br/><hr/><h5 className="topic">Cargo Details</h5> <br/>
                     <div className="row">
                         <div className="input-field col-6">
                             <input placeholder="Cargo Type" type="text" id="cargoType" onChange={this.handleChange} required />
@@ -82,10 +101,13 @@ class AddHireExport extends Component {
                             <input placeholder="Weight" type="text" id="weight" onChange={this.handleChange} required />
                         </div>
                     </div>
-                    <br/><hr/><h5>Unloading Details</h5><br/>
+                    <br/><hr/><h5 className="topic">Loading Details</h5><br/>
                     <div className="row">
                         <div className="input-field col-6">
-                            <input placeholder="unloading Port" type="text" id="unloadingPort" onChange={this.handleChange} required />
+                            <input placeholder="Loading Port" type="text" id="loadingPort" onChange={this.handleChange} required />
+                        </div>
+                        <div className="input-field col-6">
+                            <input placeholder="Loading Date and Time" onFocus={this.handleDate} type="text" id="loadingDatetime" onChange={this.handleChange} required />
                         </div>
 
                     </div>
@@ -99,7 +121,11 @@ class AddHireExport extends Component {
                         <button className="btn blue lighten-1 z-depth-0">Add</button>
                         <button className="btn red lighten-1 z-depth-0">Cancel</button>
                     </div>
+                    <br/><br/><br/><br/><br/>
                 </form>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
@@ -107,10 +133,21 @@ class AddHireExport extends Component {
     }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         addExportHire: (exportHire) => dispatch(addExportHire(exportHire))
-//     }
-// }
+const mapStateToProps = (state) => {
+    return{
+        hires: state.firestore.ordered.hires
+    }
+}
 
-export default AddHireExport;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addExportHires: (exportHire) => dispatch(addExportHires(exportHire))
+    }
+}
+
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([
+        {collection: 'hires'}
+    ])
+)(AddHireExport);

@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import Datetime from 'react-datetime'
 import {Redirect} from 'react-router-dom'
+
 import {connect} from 'react-redux'
-import {addImportHires} from '../../store/actions/adminHireActions'
+import {addImportHires} from '../../store/actions/customerHireActions'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 // import {connect} from 'react-redux'
@@ -19,6 +19,7 @@ class AddHireImport extends Component {
         vesselArrivalDatetime: '',
         destination: '',
         remarks: '',
+        loading: 1,
         redir : 0,
     }
 
@@ -36,17 +37,16 @@ class AddHireImport extends Component {
         })
     }
 
-    handlePickupDate = (e) => {
-        this.setState({
-            pickupDatetime: e._d
-        })
+    handleDate = (e) => {
+        e.preventDefault();
+        e.target.type = 'datetime-local'
     }
 
-    handleVesselArrivalDate = (e) => {
-        this.setState({
-            vesselArrivalDatetime: e._d
-        })
-    }
+    // handleVesselArrivalDate = (e) => {
+    //     this.setState({
+    //         vesselArrivalDatetime: e._d
+    //     })
+    // }
 
     handleContainerType = (e) => {
         if(e.target.value){
@@ -55,29 +55,51 @@ class AddHireImport extends Component {
             })
         }
     }
+    componentWillReceiveProps(nextProps) {
+
+        if(this.props.customers && this.props.drivers){
+            this.setState({
+                loading: 0,
+            });
+        }
+
+    }
+
 
     render() {
+        if(this.state.redir === 1){
+            return <Redirect to='/cust/Home' />
+        }
         return (
-            <div>
-                <br/><br/>
-                <h2 className="center">Add Import</h2><br/><br/>
-                <form onSubmit={this.handleSubmit} >
-                    <div className="row col-4">
-                        <select className="form-control" placeholder="Container Type" id="containerType" onChange={this.handleContainerType} required>
+
+            <div className="form wrapper zzz delay-1s">
+
+                <div className="yyy  fadeIn animated slow ">
+                <br/><br/><br/><br/>
+                <h1 className="center fadeIn animated fast add_head">Add Import</h1><br/><br/><br/>
+                <div className="row fadeIn animated fast zzz1">
+                    <div className="bg col-6">
+                        <img className="image2 responsive1" src={require('../../img/importreq2.jpg')} width={450} />
+                    </div>
+                    <div className="bg col-6">
+                <form  onSubmit={this.handleSubmit} >
+                    <h5 className="topic">Container Type</h5> <br/>
+                    <div className="row col-6">
+                        <select className="form-control select1" placeholder="Container Type" id="containerType" onChange={this.handleContainerType} required>
                             <option value="20">20ft</option>
                             <option value="40">40ft</option>
                         </select>
                     </div>
-                    <br/><hr/><h5>Container Pickup Details</h5> <br/>
+                    <br/><hr/><h5 className="topic">Container Pickup Details</h5> <br/>
                     <div className="row">
                         <div className="input-field col-6">
                             <input placeholder="Pickup Location" type="text" id="pickupLocation" onChange={this.handleChange} required />
                         </div>
                         <div className="input-field col-6">
-                            <Datetime id="pickupDatetime" onChange={this.handlePickupDate} required></Datetime>
+                            <input placeholder="Pickup Date and Time" ref="pickup" onFocus={this.handleDate} type="text" id="pickupDatetime" onChange={this.handleChange} required />
                         </div>
                     </div>
-                    <br/><hr/><h5>Cargo Details</h5> <br/>
+                    <br/><hr/><h5 className="topic">Cargo Details</h5> <br/>
                     <div className="row">
                         <div className="input-field col-6">
                             <input placeholder="Cargo Type" type="text" id="cargoType" onChange={this.handleChange} required />
@@ -86,13 +108,13 @@ class AddHireImport extends Component {
                             <input placeholder="Weight" type="text" id="weight" onChange={this.handleChange} required />
                         </div>
                     </div>
-                    <br/><hr/><h5>Unloading Details</h5><br/>
+                    <br/><hr/><h5 className="topic">Unloading Details</h5><br/>
                     <div className="row">
                         <div className="input-field col-6">
-                            <input placeholder="unloading Port" type="text" id="unloadingPort" onChange={this.handleChange} required />
+                            <input placeholder="Unloading Port" type="text" id="unloadingPort" onChange={this.handleChange} required />
                         </div>
                         <div className="input-field col-6">
-                            <Datetime id="vesselArrivalDatetime" onChange={this.handleVesselArrivalDate} required></Datetime>
+                            <input placeholder="Vessel Arrival Date and Time" onFocus={this.handleDate} type="text" id="vesselArrivalDatetime" onChange={this.handleChange} required />
                         </div>
                     </div>
                     <div className="row">
@@ -102,18 +124,38 @@ class AddHireImport extends Component {
                     </div>
 
                     <div className="input-field row col-12">
-                        <textarea placeholder="Remarks" style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange}/>
+                        <textarea placeholder="Remarks" style={{ minHeight: 100 }} type = "text" id="remarks" onChange={this.handleChange}/>
                     </div>
                     <input type="hidden" id="hireType" value="import"/><br/><br/>
                     <div className="input-field center">
                         <button className="btn blue lighten-1 z-depth-0">Add</button>
                         <button className="btn red lighten-1 z-depth-0">Cancel</button>
                     </div>
+                    <br/><br/><br/><br/>
                 </form>
+                    </div>
+                </div>
+                </div>
             </div>
         )
     }
 }
+const mapStateToProps = (state) => {
+    return{
+        hires: state.firestore.ordered.hires
+    }
+}
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addImportHires: (importHire) => dispatch(addImportHires(importHire))
+    }
+}
 
-export default AddHireImport;
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect([
+        {collection: 'hires'}
+    ])
+)(AddHireImport);
+

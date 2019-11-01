@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 
@@ -12,12 +13,71 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.topic {
+  font-family: Jokerman;
+}
+
+.hire_background{
+  background-image: url("../src/img/index3.jpg");
+  background-color: rgba(255,255,255,0.9) !important;
+
+  padding-bottom: 250px;
+}
+.select1{
+  background-color: rgba(255,255,255,0.5) !important;
+  border: none;
+}
+.image2{
+  border-radius: 10px;
+}
+
+.zzz1{
+  background-color: rgba(0,0,0,0.1) !important;
+  padding-top: 60px;
+  margin-bottom: 10px;
+  border-radius: 30px;
+}
+
+.responsive1{
+  width: 100%;
+  height: auto;
+  height: 1100px;
+}
+.responsive2{
+  width: 100%;
+  height: auto;
+  height: 1030px;
+}
+
+.zzz{
+
+  background-color: rgba(0,0,0,0.1) !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 40px;
+  margin-left: 60px;
+  margin-right: 60px;
+
+}
+
+.yyy{
+  background-color: rgba(255,255,255,0.8) !important;
+  padding-right: 30px;
+  padding-left: 30px;
+  border-radius: 30px;
+  padding-bottom: 3px;
+
+
+}
 
 .complete1{
   background-color: rgba(255,255,255,0.9) !important;
 
   margin-left: 10px;
   margin-right: 10px;
+
 }
 
 .tablist{
@@ -33,12 +93,21 @@ code {
 }
 
 .image1{
-
-
   background-image: url("../src/img/index2.jpg");
 
-  padding-bottom: 250px;
+  padding-bottom: 190px;
+
   background-repeat: no-repeat;
+
+
+}
+::placeholder{
+  color: rgba(0,0,0,0.6) !important;
+  text-align: center;
+}
+
+.add_head {
+  font-family: "Biting My Nails";
 
 }
 
@@ -100,6 +169,7 @@ code {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
+
 
 
 

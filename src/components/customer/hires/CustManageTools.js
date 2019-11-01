@@ -37,7 +37,7 @@ class ManageTools extends Component {
 
 
         return (
-            <div className="image1">
+            <div className="image1 fadeIn animated slow">
 
 
                 <div id="content" className="fluid " role="main">
@@ -45,7 +45,7 @@ class ManageTools extends Component {
 
 
                     <Tabs className="center">
-                        <TabList className="tablist">
+                        <TabList className="tablist fadeInLeft animated fast">
                             <Tab>COMPLETED</Tab>
                             <Tab>REQUESTED</Tab>
                             <Tab>ONGOING</Tab>
@@ -55,7 +55,7 @@ class ManageTools extends Component {
                         <br/><br/><br/><br/><br/><br/>
 
                         <TabPanel>
-                            <div className="complete1">
+                            <div className="complete1 fadeIn animated fast">
 
                                 <CompletedHires/>
                                 <br/><br/>
@@ -64,7 +64,7 @@ class ManageTools extends Component {
 
                         </TabPanel>
                         <TabPanel>
-                            <div className="complete1">
+                            <div className="complete1 fadeIn animated fast">
                                 <HireRequest/>
                                 <br/><br/>
                             </div>
@@ -72,14 +72,14 @@ class ManageTools extends Component {
 
                         </TabPanel>
                         <TabPanel>
-                            <div className="complete1">
+                            <div className="complete1 fadeIn animated fast">
                                 <OngoingHire/>
                                 <br/><br/>
                             </div>
 
                         </TabPanel>
                         <TabPanel>
-                            <div className="complete1">
+                            <div className="complete1 fadeIn animated fast">
                                 <DeclinedHire/>
                                 <br/><br/>
 

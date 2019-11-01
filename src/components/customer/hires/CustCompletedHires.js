@@ -30,10 +30,10 @@ class CompletedHires extends Component {
                         <Tab>IMPORTS</Tab>
                         <Tab>EXPORTS</Tab>
                     </TabList>
-                    <TabPanel>
+                    <TabPanel className="fadeIn animated slow">
                         <CompletedImports completedImportHires={completedImportHires} history={this.props.history}></CompletedImports>
                     </TabPanel>
-                    <TabPanel>
+                    <TabPanel className="fadeIn animated slow">
                         <CompletedExports completedExportHires={completedExportHires} history={this.props.history}></CompletedExports>
                     </TabPanel>
                 </Tabs>
