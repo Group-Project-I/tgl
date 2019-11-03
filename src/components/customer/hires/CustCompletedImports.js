@@ -1,9 +1,10 @@
 import React from 'react'
 import moment from 'moment'
 import { ReactTabulator } from 'react-tabulator'
+import Button from "reactstrap/es/Button";
 
 const CompletedImports = ({completedImportHires, history}) => {
-    if (!completedImportHires.length) return <div><br/><br/><h4>No Completed Imports</h4></div>
+    if (!completedImportHires.length) return <div><br/><br/><h3>No Completed Imports</h3><br/></div>
 
     const columns = [
         { title: "Type", field: "containerType", width: 75, align: "center"},
@@ -17,8 +18,11 @@ const CompletedImports = ({completedImportHires, history}) => {
         {title:"Status",align: "center", field:"hireStatus", formatter:"traffic", formatterParams:{
 
                 color:["green"],
-            }}
+            }},
+
+
     ];
+
 
     var data = []
 
@@ -33,7 +37,8 @@ const CompletedImports = ({completedImportHires, history}) => {
                 driverName: imp.driverName,
 
                 vehicleNo: imp.vehicleNo,
-                hireStatus: imp.hireStatus === "completed" ? 1 : 2
+                hireStatus: imp.hireStatus === "completed" ? 1 : 2,
+
             })
         }
     )}
@@ -53,6 +58,8 @@ const CompletedImports = ({completedImportHires, history}) => {
                 layout={"fitData"}
                 rowClick={rowClick}
                 options={{ pagination: 'local',paginationSize: 10}}
+
+
             />
             {/* <table className="table">
                 <thead className="thead-dark">

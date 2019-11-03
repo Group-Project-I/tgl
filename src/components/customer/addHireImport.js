@@ -42,11 +42,6 @@ class AddHireImport extends Component {
         e.target.type = 'datetime-local'
     }
 
-    // handleVesselArrivalDate = (e) => {
-    //     this.setState({
-    //         vesselArrivalDatetime: e._d
-    //     })
-    // }
 
     handleContainerType = (e) => {
         if(e.target.value){
@@ -72,25 +67,26 @@ class AddHireImport extends Component {
         }
         return (
 
-            <div className="form wrapper zzz delay-1s">
+            <div className="form wrapper form1 delay-1s">
 
-                <div className="yyy  fadeIn animated slow ">
+                <div className="form2  fadeIn animated slow ">
                 <br/><br/><br/><br/>
                 <h1 className="center fadeIn animated fast add_head">Add Import</h1><br/><br/><br/>
-                <div className="row fadeIn animated fast zzz1">
+                <div className="row fadeIn animated fast">
                     <div className="bg col-6">
-                        <img className="image2 responsive1" src={require('../../img/importreq2.jpg')} width={450} />
+                        <img className="image2 responsive1" src={require('../../img/importreq2.jpg')} width={440} />
                     </div>
                     <div className="bg col-6">
-                <form  onSubmit={this.handleSubmit} >
-                    <h5 className="topic">Container Type</h5> <br/>
-                    <div className="row col-6">
+                <form onSubmit={this.handleSubmit} >
+                    <hr/>
+                    <h6>Container Type</h6> <br/>
+                    <div className="bg col-6">
                         <select className="form-control select1" placeholder="Container Type" id="containerType" onChange={this.handleContainerType} required>
                             <option value="20">20ft</option>
                             <option value="40">40ft</option>
                         </select>
                     </div>
-                    <br/><hr/><h5 className="topic">Container Pickup Details</h5> <br/>
+                    <br/><hr/><h6>Container Pickup Details</h6> <br/>
                     <div className="row">
                         <div className="input-field col-6">
                             <input placeholder="Pickup Location" type="text" id="pickupLocation" onChange={this.handleChange} required />
@@ -99,7 +95,7 @@ class AddHireImport extends Component {
                             <input placeholder="Pickup Date and Time" ref="pickup" onFocus={this.handleDate} type="text" id="pickupDatetime" onChange={this.handleChange} required />
                         </div>
                     </div>
-                    <br/><hr/><h5 className="topic">Cargo Details</h5> <br/>
+                    <br/><hr/><h6>Cargo Details</h6> <br/>
                     <div className="row">
                         <div className="input-field col-6">
                             <input placeholder="Cargo Type" type="text" id="cargoType" onChange={this.handleChange} required />
@@ -108,7 +104,7 @@ class AddHireImport extends Component {
                             <input placeholder="Weight" type="text" id="weight" onChange={this.handleChange} required />
                         </div>
                     </div>
-                    <br/><hr/><h5 className="topic">Unloading Details</h5><br/>
+                    <br/><hr/><h6>Unloading Details</h6><br/>
                     <div className="row">
                         <div className="input-field col-6">
                             <input placeholder="Unloading Port" type="text" id="unloadingPort" onChange={this.handleChange} required />
@@ -123,13 +119,14 @@ class AddHireImport extends Component {
                         </div>
                     </div>
 
+
                     <div className="input-field row col-12">
-                        <textarea placeholder="Remarks" style={{ minHeight: 100 }} type = "text" id="remarks" onChange={this.handleChange}/>
+                        <textarea placeholder="Remarks" style={{ minHeight: 100}} type = "text" id="remarks" onChange={this.handleChange}/>
                     </div>
                     <input type="hidden" id="hireType" value="import"/><br/><br/>
                     <div className="input-field center">
-                        <button className="btn blue lighten-1 z-depth-0">Add</button>
-                        <button className="btn red lighten-1 z-depth-0">Cancel</button>
+                        <button className="btn blue lighten-1 z-depth-5 btn1">Add</button>
+                        <button className="btn red lighten-1 z-depth-5 btn1">Cancel</button>
                     </div>
                     <br/><br/><br/><br/>
                 </form>

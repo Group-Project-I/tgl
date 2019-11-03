@@ -43,7 +43,7 @@ class ManageHireRequest extends Component {
 
     availableDrivers = (e) => {
         const dateTime = this.props.hire[0].pickupDatetime
-        const ListH = this.props.hires.filter(item => item.driverId !== "" && item.hireStatus !== "completed")
+        const ListH = this.props.hires.filter(item => item.driverId !== "" && item.hireStatus !== "request")
         if(dateTime && ListH){
             if(ListH && this.props.drivers){
                 const driversOnHire = ListH.filter(item => item.pickupDatetime.toString().split('T')[0] === dateTime.toString().split('T')[0]).map(a => a.driverId)

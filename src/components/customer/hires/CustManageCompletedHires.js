@@ -118,9 +118,9 @@ class ManageCompletedHires extends Component {
                             <View style={styles.tableColHeader}>
                                 <Text style={styles.tableCellHeader}>Date</Text>
                             </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Customer</Text>
-                            </View>
+                            {/*<View style={styles.tableColHeader}>*/}
+                            {/*    <Text style={styles.tableCellHeader}>Customer</Text>*/}
+                            {/*</View>*/}
                             <View style={styles.tableColHeader}>
                                 <Text style={styles.tableCellHeader}>Driver</Text>
                             </View>
@@ -135,9 +135,9 @@ class ManageCompletedHires extends Component {
                             <View style={styles.tableCol}>
                                 <Text style={styles.tableCell}>{moment(this.props.hire[0].completedDatetime.toDate()).format('MMMM Do YYYY, h:mm:ss a')}</Text>
                             </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{this.state.customer[0].firstName + ' ' + this.state.customer[0].lastName}</Text>
-                            </View>
+                            {/*<View style={styles.tableCol}>*/}
+                            {/*    <Text style={styles.tableCell}>{this.state.customer[0].firstName + ' ' + this.state.customer[0].lastName}</Text>*/}
+                            {/*</View>*/}
                             <View style={styles.tableCol}>
                                 <Text style={styles.tableCell}>{this.state.driver[0].firstName + ' ' + this.state.driver[0].lastName}</Text>
                             </View>
@@ -215,39 +215,39 @@ class ManageCompletedHires extends Component {
                             </View>
                         </View>
                     </View>
-                    <View>
-                        <Text style={styles.subHeading}>--- Customer Details ---</Text>
-                    </View>
-                    <View style={styles.table}>
-                        <View style={styles.tableRow}>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Customer Name</Text>
-                            </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Mobile No</Text>
-                            </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Email</Text>
-                            </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>NIC</Text>
-                            </View>
-                        </View>
-                        <View style={styles.tableRow}>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{this.state.customer[0].firstName + ' ' + this.state.customer[0].lastName}</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{this.state.customer[0].mobile}</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{this.state.customer[0].email}</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{this.state.customer[0].nic}</Text>
-                            </View>
-                        </View>
-                    </View>
+                    {/*<View>*/}
+                    {/*    <Text style={styles.subHeading}>--- Customer Details ---</Text>*/}
+                    {/*</View>*/}
+                    {/*<View style={styles.table}>*/}
+                    {/*    <View style={styles.tableRow}>*/}
+                    {/*        <View style={styles.tableColHeader}>*/}
+                    {/*            <Text style={styles.tableCellHeader}>Customer Name</Text>*/}
+                    {/*        </View>*/}
+                    {/*        <View style={styles.tableColHeader}>*/}
+                    {/*            <Text style={styles.tableCellHeader}>Mobile No</Text>*/}
+                    {/*        </View>*/}
+                    {/*        <View style={styles.tableColHeader}>*/}
+                    {/*            <Text style={styles.tableCellHeader}>Email</Text>*/}
+                    {/*        </View>*/}
+                    {/*        <View style={styles.tableColHeader}>*/}
+                    {/*            <Text style={styles.tableCellHeader}>NIC</Text>*/}
+                    {/*        </View>*/}
+                    {/*    </View>*/}
+                    {/*    <View style={styles.tableRow}>*/}
+                    {/*        <View style={styles.tableCol}>*/}
+                    {/*            <Text style={styles.tableCell}>{this.state.customer[0].firstName + ' ' + this.state.customer[0].lastName}</Text>*/}
+                    {/*        </View>*/}
+                    {/*        <View style={styles.tableCol}>*/}
+                    {/*            <Text style={styles.tableCell}>{this.state.customer[0].mobile}</Text>*/}
+                    {/*        </View>*/}
+                    {/*        <View style={styles.tableCol}>*/}
+                    {/*            <Text style={styles.tableCell}>{this.state.customer[0].email}</Text>*/}
+                    {/*        </View>*/}
+                    {/*        <View style={styles.tableCol}>*/}
+                    {/*            <Text style={styles.tableCell}>{this.state.customer[0].nic}</Text>*/}
+                    {/*        </View>*/}
+                    {/*    </View>*/}
+                    {/*</View>*/}
                     <View>
                         <Text style={styles.subHeading}>--- Driver Details ---</Text>
                     </View>
@@ -301,9 +301,9 @@ class ManageCompletedHires extends Component {
                             <View style={styles.tableColHeader}>
                                 <Text style={styles.tableCellHeader}>Date</Text>
                             </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Customer</Text>
-                            </View>
+                            {/*<View style={styles.tableColHeader}>*/}
+                            {/*    <Text style={styles.tableCellHeader}>Customer</Text>*/}
+                            {/*</View>*/}
                             <View style={styles.tableColHeader}>
                                 <Text style={styles.tableCellHeader}>Driver</Text>
                             </View>
@@ -318,9 +318,9 @@ class ManageCompletedHires extends Component {
                             <View style={styles.tableCol}>
                                 <Text style={styles.tableCell}>{moment(this.props.hire[0].completedDatetime.toDate()).format('MMMM Do YYYY, h:mm:ss a')}</Text>
                             </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{this.state.customer[0].firstName + ' ' + this.state.customer[0].lastName}</Text>
-                            </View>
+                            {/*<View style={styles.tableCol}>*/}
+                            {/*    <Text style={styles.tableCell}>{this.state.customer[0].firstName + ' ' + this.state.customer[0].lastName}</Text>*/}
+                            {/*</View>*/}
                             <View style={styles.tableCol}>
                                 <Text style={styles.tableCell}>{this.state.driver[0].firstName + ' ' + this.state.driver[0].lastName}</Text>
                             </View>
@@ -392,39 +392,39 @@ class ManageCompletedHires extends Component {
                             </View>
                         </View>
                     </View>
-                    <View>
-                        <Text style={styles.subHeading}>--- Customer Details ---</Text>
-                    </View>
-                    <View style={styles.table}>
-                        <View style={styles.tableRow}>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Customer Name</Text>
-                            </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Mobile No</Text>
-                            </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Email</Text>
-                            </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>NIC</Text>
-                            </View>
-                        </View>
-                        <View style={styles.tableRow}>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{this.state.customer[0].firstName + ' ' + this.state.customer[0].lastName}</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{this.state.customer[0].mobile}</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{this.state.customer[0].email}</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{this.state.customer[0].nic}</Text>
-                            </View>
-                        </View>
-                    </View>
+                    {/*<View>*/}
+                    {/*    <Text style={styles.subHeading}>--- Customer Details ---</Text>*/}
+                    {/*</View>*/}
+                    {/*<View style={styles.table}>*/}
+                    {/*    <View style={styles.tableRow}>*/}
+                    {/*        <View style={styles.tableColHeader}>*/}
+                    {/*            <Text style={styles.tableCellHeader}>Customer Name</Text>*/}
+                    {/*        </View>*/}
+                    {/*        <View style={styles.tableColHeader}>*/}
+                    {/*            <Text style={styles.tableCellHeader}>Mobile No</Text>*/}
+                    {/*        </View>*/}
+                    {/*        <View style={styles.tableColHeader}>*/}
+                    {/*            <Text style={styles.tableCellHeader}>Email</Text>*/}
+                    {/*        </View>*/}
+                    {/*        <View style={styles.tableColHeader}>*/}
+                    {/*            <Text style={styles.tableCellHeader}>NIC</Text>*/}
+                    {/*        </View>*/}
+                    {/*    </View>*/}
+                    {/*    <View style={styles.tableRow}>*/}
+                    {/*        <View style={styles.tableCol}>*/}
+                    {/*            <Text style={styles.tableCell}>{this.state.customer[0].firstName + ' ' + this.state.customer[0].lastName}</Text>*/}
+                    {/*        </View>*/}
+                    {/*        <View style={styles.tableCol}>*/}
+                    {/*            <Text style={styles.tableCell}>{this.state.customer[0].mobile}</Text>*/}
+                    {/*        </View>*/}
+                    {/*        <View style={styles.tableCol}>*/}
+                    {/*            <Text style={styles.tableCell}>{this.state.customer[0].email}</Text>*/}
+                    {/*        </View>*/}
+                    {/*        <View style={styles.tableCol}>*/}
+                    {/*            <Text style={styles.tableCell}>{this.state.customer[0].nic}</Text>*/}
+                    {/*        </View>*/}
+                    {/*    </View>*/}
+                    {/*</View>*/}
                     <View>
                         <Text style={styles.subHeading}>--- Driver Details ---</Text>
                     </View>
@@ -482,7 +482,7 @@ class ManageCompletedHires extends Component {
 
 const mapStateToProps = (state) => {
     return{
-        customer: state.firestore.ordered.customers,
+        // customer: state.firestore.ordered.customers,
         driver: state.firestore.ordered.drivers,
         vehicle: state.firestore.ordered.vehicles
     }
@@ -491,7 +491,7 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect(props => [
-        {collection: 'customers',doc: props.hire[0].customerId,},
+        // {collection: 'customers',doc: props.hire[0].customerId,},
         { collection: 'drivers', doc: props.hire[0].driverId },
         { collection: 'vehicles', doc: props.hire[0].vehicleId }
     ])
