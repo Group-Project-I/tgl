@@ -5,7 +5,7 @@ import moment from 'moment'
 import { ReactTabulator } from 'react-tabulator'
 
 const ExportRequests = ({exportHireRequests, history}) => {
-    if (!exportHireRequests) return <div><br/><br/><h4>No Export Requests</h4></div>
+    if (!exportHireRequests) return <div><br/><br/><h3>No Export Requests</h3><br/></div>
 
     const columns = [
         { title: "Type", field: "containerType", width: 75, align: "center"},
@@ -51,7 +51,7 @@ const ExportRequests = ({exportHireRequests, history}) => {
                 tooltips={true}
                 layout={"fitData"}
                 rowClick={rowClick}
-                options={{ pagination: 'local',paginationSize: 10}}
+                options={{ pagination: 'local',paginationSize: 5}}
             />
             {/* <table className="table">
                 <thead className="thead-dark">

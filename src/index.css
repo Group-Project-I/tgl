@@ -13,10 +13,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-.topic {
-  font-family: Jokerman;
-}
-
 .hire_background{
   background-image: url("../src/img/index3.jpg");
   background-color: rgba(255,255,255,0.9) !important;
@@ -31,48 +27,41 @@ code {
   border-radius: 10px;
 }
 
-.zzz1{
-  background-color: rgba(0,0,0,0.1) !important;
-  padding-top: 60px;
-  margin-bottom: 10px;
-  border-radius: 30px;
-}
+
 
 .responsive1{
   width: 100%;
-  height: auto;
-  height: 1100px;
+  height: 1120px;
 }
 .responsive2{
   width: 100%;
-  height: auto;
-  height: 1030px;
+  height: 1040px;
 }
 
-.zzz{
+.form1{
 
-  background-color: rgba(0,0,0,0.1) !important;
+  background-color: rgba(0,0,0,0.2) !important;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
-  border-radius: 40px;
+  border-radius: 20px;
   margin-left: 60px;
   margin-right: 60px;
 
 }
 
-.yyy{
+.form2{
   background-color: rgba(255,255,255,0.8) !important;
   padding-right: 30px;
   padding-left: 30px;
-  border-radius: 30px;
+  border-radius: 10px;
   padding-bottom: 3px;
 
 
 }
 
-.complete1{
+.tool{
   background-color: rgba(255,255,255,0.9) !important;
 
   margin-left: 10px;
@@ -95,7 +84,7 @@ code {
 .image1{
   background-image: url("../src/img/index2.jpg");
 
-  padding-bottom: 190px;
+  padding-bottom: 200px;
 
   background-repeat: no-repeat;
 
@@ -111,6 +100,19 @@ code {
 
 }
 
+.btn1{
+  margin-right: 10px;
+  width: 80px;
+}
+.image3{
+  background-image: url("../src/img/addhire5.jpg");
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+.homeoption{
+  margin-right: 30px;
+  margin-left: 30px;
+}
 
 
 /* .navbar-toggleable-xl .navbar-nav .dropdown-menu {
