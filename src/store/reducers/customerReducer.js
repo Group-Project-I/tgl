@@ -32,8 +32,11 @@ const customerReducer =(state = initState ,action) => {
                 return{ ...state,
                     // recoverPassword:{...state.recoverPassword,loading:false,error:}
                 }
+        case 'SEND_INQUIRY':
+                console.log('sent message',action.message)
+                return state
                         
-                default:
+        default:
             return state
     }
  }

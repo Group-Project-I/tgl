@@ -60,3 +60,21 @@ export const sendMessage =(message,type) => {
     
   }
 }
+
+export const sendInquiries =( message)=>{
+    return( dispatch,getState,{getFirebase,getFirestore}) =>{
+      const state= getState()
+      const auth= state.firebase.auth
+
+      const firestore = getFirestore()
+      firestore.collection('inquiries').add({
+        ...message,
+        id:auth.uid
+      }).then(() =>{
+        dispatch ({type: 'SEND_INQUIRY',message})
+        }).catch((error) => {
+          dispatch({type:'SEND_INQUIRY_ERROR',error})
+        })
+    }
+
+}
