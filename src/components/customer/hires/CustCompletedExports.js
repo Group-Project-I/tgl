@@ -33,7 +33,7 @@ const CompletedExports = ({completedExportHires, history}) => {
                 driverName: exp.driverName,
 
                 vehicleNo: exp.vehicleNo,
-                hireStatus: exp.hireStatus === "completed" ? 1 : 2
+                hireStatus: exp.hireStatus === "completed" ? 1 : 2,
             })
         }
     )}
@@ -52,7 +52,7 @@ const CompletedExports = ({completedExportHires, history}) => {
                 tooltips={true}
                 layout={"fitData"}
                 rowClick={rowClick}
-                options={{ pagination: 'local',paginationSize: 10}}
+                options={{ pagination: 'local',paginationSize: 5}}
             />
             {/* <table className="table">
                     <thead className="thead-dark">

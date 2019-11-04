@@ -4,7 +4,9 @@ import {connect} from 'react-redux'
 import {addExportHires} from '../../store/actions/customerHireActions'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
+import Button from "react-bootstrap/Button";
 // import {connect} from 'react-redux'
+
 
 class AddHireExport extends Component {
     state = {
@@ -15,6 +17,7 @@ class AddHireExport extends Component {
         weight: '',
         loadingPort: '',
         loadingDatetime: '',
+        customerId: '',
         remarks: '',
         loading: 1,
         redir: 0
@@ -130,6 +133,7 @@ class AddHireExport extends Component {
 
 const mapStateToProps = (state) => {
     return{
+
         hires: state.firestore.ordered.hires
     }
 }
