@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import {addExportHires} from '../../store/actions/customerHireActions'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-// import {connect} from 'react-redux'
 
 class AddHireExport extends Component {
     state = {
@@ -15,6 +14,13 @@ class AddHireExport extends Component {
         weight: '',
         loadingPort: '',
         loadingDatetime: '',
+        driverId: '',
+        customerId: '',
+        vehicleId: '',
+        remarks: '',
+        completed: '0',
+        driverAccepted: '0',
+        declined: '0',
         remarks: '',
         loading: 1,
         redir: 0
@@ -29,6 +35,19 @@ class AddHireExport extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         // console.log(this.state);
+        this.props.addExportHire(this.state)
+    }
+
+    handlePickupDate = (e) => {
+        this.setState({
+            pickupDatetime: e._d
+        })
+    }
+
+    handleLoadingDate = (e) => {
+        this.setState({
+            loadingDatetime: e._d
+        })
         this.props.addExportHires(this.state)
     }
 
@@ -96,6 +115,15 @@ class AddHireExport extends Component {
                             <input placeholder="Weight" type="text" id="weight" onChange={this.handleChange} required />
                         </div>
                     </div>
+                    <br/><hr/><h5>Unloading Details</h5><br/>
+                    <div className="row">
+                        <div className="input-field col-6">
+                            <input placeholder="unloading Port" type="text" id="unloadingPort" onChange={this.handleChange} required />
+                        </div>
+                       
+                    </div>
+                 
+                   
                     <br/><hr/><h6>Loading Details</h6><br/>
                     <div className="row">
                         <div className="input-field col-6">
