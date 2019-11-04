@@ -25,18 +25,21 @@ class ChatList extends React.Component{
                                         selected={this.props.selectedChatIndex === _index} 
                                         alignItems="flex-start">
                                         <ListItemAvatar>
-                                        <Avatar alt="Remy Sharp">{_chat.users.filter(_user => _user !== this.props.userEmail)[0].split('')[0]}</Avatar>
+                                        <Avatar alt="Remy Sharp">{_chat.users.filter(_user => _user === this.props.userEmail)[0].split('')[0]}</Avatar>
                                         </ListItemAvatar>
                                         <ListItemText 
-                                        primary={_chat.users.filter(_user => _user !== this.props.userEmail)[0]}
-                                        secondary={
-                                            <React.Fragment>
-                                            <Typography component='span'
-                                                color='textPrimary'>
-                                                {_chat.messages[_chat.messages.length - 1].message.substring(0, 30) }
-                                            </Typography>
-                                            </React.Fragment>
-                                        }/>
+                                            primary={
+                                                _chat.users.filter(_user => _user === this.props.userEmail)[0]
+                                            }
+                                            secondary={
+
+                                                <React.Fragment>
+                                                <Typography  component='span'
+                                                    color='textPrimary'>
+                                                    {/* {_chat.messages[_chat.messages.length - 1].message.substring(0, 30) } */}
+                                                </Typography>
+                                                </React.Fragment>
+                                            }/>
                                          </ListItem>
                                   <Divider/>
                                 </div>

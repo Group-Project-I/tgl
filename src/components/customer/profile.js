@@ -6,6 +6,11 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import image from '../../img/importreq.jpg'
 import Sidebar from './sidebar'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
+import EditProfile from './editProfile'
+import Message from './message'
+import ResetPassword from './resetPassword'
+import CustManageTools from './hires/CustManageTools'
 
 
 const imgStyle={
@@ -43,7 +48,26 @@ class Profile extends React.Component {
             </div>
            
            <div className='row ' >
-              
+           {/* <Tabs className="center">
+                    <TabList>
+                        <Tab>EDIT PROFILE</Tab>
+                        <Tab>CHANGE PASSWORD</Tab>
+                        <Tab>VIEW MESSAGES</Tab>
+                        <Tab>MANAGE HIRES</Tab>
+                    </TabList>
+                    <TabPanel>
+                        <EditProfile/>
+                    </TabPanel>
+                    <TabPanel>
+                        <ResetPassword/>
+                    </TabPanel>
+                    <TabPanel>
+                        <Message />
+                    </TabPanel>
+                    <TabPanel>
+                        <CustManageTools/>
+                    </TabPanel>
+                </Tabs> */}
                  <div className='col-md-4'>
                     <Sidebar/>
                 </div>

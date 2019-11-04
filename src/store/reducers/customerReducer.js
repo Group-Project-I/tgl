@@ -8,6 +8,22 @@ const initState={
         loading:false
     }
 }
+
+const cleanUp = state => {
+    return {
+      ...state,
+      error: null,
+      loading: false,
+     
+      recoverPassword: {
+        ...state.recoverPassword,
+        loading: false,
+        error: null,
+      }
+     
+    }
+  }
+
 const customerReducer =(state = initState ,action) => {
     switch(action.type){
         case 'SEND_MESSAGE':
@@ -25,13 +41,21 @@ const customerReducer =(state = initState ,action) => {
         case 'RECOVERY_START':
             return{ ...state,
                 recoverPassword:{...state.recoverPassword,loading:true}}
+            // return recoveryStart(state);
+
         case 'RECOVERY_SUCCESS':
                 return{ ...state,
                     recoverPassword:{...state.recoverPassword,loading:false,error:false}}
+            //return recoverySuccess(state);
+
         case 'RECOVERY_FAIL':
-                return{ ...state,
-                    // recoverPassword:{...state.recoverPassword,loading:false,error:}
-                }
+            console.log('error')
+                // return{ ...state,
+                //     recoverPassword:{...state.recoverPassword,loading:false,error: }
+                //  }
+               // return recoveryFail(state, payload);
+        case 'CLEAN_UP':
+            return cleanUp(state);
         case 'SEND_INQUIRY':
                 console.log('sent message',action.message)
                 return state

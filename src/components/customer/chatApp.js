@@ -2,7 +2,7 @@ import React from 'react'
 import Sidebar from './sidebar'
 import ChatList from './chats/chatlist'
 
-// import { async } from '@firebase/util'
+import { async } from '@firebase/util'
  
 const firebase = require('firebase')
 
@@ -28,7 +28,8 @@ class ChatApp extends React.Component{
                         <Sidebar/>
                     </div>
                     <div className='col'>
-                        <ChatList history={this.props.history}
+                        <ChatList 
+                        history={this.props.history}
                         newChatBtnFn ={this.newChatBtnClicked} 
                         selectChatFn={this.selectChat}
                         userEmail={this.state.email}
@@ -53,7 +54,7 @@ class ChatApp extends React.Component{
 
      componentDidMount = () =>{
          firebase.auth().onAuthStateChanged(async _usr =>{
-             if(!_usr)
+             if(!_usr) 
              this.props.history.push('/signin')
              else{
                  await firebase
