@@ -29,7 +29,7 @@ const AdminNavbar = (props) => {
             <NavDropdown.Item >Separated link</NavDropdown.Item>
           </NavDropdown>
 
-          <Nav.Link><Button onClick={props.signOut}>Logout</Button></Nav.Link>
+            <Nav.Link><NavLink to={'/' } ><Button onClick={props.signOut}>Logout</Button></NavLink></Nav.Link>
 
           </Nav>
       </div>

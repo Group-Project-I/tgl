@@ -17,7 +17,7 @@ const SignedInLinks = (props) => {
                     <Nav.Link><NavLink to='/services' style={{textDecoration: 'none'}}>Services</NavLink></Nav.Link>
                     <Nav.Link><NavLink to='/contact'style={{textDecoration: 'none'}}>Contact</NavLink></Nav.Link>
                     <Nav.Link><NavLink to='/cust/profile' style={{textDecoration: 'none'}} ><i class="fas fa-user-circle"></i></NavLink></Nav.Link>
-                    <Nav.Link><Button onClick={props.signOut} style={{textDecoration: 'none'}}>Logout</Button></Nav.Link>
+                    <Nav.Link> <NavLink to='/'><Button onClick={props.signOut} style={{textDecoration: 'none'}}>Logout</Button></NavLink></Nav.Link>
 
                 </Nav>
             </div> 
@@ -31,4 +31,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null,mapDispatchToProps)(SignedInLinks)
+export default connect(null,mapDispatchToProps)(SignedInLinks);

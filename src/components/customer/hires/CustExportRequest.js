@@ -51,7 +51,7 @@ const ExportRequests = ({exportHireRequests, history}) => {
                 tooltips={true}
                 layout={"fitData"}
                 rowClick={rowClick}
-                options={{ pagination: 'local',paginationSize: 10}}
+                options={{ pagination: 'local',paginationSize: 5}}
             />
             {/* <table className="table">
                 <thead className="thead-dark">

@@ -5,7 +5,7 @@ import moment from 'moment'
 import { ReactTabulator } from 'react-tabulator'
 
 const ImportRequests = ({importHireRequests, history}) => {
-    if (!importHireRequests.length) return <div><br/><br/><h4>No Import Requests</h4></div>
+    if (!importHireRequests.length) return <div><br/><br/><h3>No Import Requests</h3><br/></div>
 
     const columns = [
         { title: "Type", field: "containerType", width: 75, align: "center"},

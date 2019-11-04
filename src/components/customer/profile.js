@@ -11,6 +11,7 @@ import EditProfile from './editProfile'
 import Message from './message'
 import ResetPassword from './resetPassword'
 import CustManageTools from './hires/CustManageTools'
+import { dark } from '@material-ui/core/styles/createPalette'
 
 
 const imgStyle={
@@ -35,10 +36,10 @@ class Profile extends React.Component {
        const {auth,customers} = this.props
       
     return(
-        // <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.7' ,margin:'0',padding:'0'}}>
+        // <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.5' ,margin:'0',padding:'0'}}>
         <div className='container' style={{backgroundColor:'',opacity:'1'}} >
             <br/><br/><br/><br/>
-            <div style={{backgroundColor:'' ,opacity:'1'}}>
+            <div  style={{backgroundColor:'white' ,opacity:'1'}}>
                 <hr/>
                 <div>
                 <h1 style={{float:'left'}}>MY ACCOUNT</h1>  
@@ -104,7 +105,7 @@ class Profile extends React.Component {
             </div>
             <hr/>
         </div> 
-       // </div>
+        //</div>
         )
     }
 }

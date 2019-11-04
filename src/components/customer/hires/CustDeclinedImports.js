@@ -3,7 +3,7 @@ import moment from 'moment'
 import { ReactTabulator } from 'react-tabulator'
 
 const DeclinedImports = ({declinedImportHires, history}) => {
-    if (!declinedImportHires.length) return <div><br/><br/><h4>No Declined Imports</h4></div>
+    if (!declinedImportHires.length) return <div><br/><br/><h3>No Declined Imports</h3><br/></div>
 
     const columns = [
         { title: "Type", field: "containerType", width: 75, align: "center"},

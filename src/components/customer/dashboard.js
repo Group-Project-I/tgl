@@ -22,7 +22,8 @@ class Dashboard extends React.Component{
                 <h3 className="display-4 text-center" style={ hStyle}><strong> Welcome to Trans Global Logistics </strong></h3>
                 <hr className="bg-dark mb-4 w-25"/>
                 <br/><br/>
-                <div className='row container'style={{margin: ' 0 auto'}} >
+                <div className="homeoption image3">
+                <div className="row container" style={{margin: ' 0 auto'}} >
                     <div className="col" >
                             <div className="card" >
                                 <div className="card-body">
@@ -37,11 +38,13 @@ class Dashboard extends React.Component{
                             <div className="card-body">
                             <img className="card-img-top" src={require('../../img/manage.png')} alt="Card cap" style={ imgStyle}/>
                             <h5 className="card-title text-right">Manage Your Hires Here</h5>
-                            <p className="card-text text-right"><Link to='/'><button className="btn btn-info ">Manage Hires</button></Link></p>
+                            <p className="card-text text-right"><Link to='/cust/custManageTools'><button className="btn btn-info ">Manage Hires</button></Link></p>
                             </div>
                         </div>
                  </div>
+
             </div>
+                </div>
                
             <CustHome/>
             </div>

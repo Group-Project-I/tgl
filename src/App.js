@@ -47,6 +47,8 @@ import DeclinedHire from './components/customer/hires/CustDeclinedHires'
 import OngoingHire from './components/customer/hires/CustOngoingHire'
 import ManageHires from './components/customer/hires/CustManageHires'
 import ManageTools from './components/customer/hires/CustManageTools'
+
+
 function App(props) {
   
   const {type, auth} = props;
@@ -110,6 +112,7 @@ function App(props) {
               <Route path='/cust/custDeclinedHires' component={DeclinedHire}/>
 
 
+              
             </Switch>
           </div>
         </div>

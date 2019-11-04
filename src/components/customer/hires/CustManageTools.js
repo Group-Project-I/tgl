@@ -38,24 +38,25 @@ class ManageTools extends Component {
 
         return (
             <div className="image1">
+            <div className="fadeIn animated slow">
 
 
                 <div id="content" className="fluid " role="main">
-                    <br/><br/><br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/>
 
 
                     <Tabs className="center">
-                        <TabList className="tablist">
+                        <TabList className="tablist fadeInLeft animated fast">
                             <Tab>COMPLETED</Tab>
                             <Tab>REQUESTED</Tab>
                             <Tab>ONGOING</Tab>
                             <Tab>DECLINED</Tab>
                         </TabList>
 
-                        <br/><br/><br/><br/><br/><br/>
+                        <br/><br/><br/>
 
                         <TabPanel>
-                            <div className="complete1">
+                            <div className="tool fadeIn animated fast">
 
                                 <CompletedHires/>
                                 <br/><br/>
@@ -64,7 +65,7 @@ class ManageTools extends Component {
 
                         </TabPanel>
                         <TabPanel>
-                            <div className="complete1">
+                            <div className="tool fadeIn animated fast">
                                 <HireRequest/>
                                 <br/><br/>
                             </div>
@@ -72,14 +73,14 @@ class ManageTools extends Component {
 
                         </TabPanel>
                         <TabPanel>
-                            <div className="complete1">
+                            <div className="tool fadeIn animated fast">
                                 <OngoingHire/>
                                 <br/><br/>
                             </div>
 
                         </TabPanel>
                         <TabPanel>
-                            <div className="complete1">
+                            <div className="tool fadeIn animated fast">
                                 <DeclinedHire/>
                                 <br/><br/>
 
@@ -91,6 +92,7 @@ class ManageTools extends Component {
                 </div>
 
 
+            </div>
             </div>
 
 
