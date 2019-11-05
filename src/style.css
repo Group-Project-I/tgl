@@ -4,5 +4,11 @@ body{
 a{
     text-decoration: none;
 }
+.msg-display{
+
+}
+.simplebar-scrollbar:before{
+    background-color: red;
+}
 
 

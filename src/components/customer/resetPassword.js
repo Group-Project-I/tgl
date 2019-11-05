@@ -1,52 +1,87 @@
 import React from 'react'
-// import {setPassword} from '../../store/actions/customerActions'
+import { connect } from 'react-redux';
+import {recoverPassword} from '../../store/actions/customerActions'
 import Sidebar from './sidebar'
+import {Card} from 'react-bootstrap'
+import * as Yup from 'yup'
+import { Formik, Field } from 'formik'
+import MessageCard from './MessageCard'
 
-class ResetPassword extends React.Component{
-    render(){
-        return(
-            <div className='container'>
-                 <br/><br/><br/><br/>
-                 <hr/>
-                <h1>CHANGE PASSWORD</h1>  
-                <hr/>
-                <div className='row'>
-                    <div className='col'>
-                        <Sidebar/>
-                    </div>
-                    <div className='col'>
-                    <form className="forms" onSubmit={this.handleSubmit}  data-spy="scroll" >
-                        <div className="form-group">
-                            <label className="control-label col-sm-2" htmlFor="name" >Password:</label>
-                            <div className="col-sm-10">          
-                                <input type="text" className="form-control" id="pwd" placeholder="Current Password" name="pwd" onChange={this.handleChange}/>
-                            </div>
-                        </div>
-                        <div className="form-group">
-                            <label className="control-label col-sm-2" htmlFor="name" >New Password:</label>
-                            <div className="col-sm-10">          
-                                <input type="password" className="form-control" id="newPwd" placeholder="New Password" name="pwd" onChange={this.handleChange}/>
-                            </div>
-                        </div>
-                        
-                        <div className="form-group">
-                            <label className="control-label col-sm-2" htmlFor="comment">Confirm Password:</label>
-                            <div className="col-sm-10">
-                            <input type="password" className="form-control" id="cnfPwd" placeholder="Confirm your new password" name="pwd" onChange={this.handleChange}/>
-                            </div>
-                        </div>
-                        <div className="form-group">        
-                            <div className="col-sm-offset-2 col-sm-10">
-                                <button type="submit" className="btn btn-info">Send</button>
-                            </div>
-                        </div>
-                        </form>
-                    </div>
 
-                </div>
-             <button></button>  
-            </div>
-        )
-    }
+const RecoverSchema = Yup.object().shape({
+    email: Yup.string()
+      .email('Invalid email.')
+      .required('The email is required.'),
+  });
+
+const ResetPassword =({error,loading,sendEmail,cleanUp})=>{
+  
+    // useEffect(() => {
+    //     return () => {
+    //       cleanUp();
+    //     };
+    //   }, [cleanUp]);
+    
+      return (
+        <Formik
+          initialValues={{
+            email: '',
+          }}
+          validationSchema={RecoverSchema}
+          onSubmit={async (values, { setSubmitting }) => {
+           console.log(values)
+            await sendEmail(values);
+            setSubmitting(false);
+          }}
+        >
+          {({ isSubmitting, isValid }) => (
+              <div className='container'>
+                  <br/> <br/> <br/> <br/> <br/> <br/>
+                <h1 noMargin size="h1" color="white">
+                Recover your password
+              </h1>
+              <h3 size="h4" bold color="white">
+                Type in your e-mail to recover your password
+              </h3>
+                {/* <Field
+                  type="email"
+                  name="email"
+                  placeholder="Type your email..."
+                  component={Input}
+                /> */}
+                <input  type="email" name="email" placeholder="Type your email..." required></input>
+                <button
+                  disabled={!isValid || isSubmitting}
+                  loading={loading ? 'Sending recover email...' : null}
+                  type="submit"
+                >
+                  Recover email
+                </button>
+                  <p error show={error}>
+                    {error}
+                  </p>
+                  <p success show={error === false}>
+                    Recover email sent successfully!
+                  </p>
+              </div>
+              
+         
+          )}
+        </Formik>
+      );
 }
-export default ResetPassword;
+// const mapStateToProps = ({ auth }) => ({
+//     loading: auth.recoverPassword.loading,
+//     error: auth.recoverPassword.error,
+//   });
+  
+//   const mapDispatchToProps =()=> ({
+//     sendEmail:recoverPassword,
+//     // cleanUp:clean
+//   });
+  
+//   export default connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+//   )(ResetPassword);
+ export default ResetPassword;

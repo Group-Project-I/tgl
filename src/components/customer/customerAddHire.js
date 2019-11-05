@@ -26,7 +26,6 @@ class CustomerAddHire extends React.Component{
                         <AddHireExports />
                     </TabPanel>
                 </Tabs>
-
             </div>
             </div>
         )

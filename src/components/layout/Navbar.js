@@ -7,9 +7,9 @@ import {connect} from 'react-redux'
 
 const Navbar = (props) => {
 
-    const {auth, type} = props
+    const {auth, type,profile} = props
 
-    const links = auth.uid && type.userType === 'customer' && type.disabled === false ? <SignedInLinks/> :  (auth.uid && type.userType === 'admin' ? <><AdminNavbar/> </> : <SignedOutLinks/> );
+    const links = auth.uid && type.userType === 'customer' && type.disabled === false ? <SignedInLinks profile={profile}/> :  (auth.uid && type.userType === 'admin' ? <><AdminNavbar/> </> : <SignedOutLinks/> );
     return(
         <div>
             {links}
@@ -20,7 +20,8 @@ const Navbar = (props) => {
 const mapStateToProps = (state) => {
     return{
         auth: state.firebase.auth,
-        type: state.firebase.profile
+        type: state.firebase.profile,
+        profile: state.firebase.profile
     }
 }
 

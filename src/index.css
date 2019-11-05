@@ -119,6 +119,34 @@ code {
   position: absolute;
 } */
 
+.complete1{
+  background-color: rgba(255,255,255,0.9) !important;
+
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.tablist{
+  /*background-color: rgba(0,255,255,0.4) !important;*/
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: white;
+
+
+
+}
+
+.image1{
+
+
+  background-image: url("../src/img/index2.jpg");
+
+  padding-bottom: 250px;
+  background-repeat: no-repeat;
+
+}
 .ml-auto .nav-link{
   text-decoration: none;
 }

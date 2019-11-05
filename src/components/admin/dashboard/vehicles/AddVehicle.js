@@ -47,7 +47,7 @@ class AddVehicle extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col-4">
+                        <div className="input-field col-4"> 
                                 <input placeholder="Make" type="text" id="make" onChange={this.handleChange} required/>
                             </div>
                             <div className="input-field col-4">
