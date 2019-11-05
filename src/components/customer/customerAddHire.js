@@ -10,6 +10,7 @@ class CustomerAddHire extends React.Component{
     render(){
         return(
             <div className="hire_background fadeIn animated faster ">
+                <div className="select2">
                 <div id="content" className="container   " role="main">
                 <br/><br/><br/><br/> <br/><br/>
                 <Tabs className="center fadeIn animated slow">
@@ -28,6 +29,7 @@ class CustomerAddHire extends React.Component{
                 </Tabs>
 
             </div>
+                </div>
             </div>
         )
     }
