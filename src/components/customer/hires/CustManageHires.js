@@ -3,10 +3,10 @@ import "react-tabs/style/react-tabs.css";
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-import ManageCompletedHires from './CustManageCompletedHires'
-import ManageHireRequest from './CustManageHireRequest'
-import ManagePendingHires from './CustManageDeclinedHires';
-import ManageOngoingHire from './CustManageOngoingHire';
+import ManageCompletedHire from './CustManageCompletedHires'
+import ManageHireRequests from './CustManageHireRequest'
+import ManageDeclinedHire from './CustManageDeclinedHires';
+import ManageOngoingHires from './CustManageOngoingHire';
 
 
 class ManageHires extends Component {
@@ -35,20 +35,20 @@ class ManageHires extends Component {
         const load = this.state.load === 0 ? (
             this.props.hire.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "completed" ?  (
                 <div>
-                    <ManageCompletedHires hire={this.props.hire.filter(item => item.id === this.props.id)}></ManageCompletedHires>
+                    <ManageCompletedHire hire={this.props.hire.filter(item => item.id === this.props.id)}></ManageCompletedHire>
                 </div>
 
             ) : this.props.hire.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "request" ? (
                 <div id="content" className="container-fluid" role="main">
-                    <ManageHireRequest hire={this.props.hire.filter(item => item.id === this.props.id)}></ManageHireRequest>
+                    <ManageHireRequests hire={this.props.hire.filter(item => item.id === this.props.id)}></ManageHireRequests>
                 </div>
-            ) : this.props.hire.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "driverPending" ? (
+            ) : this.props.hire.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "ongoing" ? (
                 <div id="content" className="container-fluid" role="main">
-                    <ManagePendingHires hire={this.props.hire.filter(item => item.id === this.props.id)}></ManagePendingHires>
+                    <ManageOngoingHires hire={this.props.hire.filter(item => item.id === this.props.id)}></ManageOngoingHires>
                 </div>
             ) : (
                 <div id="content" className="container-fluid" role="main">
-                    <ManageOngoingHire hire={this.props.hire.filter(item => item.id === this.props.id)}></ManageOngoingHire>
+                    <ManageDeclinedHire hire={this.props.hire.filter(item => item.id === this.props.id)}></ManageDeclinedHire>
                 </div>
             )
 

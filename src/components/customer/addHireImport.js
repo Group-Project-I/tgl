@@ -5,9 +5,9 @@ import {connect} from 'react-redux'
 import {addImportHires} from '../../store/actions/customerHireActions'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
+
 // import {connect} from 'react-redux'
 // import {NavLink} from 'react-router-dom'
-
 class AddHireImport extends Component {
     state = {
         containerType: '20',
@@ -18,16 +18,20 @@ class AddHireImport extends Component {
         unloadingPort: '',
         vesselArrivalDatetime: '',
         destination: '',
+        customerId: '',
         remarks: '',
         loading: 1,
         redir : 0,
     }
+
+
 
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
         })
     }
+
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -50,6 +54,9 @@ class AddHireImport extends Component {
             })
         }
     }
+
+
+
     componentWillReceiveProps(nextProps) {
 
         if(this.props.customers && this.props.drivers){

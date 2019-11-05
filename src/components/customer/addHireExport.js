@@ -14,13 +14,7 @@ class AddHireExport extends Component {
         weight: '',
         loadingPort: '',
         loadingDatetime: '',
-        driverId: '',
         customerId: '',
-        vehicleId: '',
-        remarks: '',
-        completed: '0',
-        driverAccepted: '0',
-        declined: '0',
         remarks: '',
         loading: 1,
         redir: 0
@@ -158,6 +152,7 @@ class AddHireExport extends Component {
 
 const mapStateToProps = (state) => {
     return{
+
         hires: state.firestore.ordered.hires
     }
 }

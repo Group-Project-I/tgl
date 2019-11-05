@@ -18,8 +18,8 @@ class CompletedHires extends Component {
         const {auth} = this.props
         if (!auth.uid) return <Redirect to='/signin' />
 
-        const completedImportHires = this.props.hires.filter(item => item.hireType === "import" && item.hireStatus === 'completed')
-        const completedExportHires = this.props.hires.filter(item => item.hireType === "export" && item.hireStatus === 'completed')
+        const completedImportHires = this.props.hires.filter(item => item.hireType === "import" && item.hireStatus === 'completed' && item.customerId === auth.uid )
+        const completedExportHires = this.props.hires.filter(item => item.hireType === "export" && item.hireStatus === 'completed' && item.customerId === auth.uid )
 
         return (
             // <div className="main-panel">

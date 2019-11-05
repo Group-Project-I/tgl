@@ -18,8 +18,8 @@ class DeclinedHire extends Component {
         const {auth} = this.props
         if (!auth.uid) return <Redirect to='/signin' />
 
-        const declinedImportHires = this.props.hires.filter(item => item.hireType === "import" && item.hireStatus === 'declined')
-        const declinedExportHires = this.props.hires.filter(item => item.hireType === "export" && item.hireStatus === 'declined')
+        const declinedImportHires = this.props.hires.filter(item => item.hireType === "import" && item.hireStatus === 'declined' && item.customerId === auth.uid )
+        const declinedExportHires = this.props.hires.filter(item => item.hireType === "export" && item.hireStatus === 'declined' && item.customerId === auth.uid)
 
         return (
             // <div className="main-panel">
