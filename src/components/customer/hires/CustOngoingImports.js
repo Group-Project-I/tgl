@@ -41,7 +41,7 @@ const OngoingImports = ({ongoingImportHires, history}) => {
     )}
 
     var rowClick = (e, row) => {
-        let path = '/cust/custManageHires/' + row.getData().id;
+        let path = '/cust/custManageTools/' + row.getData().id;
         history.push(path)
     };
 
