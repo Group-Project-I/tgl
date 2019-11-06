@@ -4,9 +4,6 @@ import {connect} from 'react-redux'
 import {addExportHires} from '../../store/actions/customerHireActions'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-import Button from "react-bootstrap/Button";
-// import {connect} from 'react-redux'
-
 
 class AddHireExport extends Component {
     state = {
@@ -102,6 +99,7 @@ class AddHireExport extends Component {
                             <input placeholder="Weight" type="text" id="weight" onChange={this.handleChange} required />
                         </div>
                     </div>
+
                     <br/><h6>Loading Details</h6>
                     <div className="row">
                         <div className="input-field col-6">

@@ -6,6 +6,12 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import image from '../../img/importreq.jpg'
 import Sidebar from './sidebar'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
+import EditProfile from './editProfile'
+import Message from './message'
+import ResetPassword from './resetPassword'
+import CustManageTools from './hires/CustManageTools'
+import { dark } from '@material-ui/core/styles/createPalette'
 
 
 const imgStyle={
@@ -30,17 +36,39 @@ class Profile extends React.Component {
        const {auth,customers} = this.props
       
     return(
-        // <div style={{backgroundImage:"url("+image+")" }}>
-        <div className='container'>
+        // <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.5' ,margin:'0',padding:'0'}}>
+        <div className='container' style={{backgroundColor:'',opacity:'1'}} >
             <br/><br/><br/><br/>
-            <div style={{backgroundColor:''}}>
-            <hr/>
-            <h1 >MY ACCOUNT</h1>  
-            <hr/>
+            <div  style={{backgroundColor:'white' ,opacity:'1'}}>
+                <hr/>
+                <div>
+                <h1 style={{float:'left'}}>MY ACCOUNT</h1>  
+                <Link to='/'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/> 
+                </div>
+                <hr/>
             </div>
            
            <div className='row ' >
-              
+           {/* <Tabs className="center">
+                    <TabList>
+                        <Tab>EDIT PROFILE</Tab>
+                        <Tab>CHANGE PASSWORD</Tab>
+                        <Tab>VIEW MESSAGES</Tab>
+                        <Tab>MANAGE HIRES</Tab>
+                    </TabList>
+                    <TabPanel>
+                        <EditProfile/>
+                    </TabPanel>
+                    <TabPanel>
+                        <ResetPassword/>
+                    </TabPanel>
+                    <TabPanel>
+                        <Message />
+                    </TabPanel>
+                    <TabPanel>
+                        <CustManageTools/>
+                    </TabPanel>
+                </Tabs> */}
                  <div className='col-md-4'>
                     <Sidebar/>
                 </div>
@@ -76,8 +104,8 @@ class Profile extends React.Component {
                 </div>  
             </div>
             <hr/>
-            <Link to="/cust/Home"><button type="submit" className="btn btn-warning">Back</button></Link>
         </div> 
+        //</div>
         )
     }
 }
