@@ -89,7 +89,8 @@ class AddHireImport extends Component {
                         <hr className="bg-dark mb-4 w-25"/>
 
                 <form onSubmit={this.handleSubmit} >
-                    <h6 className="left">Container Type</h6> <br/><br/>
+                    <br/>
+                    <h6 >Container Type</h6> <br/>
                     <div className="bg col-6">
                         <select className="form-control select1" placeholder="Container Type" id="containerType" onChange={this.handleContainerType} required>
                             <option value="20">20ft</option>
