@@ -107,7 +107,7 @@ function App(props) {
               <Route path='/cust/custHireRequests' component={HireRequest}/>
               <Route path='/cust/custOngoingHires ' component={OngoingHire }/>
               <Route path='/cust/custManageTools' component={ManageTools}/>
-              <Route path='/cust/custManageHires/:id' component={ManageHires}/>
+              <Route path='/cust/custManageTools/:id' component={ManageHires}/>
               <Route path='/cust/custCompletedHires' component={CompletedHires}/>
               <Route path='/cust/custDeclinedHires' component={DeclinedHire}/>
 

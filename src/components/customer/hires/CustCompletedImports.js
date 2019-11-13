@@ -44,8 +44,8 @@ const CompletedImports = ({completedImportHires, history}) => {
     )}
 
     var rowClick = (e, row) => {
-        let path = '/cust/custManageHires/' + row.getData().id;
-        history.push(path)
+        let path = '/cust/custManageTools/' + row.getData().id;
+        history.push(path);
     };
 
     return(
@@ -57,7 +57,7 @@ const CompletedImports = ({completedImportHires, history}) => {
                 tooltips={true}
                 layout={"fitData"}
                 rowClick={rowClick}
-                options={{ pagination: 'local',paginationSize: 10}}
+                options={{ pagination: 'local',paginationSize: 5}}
 
 
             />

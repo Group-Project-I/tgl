@@ -5,9 +5,9 @@ import {connect} from 'react-redux'
 import {addImportHires} from '../../store/actions/customerHireActions'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
+
 // import {connect} from 'react-redux'
 // import {NavLink} from 'react-router-dom'
-
 class AddHireImport extends Component {
     state = {
         containerType: '20',
@@ -18,16 +18,21 @@ class AddHireImport extends Component {
         unloadingPort: '',
         vesselArrivalDatetime: '',
         destination: '',
+        customerId: '',
+        customerName: '',
         remarks: '',
         loading: 1,
         redir : 0,
     }
+
+
 
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
         })
     }
+
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -50,6 +55,9 @@ class AddHireImport extends Component {
             })
         }
     }
+
+
+
     componentWillReceiveProps(nextProps) {
 
         if(this.props.customers && this.props.drivers){
@@ -70,23 +78,26 @@ class AddHireImport extends Component {
             <div className="form wrapper form1 delay-1s">
 
                 <div className="form2  fadeIn animated slow ">
-                <br/><br/><br/><br/>
-                <h1 className="center fadeIn animated fast add_head">Add Import</h1><br/><br/><br/>
+
                 <div className="row fadeIn animated fast">
-                    <div className="bg col-6">
-                        <img className="image2 responsive1" src={require('../../img/importreq2.jpg')} width={440} />
+                    <div className="bg col-5">
+                        <img className="responsive1" src={require('../../img/importreq2.jpg')}/>
                     </div>
-                    <div className="bg col-6">
+                    <div className="bg col-7">
+                        <br/><br/>
+                        <h1 className="center fadeIn animated fast add_head">Add Import</h1>
+                        <hr className="bg-dark mb-4 w-25"/>
+
                 <form onSubmit={this.handleSubmit} >
-                    <hr/>
-                    <h6>Container Type</h6> <br/>
+                    <br/>
+                    <h6 >Container Type</h6> <br/>
                     <div className="bg col-6">
                         <select className="form-control select1" placeholder="Container Type" id="containerType" onChange={this.handleContainerType} required>
                             <option value="20">20ft</option>
                             <option value="40">40ft</option>
                         </select>
                     </div>
-                    <br/><hr/><h6>Container Pickup Details</h6> <br/>
+                    <br/><h6>Container Pickup Details</h6>
                     <div className="row">
                         <div className="input-field col-6">
                             <input placeholder="Pickup Location" type="text" id="pickupLocation" onChange={this.handleChange} required />
@@ -95,7 +106,7 @@ class AddHireImport extends Component {
                             <input placeholder="Pickup Date and Time" ref="pickup" onFocus={this.handleDate} type="text" id="pickupDatetime" onChange={this.handleChange} required />
                         </div>
                     </div>
-                    <br/><hr/><h6>Cargo Details</h6> <br/>
+                    <br/><h6>Cargo Details</h6>
                     <div className="row">
                         <div className="input-field col-6">
                             <input placeholder="Cargo Type" type="text" id="cargoType" onChange={this.handleChange} required />
@@ -104,7 +115,7 @@ class AddHireImport extends Component {
                             <input placeholder="Weight" type="text" id="weight" onChange={this.handleChange} required />
                         </div>
                     </div>
-                    <br/><hr/><h6>Unloading Details</h6><br/>
+                    <br/><h6>Unloading Details</h6>
                     <div className="row">
                         <div className="input-field col-6">
                             <input placeholder="Unloading Port" type="text" id="unloadingPort" onChange={this.handleChange} required />
@@ -118,7 +129,12 @@ class AddHireImport extends Component {
                             <input placeholder="Destination" type="text" id="destination" onChange={this.handleChange} required />
                         </div>
                     </div>
-
+                    <br/><h6>Customer Details</h6>
+                    <div className="row">
+                        <div className="input-field col-6">
+                            <input placeholder="Customer Name" type="text" id="customerName" onChange={this.handleChange} required />
+                        </div>
+                    </div>
 
                     <div className="input-field row col-12">
                         <textarea placeholder="Remarks" style={{ minHeight: 100}} type = "text" id="remarks" onChange={this.handleChange}/>
@@ -128,7 +144,7 @@ class AddHireImport extends Component {
                         <button className="btn blue lighten-1 z-depth-5 btn1">Add</button>
                         <button className="btn red lighten-1 z-depth-5 btn1">Cancel</button>
                     </div>
-                    <br/><br/><br/><br/>
+                    <br/>
                 </form>
                     </div>
                 </div>

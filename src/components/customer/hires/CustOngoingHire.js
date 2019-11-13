@@ -18,8 +18,8 @@ class OngoingHires extends Component {
         const {auth} = this.props
         if (!auth.uid) return <Redirect to='/signin' />
 
-        const ongoingImportHires = this.props.hires.filter(item => item.hireType === "import" && item.hireStatus === 'ongoing')
-        const ongoingExportHires = this.props.hires.filter(item => item.hireType === "export" && item.hireStatus === 'ongoing')
+        const ongoingImportHires = this.props.hires.filter(item => item.hireType === "import" && item.hireStatus === 'ongoing' && item.customerId === auth.uid )
+        const ongoingExportHires = this.props.hires.filter(item => item.hireType === "export" && item.hireStatus === 'ongoing' && item.customerId === auth.uid)
 
         return (
             // <div className="main-panel">
