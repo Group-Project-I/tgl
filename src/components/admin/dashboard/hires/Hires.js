@@ -21,7 +21,7 @@ class Hires extends Component {
 
         const importHires = this.props.hires.filter(item => item.hireType === "import" && (item.hireStatus === "completed" || item.hireStatus === "driverPending"))
         const exportHires = this.props.hires.filter(item => item.hireType === "export" && (item.hireStatus === "completed" || item.hireStatus === "driverPending"))
-        
+
         return (
         // <div className="main-panel">
             <div id="content" className="container-fluid" role="main">

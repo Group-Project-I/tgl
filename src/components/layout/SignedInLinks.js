@@ -9,7 +9,7 @@ const SignedInLinks = (props) => {
     return(
         <Navbar bg="dark" variant="dark" style={{ minWidth: 700, position: 'fixed' }}>
             <div className="container" >
-                <NavLink to='/'style={{ minWidth: 350 }} ><h3>Trans Global Logistics</h3></NavLink>
+                <NavLink to='/cust/home'style={{ minWidth: 350 }} ><h3>Trans Global Logistics</h3></NavLink>
                 <Nav className="justify-content-end mr-auto" style={{ width: "85%" }}>
                     <Nav.Link><NavLink to='/User/addHire' style={{textDecoration: 'none'}}>+AddHire</NavLink></Nav.Link>
                     <Nav.Link><NavLink to='/User/Home' style={{textDecoration: 'none'}}>Home</NavLink></Nav.Link>
