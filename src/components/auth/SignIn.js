@@ -31,7 +31,7 @@ class SignIn extends Component {
             localStorage.setItem('userId', 'admin')
             return <Redirect to='/admin' />
         } 
-        if (user.userType === 'customer' && user.disabled === false) return <Redirect to='/cust/Home' />
+        if (user.userType === 'customer' && user.disabled === false) return <Redirect to='/User/Home' />
         if (user.disabled === true) return <Redirect to='/error' />
         return (
             <div className="loginBody">
