@@ -19,7 +19,7 @@ class CustomerAddHire extends React.Component{
                         <Tab>IMPORTS</Tab>
                         <Tab>EXPORTS</Tab>
                     </TabList>
-                    <br/><br/><br/><br/><br/>
+                    <br/><br/>
                     <TabPanel>
                         <AddHireImport />
                     </TabPanel>
