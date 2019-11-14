@@ -97,19 +97,19 @@ function App(props) {
 
               <Route path='/admin/disabled' component={DisabledUsers}/>
 
-              <Route path='/cust/addHire' component={CustomerAddHire}/>
-              <Route path='/cust/Home' component={Dashboard}/>
-              <Route path='/cust/resetPassword' component={ResetPassword}/>
-              <Route path ='/cust/messages' component={Message}/>
-              <Route exact path='/cust/profile' component={Profile}/>
-              <Route exact path='/cust/profile/:id' component={EditProfile}/>
+              <Route path='/User/addHire' component={CustomerAddHire}/>
+              <Route path='/User/Home' component={Dashboard}/>
+              <Route path='/User/resetPassword' component={ResetPassword}/>
+              <Route path ='/User/messages' component={Message}/>
+              <Route exact path='/User/profile' component={Profile}/>
+              <Route exact path='/User/profile/:id' component={EditProfile}/>
 
-              <Route path='/cust/custHireRequests' component={HireRequest}/>
-              <Route path='/cust/custOngoingHires ' component={OngoingHire }/>
-              <Route exact path='/cust/custManageTools' component={ManageTools}/>
-              <Route path='/cust/custManageTools/:id' component={ManageHires}/>
-              <Route path='/cust/custCompletedHires' component={CompletedHires}/>
-              <Route path='/cust/custDeclinedHires' component={DeclinedHire}/>
+              <Route path='/User/UserHireRequests' component={HireRequest}/>
+              <Route path='/User/UserOngoingHires ' component={OngoingHire }/>
+              <Route path='/User/UserManageTools' component={ManageTools}/>
+              <Route path='/User/UserManageTools/:id' component={ManageHires}/>
+              <Route path='/User/UserCompletedHires' component={CompletedHires}/>
+              <Route path='/User/UserDeclinedHires' component={DeclinedHire}/>
 
 
               

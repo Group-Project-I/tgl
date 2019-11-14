@@ -37,7 +37,7 @@ const ImportRequests = ({importHireRequests, history}) => {
     )}
 
     var rowClick = (e, row) => {
-        let path = '/cust/custManageTools/' + row.getData().id;
+        let path = '/User/UserManageTools/' + row.getData().id;
         history.push(path)
     };
     return(
