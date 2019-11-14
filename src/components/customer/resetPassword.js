@@ -7,7 +7,6 @@ import * as Yup from 'yup'
 import { Formik, Field } from 'formik'
 import MessageCard from './MessageCard'
 
-
 const RecoverSchema = Yup.object().shape({
     email: Yup.string()
       .email('Invalid email.')
