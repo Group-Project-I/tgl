@@ -43,7 +43,7 @@ class Profile extends React.Component {
                 <hr/>
                 <div>
                 <h1 style={{float:'left'}}>MY ACCOUNT</h1>  
-                <Link to='/cust/Home'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/>
+                <Link to='/User/Home'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/>
                 </div>
                 <hr/>
             </div>
@@ -84,7 +84,7 @@ class Profile extends React.Component {
                             <Card.Text>
                             Edit your profile and change subscription settings
                             </Card.Text>
-                            <Link to={'/cust/profile/' + auth.uid}><Button className='btn btn-info' variant="primary">Edit</Button></Link>
+                            <Link to={'/User/profile/' + auth.uid}><Button className='btn btn-info' variant="primary">Edit</Button></Link>
                         </Card.Body>
                     </Card>
                 </div>
@@ -97,7 +97,7 @@ class Profile extends React.Component {
                             <Card.Text>
                             Get any advice or opinion just by sending a message.
                             </Card.Text>
-                            <Link to='/cust/messages'><Button className='btn btn-info' variant="primary">View</Button></Link>
+                            <Link to='/User/messages'><Button className='btn btn-info' variant="primary">View</Button></Link>
                         </Card.Body>
                     </Card>  
                 

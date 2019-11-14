@@ -57,7 +57,7 @@ class AddHireExport extends Component {
 
     render() {
         if(this.state.redir === 1){
-            return <Redirect to='/cust/Home' />
+            return <Redirect to='/User/Home' />
         }
 
         return (

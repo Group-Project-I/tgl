@@ -29,6 +29,7 @@ class CustomerAddHire extends React.Component{
                 </Tabs>
             </div>
                 </div>
+
             </div>
         )
     }
