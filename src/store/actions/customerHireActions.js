@@ -56,4 +56,30 @@ export const addExportHires = (exportHire) => {
     }
 };
 
+export const declineHireRequests = (id) => {
+    return(dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        firestore.collection('hires').doc(id).update({
+            hireStatus: 'declined'
+        }).then(() => {
+            dispatch({type: 'HIRE_REQUEST_DECLINED'});
+        }).catch((err) => {
+            dispatch({type: 'ERROR_DECLINING_HIRE_REQUEST', err})
+        })
+    }
+};
+
+export const updateRequest = (id, data, hireRequest) => {
+
+    return(dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        firestore.collection(hireRequest).doc(id).update({
+            ...data
+        }).then(() => {
+            dispatch({type: 'DOCUMENT_UPDATED'});
+        }).catch((err) => {
+            dispatch({type: 'ERROR_UPDATING_DOCUMENT', err});
+        })
+    }
+};
 

@@ -65,13 +65,10 @@ class AddHireExport extends Component {
                 <div className="form2 fadeIn animated slow">
 
                     <div className="row fadeIn animated slow">
-                        <div className="bg col-5 ">
-                            <img className="responsive2" src={require('../../img/exportreq.jpg')}/>
-                        </div>
-                        <div className="bg col-7">
+                        <div className="bg col-12">
                             <br/><br/>
-                            <h1 className="center fadeIn animated slow add_head">Add Export</h1>
-                            <hr className="bg-dark mb-4 w-25"/>
+                            <h1 className="center fadeIn animated slow add_head">Add <span className="topic">Export</span></h1>
+                            <hr className="bg-dark mb-4"/>
 
                 <form onSubmit={this.handleSubmit} >
                     <br/>

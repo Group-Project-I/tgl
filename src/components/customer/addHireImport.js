@@ -78,13 +78,10 @@ class AddHireImport extends Component {
                 <div className="form2  fadeIn animated slow ">
 
                 <div className="row fadeIn animated fast">
-                    <div className="bg col-1">
-                        {/* <img className="responsive1" src={require('../../img/importreq2.jpg')}/> */}
-                    </div>
-                    <div className="bg col-11 center">
+                    <div className="bg col-12">
                         <br/><br/>
-                        <h1 className="center fadeIn animated fast add_head">Add Import</h1>
-                        <hr className="bg-dark mb-4 w-25"/>
+                        <h1 className="center fadeIn animated fast add_head">Add <span className="topic">Import</span></h1>
+                        <hr className="bg-dark mb-4"/>
 
                         <form onSubmit={this.handleSubmit} >
                             <br/>
