@@ -6,7 +6,7 @@ import DeclinedImports from './CustDeclinedImports'
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-import {Redirect} from 'react-router-dom'
+import {Redirect, withRouter} from 'react-router-dom'
 
 
 class DeclinedHire extends Component {
@@ -56,4 +56,4 @@ export default compose(
     firestoreConnect([
         {collection: 'hires'}
     ])
-)(DeclinedHire)
+)(withRouter(DeclinedHire))

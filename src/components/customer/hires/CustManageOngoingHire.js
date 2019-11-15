@@ -41,15 +41,15 @@ class ManageOngoingHire extends Component {
     render() {
 
         if(this.state.redir === 1){
-            return <Redirect to='/admin/hires' />
+            return <Redirect to='/User/UserManageTools' />
         }
         return (
             this.state.loading === 1 ? (
-                    <div><br/><br/><br/><br/><h1>Loading...</h1></div>
+                    <div className="center"><br/><br/><br/><br/><br/><br/><br/><br/><h1>Loading...</h1></div>
                 ) :
                 <div>
-                    <br/><br/><br/><br/>
-                    <h2 className="center">Hire Request</h2><br/><br/>
+                    <br/><br/><br/><br/><br/>
+                    <h1 className="center add_head">Ongoing <span className="topic">Hire</span></h1><hr className="bg-dark mb-4 w-25"/><br/><br/>
                     <div className="container">
                         <div className="col-4" style={{padding: '20px'}}>
                             <h6><b className='blue-text'>Hire Type: </b> {this.props.hire[0].hireType.toUpperCase()}</h6>
@@ -149,16 +149,13 @@ class ManageOngoingHire extends Component {
                                 <h6><b className='blue-text'>Remarks: </b> {this.props.hire[0].remarks}</h6>
                             </div>
                         </div>
-                    </div>
-                    <div className="container">
-                        <form onSubmit={this.handleSubmit} >
-                            <br/><hr/><h5 className="center">Hire Status</h5><br/>
+                        <br/><hr/><h5 className="center">Hire Status</h5><br/>
 
-                            <br/><br/>
-                            <div className="input-field center">
-                                <button className="btn green lighten-1 z-depth-0" type="submit">Hire Completed</button>
-                            </div>
-                        </form>
+
+                        <div className="input-field center">
+                            <h6><b className='blue-text'>Status: </b> <b className="orange">{this.props.hire[0].hireStatus}</b></h6>
+                        </div>
+                        <br/><br/>
                     </div>
                 </div>
         )

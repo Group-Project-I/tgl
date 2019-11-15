@@ -4,8 +4,7 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import moment from 'moment'
 import {Redirect} from 'react-router-dom'
-import {acceptHireRequest} from '../../../store/actions/adminHireActions'
-import {declineHireRequest} from '../../../store/actions/adminHireActions'
+import {declineHireRequests} from '../../../store/actions/customerHireActions'
 
 class ManageHireRequest extends Component {
     state = {
@@ -19,83 +18,26 @@ class ManageHireRequest extends Component {
         redir: 0
     }
 
-    handleChange = (e) => {
-        this.setState({
-            [e.target.id]: e.target.value
-        })
-    }
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.acceptHireRequest(this.props.hire[0].id, this.state)
-        this.setState({
-            redir : 1
-        })
-    }
+    // handleChange = (e) => {
+    //     this.setState({
+    //         [e.target.id]: e.target.value
+    //     })
+    // }
+    //
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     this.props.acceptHireRequest(this.props.hire[0].id, this.state)
+    //     this.setState({
+    //         redir : 1
+    //     })
+    // }
 
     declineHire = (e) => {
         e.preventDefault();
-        this.props.declineHireRequest(this.props.hire[0].id, this.state)
+        this.props.declineHireRequests(this.props.hire[0].id, this.state)
         this.setState({
             redir : 1
         })
-    }
-
-    availableDrivers = (e) => {
-        const dateTime = this.props.hire[0].pickupDatetime
-        const ListH = this.props.hires.filter(item => item.driverId !== "" && item.hireStatus !== "request")
-        if(dateTime && ListH){
-            if(ListH && this.props.drivers){
-                const driversOnHire = ListH.filter(item => item.pickupDatetime.toString().split('T')[0] === dateTime.toString().split('T')[0]).map(a => a.driverId)
-
-                const allDrivers = this.props.drivers.filter(item => item.disabled === false)
-                const freeDrivers = allDrivers.filter(function(item) {
-                    return !driversOnHire.includes(item.id);
-                })
-                this.setState({
-                    freeDrivers: freeDrivers
-                });
-            }
-        }
-    }
-
-    handleDriver = (e) => {
-        if(e.target.value){
-            const y = e.target.value.split('_')
-            this.setState({
-                driverId: y[0],
-                driverName: y[1]
-            })
-        }
-    }
-
-    availableVehicles = (e) => {
-        const dateTime = this.props.hire[0].pickupDatetime
-        const ListH = this.props.hires.filter(item => item.vehicleId !== "" && item.hireStatus !== "completed")
-        if(dateTime && ListH){
-
-            if(ListH && this.props.vehicles){
-                const vehiclesOnHire = ListH.filter(item => item.pickupDatetime.toString().split('T')[0] === dateTime.toString().split('T')[0]).map(a => a.vehicleId)
-
-                const allVehicles = this.props.vehicles.filter(item => item.disabled === false)
-                const freeVehicles = allVehicles.filter(function(item) {
-                    return !vehiclesOnHire.includes(item.id);
-                })
-                this.setState({
-                    freeVehicles: freeVehicles
-                });
-            }
-        }
-    }
-
-    handleVehicle = (e) => {
-        if(e.target.value){
-            const x = e.target.value.split('_')
-            this.setState({
-                vehicleId: x[0],
-                vehicleNo: x[1]
-            })
-        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -105,7 +47,6 @@ class ManageHireRequest extends Component {
                 ...nextProps,
                 loading: 0,
             });
-            this.availableDrivers()
         }
 
     }
@@ -113,15 +54,16 @@ class ManageHireRequest extends Component {
     render() {
 
         if(this.state.redir === 1){
-            return <Redirect to='/admin/hires' />
+            return <Redirect to='/User/UserManageTools' />
         }
         return (
             this.state.loading === 1 ? (
-                    <div><br/><br/><br/><br/><h1>Loading...</h1></div>
+                    <div className="center"><br/><br/><br/><br/><br/><br/><br/><br/><h1>Loading...</h1></div>
                 ) :
                 <div>
-                    <br/><br/><br/><br/>
-                    <h2 className="center">Hire Request</h2><br/><br/>
+                    <br/><br/><br/><br/><br/>
+                    <h1 className="center add_head">Hire <span className="topic">Request</span></h1><hr className="bg-dark mb-4 w-25"/><br/><br/>
+
                     <div className="container">
                         <div className="col-4" style={{padding: '20px'}}>
                             <h6><b className='blue-text'>Hire Type: </b> {this.props.hire[0].hireType.toUpperCase()}</h6>
@@ -191,34 +133,21 @@ class ManageHireRequest extends Component {
                                 <h6><b className='blue-text'>NIC: </b> {this.props.customer.filter(item => item.id === this.props.hire[0].customerId).map(a => a.nic)[0]}</h6>
                             </div>
                         </div>
+                        <br/><hr/><h5 className="center">Remarks</h5><br/>
+                        <div className="input-field row col-12" style={{padding: '20px'}}>
+                            <textarea placeholder="Remarks" value={this.state.hire[0].remarks} style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange}/>
+                        </div>
+                        <br/><br/>
                     </div>
+
                     <div className="container">
                         <form onSubmit={this.handleSubmit} >
-                            <br/><hr/><h5 className="center">Assign Driver</h5><br/>
-                            <div className="row" style={{padding: '20px'}} >
-                                <div className="input-field col-6">
-                                    <select className="form-control" id="driverId" onChange={this.handleDriver} onBlur={this.handleDriver}>
-                                        {this.state.freeDrivers ? this.state.freeDrivers.map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName + " - " + x.mobile}</option>)}) : null}
-                                    </select>
-                                </div>
-                            </div>
-                            <br/><hr/><h5 className="center">Assign Vehicle</h5><br/>
-                            <div className="row" style={{padding: '20px'}}>
-                                <div className="input-field col-6">
-                                    <select className="form-control" id="vehicleId" onFocus={this.availableVehicles} onChange={this.handleVehicle} onBlur={this.handleVehicle}>
-                                        {this.state.freeVehicles ? this.state.freeVehicles.map((x, i) => {return (<option value={x.id + "_" + x.vehicleNo} key={i}>{x.vehicleNo + " - " + x.trailerNo}</option>)}) : null}
-                                    </select>
-                                </div>
-                            </div>
-                            <br/><hr/><h5 className="center">Remarks</h5><br/>
-                            <div className="input-field row col-12" style={{padding: '20px'}}>
-                                <textarea placeholder="Remarks" value={this.state.hire[0].remarks} style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange}/>
+
+                            <div className="input-field center">
+                                <button className="btn blue lighten-1 z-depth-0" type="submit">Update</button>
+                                <button className="btn red lighten-1 z-depth-0" onClick={this.declineHire}>Delete</button>
                             </div>
                             <br/><br/>
-                            <div className="input-field center">
-                                <button className="btn blue lighten-1 z-depth-0" type="submit">Add</button>
-                                <button className="btn red lighten-1 z-depth-0" onClick={this.declineHireRequest}>Cancel</button>
-                            </div>
                         </form>
                     </div>
                 </div>
@@ -238,8 +167,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        acceptHireRequest: (id, hireRequest) => dispatch(acceptHireRequest(id, hireRequest)),
-        declineHireRequest: (id, hireRequest) => dispatch(declineHireRequest(id, hireRequest))
+        declineHireRequests: (id) => dispatch(declineHireRequests(id))
     }
 }
 
