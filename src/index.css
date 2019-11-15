@@ -14,9 +14,10 @@ code {
     monospace;
 }
 .hire_background{
-  background-image:url("../src/img/index3.jpg");
+  background-image:url("../src/img/bg1.jpg");
   width: auto;
   height: auto;
+  background-size: cover;
   background-repeat: no-repeat;
 
 
