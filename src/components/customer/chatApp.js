@@ -1,5 +1,4 @@
 import React from 'react'
-import Sidebar from './sidebar'
 import ChatList from './chats/chatlist'
 
 import { async } from '@firebase/util'
@@ -24,9 +23,7 @@ class ChatApp extends React.Component{
                 <h1>MESSAGES</h1>  
                 <hr/>
                 <div className='row'>
-                    <div className='col'>
-                        <Sidebar/>
-                    </div>
+                    
                     <div className='col'>
                         <ChatList 
                         history={this.props.history}

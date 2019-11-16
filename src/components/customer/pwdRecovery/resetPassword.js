@@ -1,11 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import {recoverPassword} from '../../store/actions/customerActions'
-import Sidebar from './sidebar'
-import {Card} from 'react-bootstrap'
+import {recoverPassword} from '../../../store/actions/customerActions'
+import {Link} from 'react-router-dom'
 import * as Yup from 'yup'
 import { Formik, Field } from 'formik'
-import MessageCard from './MessageCard'
+import MessageCard from '../MessageCard'
 
 
 const RecoverSchema = Yup.object().shape({
@@ -36,11 +35,19 @@ const ResetPassword =({error,loading,sendEmail,cleanUp})=>{
         >
           {({ isSubmitting, isValid }) => (
               <div className='container'>
-                  <br/> <br/> <br/> <br/> <br/> <br/>
-                <h1 noMargin size="h1" color="white">
-                Recover your password
-              </h1>
-              <h3 size="h4" bold color="white">
+                  <br/> <br/> <br/> <br/> 
+                  <hr/>
+                  <div style={{padding:'0 20px '}}>
+                  <h1  style={{float:'left'}} noMargin size="h1" color="white">
+                       Recover your password </h1>
+                   <Link to='/cust/profile'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/> 
+                </div>
+                <hr/>
+                <div className='row'>
+               
+                <div className='col'> 
+                
+                <h3 size="h4" bold color="white">
                 Type in your e-mail to recover your password
               </h3>
                 {/* <Field
@@ -54,16 +61,20 @@ const ResetPassword =({error,loading,sendEmail,cleanUp})=>{
                   disabled={!isValid || isSubmitting}
                   loading={loading ? 'Sending recover email...' : null}
                   type="submit"
+                  className='btn'
                 >
                   Recover email
                 </button>
-                  <p error show={error}>
+                  {/* <p error show={error}>
                     {error}
                   </p>
                   <p success show={error === false}>
                     Recover email sent successfully!
-                  </p>
+                  </p> */}
               </div>
+                </div>
+              </div>
+              
               
          
           )}

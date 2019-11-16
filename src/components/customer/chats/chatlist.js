@@ -32,7 +32,6 @@ class ChatList extends React.Component{
                                                 _chat.users.filter(_user => _user === this.props.userEmail)[0]
                                             }
                                             secondary={
-
                                                 <React.Fragment>
                                                 <Typography  component='span'
                                                     color='textPrimary'>
