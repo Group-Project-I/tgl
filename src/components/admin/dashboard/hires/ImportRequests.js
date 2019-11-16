@@ -7,11 +7,13 @@ import { ReactTabulator } from 'react-tabulator'
 const ImportRequests = ({importHireRequests, history}) => {
     if (!importHireRequests.length) return <div><br/><br/><h4>No Import Requests</h4></div>
 
+    global.moment = require("moment");
+
     const columns = [
         { title: "Type", field: "containerType", width: 75, align: "center"},
-        { title: "Pickup Date", field: "pickupDatetime", headerFilter:"input"},
+        { title: "Pickup Date", field: "pickupDatetime", headerFilter:"input", sorter: "datetime", sorterParams:{format:"MMM Do YYYY, h:mm a"}},
         { title: "Cargo Type", field: "cargoType", headerFilter:"input", width: 150},
-        { title: "Vessel Arrival Date", field: "vesselArrivalDatetime", headerFilter:"input"},
+        { title: "Vessel Arrival Date", field: "vesselArrivalDatetime", headerFilter:"input", sorter: "datetime", sorterParams:{format:"MMM Do YYYY, h:mm a"}},
         { title: "Destination", field: "destination", headerFilter:"input", width: 150},
         { title: "Customer", field: "customerName", headerFilter:"input"},
     ];
@@ -22,9 +24,9 @@ const ImportRequests = ({importHireRequests, history}) => {
         data.push({
             id: imp.id, 
             containerType: imp.containerType, 
-            pickupDatetime: moment(imp.pickupDatetime).format('MMM Do YYYY, h:mm:ss a'), 
+            pickupDatetime: moment(imp.pickupDatetime).format('MMM Do YYYY, h:mm a'), 
             cargoType: imp.cargoType, 
-            vesselArrivalDatetime: moment(imp.vesselArrivalDatetime).format('MMM Do YYYY, h:mm:ss a'), 
+            vesselArrivalDatetime: moment(imp.vesselArrivalDatetime).format('MMM Do YYYY, h:mm a'), 
             destination: imp.destination, 
             customerName: imp.customerName,
         })

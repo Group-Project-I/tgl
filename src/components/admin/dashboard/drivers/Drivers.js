@@ -26,13 +26,15 @@ class Drivers extends Component {
         const {auth,type, drivers} = this.props
         if (!auth.uid) return <Redirect to='/signin' />
 
+        global.moment = require("moment");
+
         const columns = [
             { title: "Name", field: "name", headerFilter:"input" },
             { title: "License No", field: "licenseNo", align: "left", headerFilter:"input"},
             { title: "NIC", field: "nic", headerFilter:"input" },
             { title: "Mobile", field: "mobile", headerFilter:"input"},
             { title: "Email", field: "email", align: "center", headerFilter:"input"},
-            { title: "User Since", field: "userSince", align: "center"},         
+            { title: "User Since", field: "userSince", align: "center", sorter: "datetime", sorterParams:{format:"MMM Do YYYY"}},         
         ];
 
         var data = []
