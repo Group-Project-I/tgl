@@ -10,10 +10,11 @@ import Avatar from '@material-ui/core/Avatar'
 class ChatList extends React.Component{
     render(){
 
-        const { classes } = this.props
+        const {classes} = this.props
+
         return(
-            <div className='classes.root'>
-                <Button className='classes.newChatBtn 'onclick={this.newChat}> New Message
+            <div className={classes.root}>
+                <Button className={classes.newChatBtn} onclick={this.newChat}> New Message
                 </Button>
                 <List>
                 {
@@ -21,7 +22,7 @@ class ChatList extends React.Component{
                             return(
                                 <div key={_index}>
                                      <ListItem onClick={() => this.selectChat(_index)} 
-                                        className='classes.listItem'
+                                        className={classes.listItem}
                                         selected={this.props.selectedChatIndex === _index} 
                                         alignItems="flex-start">
                                         <ListItemAvatar>

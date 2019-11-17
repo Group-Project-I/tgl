@@ -16,6 +16,8 @@ class ChatApp extends React.Component{
         }
     }
     render(){
+        const {classes} = this.props
+
         return(
             <div className='container'>
                  <br/><br/><br/><br/>
@@ -43,6 +45,7 @@ class ChatApp extends React.Component{
     selectChat =(chatIndex)=>{
         console.log('selected chat',chatIndex)
     }
+    
     newChatBtnClicked =()=> this.setState({ 
         newChatFormVisible : true,
         selectedChat : null
