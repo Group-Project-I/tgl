@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import { Card} from 'react-bootstrap'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {editUser} from '../../store/actions/adminActions'
@@ -52,11 +53,11 @@ class EditProfile extends Component {
     render() {
         
         const load = this.state.loading === 0 ? (
-            <div >
+            <div style={{  backgroundColor: "#dee7e7", margin:'0',padding:'0' ,marginBottom:'0'}}>
             <div className="container "   >
                 <br/><br/><br/><br/>
                 <div >
-                    <div>
+                    <div className='cust-heading'>
                     <hr/>
                 <h1 style={{float:'left'}}>EDIT PROFILE</h1> 
                 <Link to='/cust/profile'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/> 
@@ -70,7 +71,7 @@ class EditProfile extends Component {
                         <h4>{this.state.updated ? "Updated Successfully" : null}</h4>
                     </div>
                     <form onSubmit={this.handleSubmit}>
-                        <div className="row">
+                        <div className="row main-section">
                             <div className="input-field col-5 row">
                                 <h6 className='blue-text'>First name</h6>
                                 <input placeholder="First Name" type="text" id="firstName" value={this.state.firstName}  onChange={this.handleChange} required />

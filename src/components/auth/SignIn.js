@@ -52,7 +52,7 @@ class SignIn extends Component {
                                     <div className="input-field">
                                         <input placeholder="Password" type="password" id="password" onChange={this.handleChange} required />
                                     </div>
-                                    <div className="input-field d-flex justify-content-center">
+                                    <div className="input-field ">
                                         <button className="btn blue lighten-1 z-depth-0">Login</button>
                                     </div>
                                     
@@ -60,12 +60,11 @@ class SignIn extends Component {
                                 
                             </div>
                             <div className="d-flex justify-content-center links">
-                                    <NavLink to='/forgetPassword'><br/><p>Forget password</p></NavLink>
+                                    <NavLink to='/forgetPassword'><p>Forget password</p></NavLink>
                                 </div>
                             <div className="card-footer">
                                 <div className="d-flex justify-content-center links">
                                     Don't have an account?<p><NavLink to='/signup' className="text-blue">Sign Up</NavLink></p><br/>
-                                    
                                 </div>
                                 
                             </div>

@@ -16,17 +16,19 @@ class ResetPassword extends React.Component{
   }
 
   handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     // console.log(this.state);
     this.props.recoverPassword(this.state)
   }
 
   render(){
     return(
+      <div style={{  backgroundColor: "#dee7e7 ", margin:'0',padding:'0' ,marginBottom:'0'}}>
+
       <div className='container'>
         <br/><br/><br/><br/>
-        <Card >
-            <div  style={{backgroundColor:'white' ,opacity:'1'}}>
+        <Card className={'user-card'}  >
+            <div className='cust-heading' >
               <hr/>
               <div style={{padding:'0 20px '}}>
               <h1 style={{float:'left'}}>RESET PASSWORD</h1> 
@@ -34,23 +36,26 @@ class ResetPassword extends React.Component{
               </div>
               <hr/>
             </div>
-            <div className='row'>
-              <div className='col'>
-                <img src={require('../../../img/image1.jpg')} style={{width:'500px',height:'500px'}} alt="pwdImage"/>
+            <div className='row main-section'>
+              <div className='col-md-4 sub-section'>
+                <img src={require('../../../img/image1.jpg')} style={{width:'400px',height:'500px',opacity:'0.7'}} alt="pwdImage"/>
               </div>
-              <div className='col'>
-                <p style={{textAlign:'justify'}}>Please enter your email address below and we will send you information to recover your account</p>
+              <div className='col-md-6 sub-section content'
+              style={{paddingLeft:'100px'}}
+              >
+                <p style={{textAlign:'justify' }}>Please enter your email address below and we will send you information to recover your account</p>
                 <form onSubmit={this.handleSubmit}>
                   <div className='form-group'>
-                    <input placeholder=' Email Address' id ='email' onChange={this.handleChange} />
+                    <input placeholder=' Email Address' id ='email' name='email' type='text' onChange={this.handleChange} />
                   </div>
-                  <button className='btn' type ='submit'>Reset Password</button>
+                  <button className='btn d-flex justify-content-center' type ='submit'>Reset Password</button>
                 </form>
               </div>
             </div>
           
         </Card>
-        </div>    
+        </div> 
+        </div>   
     )
   }
 }

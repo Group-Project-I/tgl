@@ -1,27 +1,27 @@
 import React from 'react'
-import {Link,NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {Button, Card} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 
 
-const imgStyle={
-    borderRadius:'50%',
-    height:'100px',
-    width:'100px',
-}
-const rowStyle={
-    margin:'0',
-    paddingBottom:'0',
-    backgroundColor:'red'
-}
-const hStyle = {
-    fontSize: '64px',
-    margin:'40px',
-    textDecoration:'none',
-    color:'black'
-}
+// const imgStyle={
+//     borderRadius:'50%',
+//     height:'100px',
+//     width:'100px',
+// }
+// const rowStyle={
+//     margin:'0',
+//     paddingBottom:'0',
+//     backgroundColor:'red'
+// }
+// const hStyle = {
+//     fontSize: '64px',
+//     margin:'40px',
+//     textDecoration:'none',
+//     color:'black'
+// }
 
 class Profile extends React.Component {
    render(){
@@ -29,9 +29,12 @@ class Profile extends React.Component {
       
     return(
         // <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.5' ,margin:'0',padding:'0'}}>
+        <div style={{  backgroundColor: "#dee7e7", margin:'0',padding:'0' ,marginBottom:'0'}}>
+
         <div className='container' style={{backgroundColor:'',opacity:'1'}} >
             <br/><br/><br/><br/>
-            <div  style={{backgroundColor:'white' ,opacity:'1'}}>
+            <Card className={'user-card'}>
+            <div className='cust-heading' >
                 <hr/>
                 <div style={{padding:'0 20px '}}>
                 <h1 style={{float:'left'}}>MY ACCOUNT</h1> 
@@ -42,9 +45,9 @@ class Profile extends React.Component {
                 <hr/>
             </div>
            
-           <div className='row ' >
+           <div className='row main-section ' >
           
-                 <div className='col-md-4 col-sm-12' >
+                 <div className='col-md-4 col-sm-12' style={{paddingLeft:'40px'}}>
                     <Card style={{ width: '18rem'}}>
                         <Card.Img variant="top"  className='center' src={require('../../img/user.png')} 
                         style={{
@@ -71,8 +74,8 @@ class Profile extends React.Component {
                             <Card.Text>
                             Change your email preferences chvjnhjbvcbdsyefsKAUSG
                             <br/>
-                            </Card.Text>
-                            <Link to={'/cust/profile/' + auth.uid}><Button className='btn btn-info' variant="primary" style={{ width: '15rem'}}>Edit</Button></Link>
+                            </Card.Text> 
+                            <Link to={'/resetEmail'}><Button className='btn btn-info' variant="primary" style={{ width: '15rem'}}>RECOVER</Button></Link>
                         </Card.Body>
                     </Card>
                 </div>
@@ -92,8 +95,10 @@ class Profile extends React.Component {
                 </div>  
             </div>
             <hr/>
+            </Card>
+            
         </div> 
-        //</div>
+        </div>
         )
     }
 }
