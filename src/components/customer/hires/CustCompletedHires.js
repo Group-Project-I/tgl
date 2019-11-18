@@ -6,7 +6,7 @@ import CompletedImports from './CustCompletedImports'
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-import {Redirect} from 'react-router-dom'
+import {Redirect, withRouter} from 'react-router-dom'
 
 
 class CompletedHires extends Component {
@@ -18,9 +18,8 @@ class CompletedHires extends Component {
         const {auth} = this.props
         if (!auth.uid) return <Redirect to='/signin' />
 
-        const completedImportHires = this.props.hires.filter(item => item.hireType === "import" && item.hireStatus === 'completed')
-        const completedExportHires = this.props.hires.filter(item => item.hireType === "export" && item.hireStatus === 'completed')
-
+        const completedImportHires = this.props.hires.filter(item => item.hireType === "import" && item.hireStatus === 'completed' && item.customerId === auth.uid )
+        const completedExportHires = this.props.hires.filter(item => item.hireType === "export" && item.hireStatus === 'completed' && item.customerId === auth.uid )    
         return (
             // <div className="main-panel">
             <div id="content" className="container-fluid" role="main">
@@ -56,4 +55,4 @@ export default compose(
     firestoreConnect([
         {collection: 'hires'}
     ])
-)(CompletedHires)
+)(withRouter(CompletedHires))

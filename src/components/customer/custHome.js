@@ -22,7 +22,7 @@ const CustHome = () => {
                 <br/><br/><br/>
                
                 <div className="row">
-                    <div style={divStyle} className="col-md-6">
+                    <div style={divStyle} className="col-md-6 fadeIn animated slow">
                         <img src={require('../../img/index1.png')} alt=""/>
                     </div>
                     <div className="col-md-6">

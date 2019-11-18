@@ -14,13 +14,8 @@ class AddHireExport extends Component {
         weight: '',
         loadingPort: '',
         loadingDatetime: '',
-        driverId: '',
         customerId: '',
-        vehicleId: '',
-        remarks: '',
-        completed: '0',
-        driverAccepted: '0',
-        declined: '0',
+        customerName: '',
         remarks: '',
         loading: 1,
         redir: 0
@@ -35,19 +30,6 @@ class AddHireExport extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         // console.log(this.state);
-        this.props.addExportHire(this.state)
-    }
-
-    handlePickupDate = (e) => {
-        this.setState({
-            pickupDatetime: e._d
-        })
-    }
-
-    handleLoadingDate = (e) => {
-        this.setState({
-            loadingDatetime: e._d
-        })
         this.props.addExportHires(this.state)
     }
 
@@ -75,29 +57,29 @@ class AddHireExport extends Component {
 
     render() {
         if(this.state.redir === 1){
-            return <Redirect to='/cust/Home' />
+            return <Redirect to='/User/Home' />
         }
 
         return (
             <div className="form wrapper form1 delay-1s ">
                 <div className="form2 fadeIn animated slow">
-                <br/><br/><br/><br/>
-                <h1 className="center fadeIn animated slow add_head">Add Export</h1><br/><br/><br/>
+
                     <div className="row fadeIn animated slow">
-                        <div className="bg col-6 ">
-                            <img className="image2 responsive2" src={require('../../img/exportreq.jpg')} width={440} />
-                        </div>
-                        <div className="bg col-6">
+                        <div className="bg col-12">
+                            <br/><br/>
+                            <h1 className="center fadeIn animated slow add_head">Add <span className="topic">Export</span></h1>
+                            <hr className="bg-dark mb-4"/>
+
                 <form onSubmit={this.handleSubmit} >
-                    <hr/>
-                    <h6 >Container Type</h6> <br/>
+                    <br/>
+                    <h5>Container Type</h5> <br/>
                     <div className="row col-6">
                         <select className="form-control select1" placeholder="Container Type" id="containerType" onChange={this.handleContainerType} required>
                             <option value="20">20ft</option>
                             <option value="40">40ft</option>
                         </select>
                     </div>
-                    <br/><hr/><h6> Container Pickup Details</h6> <br/>
+                    <br/><h5> Container Pickup Details</h5>
                     <div className="row">
                         <div className="input-field col-6">
                             <input className="placeholder" placeholder="Pickup Location" type="text" id="pickupLocation" onChange={this.handleChange} required />
@@ -106,7 +88,7 @@ class AddHireExport extends Component {
                             <input className="placeholder" placeholder="Pickup Date and Time" onFocus={this.handleDate} ref="pickup" type="text" id="pickupDatetime"  onChange={this.handleChange} required />
                         </div>
                     </div>
-                    <br/><hr/><h6>Cargo Details</h6> <br/>
+                    <br/><h5>Cargo Details</h5>
                     <div className="row">
                         <div className="input-field col-6">
                             <input placeholder="Cargo Type" type="text" id="cargoType" onChange={this.handleChange} required />
@@ -115,16 +97,8 @@ class AddHireExport extends Component {
                             <input placeholder="Weight" type="text" id="weight" onChange={this.handleChange} required />
                         </div>
                     </div>
-                    <br/><hr/><h5>Unloading Details</h5><br/>
-                    <div className="row">
-                        <div className="input-field col-6">
-                            <input placeholder="unloading Port" type="text" id="unloadingPort" onChange={this.handleChange} required />
-                        </div>
-                       
-                    </div>
-                 
-                   
-                    <br/><hr/><h6>Loading Details</h6><br/>
+
+                    <br/><h5>Loading Details</h5>
                     <div className="row">
                         <div className="input-field col-6">
                             <input placeholder="Loading Port" type="text" id="loadingPort" onChange={this.handleChange} required />
@@ -133,6 +107,12 @@ class AddHireExport extends Component {
                             <input placeholder="Loading Date and Time" onFocus={this.handleDate} type="text" id="loadingDatetime" onChange={this.handleChange} required />
                         </div>
 
+                    </div>
+                    <br/><h5>Customer Details</h5>
+                    <div className="row">
+                        <div className="input-field col-6">
+                            <input placeholder="Customer Name" type="text" id="customerName" onChange={this.handleChange} required />
+                        </div>
                     </div>
 
 
@@ -144,7 +124,7 @@ class AddHireExport extends Component {
                         <button className="btn blue lighten-1 z-depth-5 btn1">Add</button>
                         <button className="btn red lighten-1 z-depth-5 btn1">Cancel</button>
                     </div>
-                    <br/><br/><br/><br/><br/>
+                    <br/>
                 </form>
                         </div>
                     </div>
@@ -158,6 +138,7 @@ class AddHireExport extends Component {
 
 const mapStateToProps = (state) => {
     return{
+
         hires: state.firestore.ordered.hires
     }
 }

@@ -225,8 +225,8 @@ class AddExport extends Component {
                     </div>
                     <input type="hidden" id="hireType" value="export"/><br/><br/>
                     <div className="input-field center">
-                        <button className="btn blue lighten-1 z-depth-0">Add</button>
-                        <button className="btn red lighten-1 z-depth-0">Cancel</button>
+                        <button className="btn blue lighten-1 z-depth-5 btn1">Add</button>
+                        <button className="btn red lighten-1 z-depth-5 btn1">Cancel</button>
                     </div>
                 </form>
             </div>

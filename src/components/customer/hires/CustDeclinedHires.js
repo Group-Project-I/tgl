@@ -6,7 +6,7 @@ import DeclinedImports from './CustDeclinedImports'
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-import {Redirect} from 'react-router-dom'
+import {Redirect, withRouter} from 'react-router-dom'
 
 
 class DeclinedHire extends Component {
@@ -18,8 +18,8 @@ class DeclinedHire extends Component {
         const {auth} = this.props
         if (!auth.uid) return <Redirect to='/signin' />
 
-        const declinedImportHires = this.props.hires.filter(item => item.hireType === "import" && item.hireStatus === 'declined')
-        const declinedExportHires = this.props.hires.filter(item => item.hireType === "export" && item.hireStatus === 'declined')
+        const declinedImportHires = this.props.hires.filter(item => item.hireType === "import" && item.hireStatus === 'declined' && item.customerId === auth.uid )
+        const declinedExportHires = this.props.hires.filter(item => item.hireType === "export" && item.hireStatus === 'declined' && item.customerId === auth.uid)
 
         return (
             // <div className="main-panel">
@@ -56,4 +56,4 @@ export default compose(
     firestoreConnect([
         {collection: 'hires'}
     ])
-)(DeclinedHire)
+)(withRouter(DeclinedHire))

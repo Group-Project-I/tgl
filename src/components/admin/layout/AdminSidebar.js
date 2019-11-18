@@ -1,48 +1,60 @@
 import React, { Component } from "react";
 import { NavLink, Redirect } from "react-router-dom";
-import { FaUsers, FaBuffer, FaTruck, FaUserCog, FaClock, FaPlusSquare, FaPlay, FaUserSlash} from "react-icons/fa";
+import { FaUsers, FaBuffer, FaTruck, FaUserCog, FaPlusSquare, FaUserSlash} from "react-icons/fa";
+import {connect} from 'react-redux'
+import {firestoreConnect} from 'react-redux-firebase'
+import {compose} from 'redux'
+import Badge from 'react-bootstrap/Badge'
 
 class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      width: window.innerWidth
+      width: window.innerWidth,
+      // urlPath: 'admin'
     };
+    
   }
-  // activeRoute(routeName) {
-  //   return this.props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
-  // }
-  // updateDimensions() {
-  //   this.setState({ width: window.innerWidth });
-  // }
-  // componentDidMount() {
-  //   this.updateDimensions();
-  //   window.addEventListener("resize", this.updateDimensions.bind(this));
-  // }
+  changePath = (path) => {
+    console.log('path',path)
+    this.setState({
+      urlPath: path
+    })
+  }
+
   render() {
-    // if(!localStorage.getItem('userId')) return <Redirect to='/signIn' />
+    let hireRequests
+    let ongoingHires
+
+    if(this.props.hires){
+      hireRequests = this.props.hires.filter(item => item.hireStatus === "request").length
+      ongoingHires = this.props.hires.filter(item => item.hireStatus ==="ongoing").length
+    }
+
+    console.log('hohohoo',this.state)
+   
     return (
       <div className="bg-dark border-right" id="sidebar-wrapper">
       <div className="sticky-top">
-        <div className="sidebar-heading center" style={{paddingTop: "30px"}}><NavLink to='/admin' className="text-decoration-none">DASHBOARD</NavLink></div>
+        <div className="sidebar-heading center" style={{paddingTop: "30px"}}><NavLink to='/admin' onClick={this.changePath.bind(this,'admin')} className="text-decoration-none">DASHBOARD</NavLink></div>
         <div className="list-group list-group-flush">
           <ul className="align-self-center">
-            <NavLink to='/admin/customers' className="text-decoration-none"><li className="list-group-item list-group-item-action " ><FaUsers/> Customers</li></NavLink>
-            <NavLink to='/admin/hires' className="text-decoration-none"><li className="list-group-item list-group-item-action "><FaBuffer/> Hires</li></NavLink>
-            <NavLink to='/admin/drivers' className="text-decoration-none"><li className="list-group-item list-group-item-action "><FaUserCog/> Drivers</li></NavLink>
-            <NavLink to='/admin/vehicles' className="text-decoration-none"><li className="list-group-item list-group-item-action "><FaTruck/> Vehicles</li></NavLink>
+            <NavLink to='/admin/customers' onClick={this.changePath.bind(this,'customers')} className="text-decoration-none"><li className={this.state.urlPath === 'customers' ? "list-group-item list-group-item-hover list-group-item-action " : "list-group-item list-group-item-action "} ><FaUsers/> Customers</li></NavLink>
+            <NavLink to='/admin/hires' onClick={this.changePath.bind(this,'hires')} className="text-decoration-none"><li className={this.state.urlPath === 'hires' ? "list-group-item list-group-item-hover list-group-item-action " : "list-group-item list-group-item-action "}><FaBuffer/> Hires</li></NavLink>
+            <NavLink to='/admin/drivers' onClick={this.changePath.bind(this,'drivers')} className="text-decoration-none"><li className={this.state.urlPath === 'drivers' ? "list-group-item list-group-item-hover list-group-item-action " : "list-group-item list-group-item-action "}><FaUserCog/> Drivers</li></NavLink>
+            <NavLink to='/admin/vehicles' onClick={this.changePath.bind(this,'vehicles')} className="text-decoration-none"><li className={this.state.urlPath === 'vehicles' ? "list-group-item list-group-item-hover list-group-item-action " : "list-group-item list-group-item-action "}><FaTruck/> Vehicles</li></NavLink>
           </ul>
         </div>
         <div className="list-group list-group-flush" style={{paddingTop: "50px"}}>
           <ul className="align-self-center">
-            <NavLink to='/admin/hirerequests' className="text-decoration-none"><li className="list-group-item list-group-item-action "><FaClock/> Hire Requests</li></NavLink>
-            <NavLink to='/admin/ongoinghires' className="text-decoration-none"><li className="list-group-item list-group-item-action "><FaPlay/> Ongoing Hires</li></NavLink>
-            <NavLink to='/admin/addhire' className="text-decoration-none"><li className="list-group-item list-group-item-action "><FaPlusSquare/> Add Hire</li></NavLink>
+            <NavLink to='/admin/hirerequests' onClick={this.changePath.bind(this,'hireRequests')} className="text-decoration-none"><li className={this.state.urlPath === 'hireRequests' ? "list-group-item list-group-item-hover list-group-item-action " : "list-group-item list-group-item-action "}>Hire Requests <Badge style={{float: 'none'}} pill variant="light">{hireRequests}</Badge></li></NavLink>
+            <NavLink to='/admin/ongoinghires' onClick={this.changePath.bind(this,'ongoingHires')} className="text-decoration-none"><li className={this.state.urlPath === 'ongoingHires' ? "list-group-item list-group-item-hover list-group-item-action " : "list-group-item list-group-item-action "}>Ongoing Hires<Badge style={{float: 'none', marginLeft: '10px'}} pill variant="light">{ongoingHires}</Badge></li></NavLink>
+            <NavLink to='/admin/addhire' onClick={this.changePath.bind(this,'addHire')} className="text-decoration-none"><li className={this.state.urlPath === 'addHire' ? "list-group-item list-group-item-hover list-group-item-action " : "list-group-item list-group-item-action "}><FaPlusSquare/> Add Hire</li></NavLink>
           </ul>
         </div>
         <div className="list-group list-group-flush" style={{paddingTop: "50px"}}>
           <ul className="align-self-center">
-            <NavLink to='/admin/disabled' className="text-decoration-none"><li className="list-group-item list-group-item-action "><FaUserSlash/> Disabled</li></NavLink>
+            <NavLink to='/admin/disabled' onClick={this.changePath.bind(this,'disabled')} className="text-decoration-none"><li className={this.state.urlPath === 'disabled' ? "list-group-item list-group-item-hover list-group-item-action " : "list-group-item list-group-item-action "}><FaUserSlash/> Disabled</li></NavLink>
           </ul>
         </div>
       </div>
@@ -51,4 +63,16 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar;
+const mapStateToProps = (state) => {
+  return {
+      // auth: state.firebase.auth,
+      hires: state.firestore.ordered.hires
+  }
+}
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([
+      {collection: 'hires'}
+  ])
+)(Sidebar)

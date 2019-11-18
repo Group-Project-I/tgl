@@ -35,7 +35,7 @@ const DeclinedExports = ({declinedExportHires, history}) => {
     )}
 
     var rowClick = (e, row) => {
-        let path = '/cust/custManageHires/' + row.getData().id;
+        let path = '/User/UserManageTools/' + row.getData().id;
         history.push(path)
     };
 
@@ -48,7 +48,7 @@ const DeclinedExports = ({declinedExportHires, history}) => {
                 tooltips={true}
                 layout={"fitData"}
                 rowClick={rowClick}
-                options={{ pagination: 'local',paginationSize: 10}}
+                options={{ pagination: 'local',paginationSize: 5}}
             />
             {/* <table className="table">
                     <thead className="thead-dark">

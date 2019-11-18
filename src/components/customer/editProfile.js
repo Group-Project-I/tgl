@@ -54,13 +54,13 @@ class EditProfile extends Component {
         
         const load = this.state.loading === 0 ? (
             <div style={{  backgroundColor: "#dee7e7", margin:'0',padding:'0' ,marginBottom:'0'}}>
-            <div className="container "   >
+            <div className="container " style={{ backgroundColor:'white'}}  >
                 <br/><br/><br/><br/>
                 <div >
                     <div className='cust-heading'>
                     <hr/>
                 <h1 style={{float:'left'}}>EDIT PROFILE</h1> 
-                <Link to='/cust/profile'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/> 
+                <Link to='/User/profile'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/> 
                  <hr/>
                     </div>
                 
@@ -106,7 +106,7 @@ class EditProfile extends Component {
                         </div><br/>
                         <div className="input-field center">
                             <button className="btn blue lighten-1 z-depth-0">Update</button>
-                            <Link to='/cust/profile'><button className="btn silver lighten-1 z-depth-0">Cancel</button></Link>
+                            <Link to='/User/profile'><button className="btn silver lighten-1 z-depth-0">Cancel</button></Link>
                         </div>
                     </form>
                 </div>

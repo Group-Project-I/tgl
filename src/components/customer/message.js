@@ -8,7 +8,7 @@ import {Card} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import 'simplebar'
 import 'simplebar/dist/simplebar.css'
-import './../../style.css'
+import image from '../../img/bgImg6.jpg'
 
 
 class Message extends React.Component{
@@ -35,16 +35,16 @@ handleSubmit = (e) => {
     render(){
         const {messages} =this.props
         return(
-            <div style={{  backgroundColor: "#dee7e7", margin:'0',padding:'0' ,marginBottom:'0'}}>
+            <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.2' ,margin:'0',padding:'0'}}>
 
             <div className="container">
                  <br/><br/><br/><br/>
-                 <Card className={'user-card'}>
+                 <Card className={'user-card'} style={{backgroundColor:' #dde6e6',opacity:'1'}}>
                  <div className='cust-heading ' >
                     <hr/>
                     <div style={{padding:'0 20px '}}>
                     <h1 style={{float:'left'}} >MESSAGES</h1> 
-                    <Link to='/cust/profile'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/> 
+                    <Link to='/User/profile'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/> 
                     </div>
                     <hr/>
                 </div>

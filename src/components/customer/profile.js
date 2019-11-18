@@ -4,7 +4,7 @@ import {Button, Card} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-
+import image from '../../img/bgImg1.jpg'
 
 // const imgStyle={
 //     borderRadius:'50%',
@@ -28,24 +28,22 @@ class Profile extends React.Component {
        const {auth,customers} = this.props
       
     return(
-        // <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.5' ,margin:'0',padding:'0'}}>
-        <div style={{  backgroundColor: "#dee7e7", margin:'0',padding:'0' ,marginBottom:'0'}}>
-
-        <div className='container' style={{backgroundColor:'',opacity:'1'}} >
+        <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.2' ,margin:'0',padding:'0'}}>
+        {/* // <div style={{  backgroundColor: "#dee7e7", margin:'0',padding:'0' ,marginBottom:'0'}}> */}
+        {/* <div className='hire_background'> */}
+        <div className='container'  >
             <br/><br/><br/><br/>
-            <Card className={'user-card'}>
+            <Card className={'user-card'} style={{backgroundColor:' #dde6e6',opacity:'1'}} >
             <div className='cust-heading' >
                 <hr/>
-                <div style={{padding:'0 20px '}}>
-                <h1 style={{float:'left'}}>MY ACCOUNT</h1> 
-                {/* <i class="fas fa-bell"  style={{float:'right'}}></i> */}
-                 <Link to='/'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/> 
-                
+                <div>
+                <h1 style={{float:'left'}}>MY ACCOUNT</h1>  
+                <Link to='/User/Home'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/>
                 </div>
                 <hr/>
             </div>
            
-           <div className='row main-section ' >
+           <div className='row main-section'>
           
                  <div className='col-md-4 col-sm-12' style={{paddingLeft:'40px'}}>
                     <Card style={{ width: '18rem'}}>
@@ -58,7 +56,7 @@ class Profile extends React.Component {
                             <Card.Text>
                             Edit your profile and change subscription settings
                             </Card.Text>
-                            <Link to={'/cust/profile/' + auth.uid}><Button className='btn btn-info' variant="primary" style={{ width: '15rem'}}>Edit</Button></Link>
+                            <Link to={'/User/profile/' + auth.uid}><Button className='btn btn-info' variant="primary" style={{ width: '15rem'}}>Edit</Button></Link>
                         </Card.Body>
                     </Card>
                 </div>
@@ -88,7 +86,7 @@ class Profile extends React.Component {
                             <Card.Text>
                             Get any advice or opinion just by sending a message.
                             </Card.Text>
-                            <Link to='/cust/messages'><Button className='btn btn-info' variant="primary" style={{ width: '15rem'}}>View</Button></Link>
+                            <Link to='/User/messages'><Button className='btn btn-info' variant="primary" style={{ width: '15rem'}}>View</Button></Link>
                         </Card.Body>
                     </Card>  
                 
