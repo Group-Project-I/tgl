@@ -1,17 +1,18 @@
 import React from 'react'
-import ViewMessage from './viewMessage'
+import ViewMessage from './messages/viewMessage'
 import {connect } from 'react-redux'
 import {sendMessage} from '../../store/actions/customerActions'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Card} from 'react-bootstrap'
-import Sidebar from './sidebar'
+import {Link} from 'react-router-dom'
 import 'simplebar'
 import 'simplebar/dist/simplebar.css'
-import './../../style.css'
+import image from '../../img/bgImg6.jpg'
 
 
 class Message extends React.Component{
+    
 state={ 
     to:'',
     from:'',
@@ -34,67 +35,52 @@ handleSubmit = (e) => {
     render(){
         const {messages} =this.props
         return(
-            
+            <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.2' ,margin:'0',padding:'0'}}>
+
             <div className="container">
                  <br/><br/><br/><br/>
-                 <hr/>
-                <h1>MESSAGES</h1>  
-                <hr/>
-                <div className='row'>
-                    <div className='col' >
-                        <Sidebar/>
+                 <Card className={'user-card'} style={{backgroundColor:' #dde6e6',opacity:'1'}}>
+                 <div className='cust-heading ' >
+                    <hr/>
+                    <div style={{padding:'0 20px '}}>
+                    <h1 style={{float:'left'}} >MESSAGES</h1> 
+                    <Link to='/User/profile'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/> 
                     </div>
-                        {/* view msg */}
-                    <div className='col msg-display' data-simplebar style={{
-                        width: '18rem', 
-                        height:'500px',
-                        
-                        }}>
-                        <Card >
-                            <Card.Header style={{position:'fixed'}}></Card.Header>
+                    <hr/>
+                </div>
+                <div className='row main-section'>
+                {/* view msg */}
+                    <div className='col-md-4 msg-display ' data-simplebar style={{
+                        width: '18rem', height:'600px', paddingLeft:'30px' }}>
+                        <Card style={{backgroundColor:'#aad2d1'}} >
+                            {/* <Card.Header style={{position:'fixed'}}> </Card.Header> */}
                             <Card.Body> <ViewMessage messages ={messages} /></Card.Body>
-                            <Card.Footer bg='dark' style={{position: 'relative',  bottom: '0',  right: '0' }} >
-                                <form onSubmit={this.handleSubmit}>
-                                <div className='row card-body'>
-                                {/* <input placeholder='Type your message' id="content" className='col-md-9' c ol-md-4 style={{float:'left',margin:'5px', border:'2px solid grey' ,borderRadius:'10%'}}></input> */}
-                                <textarea className="form-control col-md-10" rows="5" id="content" onChange={this.handleChange} 
-                                style={{float:'left',width: '15rem',height:'40px',padding:'10px'}}></textarea>            
-
-                                <button type="submit" className="btn btn-info col-md-2" style={{float:'right',paddingLeft:'10px',width:'5rem'}}>Send</button>
-                                </div>
-                                
-                            </form>
-                            </Card.Footer>
+                           
                         </Card>
-                        
-                         {/* sending msg */}
-                         {/* <form className="contact-forms" onSubmit={this.handleSubmit}  data-spy="scroll" >
-                            <div className="form-group">
-                                 <label className="control-label col-sm-2" htmlFor="content">Message:</label>  
-                               <div className="row">
-                               <div className="col-md-8 col-sm-10">
-                                    <textarea className="form-control" rows="5" id="content" onChange={this.handleChange} style={{float:'left'}}></textarea>            
-                                    
-                                </div>
-                                <div className=" c ol-md-4 col-sm-2" style={{float:'right'}}>
-                                        <button type="submit" className="btn btn-info">Send</button>
-                                    </div>
-                               </div>
-                                
-                            </div>
-                        </form> */}
-                                            
-                       
                     </div>
-                  
-                    {/* <div className='col-xs-3' style={{ width: '18rem'}}>
-                        <Card>
-                        Notification
+       
+                    <div className='col-md-8 ' style={{ width: '18rem' ,padding:'0 70px'}}>
+                        <Card   style={{height:'600px',backgroundColor:'#aad2d1'}}>
+                            <Card.Body style={{height:'500px'}}>
+
+                            </Card.Body>
+                            <Card.Footer style={{height:'100px'}}>
+                            <form onSubmit={this.handleSubmit}>
+                            <div className='row card-body'>
+                            {/* <input placeholder='Type your message' id="content" className='col-md-9' c ol-md-4 style={{float:'left',margin:'5px', border:'2px solid grey' ,borderRadius:'10%'}}></input> */}
+                            <textarea className="form-control col-md-10" rows="5" id="content" onChange={this.handleChange} 
+                            style={{float:'left',width: '15rem',height:'40px',padding:'10px'}}></textarea>            
+                            <button type="submit" className="btn btn-info col-md-2" style={{float:'right',paddingLeft:'10px',width:'5rem'}}>Send</button>
+                            </div>
+                        </form>   
+                            </Card.Footer>
+                                             
                         </Card>
-                       
-                    </div> */}
+                    </div>
                 </div>
                 <hr/>
+                </Card>
+            </div>
             </div>
         )
     }

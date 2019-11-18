@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import { Card} from 'react-bootstrap'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {editUser} from '../../store/actions/adminActions'
-import Sidebar from './sidebar'
 import { Link } from 'react-router-dom'
+import image from '../../img/importreq.jpg'
+
 
 class EditProfile extends Component {
 
@@ -51,23 +53,25 @@ class EditProfile extends Component {
     render() {
         
         const load = this.state.loading === 0 ? (
-            // <div style={{backgroundImage:"url("+image+")" ,opacity:'0.5'}}>
-            <div className="container "   >
+            <div style={{  backgroundColor: "#dee7e7", margin:'0',padding:'0' ,marginBottom:'0'}}>
+            <div className="container " style={{ backgroundColor:'white'}}  >
                 <br/><br/><br/><br/>
                 <div >
+                    <div className='cust-heading'>
+                    <hr/>
+                <h1 style={{float:'left'}}>EDIT PROFILE</h1> 
+                <Link to='/User/profile'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/> 
                  <hr/>
-                <h1>EDIT PROFILE</h1>  
-                <hr/>
-                <div className='row'>
-                    <div className='col'>
-                        <Sidebar/>
                     </div>
+                
+                <div className='row' >
+                   
                     <div className='col'>
                     <div className="green-text center">
                         <h4>{this.state.updated ? "Updated Successfully" : null}</h4>
                     </div>
                     <form onSubmit={this.handleSubmit}>
-                        <div className="row">
+                        <div className="row main-section">
                             <div className="input-field col-5 row">
                                 <h6 className='blue-text'>First name</h6>
                                 <input placeholder="First Name" type="text" id="firstName" value={this.state.firstName}  onChange={this.handleChange} required />
@@ -102,7 +106,7 @@ class EditProfile extends Component {
                         </div><br/>
                         <div className="input-field center">
                             <button className="btn blue lighten-1 z-depth-0">Update</button>
-                            <Link to='/cust/profile'><button className="btn silver lighten-1 z-depth-0">Cancel</button></Link>
+                            <Link to='/User/profile'><button className="btn silver lighten-1 z-depth-0">Cancel</button></Link>
                         </div>
                     </form>
                 </div>
@@ -110,7 +114,7 @@ class EditProfile extends Component {
             </div>
          </div>
               
-                // </div>  
+                </div>  
         ) : <div><br/><br/><br/>Loading</div>
         return <div>{load}</div>
       
