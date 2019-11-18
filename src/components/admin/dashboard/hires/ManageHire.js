@@ -19,7 +19,7 @@ class ManageHire extends Component {
         load: 1
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillMount(nextProps) {
         
         if(this.props.hire){
             this.setState({

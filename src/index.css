@@ -399,10 +399,10 @@ code {
 
 
 .loginBody{
-background-image: url('../src//img/login.jpg');
+background-image: url('../src/img/login.jpg');
 background-size: cover;
 background-repeat: no-repeat;
-height: 1000px;
+height: 1090px;
 }
 
 .loginBody .container{
