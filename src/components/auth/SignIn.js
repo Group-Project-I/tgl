@@ -31,7 +31,7 @@ class SignIn extends Component {
             localStorage.setItem('userId', 'admin')
             return <Redirect to='/admin' />
         } 
-        if (user.userType === 'customer' && user.disabled === false) return <Redirect to='/cust/Home' />
+        if (user.userType === 'customer' && user.disabled === false) return <Redirect to='/' />
         if (user.disabled === true) return <Redirect to='/error' />
         return (
             <div className="loginBody">
@@ -52,15 +52,22 @@ class SignIn extends Component {
                                     <div className="input-field">
                                         <input placeholder="Password" type="password" id="password" onChange={this.handleChange} required />
                                     </div>
-                                    <div className="input-field">
+                                    <div className="input-field d-flex justify-content-center">
                                         <button className="btn blue lighten-1 z-depth-0">Login</button>
                                     </div>
+                                    
                                 </form>
+                                
                             </div>
+                            <div className="d-flex justify-content-center links">
+                                    <NavLink to='/forgetPassword'><br/><p>Forget password</p></NavLink>
+                                </div>
                             <div className="card-footer">
                                 <div className="d-flex justify-content-center links">
-                                    Don't have an account?<p><NavLink to='/signup' className="text-blue">Sign Up</NavLink></p>
+                                    Don't have an account?<p><NavLink to='/signup' className="text-blue">Sign Up</NavLink></p><br/>
+                                    
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

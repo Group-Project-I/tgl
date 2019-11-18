@@ -38,9 +38,8 @@ import Dashboard from './components/customer/dashboard'
 import Profile from './components/customer/profile'
 import EditProfile from './components/customer/editProfile'
 import ResetPassword from './components/customer/pwdRecovery/resetPassword'
-// import PasswordChange from './components/customer/passswordChange'
+import PasswordChange from './components/customer/pwdRecovery/resetPassword'
 import Message from './components/customer/message'
-import ChatApp from './components/customer/chatApp'
 import CompletedHires from './components/customer/hires/CustCompletedHires'
 import HireRequest from './components/customer/hires/CustHireRequest'
 import DeclinedHire from './components/customer/hires/CustDeclinedHires'
@@ -103,7 +102,7 @@ function App(props) {
               <Route path ='/cust/messages' component={Message}/>
               <Route exact path='/cust/profile' component={Profile}/>
               <Route exact path='/cust/profile/:id' component={EditProfile}/>
-
+              <Route path ='/forgetPassword' component={PasswordChange}/>
               <Route path='/cust/custHireRequests' component={HireRequest}/>
               <Route path='/cust/custOngoingHires ' component={OngoingHire }/>
               <Route path='/cust/custManageTools' component={ManageTools}/>
