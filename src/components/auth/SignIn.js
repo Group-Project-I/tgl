@@ -24,9 +24,7 @@ class SignIn extends Component {
 
     render() {
         const {authError, user, auth} = this.props
-        // if(auth.uid){
-        //     localStorage.setItem('userId', 'admin')
-        // }
+
         if (user.userType === 'admin'){
             localStorage.setItem('userId', 'admin')
             return <Redirect to='/admin' />
@@ -45,7 +43,7 @@ class SignIn extends Component {
                                 </div>
                             </div>
                             <div className="card-body">
-                                <form onSubmit={this.handleSubmit} >
+                                <form onSubmit={this.handleSubmit} autoComplete='off'>
                                     <div className="input-field">
                                         <input placeholder="Email" type="email" id="email" onChange={this.handleChange} required />
                                     </div>

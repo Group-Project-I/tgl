@@ -34,7 +34,7 @@ code {
 
 .form1{
 
-  background-color: rgba(0,0,0,0.4) !important;
+  background-color: rgba(255,255,255,0.8) !important;
   margin-left: 140px;
   margin-right: 140px;
   border-radius: 20px;
@@ -44,7 +44,8 @@ code {
 }
 
 .form2{
-  background-color: rgba(255,255,255,0.8) !important;
+  background-color: transparent;
+  opacity: 0.5;
   margin-left: 25px;
   margin-right: 25px;
   padding-left: 30px;
@@ -55,7 +56,7 @@ code {
 }
 
 .tool{
-  background-color: rgba(255,255,255,0.9) !important;
+  background-color: rgba(255,255,255,0.5) !important;
 
   margin-left: 10px;
   margin-right: 10px;
@@ -79,7 +80,7 @@ code {
 }
 
 .image1{
-  background-image: url("../src/img/index2.jpg");
+  background-image: url("../src/img/bg2.jpg");
 
   padding-bottom: 200px;
 
@@ -88,7 +89,7 @@ code {
 
 }
 ::placeholder{
-  color: rgba(0,0,0,0.6) !important;
+  color: gray !important;
   text-align: center;
 }
 
@@ -107,7 +108,7 @@ code {
 
 .btn1{
   margin-right: 10px;
-  width: 80px;
+  width: 95px;
 }
 .image3{
   background-image: url("../src/img/addhire5.jpg");
@@ -482,6 +483,7 @@ margin-left: 4px;
 .loginBody .card-body {
   height: 200px;
 }
+
 
 /* Admin Navbar */
 

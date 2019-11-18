@@ -38,7 +38,7 @@ export const signUp = (newUser) => {
             var docRef = firestore.collection('users').doc(resp.user.uid)
             return docRef.set({
                 userType: 'customer',
-                disabled: 0,
+                disabled: false,
             }).then(() => {
                 return firestore.collection('customers').doc(docRef.id).set({
                     firstName: newUser.firstName,
