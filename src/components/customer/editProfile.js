@@ -53,7 +53,7 @@ class EditProfile extends Component {
     render() {
         
         const load = this.state.loading === 0 ? (
-            <div style={{  backgroundColor: "#dee7e7", margin:'0',padding:'0' ,marginBottom:'0'}}>
+            <div style={{  backgroundColor: "#dee7e7", margin:'0',padding:'0' ,marginBottom:'0', height: '1000px'}}>
             <div className="container " style={{ backgroundColor:'white'}}  >
                 <br/><br/><br/><br/>
                 <div >

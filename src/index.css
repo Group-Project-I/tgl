@@ -103,10 +103,9 @@ code {
   background-image: url("../src/img/bg2.jpg");
 
   padding-bottom: 200px;
+  height: 1000px;
 
   background-repeat: no-repeat;
-
-
 }
 ::placeholder{
   color: gray !important;
