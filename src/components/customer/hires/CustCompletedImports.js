@@ -59,6 +59,9 @@ const CompletedImports = ({completedImportHires, history}) => {
                 layout={"fitData"}
                 rowClick={rowClick}
                 options={{ pagination: 'local',paginationSize: 5}}
+                initialSort={[
+                    {column: "pickupDatetime", dir:"desc"}
+                ]}
             />
         </div>
     )
