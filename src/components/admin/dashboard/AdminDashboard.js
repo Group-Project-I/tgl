@@ -9,7 +9,7 @@ const AdminDashboard = (props) => {
     if (!localStorage.getItem('userId')) return <Redirect to='/signin' />
     return (
             <div id="content" className="container-fluid" role="main">
-                <div className="">
+                <div>
                     <div style={{paddingTop:'70px'}}>
                         <h2>This Month</h2>
                     </div>

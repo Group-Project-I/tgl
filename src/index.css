@@ -106,8 +106,6 @@ code {
   height: 1000px;
 
   background-repeat: no-repeat;
-
-
 }
 ::placeholder{
   color: gray !important;

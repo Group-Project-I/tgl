@@ -28,7 +28,7 @@ class Profile extends React.Component {
        const {auth,customers} = this.props
       
     return(
-        <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.2' ,margin:'0',padding:'0'}}>
+        <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.2' ,margin:'0',padding:'0', height:'1000px'}}>
         {/* // <div style={{  backgroundColor: "#dee7e7", margin:'0',padding:'0' ,marginBottom:'0'}}> */}
         {/* <div className='hire_background'> */}
         <div className='container'  >
