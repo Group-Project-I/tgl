@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { Card} from 'react-bootstrap'
+import Avatar from '@material-ui/core/Avatar'
 
 
 
@@ -15,7 +16,16 @@ const custStyle ={
 }
 
 class MsgContent extends React.Component {
+    // state={
+    //     clickedChat :'false'
 
+    // }
+    // handleClick =(e)=>{
+    //     return(
+    //         // this.props.messages.content
+    //         this.setState.clickedChat='true'
+    //     )
+    // }
     render(){
         const {auth,messages,type} = this.props
         let name= auth.uid && type.userType === 'admin' ? 'Admin' : 'You' ;
@@ -27,9 +37,12 @@ class MsgContent extends React.Component {
                         cardStyle
                          }}>
                         <Card.Body>
-                            {name}<hr/>
-                            {messages.content}
+                        <Avatar alt="Remy Sharp" >{ name === 'admin'? 'A' : 'Y'   }</Avatar>
+                         <div onClick={this.handleClick}>{messages.content.substring(0, 30)}</div>
                         </Card.Body>
+                        {/* <div>
+{                            this.state.clickedChat === true?messages.content:null
+}                        </div> */}
                     </Card>
                 )
         }

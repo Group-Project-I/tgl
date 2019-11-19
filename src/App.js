@@ -37,10 +37,10 @@ import CustomerAddHire from './components/customer/customerAddHire'
 import Dashboard from './components/customer/dashboard'
 import Profile from './components/customer/profile'
 import EditProfile from './components/customer/editProfile'
-import ResetPassword from './components/customer/resetPassword'
-// import PasswordChange from './components/customer/passswordChange'
+import ResetPassword from './components/customer/authRecovery/resetPassword'
+import PasswordChange from './components/customer/authRecovery/resetPassword'
+import ResetEmail from './components/customer/authRecovery/resetEmail'
 import Message from './components/customer/message'
-import ChatApp from './components/customer/chatApp'
 import CompletedHires from './components/customer/hires/CustCompletedHires'
 import HireRequest from './components/customer/hires/CustHireRequest'
 import DeclinedHire from './components/customer/hires/CustDeclinedHires'
@@ -103,6 +103,8 @@ function App(props) {
               <Route path ='/User/messages' component={Message}/>
               <Route exact path='/User/profile' component={Profile}/>
               <Route exact path='/User/profile/:id' component={EditProfile}/>
+              <Route path ='/forgetPassword' component={PasswordChange}/>
+              <Route path ='/resetEmail' component={ResetEmail}/>
 
               <Route path='/User/UserHireRequests' component={HireRequest}/>
               <Route path='/User/UserOngoingHires ' component={OngoingHire }/>

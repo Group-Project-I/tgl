@@ -5,14 +5,34 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
+
 
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.user-card{
+  background-color: #81cbdd;
+
+}
+.content{
+  margin-top: 70px 10px;
+  padding-top: 50px;
+}
+.main-section{
+  margin:0 auto;
+  padding:10px;
+}
+.sub-section{
+  padding-right:20px;
+}
+.cust-heading{
+  margin:10px;
+  color: #343a40;
+}
+
 .hire_background{
   background-image:url("../src/img/bg1.jpg");
   width: auto;
