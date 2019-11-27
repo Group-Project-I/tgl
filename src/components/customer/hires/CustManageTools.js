@@ -10,6 +10,7 @@ import DeclinedHire from './CustDeclinedHires';
 import OngoingHire from './CustOngoingHire';
 
 
+
 class ManageTools extends Component {
 
     static defaultProps = { // <-- DEFAULT PROPS

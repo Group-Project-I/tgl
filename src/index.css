@@ -152,6 +152,12 @@ code {
   background-repeat: no-repeat;
 
 }
+.badge1{
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 10px;
+  margin-left: 10px;
+}
 .ml-auto .nav-link{
   text-decoration: none;
 }

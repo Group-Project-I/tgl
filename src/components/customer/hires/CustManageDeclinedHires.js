@@ -131,7 +131,7 @@ class ManageDeclinedHires extends Component {
 
 
                         <div className="input-field center">
-                            <h6><b className='blue-text'>Status: </b> <b className="red">{this.props.hire[0].hireStatus}</b></h6>
+                            <h6><b className='blue-text'>Status: </b> <b className="red badge1">{this.props.hire[0].hireStatus}</b></h6>
                         </div>
                     </div>
                     <br/><br/>

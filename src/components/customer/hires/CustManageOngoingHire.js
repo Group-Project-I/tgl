@@ -153,7 +153,7 @@ class ManageOngoingHire extends Component {
 
 
                         <div className="input-field center">
-                            <h6><b className='blue-text'>Status: </b> <b className="orange">{this.props.hire[0].hireStatus}</b></h6>
+                            <h6><b className='blue-text'>Status: </b> <b className="orange badge1">{this.props.hire[0].hireStatus}</b></h6>
                         </div>
                         <br/><br/>
                     </div>

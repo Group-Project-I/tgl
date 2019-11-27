@@ -5,16 +5,17 @@ import {compose} from 'redux'
 import moment from 'moment'
 import {Redirect} from 'react-router-dom'
 import {declineHireRequests} from '../../../store/actions/customerHireActions'
+import {Link} from "react-router-dom";
 
 class ManageHireRequest extends Component {
     state = {
-        driverId: '',
-        driverName: '',
-        vehicleId: '',
-        vehicleNo: '',
-        remarks: '',
+        // driverId: '',
+        // driverName: '',
+        // vehicleId: '',
+        // vehicleNo: '',
+        // remarks: '',
         loading: 1,
-        freeDrivers: '',
+        // freeDrivers: '',
         redir: 0
     }
 
@@ -144,8 +145,8 @@ class ManageHireRequest extends Component {
                         <form onSubmit={this.handleSubmit} >
 
                             <div className="input-field center">
-                                <button className="btn blue lighten-1 z-depth-0" type="submit">Update</button>
-                                <button className="btn red lighten-1 z-depth-0" onClick={this.declineHire}>Delete</button>
+                                <Link to='/User/EditHireRequest'><button className="btn blue lighten-1 z-depth-5 btn1" type="submit">Edit</button></Link>
+                                <button className="btn red lighten-1 z-depth-5 btn1" onClick={this.declineHire}>Delete</button>
                             </div>
                             <br/><br/>
                         </form>
@@ -180,3 +181,6 @@ export default compose(
         {collection: 'vehicles'},
     ])
 )(ManageHireRequest);
+
+
+

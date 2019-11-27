@@ -47,6 +47,7 @@ import DeclinedHire from './components/customer/hires/CustDeclinedHires'
 import OngoingHire from './components/customer/hires/CustOngoingHire'
 import ManageHires from './components/customer/hires/CustManageHires'
 import ManageTools from './components/customer/hires/CustManageTools'
+import EditHireRequest from './components/customer/hires/EditUserHireRequest'
 
 
 function App(props) {
@@ -110,6 +111,7 @@ function App(props) {
               <Route path='/User/UserManageTools/:id' component={ManageHires}/>
               <Route path='/User/UserCompletedHires' component={CompletedHires}/>
               <Route path='/User/UserDeclinedHires' component={DeclinedHire}/>
+              <Route path='/User/EditHireRequest' component={ EditHireRequest}/>
 
 
               
