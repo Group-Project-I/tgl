@@ -5,14 +5,34 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
+
 
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.user-card{
+  background-color: #81cbdd;
+
+}
+.content{
+  margin-top: 70px 10px;
+  padding-top: 50px;
+}
+.main-section{
+  margin:0 auto;
+  padding:10px;
+}
+.sub-section{
+  padding-right:20px;
+}
+.cust-heading{
+  margin:10px;
+  color: #343a40;
+}
+
 .hire_background{
   background-image:url("../src/img/bg1.jpg");
   width: auto;
@@ -34,7 +54,7 @@ code {
 
 .form1{
 
-  background-color: rgba(0,0,0,0.4) !important;
+  background-color: rgba(255,255,255,0.8) !important;
   margin-left: 140px;
   margin-right: 140px;
   border-radius: 20px;
@@ -44,7 +64,8 @@ code {
 }
 
 .form2{
-  background-color: rgba(255,255,255,0.8) !important;
+  background-color: transparent;
+  opacity: 0.5;
   margin-left: 25px;
   margin-right: 25px;
   padding-left: 30px;
@@ -55,7 +76,7 @@ code {
 }
 
 .tool{
-  background-color: rgba(255,255,255,0.9) !important;
+  background-color: rgba(255,255,255,0.5) !important;
 
   margin-left: 10px;
   margin-right: 10px;
@@ -79,16 +100,15 @@ code {
 }
 
 .image1{
-  background-image: url("../src/img/index2.jpg");
+  background-image: url("../src/img/bg2.jpg");
 
   padding-bottom: 200px;
+  height: 1000px;
 
   background-repeat: no-repeat;
-
-
 }
 ::placeholder{
-  color: rgba(0,0,0,0.6) !important;
+  color: gray !important;
   text-align: center;
 }
 
@@ -107,7 +127,7 @@ code {
 
 .btn1{
   margin-right: 10px;
-  width: 80px;
+  width: 95px;
 }
 .image3{
   background-image: url("../src/img/addhire5.jpg");
@@ -219,7 +239,7 @@ code {
   bottom: 0;
   /* left: 0; */
   /* z-index: 1; */
-  /* width: 260px; */
+  width: 300px;
   /* height: 100%; */
   /* position: absolute; */
 }
@@ -231,12 +251,12 @@ code {
   align-content: center;
 }
 
-#sidebar-wrapper .list-group {
+/* #sidebar-wrapper .list-group {
   width: 15rem;
-}
+} */
 
 #sidebar-wrapper .list-group .list-group-item {
-  width: 14rem;
+  width: 16rem;
   align-self: center;
   background: transparent;
   opacity: 0.5;
@@ -248,6 +268,10 @@ code {
 }
 
 #sidebar-wrapper .list-group .list-group-item:hover {
+  border: 5px solid white
+}
+
+#sidebar-wrapper .list-group .list-group-item-hover {
   border: 5px solid white
 }
 
@@ -395,10 +419,10 @@ code {
 
 
 .loginBody{
-background-image: url('../src//img/login.jpg');
+background-image: url('../src/img/login.jpg');
 background-size: cover;
 background-repeat: no-repeat;
-height: 1000px;
+height: 1090px;
 }
 
 .loginBody .container{
@@ -478,6 +502,7 @@ margin-left: 4px;
 .loginBody .card-body {
   height: 200px;
 }
+
 
 /* Admin Navbar */
 
@@ -598,17 +623,17 @@ margin-left: 4px;
 
 .tabulator .tabulator-header .tabulator-col.ui-sortable-helper{position:absolute;background-color:#e6e6e6!important;border:1px solid #aaa}
 
-.tabulator .tabulator-header .tabulator-col .tabulator-header-filter{position:relative;box-sizing:border-box;margin-top:2px;width:100%;text-align:center}
+.tabulator .tabulator-header .tabulator-col .tabulator-header-filter{position:relative;box-sizing:border-box;margin-top:2px;width:100%;text-align:center; text-decoration-color: white}
 
-.tabulator .tabulator-header .tabulator-col .tabulator-header-filter textarea{height:auto!important}
+.tabulator .tabulator-header .tabulator-col .tabulator-header-filter textarea{height:auto!important;}
 
-.tabulator .tabulator-header .tabulator-col .tabulator-header-filter svg{margin-top:3px}
+.tabulator .tabulator-header .tabulator-col .tabulator-header-filter svg{margin-top:3px;}
 
-.tabulator .tabulator-header .tabulator-col .tabulator-header-filter input::-ms-clear{width:0;height:0}
+.tabulator .tabulator-header .tabulator-col .tabulator-header-filter input::-ms-clear{width:0;height:0;}
 
 .tabulator .tabulator-header .tabulator-col.tabulator-sortable .tabulator-col-title{padding-right:25px}
 
-.tabulator .tabulator-header .tabulator-col.tabulator-sortable:hover{cursor:pointer;background-color:rgb(22, 21, 21)}
+.tabulator .tabulator-header .tabulator-col.tabulator-sortable:hover{cursor:pointer;background-color:#007bff}
 
 .tabulator .tabulator-header .tabulator-col.tabulator-sortable[aria-sort=none] 
 

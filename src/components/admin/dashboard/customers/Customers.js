@@ -13,7 +13,8 @@ class Customers extends Component {
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
-        this.state = { collapse: false };
+        this.state = { collapse: false};
+        this.state.urlPath = "customers"
       }
     
       toggle() {
@@ -24,14 +25,17 @@ class Customers extends Component {
         const {auth, customers} = this.props
         if (!localStorage.getItem('userId')) return <Redirect to='/signin' />
 
+        global.moment = require("moment");
+
         const columns = [
             { title: "Name", field: "name", headerFilter:"input" },
             { title: "Email", field: "email", headerFilter:"input"},
             { title: "Mobile", field: "mobile", headerFilter:"input"},
             { title: "NIC", field: "nic", headerFilter:"input" },          
-            { title: "User Since", field: "createdAt", align: "center"},
+            { title: "User Since", field: "createdAt", align: "center", sorter: "date", sorterParams:{format:"MMM Do YYYY"}},
             
         ];
+        console.log('boom',this.state)
 
         var data = []
 

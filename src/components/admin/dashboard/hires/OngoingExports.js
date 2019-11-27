@@ -5,12 +5,14 @@ import { ReactTabulator } from 'react-tabulator'
 const OngoingExports = ({ongoingExportHires, history}) => {
     if (!ongoingExportHires.length) return <div><br/><br/><h4>No Ongoing Exports</h4></div>
 
+    global.moment = require("moment");
+
     const columns = [
         { title: "Type", field: "containerType", width: 75, align: "center"},
-        { title: "Pickup Date", field: "pickupDatetime", headerFilter:"input"},
+        { title: "Pickup Date", field: "pickupDatetime", headerFilter:"input", sorter: "datetime", sorterParams:{format:"MMM Do YYYY, h:mm a"}},
         { title: "Pickup Location", field: "pickupLocation", headerFilter:"input"},
         { title: "Cargo Type", field: "cargoType", headerFilter:"input", width: 150},
-        { title: "Loading Date", field: "loadingDatetime", headerFilter:"input"},
+        { title: "Loading Date", field: "loadingDatetime", headerFilter:"input", sorter: "datetime", sorterParams:{format:"MMM Do YYYY, h:mm a"}},
         { title: "Driver", field: "driverName", headerFilter:"input"},
         { title: "Customer", field: "customerName", headerFilter:"input"},
         { title: "Vehicle", field: "vehicleNo", headerFilter:"input", width: 150},
@@ -22,10 +24,10 @@ const OngoingExports = ({ongoingExportHires, history}) => {
         data.push({
             id: exp.id, 
             containerType: exp.containerType, 
-            pickupDatetime: moment(exp.pickupDatetime).format('MMM Do YYYY, h:mm:ss a'), 
+            pickupDatetime: moment(exp.pickupDatetime).format('MMM Do YYYY, h:mm a'), 
             pickupLocation: exp.pickupLocation,
             cargoType: exp.cargoType, 
-            loadingDatetime: moment(exp.loadingDatetime).format('MMM Do YYYY, h:mm:ss a'), 
+            loadingDatetime: moment(exp.loadingDatetime).format('MMM Do YYYY, h:mm a'), 
             driverName: exp.driverName,
             customerName: exp.customerName,
             vehicleNo: exp.vehicleNo,

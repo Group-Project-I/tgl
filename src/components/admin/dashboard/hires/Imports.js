@@ -6,12 +6,13 @@ import { ReactTabulator } from 'react-tabulator'
 
 const Imports = ({importHires, history}) => {
     if (!importHires.length) return <div><br/><br/><h4>No Imports Available</h4></div>
+    global.moment = require("moment");
 
     const columns = [
         { title: "Type", field: "containerType", width: 75, align: "center"},
-        { title: "Pickup Date", field: "pickupDatetime", headerFilter:"input"},
+        { title: "Pickup Date", field: "pickupDatetime", headerFilter:"input", sorter: "datetime", sorterParams:{format:"MMM Do YYYY, h:mm a"}},
         { title: "Cargo Type", field: "cargoType", headerFilter:"input", width: 150},
-        { title: "Vessel Arrival Date", field: "vesselArrivalDatetime", headerFilter:"input"},
+        { title: "Vessel Arrival Date", field: "vesselArrivalDatetime", headerFilter:"input", sorter: "datetime", sorterParams:{format:"MMM Do YYYY, h:mm a"}},
         { title: "Destination", field: "destination", headerFilter:"input", width: 150},
         { title: "Driver", field: "driverName", headerFilter:"input"},
         { title: "Customer", field: "customerName", headerFilter:"input"},
@@ -29,9 +30,9 @@ const Imports = ({importHires, history}) => {
         data.push({
             id: imp.id, 
             containerType: imp.containerType, 
-            pickupDatetime: moment(imp.pickupDatetime).format('MMM Do YYYY, h:mm:ss a'), 
+            pickupDatetime: moment(imp.pickupDatetime).format('MMM Do YYYY, h:mm a'), 
             cargoType: imp.cargoType, 
-            vesselArrivalDatetime: moment(imp.vesselArrivalDatetime).format('MMM Do YYYY, h:mm:ss a'), 
+            vesselArrivalDatetime: moment(imp.vesselArrivalDatetime).format('MMM Do YYYY, h:mm a'), 
             destination: imp.destination, 
             driverName: imp.driverName,
             customerName: imp.customerName,
@@ -56,6 +57,9 @@ const Imports = ({importHires, history}) => {
                 layout={"fitData"}
                 rowClick={rowClick}
                 options={{ pagination: 'local',paginationSize: 10}}
+                initialSort={[
+                    {column: "pickupDatetime", dir:"desc"}
+                ]}
             />
             {/* <table className="table">
                 <thead className="thead-dark">

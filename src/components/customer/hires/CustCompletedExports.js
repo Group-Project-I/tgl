@@ -53,6 +53,9 @@ const CompletedExports = ({completedExportHires, history}) => {
                 layout={"fitData"}
                 rowClick={rowClick}
                 options={{ pagination: 'local',paginationSize: 5}}
+                initialSort={[
+                    {column: "pickupDatetime", dir:"desc"}
+                ]}
             />
             {/* <table className="table">
                     <thead className="thead-dark">

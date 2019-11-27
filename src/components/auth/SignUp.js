@@ -28,9 +28,14 @@ class SignUp extends Component {
         this.props.signUp(this.state)
     }
 
+    handleDate = (e) => {
+        e.preventDefault();
+        e.target.type = 'date'
+    }
+
     render() {
         const {auth, authError} = this.props
-        if (auth.uid) return <Redirect to='/' />
+        if (auth.uid) return <Redirect to='/signin' />
         return (
             <div className="loginBody">
                 <div className="container">
@@ -58,7 +63,7 @@ class SignUp extends Component {
                                         <input placeholder="NIC No" type="text" id="nic" onChange={this.handleChange} required />
                                     </div>
                                     <div className="input-field">
-                                        <input placeholder="Date of Birth" type="date" id="dob" onChange={this.handleChange} required />
+                                        <input placeholder="Date of Birth" onFocus={this.handleDate} type="text" id="dob" onChange={this.handleChange} required />
                                     </div>
                                     <div className="input-field">
                                         <input placeholder="Email" type="email" id="email" onChange={this.handleChange} required />
