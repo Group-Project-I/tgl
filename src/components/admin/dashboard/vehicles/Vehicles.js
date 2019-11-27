@@ -40,7 +40,15 @@ class Vehicles extends Component {
         var data = []
 
         {vehicles && vehicles.map(vehicle =>{
-            data.push({id: vehicle.id, vehicleNo: vehicle.vehicleNo, make: vehicle.make, model: vehicle.model, trailerNo: vehicle.trailerNo, purchasedDate: vehicle.purchasedDate, engineNo: vehicle.engineNo})
+            data.push({
+                id: vehicle.id, 
+                vehicleNo: vehicle.vehicleNo, 
+                make: vehicle.make, 
+                model: vehicle.model, 
+                trailerNo: vehicle.trailerNo, 
+                purchasedDate: vehicle.purchasedDate, 
+                engineNo: vehicle.engineNo
+            })
         }       
         )} 
 

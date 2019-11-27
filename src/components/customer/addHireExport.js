@@ -72,14 +72,14 @@ class AddHireExport extends Component {
 
                 <form onSubmit={this.handleSubmit} >
                     <br/>
-                    <h6>Container Type</h6> <br/>
+                    <h5>Container Type</h5> <br/>
                     <div className="row col-6">
                         <select className="form-control select1" placeholder="Container Type" id="containerType" onChange={this.handleContainerType} required>
                             <option value="20">20ft</option>
                             <option value="40">40ft</option>
                         </select>
                     </div>
-                    <br/><h6> Container Pickup Details</h6>
+                    <br/><h5> Container Pickup Details</h5>
                     <div className="row">
                         <div className="input-field col-6">
                             <input className="placeholder" placeholder="Pickup Location" type="text" id="pickupLocation" onChange={this.handleChange} required />
@@ -88,7 +88,7 @@ class AddHireExport extends Component {
                             <input className="placeholder" placeholder="Pickup Date and Time" onFocus={this.handleDate} ref="pickup" type="text" id="pickupDatetime"  onChange={this.handleChange} required />
                         </div>
                     </div>
-                    <br/><h6>Cargo Details</h6>
+                    <br/><h5>Cargo Details</h5>
                     <div className="row">
                         <div className="input-field col-6">
                             <input placeholder="Cargo Type" type="text" id="cargoType" onChange={this.handleChange} required />
@@ -98,7 +98,7 @@ class AddHireExport extends Component {
                         </div>
                     </div>
 
-                    <br/><h6>Loading Details</h6>
+                    <br/><h5>Loading Details</h5>
                     <div className="row">
                         <div className="input-field col-6">
                             <input placeholder="Loading Port" type="text" id="loadingPort" onChange={this.handleChange} required />
@@ -108,8 +108,8 @@ class AddHireExport extends Component {
                         </div>
 
                     </div>
-                    <br/>
-                    <h6>Customer Details</h6>
+
+                    <br/><h5>Customer Details</h5>
                     <div className="row">
                         <div className="input-field col-6">
                             <input placeholder="Customer Name" type="text" id="customerName" onChange={this.handleChange} required />

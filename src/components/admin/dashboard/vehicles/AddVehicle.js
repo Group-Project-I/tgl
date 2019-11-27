@@ -79,8 +79,8 @@ class AddVehicle extends Component {
                         </div>
                         <br/><br/>
                         <div className="input-field center">
-                            <button className="btn blue lighten-1 z-depth-0">Register</button>
-                            <button className="btn red lighten-1 z-depth-0">Cancel</button>
+                            <button className="btn blue lighten-1 z-depth-5 btn1">Register</button>
+                            <button className="btn red lighten-1 z-depth-5 btn1">Cancel</button>
                         </div>
                     </form>
                 </div>

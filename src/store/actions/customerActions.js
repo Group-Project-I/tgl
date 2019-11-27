@@ -5,52 +5,30 @@ export const clean = () => ({
   type: 'CLEAN_UP',
 });
 
-export const recoverPassword = data => async (
-  dispatch,
-  getState,
-  { getFirebase }
-) => {
-  const firebase = getFirebase();
-  dispatch({ type: 'RECOVERY_START' });
-  try {
-    // send email ehre
-    await firebase.auth().sendPasswordResetEmail(data.email);
-    dispatch({ type: 'RECOVERY_SUCCESS' });
-  } catch (err) {
-    dispatch({ type: 'RECOVERY_FAIL', payload: err.message });
+// export const recoverPassword = data => async (
+//   dispatch,
+//   getState,
+//   { getFirebase }
+// ) => {
+//     const firebase = getFirebase();
+//   dispatch({ type: 'RECOVERY_START' });
+//   try {
+//     // send email ehre
+//     await firebase.auth().sendPasswordResetEmail(data.email);
+//     dispatch ({type: 'RESET_PASSWORD', })
+//   } catch (error) {
+//     dispatch({type:'PASSWORD_RESET_ERROR',error})
+//   }
+// };
+export const recoverPassword =(email) => {
+  return(dispatch ,getState,{getFirebase,getFirestore})=>{
+    firebase.auth().sendPasswordResetEmail(email).then(() =>{
+        dispatch ({type: 'RESET_PASSWORD',email})
+      }).catch((error) => {
+         dispatch({type:'PASSWORD_RESET_ERROR',error})
+     })
   }
-};
-// export const setPassword = (state) =>{
-//  return(dispatch ,getState,{getFirebase,getFirestore})=>{
-//     // var auth = firebase.auth();
-//     // var emailAddress = "thilini96ucsc@gmail.com";
-    
-//     // auth.sendPasswordResetEmail(emailAddress).then(function() {
-//     //   // Email sent.
-//     //   console.log('email sent')
-//     // }).catch(function(error) {
-//     //   // An error happened.
-//     //   console.log('error')
-//     // });
-
-//     var user = firebase.auth().currentUser
-//     var newPassword = state.newPassword
-    
-
-//     user.updatePassword(newPassword).then(()=> {
-//   // Update successful.
-//   dispatch ({type: 'RESET_PASSWORD',newPassword})
-//   console.log('success')
-//     }).catch((error) =>{
-//   // An error happened.
-//   dispatch({type:'PASSWORD_RESET_ERROR',error})
-
-//   console.log('error')
-//     });
-
-    
-//  }   
-// }
+}
 export const sendMessage =(message,type) => {
   
   return (dispatch ,getState,{getFirebase,getFirestore})=>{

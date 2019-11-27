@@ -10,7 +10,7 @@ const AdminNavbar = (props) => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom" style={{position: 'fixed'}}>
-      <button className="btn btn-primary" id="menu-toggle"><FaBars/></button>
+      {/* <button className="btn btn-primary" id="menu-toggle"><FaBars/></button> */}
 
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
