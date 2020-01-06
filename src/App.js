@@ -98,7 +98,7 @@ function App(props) {
               <Route path='/admin/disabled' component={DisabledUsers}/>
 
               <Route path='/User/addHire' component={CustomerAddHire}/>
-              <Route path='/User/Home' component={Dashboard}/>
+              <Route path='/User/Home' component={Homepage}/>
               <Route path='/User/resetPassword' component={ResetPassword}/>
               <Route path ='/User/messages' component={Message}/>
               <Route exact path='/User/profile' component={Profile}/>

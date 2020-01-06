@@ -25,7 +25,7 @@ class ResetEmail extends React.Component{
   render(){
     return(
     //   <div style={{  backgroundColor: "#dee7e7 ", margin:'0',padding:'0' ,marginBottom:'0'}}>
-    <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.2' ,margin:'0',padding:'0'}}>
+    <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.2' ,margin:'0',padding:'0',height:'1000px'}}>
     <div className='container'>
         <br/><br/><br/><br/>
         <Card className={'user-card'}  >
