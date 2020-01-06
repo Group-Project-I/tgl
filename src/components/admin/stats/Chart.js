@@ -75,7 +75,7 @@ class Chart extends Component {
       }
     }
 
-    const importHires = this.props.hires
+    const importHires = this.props.hires.filter(item => item.hireType === "import" && (item.hireStatus === "completed") && (new Date(item.completedDatetime).getFullYear() === new Date().getFullYear()))
     const exportHires = this.props.hires.filter(item => item.hireType === "export" && (item.hireStatus === "completed") && (new Date(item.completedDatetime).getFullYear() === new Date().getFullYear()))
     
 
