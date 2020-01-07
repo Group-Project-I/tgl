@@ -16,7 +16,7 @@ class Sidebar extends Component {
     
   }
   changePath = (path) => {
-    console.log('path',path)
+    // console.log('path',path)
     this.setState({
       urlPath: path
     })

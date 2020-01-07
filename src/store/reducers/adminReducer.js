@@ -34,6 +34,12 @@ const adminReducer = (state = initState, action) => {
         case 'FAILED_TO_UPDATE_AVAILABILITY':
             console.log('User availability update failed')
             return state;
+        case 'NOTIFICATION READ AND DELETED':
+            console.log('notification read and deleted')
+            return state;
+        case 'FAILED TO DELETE NOTIFICATION':
+            console.log('Error deleting notification')
+            return state;
         default:
             return state
     }

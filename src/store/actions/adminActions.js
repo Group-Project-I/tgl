@@ -141,3 +141,15 @@ export const disableOrEnableVehicle = (id, token) => {
         })
     }
 }
+
+export const readNotification = (id) => {
+
+    return(dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        firestore.collection('notifications').doc(id).delete().then(() => {
+            dispatch({type: 'NOTIFICATION READ AND DELETED'})
+        }).catch(err => {
+            dispatch({type: 'FAILED TO DELETE NOTIFICATION', err})
+        })
+    }
+}

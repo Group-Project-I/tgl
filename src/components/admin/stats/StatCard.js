@@ -12,7 +12,7 @@ export class StatCard extends Component {
 
   state = {
     loading: 0
-}
+  }
 
 UNSAFE_componentWillReceiveProps(nextProps) {
     
