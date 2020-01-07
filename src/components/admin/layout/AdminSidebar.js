@@ -30,8 +30,6 @@ class Sidebar extends Component {
       hireRequests = this.props.hires.filter(item => item.hireStatus === "request").length
       ongoingHires = this.props.hires.filter(item => item.hireStatus ==="ongoing").length
     }
-
-    console.log('hohohoo',this.state)
    
     return (
       <div className="bg-dark border-right" id="sidebar-wrapper">
