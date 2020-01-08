@@ -5,6 +5,8 @@ import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import moment from 'moment'
+import { Squares } from 'react-activity';
+import 'react-activity/dist/react-activity.css';
 
 class ManageCompletedHires extends Component {
 
@@ -471,7 +473,7 @@ class ManageCompletedHires extends Component {
         
         return (
             this.state.loading === 1 ? (
-                <div><br/><br/><br/><br/><h1>Loading</h1></div>
+                <div className="text-center" style={{paddingTop:"500px"}}><Squares color="#007bff" size={32} speed={1} animating={true} /></div>
             ) :
             <NewWindow>
                 <PDFViewer style={{width:"100%", height:"100%"}}>{MyDocument}</PDFViewer>

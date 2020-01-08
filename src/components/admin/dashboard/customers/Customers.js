@@ -35,7 +35,7 @@ class Customers extends Component {
             { title: "User Since", field: "createdAt", align: "center", sorter: "date", sorterParams:{format:"MMM Do YYYY"}},
             
         ];
-        console.log('boom',this.state)
+        // console.log('boom',this.state)
 
         var data = []
 
@@ -114,7 +114,7 @@ class Customers extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
+    // console.log(state)
     return {
         auth: state.firebase.auth,
         customers: state.firestore.ordered.customers

@@ -12,7 +12,7 @@ export class StatCard extends Component {
 
   state = {
     loading: 0
-}
+  }
 
 UNSAFE_componentWillReceiveProps(nextProps) {
     
@@ -25,8 +25,8 @@ UNSAFE_componentWillReceiveProps(nextProps) {
 
   render() {
     const ongoingHires = this.props.hires.filter(item => item.hireStatus === 'ongoing').length
-    const completedImportHires = this.props.hires.filter(item => item.hireType === 'import' && item.hireStatus === 'completed' && new Date(item.completedAt).getMonth() === new Date().getMonth() && new Date(item.completedAt).getFullYear() === new Date().getFullYear()).length
-    const completedExportHires = this.props.hires.filter(item => item.hireType === 'export' && item.hireStatus === 'completed' && new Date(item.completedAt).getMonth() === new Date().getMonth() && new Date(item.completedAt).getFullYear() === new Date().getFullYear()).length
+    const completedImportHires = this.props.hires.filter(item => item.hireType === 'import' && item.hireStatus === 'completed' && new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000).getMonth() === new Date().getMonth() && new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000).getFullYear() === new Date().getFullYear()).length
+    const completedExportHires = this.props.hires.filter(item => item.hireType === 'export' && item.hireStatus === 'completed' && new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000).getMonth() === new Date().getMonth() && new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000).getFullYear() === new Date().getFullYear()).length
    
     const load = this.state.loading === 0 ? (
       <div className="row container-fluid" >

@@ -6,7 +6,7 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 
 
-class Chart extends Component {
+class ChartLastYear extends Component {
   static defaultProps = {
       hires: []       
   }
@@ -75,19 +75,18 @@ class Chart extends Component {
       }
     }
 
-    const importHires = this.props.hires
-    const exportHires = this.props.hires.filter(item => item.hireType === "export" && (item.hireStatus === "completed") && (new Date(item.completedDatetime).getFullYear() === new Date().getFullYear()))
-    
+    const importHires = this.props.hires.filter(item => item.hireType === "import" && (item.hireStatus === "completed") && new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000).getFullYear() == new Date().getFullYear() - 1)
+    const exportHires = this.props.hires.filter(item => item.hireType === "export" && (item.hireStatus === "completed") && new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000).getFullYear() == new Date().getFullYear() - 1)
 
     var group_imports_to_months = importHires.reduce(function (obj, item) {
-      obj[(new Date(item.pickupDatetime)).getMonth()] = obj[(new Date(item.pickupDatetime)).getMonth()] || []; 
-      obj[(new Date(item.pickupDatetime)).getMonth()].push(item.id);
+      obj[(new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000)).getMonth()] = obj[(new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000)).getMonth()] || []; 
+      obj[(new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000)).getMonth()].push(item.id);
       return obj;
     }, {});
 
     var group_exports_to_months = exportHires.reduce(function (obj, item) {
-      obj[(new Date(item.completedDatetime)).getMonth()] = obj[(new Date(item.completedDatetime)).getMonth()] || []; 
-      obj[(new Date(item.completedDatetime)).getMonth()].push(item.id);
+      obj[(new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000)).getMonth()] = obj[(new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000)).getMonth()] || []; 
+      obj[(new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000)).getMonth()].push(item.id);
       return obj;
     }, {});
 
@@ -133,5 +132,5 @@ export default compose(
   firestoreConnect([
       {collection: 'hires'}
   ])
-)(Chart)
+)(ChartLastYear)
 

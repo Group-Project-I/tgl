@@ -10,6 +10,8 @@ import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Redirect} from 'react-router-dom'
+import { Squares } from 'react-activity';
+import 'react-activity/dist/react-activity.css';
 
 
 class ManageDriver extends Component {
@@ -72,7 +74,7 @@ class ManageDriver extends Component {
                     </TabPanel>
                 </Tabs>
             </div>
-        ): <div><br/><br/><br/>Loading</div>
+        ): <div className="text-center" style={{paddingTop:"500px"}}><Squares color="#007bff" size={32} speed={1} animating={true} /></div>
         return <div>{load}</div>
     }
 }
