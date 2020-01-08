@@ -70,7 +70,7 @@ class AddHireExport extends Component {
                             <h1 className="center fadeIn animated slow add_head">Add <span className="topic">Export</span></h1>
                             <hr className="bg-dark mb-4"/>
 
-                <form onSubmit={this.handleSubmit} >
+                <form onSubmit={this.handleSubmit} autoComplete='off'>
                     <br/>
                     <h5>Container Type</h5> <br/>
                     <div className="row col-6">

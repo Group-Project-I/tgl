@@ -57,7 +57,7 @@ class ManageTools extends Component {
                         <br/><br/><br/>
 
                         <TabPanel>
-                            <div className="tool fadeIn animated fast">
+                            <div className="tool fadeIn animated fast ">
 
                                 <CompletedHires/>
                                 <br/><br/>

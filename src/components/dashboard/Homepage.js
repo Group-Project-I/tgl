@@ -25,7 +25,7 @@ const Homepage = () => {
             <br/>
             <div className="container container mt-4 mb-5">
                 <br/><br/><br/>
-                <h3 className="display-4 text-center" style={hStyle}><strong> Welcome to Trans Global Logistics </strong></h3>
+                <h3 className="display-4 text-center" style={hStyle}><strong> Welcome to <span className="topic">T</span>rans <span className="topic">G</span>lobal <span className="topic">L</span>ogistics </strong></h3>
                 <hr className="bg-dark mb-4 w-25"/>
                 <br/><br/><br/><br/><br/>
                 <div className="row">

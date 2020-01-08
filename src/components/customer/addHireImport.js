@@ -18,7 +18,7 @@ class AddHireImport extends Component {
         vesselArrivalDatetime: '',
         destination: '',
         customerId: '',
-        customerName: 'Tharinda Dilshan',
+        customerName: '',
         remarks: '',
         loading: 1,
         redir : 0,
@@ -95,7 +95,7 @@ class AddHireImport extends Component {
 
     render() {
         if(this.state.redir === 1){
-            return <Redirect to='/User/Home' />
+            return <Redirect to='/' />
         }
         return (
 
@@ -109,7 +109,7 @@ class AddHireImport extends Component {
                         <h1 className="center fadeIn animated fast add_head">Add <span className="topic">Import</span></h1>
                         <hr className="bg-dark mb-4"/>
 
-                        <form onSubmit={this.handleSubmit} >
+                        <form onSubmit={this.handleSubmit} autoComplete='off'>
                             <br/>
                             <h5>Container Type</h5> <br/>
                             <div className="bg col-6">
@@ -154,8 +154,8 @@ class AddHireImport extends Component {
                             <br/><h5>Customer Details</h5>
                             <div className="row">
                                 <div className="input-field col-6">
-                                    <input placeholder="Customer Name" type="hidden" value="Tharinda Dilshan" id="customerName" onChange={this.handleChange} required />
-                                    {/*<input placeholder="Customer Name" type="text" id="customerName" onChange={this.handleChange} required />*/}
+                                    {/*<input placeholder="Customer Name" type="hidden" value="Tharinda Dilshan" id="customerName" onChange={this.handleChange} required />*/}
+                                    <input placeholder="Customer Name" type="text" id="customerName" onChange={this.handleChange} required />
                                     {/*<select className="form-control" id="customerId" onFocus={this.getCustomer} onChange={this.handleCustomer}>*/}
                                     {/*    {this.state.availableCustomers ?  this.state.availableCustomers.map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName}</option>)}) : null}*/}
 

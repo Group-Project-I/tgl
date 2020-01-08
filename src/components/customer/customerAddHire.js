@@ -11,11 +11,11 @@ class CustomerAddHire extends React.Component{
         return(
             <div className="hire_background fadeIn animated faster ">
                 <div className="select2">
-                <div id="content" className="container   " role="main">
+                <div id="content" className="container " role="main">
                 <br/><br/><br/><br/> <br/><br/>
                 <Tabs className="center fadeIn animated slow">
 
-                    <TabList className="fadeInDown animated fast tablist">
+                    <TabList className="tablist fadeInDown animated fast ">
                         <Tab>IMPORTS</Tab>
                         <Tab>EXPORTS</Tab>
                     </TabList>
