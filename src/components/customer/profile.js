@@ -38,7 +38,7 @@ class Profile extends React.Component {
                 <hr/>
                 <div>
                 <h1 style={{float:'left'}}>MY ACCOUNT</h1>  
-                <Link to='/User/Home'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/>
+                <Link to='/'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/>
                 </div>
                 <hr/>
             </div>
@@ -114,4 +114,3 @@ export default compose(
         {collection: 'customers'}
     ])
 )(Profile)
- 

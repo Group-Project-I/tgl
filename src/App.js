@@ -49,6 +49,7 @@ import ManageHires from './components/customer/hires/CustManageHires'
 import ManageTools from './components/customer/hires/CustManageTools'
 
 
+
 function App(props) {
   
   const {type, auth} = props;

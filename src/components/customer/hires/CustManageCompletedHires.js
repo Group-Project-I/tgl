@@ -5,6 +5,8 @@ import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import moment from 'moment'
+import {Link} from "react-router-dom";
+import Particles from 'react-particles-js';
 
 class ManageCompletedHires extends Component {
 
@@ -471,11 +473,22 @@ class ManageCompletedHires extends Component {
 
         return (
             this.state.loading === 1 ? (
-                    <div><br/><br/><br/><br/><h1>Loading</h1></div>
+                    <div className="center "><br/><br/><br/><br/><h1>Loading</h1></div>
                 ) :
-                <NewWindow>
-                    <PDFViewer style={{width:"100%", height:"100%"}}>{MyDocument}</PDFViewer>
-                </NewWindow>
+                <div className="completehire">
+                    <br/><br/><br/><br/>
+                    <div className="input-field center">
+
+                        <Link to="/User/UserManageTools"><button className="btn orange lighten-1 z-depth-5 btn1">Back</button></Link>
+                        <Particles />
+                    </div>
+                    <NewWindow>
+                        <PDFViewer style={{width:"100%", height:"100%"}}>{MyDocument}</PDFViewer>
+                    </NewWindow>
+                </div>
+
+
+
         )
     }
 }

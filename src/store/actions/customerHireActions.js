@@ -69,7 +69,7 @@ export const declineHireRequests = (id) => {
     }
 };
 
-export const updateRequest = (id, data, hireRequest) => {
+export const updateRequest = (id,data,hireRequest) => {
 
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();

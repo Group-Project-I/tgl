@@ -26,7 +26,7 @@ class DeclinedHire extends Component {
             <div id="content" className="container-fluid" role="main">
                 <br/><br/><br/><br/>
                 <Tabs className="center">
-                    <TabList>
+                    <TabList className="fadeInDown animated fast ">
                         <Tab>IMPORTS</Tab>
                         <Tab>EXPORTS</Tab>
                     </TabList>
