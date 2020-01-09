@@ -4,31 +4,38 @@ import 'firebase/firestore';
 export const clean = () => ({
   type: 'CLEAN_UP',
 });
+// reset email
 
-// export const recoverPassword = data => async (
-//   dispatch,
-//   getState,
-//   { getFirebase }
-// ) => {
-//     const firebase = getFirebase();
-//   dispatch({ type: 'RECOVERY_START' });
-//   try {
-//     // send email ehre
-//     await firebase.auth().sendPasswordResetEmail(data.email);
-//     dispatch ({type: 'RESET_PASSWORD', })
-//   } catch (error) {
-//     dispatch({type:'PASSWORD_RESET_ERROR',error})
-//   }
-// };
-export const recoverPassword =(email) => {
+export const resetEmail =(creds) =>{
+  return(dispatch ,getState)=>{
+    var user = firebase.auth().currentUser;
+    user.updateEmail(creds.email).then(function() {
+      // Update successful.
+      dispatch ({type: 'RESET_EMAIL_SUCCESS'})
+    }).catch(function(error) {
+      // An error happened.
+      dispatch ({type: 'RESET_EMAIL_FAILED',error})
+    });
+  }
+}
+
+// recover passsword
+export const recoverPassword =(creds) => {
   return(dispatch ,getState,{getFirebase,getFirestore})=>{
-    firebase.auth().sendPasswordResetEmail(email).then(() =>{
-        dispatch ({type: 'RESET_PASSWORD',email})
-      }).catch((error) => {
+    var firebase=getFirebase();
+    var auth =firebase.auth();
+    //test the function
+    // var email='thilini96ucsc@gmail.com';
+    var state = getState();
+    console.log(state)
+    auth.sendPasswordResetEmail(creds.email).then(() =>{
+            }).catch((error) => {
          dispatch({type:'PASSWORD_RESET_ERROR',error})
      })
   }
 }
+
+// add messages  to the firbase collection
 export const sendMessage =(message,type) => {
   
   return (dispatch ,getState,{getFirebase,getFirestore})=>{
@@ -53,10 +60,10 @@ export const sendMessage =(message,type) => {
     }).catch((error) => {
       dispatch({type:'SEND_MESSAGE_ERROR',error})
     })
-    
   }
 }
 
+// submit inquiries 
 export const sendInquiries =( message)=>{
     return( dispatch,getState,{getFirebase,getFirestore}) =>{
       const state= getState()
@@ -72,5 +79,4 @@ export const sendInquiries =( message)=>{
           dispatch({type:'SEND_INQUIRY_ERROR',error})
         })
     }
-
 }

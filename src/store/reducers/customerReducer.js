@@ -33,7 +33,7 @@ const customerReducer =(state = initState ,action) => {
             console.log('messsage sent error',action.error)
             return state
         case 'RESET_PASSWORD' :
-            console.log('CHANGED PASSWORD',action.newPasSword)
+            console.log('CHANGED PASSWORD',action.newPassword)
             return state
         case 'PASSWORD_RESET_ERROR' :
             console.log('PASSWORD_RESET_ERROR',action.error)

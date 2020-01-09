@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { Card} from 'react-bootstrap'
+import { Card,Image} from 'react-bootstrap'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {editUser} from '../../store/actions/adminActions'
@@ -53,23 +53,25 @@ class EditProfile extends Component {
     render() {
         
         const load = this.state.loading === 0 ? (
-            <div style={{  backgroundColor: "#dee7e7", margin:'0',padding:'0' ,marginBottom:'0', height: '1000px'}}>
-            <div className="container " style={{ backgroundColor:'white'}}  >
+            <div style={{   margin:'0',padding:'0' ,marginBottom:'0'}}>
                 <br/><br/><br/><br/>
                 <div >
-                    <div className='cust-heading'>
-                    <hr/>
-                <h1 style={{float:'left'}}>EDIT PROFILE</h1> 
+                    <div className='cust-heading' style={{backgroundColor: "#dee7e7",height:'150px'}}>
+                    <hr/> 
+                <h1 style={{float:'left'}}> PROFILE <br/>Welcome</h1> 
                 <Link to='/User/profile'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/> 
                  <hr/>
                     </div>
+            <div className="container" style={{ backgroundColor:'white'}}  >
                 
-                <div className='row' >
+                
+                <div className='row ' >
                    
-                    <div className='col'>
+                    <div className='col-md-8'>
                     <div className="green-text center">
                         <h4>{this.state.updated ? "Updated Successfully" : null}</h4>
                     </div>
+                    {/* <img src={require('../../img/user.png')}> </img> */}
                     <form onSubmit={this.handleSubmit}>
                         <div className="row main-section">
                             <div className="input-field col-5 row">
@@ -109,6 +111,14 @@ class EditProfile extends Component {
                             <Link to='/User/profile'><button className="btn silver lighten-1 z-depth-0">Cancel</button></Link>
                         </div>
                     </form>
+                </div>
+                <div className='col-md-4'>
+                    <Card>
+                    <button className='primary'>Email recovery</button>
+                    <button></button>
+                    </Card>
+                    
+
                 </div>
             </div>
             </div>

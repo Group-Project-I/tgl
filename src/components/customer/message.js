@@ -1,4 +1,4 @@
-import React from 'react'
+  import React from 'react'
 import ViewMessage from './messages/viewMessage'
 import {connect } from 'react-redux'
 import {sendMessage} from '../../store/actions/customerActions'
@@ -31,7 +31,7 @@ handleSubmit = (e) => {
     // console.log(this.state);
     this.props.sendMessage(this.state)
 }
-
+ 
     render(){
         const {messages} =this.props
         return(

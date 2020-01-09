@@ -1,12 +1,13 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { Card } from 'react-bootstrap'
-import {connect } from 'react-redux'
+import {Card} from 'react-bootstrap'
+import {connect} from 'react-redux'
 import {recoverPassword} from '../../../store/actions/customerActions'
 
 class ResetPassword extends React.Component{
   state={
-    email:''
+    email:'',
+    updatedState:'0'
   }
 
   handleChange = (e) => {
@@ -19,9 +20,12 @@ class ResetPassword extends React.Component{
     e.preventDefault();
     // console.log(this.state);
     this.props.recoverPassword(this.state)
+
   }
 
   render(){
+    const {email} =this.props
+    // console.log(this.state);
     return(
       <div style={{  backgroundColor: "#dee7e7 ", margin:'0',padding:'0' ,marginBottom:'0'}}>
 
@@ -46,7 +50,7 @@ class ResetPassword extends React.Component{
                 <p style={{textAlign:'justify' }}>Please enter your email address below and we will send you information to recover your account</p>
                 <form onSubmit={this.handleSubmit}>
                   <div className='form-group'>
-                    <input placeholder=' Email Address' id ='email' name='email' type='text' onChange={this.handleChange} />
+                    <input placeholder=' Email Address' id ='email' name='email' type='text' onChange={this.handleChange} required/>
                   </div>
                   <button className='btn d-flex justify-content-center' type ='submit'>Reset Password</button>
                 </form>
@@ -62,9 +66,8 @@ class ResetPassword extends React.Component{
   
 const mapDispatchToProps = (dispatch) => {
   return{
+       
     recoverPassword : (email) => dispatch(recoverPassword(email))
   }
 } 
-
-
- export default connect(null,mapDispatchToProps) (ResetPassword);
+export default connect(null,mapDispatchToProps)(ResetPassword);

@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import { Card } from 'react-bootstrap'
 import {connect } from 'react-redux'
-import {recoverPassword} from '../../../store/actions/customerActions'
+import {resetEmail} from '../../../store/actions/customerActions'
 import image from '../../../img/bgImg7.jpg'
 
 class ResetEmail extends React.Component{
@@ -19,7 +19,7 @@ class ResetEmail extends React.Component{
   handleSubmit = (e) => {
     e.preventDefault();
     // console.log(this.state);
-    this.props.recoverPassword(this.state)
+    this.props.resetEmail(this.state)
   }
 
   render(){
@@ -42,10 +42,10 @@ class ResetEmail extends React.Component{
                 <img src={require('../../../img/email.png')} style={{width:'400px',height:'500px',opacity:'0.7'}} alt="pwdImage"/>
               </div>
               <div className='col-md-6 sub-section content'style={{paddingLeft:'100px'}} >
-                <p style={{textAlign:'justify' }}>Please enter your email address below and we will send you information to recover your account</p>
+                <p style={{textAlign:'justify' }}>Please enter your new email address below to  recover your account</p>
                 <form onSubmit={this.handleSubmit}>
                   <div className='form-group'>
-                    <input placeholder=' Email Address' id ='email' name='email' type='text' onChange={this.handleChange} />
+                    <input placeholder=' Email Address' id ='email' name='email' type='text' onChange={this.handleChange} required/>
                   </div>
                   <button className='btn d-flex justify-content-center' type ='submit'>Reset Email</button>
                 </form>
@@ -61,7 +61,7 @@ class ResetEmail extends React.Component{
   
 const mapDispatchToProps = (dispatch) => {
   return{
-    recoverPassword : (email) => dispatch(recoverPassword(email))
+    resetEmail : (email) => dispatch(resetEmail(email))
   }
 } 
 
