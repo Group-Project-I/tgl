@@ -6,6 +6,8 @@ import moment from 'moment'
 import {Redirect} from 'react-router-dom'
 import {acceptHireRequest} from '../../../../store/actions/adminHireActions'
 import {declineHireRequest} from '../../../../store/actions/adminHireActions'
+import { Squares } from 'react-activity';
+import 'react-activity/dist/react-activity.css';
 
 class ManageHireRequest extends Component {
     state = {
@@ -117,7 +119,7 @@ class ManageHireRequest extends Component {
         }
         return (
             this.state.loading === 1 ? (
-                <div><br/><br/><br/><br/><h1>Loading...</h1></div>
+                <div className="text-center" style={{paddingTop:"500px"}}><Squares color="#007bff" size={32} speed={1} animating={true} /></div>
             ) :
             <div>
                 <br/><br/><br/><br/>
