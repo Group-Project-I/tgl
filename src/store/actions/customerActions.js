@@ -74,3 +74,17 @@ export const sendInquiries =( message)=>{
     }
 
 }
+
+// export const editHire = (customerId, data, records) => {
+//
+//     return(dispatch, getState, {getFirebase, getFirestore}) => {
+//         const firestore = getFirestore();
+//         firestore.collection(records).doc(customerId).update({
+//             ...data
+//         }).then(() => {
+//             dispatch({type: 'DOCUMENT_UPDATED'});
+//         }).catch((err) => {
+//             dispatch({type: 'ERROR_UPDATING_DOCUMENT', err});
+//         })
+//     }
+// }

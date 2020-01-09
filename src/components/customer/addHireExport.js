@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Redirect} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {addExportHires} from '../../store/actions/customerHireActions'
 import {firestoreConnect} from 'react-redux-firebase'
@@ -70,7 +70,7 @@ class AddHireExport extends Component {
                             <h1 className="center fadeIn animated slow add_head">Add <span className="topic">Export</span></h1>
                             <hr className="bg-dark mb-4"/>
 
-                <form onSubmit={this.handleSubmit} >
+                <form onSubmit={this.handleSubmit} autoComplete='off'>
                     <br/>
                     <h5>Container Type</h5> <br/>
                     <div className="row col-6">
@@ -108,6 +108,7 @@ class AddHireExport extends Component {
                         </div>
 
                     </div>
+
                     <br/><h5>Customer Details</h5>
                     <div className="row">
                         <div className="input-field col-6">
@@ -122,7 +123,7 @@ class AddHireExport extends Component {
                     <input type="hidden" id="hireType" value="import"/><br/><br/>
                     <div className="input-field center">
                         <button className="btn blue lighten-1 z-depth-5 btn1">Add</button>
-                        <button className="btn red lighten-1 z-depth-5 btn1">Cancel</button>
+                        <Link to='/User/Home'><button className="btn red lighten-1 z-depth-5 btn1">Cancel</button></Link>
                     </div>
                     <br/>
                 </form>

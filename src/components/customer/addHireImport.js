@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {addImportHires} from '../../store/actions/customerHireActions'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
+import {Link} from "react-router-dom";
 
 class AddHireImport extends Component {
     state = {
@@ -17,7 +18,7 @@ class AddHireImport extends Component {
         vesselArrivalDatetime: '',
         destination: '',
         customerId: '',
-        customerName: 'Tharinda Dilshan',
+        customerName: '',
         remarks: '',
         loading: 1,
         redir : 0,
@@ -39,6 +40,31 @@ class AddHireImport extends Component {
             redir : 1
         })
     }
+
+    // handleCustomer = (e) => {
+    //     if(e.target.value){
+    //         const x = e.target.value.split('_')
+    //         this.setState({
+    //             customerId: x[0],
+    //             customerName: x[1]
+    //         })
+    //     }
+    // }
+    //
+    //
+    //
+    // getCustomer = (e) => {
+    //     if(this.props.customer){
+    //         const availableCustomers = this.props.customers.sort((a,b) => { return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()}).reverse();
+    //         // const currentUser = this.props.customer.profile;
+    //
+    //         this.setState({
+    //
+    //             availableCustomers: availableCustomers.filter(item => item.disabled === false)
+    //         })
+    //     }
+    // }
+
 
     handleDate = (e) => {
         e.preventDefault();
@@ -69,7 +95,7 @@ class AddHireImport extends Component {
 
     render() {
         if(this.state.redir === 1){
-            return <Redirect to='/User/Home' />
+            return <Redirect to='/' />
         }
         return (
 
@@ -83,7 +109,7 @@ class AddHireImport extends Component {
                         <h1 className="center fadeIn animated fast add_head">Add <span className="topic">Import</span></h1>
                         <hr className="bg-dark mb-4"/>
 
-                        <form onSubmit={this.handleSubmit} >
+                        <form onSubmit={this.handleSubmit} autoComplete='off'>
                             <br/>
                             <h5>Container Type</h5> <br/>
                             <div className="bg col-6">
@@ -124,10 +150,16 @@ class AddHireImport extends Component {
                                     <input placeholder="Destination" type="text" id="destination" onChange={this.handleChange} required />
                                 </div>
                             </div>
-                            {/* <br/><h5>Customer Details</h5> */}
+
+                            <br/><h5>Customer Details</h5>
                             <div className="row">
                                 <div className="input-field col-6">
-                                    <input placeholder="Customer Name" type="hidden" value="Tharinda Dilshan" id="customerName" onChange={this.handleChange} required />
+                                    {/*<input placeholder="Customer Name" type="hidden" value="Tharinda Dilshan" id="customerName" onChange={this.handleChange} required />*/}
+                                    <input placeholder="Customer Name" type="text" id="customerName" onChange={this.handleChange} required />
+                                    {/*<select className="form-control" id="customerId" onFocus={this.getCustomer} onChange={this.handleCustomer}>*/}
+                                    {/*    {this.state.availableCustomers ?  this.state.availableCustomers.map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName}</option>)}) : null}*/}
+
+                                    {/*</select>*/}
                                 </div>
                             </div>
 
@@ -137,7 +169,7 @@ class AddHireImport extends Component {
                             <input type="hidden" id="hireType" value="import"/><br/><br/>
                             <div className="input-field center">
                                 <button className="btn blue lighten-1 z-depth-5 btn1">Add</button>
-                                <button className="btn red lighten-1 z-depth-5 btn1">Cancel</button>
+                                <Link to='/User/Home'><button className="btn red lighten-1 z-depth-5 btn1">Cancel</button></Link>
                             </div>
                             <br/>
                         </form>
@@ -150,7 +182,9 @@ class AddHireImport extends Component {
 }
 const mapStateToProps = (state) => {
     return{
+        customer: state.firestore.ordered.customers,
         hires: state.firestore.ordered.hires
+
     }
 }
 
@@ -163,7 +197,8 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
-        {collection: 'hires'}
+        {collection: 'hires'},
+        {collection: 'customers'}
     ])
 )(AddHireImport);
 
