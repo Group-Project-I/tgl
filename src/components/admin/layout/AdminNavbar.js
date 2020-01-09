@@ -4,10 +4,11 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Button, Nav, NavDropdown} from 'react-bootstrap'
 import {connect} from 'react-redux'
+import moment from 'moment'
 import {signOut} from '../../../store/actions/authActions'
 import {readNotification} from '../../../store/actions/adminActions'
 import {FaEnvelope, FaCog} from 'react-icons/fa'
-import { MdNotifications, MdNotificationsActive} from "react-icons/md";
+import { MdNotifications, MdNotificationsActive, MdBeenhere, MdEventAvailable, MdEdit, MdPersonAdd} from "react-icons/md";
 
 export class AdminNavbar extends Component{
 
@@ -29,7 +30,7 @@ export class AdminNavbar extends Component{
   }
 
   render(){
-    const {notifications} = this.props
+    const notifications = this.props.notifications.filter(item => item.to === 'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2').sort((a, b) => new Date((b.createdAt.seconds + b.createdAt.nanoseconds/1E9)*1000) - new Date((a.createdAt.seconds + a.createdAt.nanoseconds/1E9)*1000))
     
     const load = this.state.loading === 0 ? (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom" style={{position: 'fixed'}}>
@@ -43,12 +44,32 @@ export class AdminNavbar extends Component{
             <Nav.Link><NavLink to='/admin/addhire' style={{textDecoration: 'none'}}>+Add Hire</NavLink></Nav.Link>
             <Nav.Link><NavLink to={'/admin/messages/' + this.props.auth.uid}><FaEnvelope size={28}/></NavLink></Nav.Link>
   
-            <NavDropdown title={notifications.length === 0 ? <MdNotifications size={28}/> : <MdNotificationsActive size={28} />} id="basic-nav-dropdown" disabled={!notifications.length}>
+            <NavDropdown title={notifications.length === 0 ? <MdNotifications size={28}/> : <MdNotificationsActive size={28}/>} id="basic-nav-dropdown" disabled={!notifications.length}>
               {notifications && notifications.map(notification => {
                 return(
                 <div>
-                  <NavDropdown.Item><Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'black'}}>{notification.data}</Nav.Link></NavDropdown.Item>
                   <NavDropdown.Divider />
+                  <NavDropdown.Item style={{ border:'2px solid black', padding:'3.75px 0px'}}>
+                    {notification.type === 'hire completed' ?
+                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'green'}}>
+                        <h6><MdEventAvailable size={28}/> {notification.data}</h6>
+                        {new Date((notification.createdAt.seconds + notification.createdAt.nanoseconds/1E9)*1000).toString().substr(0,24)}
+                      </Nav.Link> : ( notification.type === 'driver accepted' ?
+                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'blue'}}>
+                        <h6><MdBeenhere size={28} /> {notification.data}</h6>
+                        {new Date((notification.createdAt.seconds + notification.createdAt.nanoseconds/1E9)*1000).toString().substr(0,24)}
+                      </Nav.Link> : (notification.type === 'details updated' ?
+                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'orange'}}>
+                        <h6><MdEdit size={28} /> {notification.data}</h6>
+                        {new Date((notification.createdAt.seconds + notification.createdAt.nanoseconds/1E9)*1000).toString().substr(0,24)}
+                      </Nav.Link> : (notification.type === 'new user' ?
+                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'purple'}}>
+                        <h6><MdPersonAdd size={28} /> {notification.data}</h6>
+                        {new Date((notification.createdAt.seconds + notification.createdAt.nanoseconds/1E9)*1000).toString().substr(0,24)}
+                      </Nav.Link> : null)))
+                    }
+                  </NavDropdown.Item>
+                  
                 </div>
                 )
               })}
@@ -60,7 +81,7 @@ export class AdminNavbar extends Component{
               <NavDropdown.Item><NavLink to={'/'}><Button onClick={this.props.signOut}>Logout</Button></NavLink></NavDropdown.Item>
             </NavDropdown>
               {/* <Nav.Link><NavLink to={'/' } ><Button className="warning" onClick={props.signOut}>Logout</Button></NavLink></Nav.Link> */}
-            </Nav>
+          </Nav>
         </div>
       </nav>
     ) : <div>loading</div>
