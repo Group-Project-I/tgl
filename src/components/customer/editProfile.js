@@ -19,7 +19,7 @@ class EditProfile extends Component {
         mobile: '',
         dob: '',
         loading: 1,
-        updated: 1
+        updated: 0
 
     }
     componentWillReceiveProps(nextProps) {
@@ -46,7 +46,7 @@ class EditProfile extends Component {
         e.preventDefault();
         this.props.editUser(this.props.id, this.state, 'customers')
         this.setState({
-            updated: 0
+            updated: '1'
         })
     }
 
@@ -63,14 +63,11 @@ class EditProfile extends Component {
                  <hr/>
                     </div>
             <div className="container" style={{ backgroundColor:'white'}}  >
-                
-                
-                <div className='row ' >
-                   
+               <div className='row ' >
                     <div className='col-md-8'>
-                    <div className="green-text center">
-                        <h4>{this.state.updated ? "Updated Successfully" : null}</h4>
-                    </div>
+                    {/* <div className="green-text center">
+                        <h4>{this.state.updated==='1'? "Updated Successfully" : null}</h4>
+                    </div> */}
                     {/* <img src={require('../../img/user.png')}> </img> */}
                     <form onSubmit={this.handleSubmit}>
                         <div className="row main-section">

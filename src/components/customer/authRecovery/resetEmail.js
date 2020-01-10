@@ -1,26 +1,39 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { Card } from 'react-bootstrap'
+import { Card, Alert } from 'react-bootstrap'
 import {connect } from 'react-redux'
 import {resetEmail} from '../../../store/actions/customerActions'
 import image from '../../../img/bgImg7.jpg'
 
 class ResetEmail extends React.Component{
   state={
-    email:''
+    email:'',
+    updated:'1'
   }
 
+  componentWillReceiveProps(nextProps) {
+        
+    if(this.props.customer){
+        this.setState({
+            ...nextProps.customer[0],updated: !this.state.updated
+        });
+    }
+}
   handleChange = (e) => {
     this.setState({
         [e.target.id]: e.target.value
+
     })
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     // console.log(this.state);
-    this.props.resetEmail(this.state)
-  }
+    this.props.resetEmail(this.state);
+    this.setState({
+      updated:'0'
+    });
+ }
 
   render(){
     return(
@@ -36,6 +49,10 @@ class ResetEmail extends React.Component{
                 <Link to='/User/profile'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/> 
               </div>
               <hr/>
+              {/* {(this.state.updated='1'?<Alert variant='success'>Updated successfully</Alert>:<Alert>Error</Alert>)} */}
+              <div className="green-text center">
+                        <h4>{this.state.updated ? "Updated Successfully" : null}</h4>
+                    </div>
             </div>
             <div className='row main-section'>
               <div className='col-md-4 sub-section'>

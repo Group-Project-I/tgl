@@ -7,19 +7,23 @@ import {recoverPassword} from '../../../store/actions/customerActions'
 class ResetPassword extends React.Component{
   state={
     email:'',
-    updatedState:'0'
+    updatedState:'1'
   }
 
   handleChange = (e) => {
     this.setState({
         [e.target.id]: e.target.value
+       
     })
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     // console.log(this.state);
-    this.props.recoverPassword(this.state)
+    this.props.recoverPassword(this.state);
+    this.setState({
+      updated: 0
+  })
 
   }
 
@@ -39,6 +43,9 @@ class ResetPassword extends React.Component{
                 <Link to='/'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/> 
               </div>
               <hr/>
+              <div className="green-text center">
+                        <h4>{this.state.updated ? "Updated Successfully" : null}</h4>
+              </div>
             </div>
             <div className='row main-section'>
               <div className='col-md-4 sub-section'>

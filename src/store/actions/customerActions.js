@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import { Alert } from 'react-bootstrap';
  
 export const clean = () => ({
   type: 'CLEAN_UP',
@@ -11,9 +12,11 @@ export const resetEmail =(creds) =>{
     var user = firebase.auth().currentUser;
     user.updateEmail(creds.email).then(function() {
       // Update successful.
+      // <Alert variant='success'>Updated Successfully</Alert>
       dispatch ({type: 'RESET_EMAIL_SUCCESS'})
     }).catch(function(error) {
       // An error happened.
+      // <Alert variant='danger'>An error occured</Alert>
       dispatch ({type: 'RESET_EMAIL_FAILED',error})
     });
   }
