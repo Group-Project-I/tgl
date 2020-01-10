@@ -4,11 +4,14 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Button, Nav, NavDropdown} from 'react-bootstrap'
 import {connect} from 'react-redux'
-import moment from 'moment'
 import {signOut} from '../../../store/actions/authActions'
 import {readNotification} from '../../../store/actions/adminActions'
 import {FaEnvelope, FaCog} from 'react-icons/fa'
 import { MdNotifications, MdNotificationsActive, MdBeenhere, MdEventAvailable, MdEdit, MdPersonAdd} from "react-icons/md";
+import Modal from 'react-bootstrap/Modal'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import Card from 'react-bootstrap/Card'
+import ChangeAdminEmail from '../layout/changeAuthenticationDetails/ChangeAdminEmail'
 
 export class AdminNavbar extends Component{
 
@@ -17,7 +20,8 @@ export class AdminNavbar extends Component{
   }
 
   state = {
-    loading: 0
+    loading: 0,
+    show: false
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -27,6 +31,20 @@ export class AdminNavbar extends Component{
             loading: 0
         });
     }
+  }
+
+  handleClose = () => {
+    // e.preventDefault();
+    this.setState({
+      show: false,
+    })
+  }
+
+  handleShow = (e) => {
+    e.preventDefault()
+    this.setState({
+      show: true
+    })
   }
 
   render(){
@@ -43,7 +61,6 @@ export class AdminNavbar extends Component{
           <Nav className="justify-content-end mr-auto" style={{ width: "85%" }}>
             <Nav.Link><NavLink to='/admin/addhire' style={{textDecoration: 'none'}}>+Add Hire</NavLink></Nav.Link>
             <Nav.Link><NavLink to={'/admin/messages/' + this.props.auth.uid}><FaEnvelope size={28}/></NavLink></Nav.Link>
-  
             <NavDropdown title={notifications.length === 0 ? <MdNotifications size={28}/> : <MdNotificationsActive size={28}/>} id="basic-nav-dropdown" disabled={!notifications.length}>
               {notifications && notifications.map(notification => {
                 return(
@@ -68,19 +85,55 @@ export class AdminNavbar extends Component{
                         {new Date((notification.createdAt.seconds + notification.createdAt.nanoseconds/1E9)*1000).toString().substr(0,24)}
                       </Nav.Link> : null)))
                     }
-                  </NavDropdown.Item>
-                  
+                  </NavDropdown.Item>  
                 </div>
                 )
               })}
             </NavDropdown>
  
             <NavDropdown title={<FaCog size={28}/>} id="basic-nav-dropdown">
-              <NavDropdown.Item>Change Email/Password</NavDropdown.Item>
+              <NavDropdown.Item onClick={this.handleShow}>Change Email/Password</NavDropdown.Item>
               <NavDropdown.Item>Manage Hire Charges</NavDropdown.Item>
               <NavDropdown.Item><NavLink to={'/'}><Button onClick={this.props.signOut}>Logout</Button></NavLink></NavDropdown.Item>
             </NavDropdown>
-              {/* <Nav.Link><NavLink to={'/' } ><Button className="warning" onClick={props.signOut}>Logout</Button></NavLink></Nav.Link> */}
+
+            {/* <Button variant="primary" onClick={this.handleShow}>
+              modal
+            </Button> */}
+            <Modal show={this.state.show} onHide={this.handleClose} size="md" backdrop={false} aria-labelledby="contained-modal-title-vcenter" centered style={{overflow:'unset'}}>
+              <Modal.Header closeButton>
+                <Modal.Title>Change Email/Password</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Tabs className="center">
+                    <TabList>
+                        <Tab>Change Email</Tab>
+                        <Tab>Change Password</Tab>
+                    </TabList>
+                    <TabPanel>
+                      <ChangeAdminEmail></ChangeAdminEmail>
+                    </TabPanel>
+                    <TabPanel>
+                      <Card border="primary" className="text-center">
+                        <Card.Body>
+                        <form>
+                          <div className="input-field row">
+                              <input placeholder="Old Password" type="password" id="newPassword" onChange={this.handleChange} required />
+                          </div>
+                          <div className="input-field row">
+                              <input placeholder="New Password" type="password" id="oldPassword"  onChange={this.handleChange} required />    
+                          </div>
+                        </form>
+                        </Card.Body>
+                        <Card.Footer>
+                          <button className="btn blue lighten-1 z-depth-5 btn1" type="submit">Submit</button>
+                          <button className="btn red lighten-1 z-depth-5 btn1" onClick={this.handleClose}>Cancel</button>
+                        </Card.Footer>
+                      </Card>
+                    </TabPanel>
+                </Tabs>
+              </Modal.Body>
+            </Modal>
           </Nav>
         </div>
       </nav>

@@ -8,6 +8,7 @@ import {acceptHireRequest} from '../../../../store/actions/adminHireActions'
 import {declineHireRequest} from '../../../../store/actions/adminHireActions'
 import { Squares } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
+import Card from 'react-bootstrap/Card'
 
 class ManagePendingHires extends Component {
     state = {
@@ -122,110 +123,232 @@ class ManagePendingHires extends Component {
             this.state.loading === 1 ? (
                 <div className="text-center" style={{paddingTop:"500px"}}><Squares color="#007bff" size={32} speed={1} animating={true} /></div>
             ) :
-            <div>
-                <br/><br/><br/><br/>
-                <h2 className="center">Hire Request</h2><br/><br/>
-                <div className="container">
-                    <div className="col-4" style={{padding: '20px'}}>
-                        <h6><b className='blue-text'>Hire Type: </b> {this.props.hire[0].hireType.toUpperCase()}</h6>
-                    </div>
-                    <div className="col-4" style={{padding: '20px'}}>
-                        <h6><b className='blue-text'>Container Type: </b> {this.props.hire[0].containerType}ft</h6>
-                    </div>
-                    <br/><hr/><h5 className="center">Container Pickup Details</h5> <br/>
-                    <div className="row" style={{padding: '20px'}}>
-                        <div className="col-6">
-                            <h6><b className='blue-text right-aligned'>Container Pickup Location: </b> {this.props.hire[0].pickupLocation}</h6>
+            <div style={{padding:"80px"}}>
+                <Card border="primary">
+                    <Card.Body>
+                    <br/><br/>
+                    <h1 className="center">Hire Request - Driver Pending</h1><br/><br/>
+                    <div className="container">
+                        <div className="col-4" style={{padding: '20px'}}>
+                            <h6><b className='blue-text'>Hire Type: </b> {this.props.hire[0].hireType.toUpperCase()}</h6>
                         </div>
-                        <div className="col-6">
-                            <h6 className="right"><b className='blue-text'>Container Pickup Date: </b> {moment(this.props.hire[0].pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                        <div className="col-4" style={{padding: '20px'}}>
+                            <h6><b className='blue-text'>Container Type: </b> {this.props.hire[0].containerType}ft</h6>
                         </div>
-                    </div>
-                    <br/><hr/><h5 className="center">Cargo Details</h5> <br/>
-                    <div className="row" style={{padding: '20px'}}>
-                        <div className="col-6">
-                            <h6><b className='blue-text'>Cargo Type: </b> {this.props.hire[0].cargoType}</h6>
-                        </div>
-                        <div className="col-6">
-                            <h6 className="right"><b className='blue-text'>Cargo Weight: </b> {this.props.hire[0].weight}</h6>
-                        </div>
-                    </div>
-                    {this.props.hire[0].hireType === "import" ? 
-                        <div>
-                            <br/><hr/><h5 className="center">Unloading Details</h5><br/>
+                        <br/>
+                        <Card border="primary" className="text-center">
+                            <Card.Header color="blue"><h5>Container Pickup Details</h5></Card.Header>
+                            <Card.Body>
                             <div className="row" style={{padding: '20px'}}>
                                 <div className="col-6">
-                                    <h6><b className='blue-text'>Unloading Port: </b> {this.props.hire[0].unloadingPort}</h6>
+                                    <h6><b className='blue-text right-aligned'>Container Pickup Location: </b> {this.props.hire[0].pickupLocation}</h6>
                                 </div>
                                 <div className="col-6">
-                                    <h6 className="right"><b className='blue-text center'>Vessel Arrival Date: </b> {moment(this.props.hire[0].vesselArrivalDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                                    <h6 className="right"><b className='blue-text'>Container Pickup Date: </b> {moment(this.props.hire[0].pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
                                 </div>
                             </div>
+                            </Card.Body>
+                        </Card>
+                        {/* <hr/><h5 className="center">Container Pickup Details</h5> <br/>
+                        <div className="row" style={{padding: '20px'}}>
+                            <div className="col-6">
+                                <h6><b className='blue-text right-aligned'>Container Pickup Location: </b> {this.props.hire[0].pickupLocation}</h6>
+                            </div>
+                            <div className="col-6">
+                                <h6 className="right"><b className='blue-text'>Container Pickup Date: </b> {moment(this.props.hire[0].pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                            </div>
+                        </div> */}
+                        <br/>
+                        <Card border="primary" className="text-center">
+                            <Card.Header color="blue"><h5>Cargo Details</h5></Card.Header>
+                            <Card.Body>
                             <div className="row" style={{padding: '20px'}}>
                                 <div className="col-6">
-                                    <h6><b className='blue-text'>Destination: </b> {this.props.hire[0].destination}</h6>
+                                    <h6><b className='blue-text'>Cargo Type: </b> {this.props.hire[0].cargoType}</h6>
+                                </div>
+                                <div className="col-6">
+                                    <h6 className="right"><b className='blue-text'>Cargo Weight: </b> {this.props.hire[0].weight}</h6>
                                 </div>
                             </div>
-                        </div> : 
-                        <div>
-                            <br/><hr/><h5 className="center">Loading Details</h5><br/>
+                            </Card.Body>
+                        </Card>
+                        {/* <hr/><h5 className="center">Cargo Details</h5> <br/>
+                        <div className="row" style={{padding: '20px'}}>
+                            <div className="col-6">
+                                <h6><b className='blue-text'>Cargo Type: </b> {this.props.hire[0].cargoType}</h6>
+                            </div>
+                            <div className="col-6">
+                                <h6 className="right"><b className='blue-text'>Cargo Weight: </b> {this.props.hire[0].weight}</h6>
+                            </div>
+                        </div> */}
+                        {this.props.hire[0].hireType === "import" ? 
+                            <div>
+                                <br/>
+                                <Card border="primary" className="text-center">
+                                    <Card.Header color="blue"><h5>Unloading Details</h5></Card.Header>
+                                    <Card.Body>
+                                    <div className="row" style={{padding: '20px'}}>
+                                        <div className="col-6">
+                                            <h6><b className='blue-text'>Unloading Port: </b> {this.props.hire[0].unloadingPort}</h6>
+                                        </div>
+                                        <div className="col-6">
+                                            <h6 className="right"><b className='blue-text center'>Vessel Arrival Date: </b> {moment(this.props.hire[0].vesselArrivalDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                                        </div>
+                                    </div>
+                                    <div className="row" style={{padding: '20px'}}>
+                                        <div className="col-6">
+                                            <h6><b className='blue-text'>Destination: </b> {this.props.hire[0].destination}</h6>
+                                        </div>
+                                    </div>
+                                    </Card.Body>
+                                </Card>
+                                {/* <hr/><h5 className="center">Unloading Details</h5><br/>
+                                <div className="row" style={{padding: '20px'}}>
+                                    <div className="col-6">
+                                        <h6><b className='blue-text'>Unloading Port: </b> {this.props.hire[0].unloadingPort}</h6>
+                                    </div>
+                                    <div className="col-6">
+                                        <h6 className="right"><b className='blue-text center'>Vessel Arrival Date: </b> {moment(this.props.hire[0].vesselArrivalDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                                    </div>
+                                </div>
+                                <div className="row" style={{padding: '20px'}}>
+                                    <div className="col-6">
+                                        <h6><b className='blue-text'>Destination: </b> {this.props.hire[0].destination}</h6>
+                                    </div>
+                                </div> */}
+                            </div> : 
+                            <div>
+                                <br/>
+                                <Card border="primary" className="text-center">
+                                    <Card.Header color="blue"><h5>Loading Details</h5></Card.Header>
+                                    <Card.Body>
+                                    <div className="row" style={{padding: '20px'}}>
+                                        <div className="col-6">
+                                            <h6><b className='blue-text'>Loading Port: </b> {this.props.hire[0].loadingPort}</h6>
+                                        </div>
+                                        <div className="col-6">
+                                            <h6 className="right"><b className='blue-text'>Loading Date: </b> {this.props.hire[0].loadingDatetime}</h6>
+                                        </div>
+                                    </div>
+                                    </Card.Body>
+                                </Card>
+                                {/* <hr/><h5 className="center">Loading Details</h5><br/>
+                                <div className="row" style={{padding: '20px'}}>
+                                    <div className="col-6">
+                                        <h6><b className='blue-text'>Loading Port: </b> {this.props.hire[0].loadingPort}</h6>
+                                    </div>
+                                    <div className="col-6">
+                                        <h6 className="right"><b className='blue-text'>Loading Date: </b> {this.props.hire[0].loadingDatetime}</h6>
+                                    </div>
+                                </div> */}
+                            </div> 
+                        }    
+                        <br/>
+                        <Card border="primary" className="text-center">
+                            <Card.Header color="blue"><h5>Customer</h5></Card.Header>
+                            <Card.Body>
                             <div className="row" style={{padding: '20px'}}>
-                                <div className="col-6">
-                                    <h6><b className='blue-text'>Loading Port: </b> {this.props.hire[0].loadingPort}</h6>
+                                <div className="col-3">
+                                    <h6><b className='blue-text'>Name: </b> {this.props.hire[0].customerName}</h6>
                                 </div>
-                                <div className="col-6">
-                                    <h6 className="right"><b className='blue-text'>Loading Date: </b> {this.props.hire[0].loadingDatetime}</h6>
+                                <div className="col-3">
+                                    <h6><b className='blue-text'>Mobile: </b> {this.props.customer.filter(item => item.id === this.props.hire[0].customerId).map(a => a.mobile)[0]}</h6>
+                                </div>
+                                <div className="col-4">
+                                    <h6><b className='blue-text'>Email: </b> {this.props.customer.filter(item => item.id === this.props.hire[0].customerId).map(a => a.email)[0]}</h6>
+                                </div>
+                                <div className="col-2">
+                                    <h6><b className='blue-text'>NIC: </b> {this.props.customer.filter(item => item.id === this.props.hire[0].customerId).map(a => a.nic)[0]}</h6>
                                 </div>
                             </div>
-                        </div> 
-                    }    
-                    <br/><hr/><h5 className="center">Customer</h5><br/>
-                    <div className="row" style={{padding: '20px'}}>
-                        <div className="col-3">
-                            <h6><b className='blue-text'>Name: </b> {this.props.hire[0].customerName}</h6>
-                        </div>
-                        <div className="col-3">
-                            <h6><b className='blue-text'>Mobile: </b> {this.props.customer.filter(item => item.id === this.props.hire[0].customerId).map(a => a.mobile)[0]}</h6>
-                        </div>
-                        <div className="col-4">
-                            <h6><b className='blue-text'>Email: </b> {this.props.customer.filter(item => item.id === this.props.hire[0].customerId).map(a => a.email)[0]}</h6>
-                        </div>
-                        <div className="col-2">
-                            <h6><b className='blue-text'>NIC: </b> {this.props.customer.filter(item => item.id === this.props.hire[0].customerId).map(a => a.nic)[0]}</h6>
-                        </div>
+                            </Card.Body>
+                        </Card>
+                        {/* <hr/><h5 className="center">Customer</h5><br/>
+                        <div className="row" style={{padding: '20px'}}>
+                            <div className="col-3">
+                                <h6><b className='blue-text'>Name: </b> {this.props.hire[0].customerName}</h6>
+                            </div>
+                            <div className="col-3">
+                                <h6><b className='blue-text'>Mobile: </b> {this.props.customer.filter(item => item.id === this.props.hire[0].customerId).map(a => a.mobile)[0]}</h6>
+                            </div>
+                            <div className="col-4">
+                                <h6><b className='blue-text'>Email: </b> {this.props.customer.filter(item => item.id === this.props.hire[0].customerId).map(a => a.email)[0]}</h6>
+                            </div>
+                            <div className="col-2">
+                                <h6><b className='blue-text'>NIC: </b> {this.props.customer.filter(item => item.id === this.props.hire[0].customerId).map(a => a.nic)[0]}</h6>
+                            </div>
+                        </div> */}
                     </div>
-                </div>
-                <div className="container">
-                    <form onSubmit={this.handleSubmit} >
-                        <br/><hr/><h5 className="center">Change Driver</h5><br/>
-                        <div className="row" style={{padding: '20px'}} >
-                            <div className="input-field col-6">
-                                <select className="form-control" id="driverId" onChange={this.handleDriver} onBlur={this.handleDriver}>
-                                    <option selected='selected' selected value={this.props.hire[0].driverId + "_" + this.props.hire[0].driverName.split(" ")[0] + " " + this.props.hire[0].driverName.split(" ")[1]}>{this.props.hire[0].driverName}</option>
-                                    {this.state.freeDrivers ? this.state.freeDrivers.map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName + " - " + x.mobile}</option>)}) : null}
-                                </select>
+                    <div className="container">
+                        <form onSubmit={this.handleSubmit} >
+                            <br/>
+                            <Card border="primary" className="text-center">
+                                <Card.Header color="blue"><h5>Change Driver</h5></Card.Header>
+                                <Card.Body>
+                                <div className="row" style={{padding: '20px'}} >
+                                    <div className="input-field col-6">
+                                        <select className="form-control" id="driverId" onChange={this.handleDriver} onBlur={this.handleDriver}>
+                                            <option selected='selected' selected value={this.props.hire[0].driverId + "_" + this.props.hire[0].driverName.split(" ")[0] + " " + this.props.hire[0].driverName.split(" ")[1]}>{this.props.hire[0].driverName}</option>
+                                            {this.state.freeDrivers ? this.state.freeDrivers.map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName + " - " + x.mobile}</option>)}) : null}
+                                        </select>
+                                    </div>
+                                </div>
+                                </Card.Body>
+                            </Card>
+                            {/* <hr/><h5 className="center">Change Driver</h5><br/>
+                            <div className="row" style={{padding: '20px'}} >
+                                <div className="input-field col-6">
+                                    <select className="form-control" id="driverId" onChange={this.handleDriver} onBlur={this.handleDriver}>
+                                        <option selected='selected' selected value={this.props.hire[0].driverId + "_" + this.props.hire[0].driverName.split(" ")[0] + " " + this.props.hire[0].driverName.split(" ")[1]}>{this.props.hire[0].driverName}</option>
+                                        {this.state.freeDrivers ? this.state.freeDrivers.map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName + " - " + x.mobile}</option>)}) : null}
+                                    </select>
+                                </div>
+                            </div> */}
+                            <br/>
+                            <Card border="primary" className="text-center">
+                                <Card.Header color="blue"><h5>Change Vehicle</h5></Card.Header>
+                                <Card.Body>
+                                <div className="row" style={{padding: '20px'}}> 
+                                    <div className="input-field col-6">
+                                        <select className="form-control" id="vehicleId" onFocus={this.availableVehicles} onChange={this.handleVehicle} onBlur={this.handleVehicle}>
+                                            <option selected='selected' value={this.props.hire[0].vehicleId + '_' + this.props.hire[0].vehicleNo} >{this.props.hire[0].vehicleNo}</option>
+                                            {this.state.freeVehicles ? this.state.freeVehicles.map((x, i) => {return (<option value={x.id + "_" + x.vehicleNo} key={i}>{x.vehicleNo + " - " + x.trailerNo}</option>)}) : null}
+                                        </select>
+                                    </div>
+                                </div>
+                                </Card.Body>
+                            </Card>
+                            {/* <hr/><h5 className="center">Change Vehicle</h5><br/>
+                            <div className="row" style={{padding: '20px'}}> 
+                                <div className="input-field col-6">
+                                    <select className="form-control" id="vehicleId" onFocus={this.availableVehicles} onChange={this.handleVehicle} onBlur={this.handleVehicle}>
+                                        <option selected='selected' value={this.props.hire[0].vehicleId + '_' + this.props.hire[0].vehicleNo} >{this.props.hire[0].vehicleNo}</option>
+                                        {this.state.freeVehicles ? this.state.freeVehicles.map((x, i) => {return (<option value={x.id + "_" + x.vehicleNo} key={i}>{x.vehicleNo + " - " + x.trailerNo}</option>)}) : null}
+                                    </select>
+                                </div>
+                            </div> */}
+                            <br/>
+                            <Card border="primary" className="text-center">
+                                <Card.Header color="blue"><h5>Remarks</h5></Card.Header>
+                                <Card.Body>
+                                <div className="input-field row col-12" style={{padding: '20px'}}>
+                                    <textarea placeholder="Remarks" value={this.props.hire[0].remarks.toString()} style={{ minHeight: 100 }} type="text" id="remarks" onFocus={this.handleChange} onChange={this.handleChange}/>
+                                </div>
+                                </Card.Body>
+                            </Card>
+                            {/* <hr/><h5 className="center">Remarks</h5><br/>
+                            <div className="input-field row col-12" style={{padding: '20px'}}>
+                                <textarea placeholder="Remarks" value={this.props.hire[0].remarks.toString()} style={{ minHeight: 100 }} type="text" id="remarks" onFocus={this.handleChange} onChange={this.handleChange}/>
+                            </div> */}
+                            <br/><br/>
+                            <div className="input-field center">
+                                <button className="btn blue lighten-1 z-depth-5 btn1" type="submit">Update</button>
+                                <button className="btn red lighten-1 z-depth-5" type="button" onClick={this.declineHire}>Decline Hire</button>
                             </div>
-                        </div>
-                        <br/><hr/><h5 className="center">Change Vehicle</h5><br/>
-                        <div className="row" style={{padding: '20px'}}> 
-                            <div className="input-field col-6">
-                                <select className="form-control" id="vehicleId" onFocus={this.availableVehicles} onChange={this.handleVehicle} onBlur={this.handleVehicle}>
-                                    <option selected='selected' value={this.props.hire[0].vehicleId + '_' + this.props.hire[0].vehicleNo} >{this.props.hire[0].vehicleNo}</option>
-                                    {this.state.freeVehicles ? this.state.freeVehicles.map((x, i) => {return (<option value={x.id + "_" + x.vehicleNo} key={i}>{x.vehicleNo + " - " + x.trailerNo}</option>)}) : null}
-                                </select>
-                            </div>
-                        </div>
-                        <br/><hr/><h5 className="center">Remarks</h5><br/>
-                        <div className="input-field row col-12" style={{padding: '20px'}}>
-                            <textarea placeholder="Remarks" value={this.props.hire[0].remarks.toString()} style={{ minHeight: 100 }} type="text" id="remarks" onFocus={this.handleChange} onChange={this.handleChange}/>
-                        </div>
-                        <br/><br/>
-                        <div className="input-field center">
-                            <button className="btn blue lighten-1 z-depth-0" style={{padding: '5px'}} type="submit">Update</button>
-                            <button className="btn red lighten-1 z-depth-0" style={{padding: '5px'}} type="button" onClick={this.declineHire}>Decline Hire</button>
-                        </div>
-                    </form>
-                </div>
+                        </form>
+                    </div>
+                    </Card.Body>
+                </Card>
             </div>
         )     
         

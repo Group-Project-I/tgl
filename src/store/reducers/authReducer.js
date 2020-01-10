@@ -31,6 +31,24 @@ const authReducer = (state = initState, action) => {
                 ...state,
                 authError: action.err.message
             }
+        case 'EMAIL_UPDATED':
+            console.log('Email updated')
+            return{
+                ...state,
+                authUpdateError: 'Email Updated Successfully'
+            }
+        case 'FAILED_TO_UPDATE_EMAIL':
+            console.log('Failed to update email')
+            return{
+                ...state,
+                authUpdateError: action.err.message
+            }
+        case 'FAILED_TO_REAUTHENTICATE':
+            console.log('Failed to reauthenticate', action.err.message)
+            return{
+                ...state,
+                authUpdateError: 'Invalid Password'
+            }
         default:
             return state
     }

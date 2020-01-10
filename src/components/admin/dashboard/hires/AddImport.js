@@ -192,7 +192,7 @@ class AddImport extends Component {
                             <Card.Body>
                             <div className="row">
                                 <div className="input-field col-6">
-                                    <input placeholder="Cargo Type" type="text" id="cargoType" onChange={this.handleChange} required />
+                                    <input placeholder="Cargo Type" type="text" id="cargoType" onChange={this.handleChange} required/>
                                 </div>
                                 <div className="input-field col-6">
                                     <input placeholder="Weight" type="text" id="weight" onChange={this.handleChange} required />
