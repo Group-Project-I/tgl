@@ -12,6 +12,7 @@ import Modal from 'react-bootstrap/Modal'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Card from 'react-bootstrap/Card'
 import ChangeAdminEmail from '../layout/changeAuthenticationDetails/ChangeAdminEmail'
+import ChangeAdminPassword from '../layout/changeAuthenticationDetails/ChangeAdminPassword'
 
 export class AdminNavbar extends Component{
 
@@ -97,9 +98,6 @@ export class AdminNavbar extends Component{
               <NavDropdown.Item><NavLink to={'/'}><Button onClick={this.props.signOut}>Logout</Button></NavLink></NavDropdown.Item>
             </NavDropdown>
 
-            {/* <Button variant="primary" onClick={this.handleShow}>
-              modal
-            </Button> */}
             <Modal show={this.state.show} onHide={this.handleClose} size="md" backdrop={false} aria-labelledby="contained-modal-title-vcenter" centered style={{overflow:'unset'}}>
               <Modal.Header closeButton>
                 <Modal.Title>Change Email/Password</Modal.Title>
@@ -114,22 +112,7 @@ export class AdminNavbar extends Component{
                       <ChangeAdminEmail></ChangeAdminEmail>
                     </TabPanel>
                     <TabPanel>
-                      <Card border="primary" className="text-center">
-                        <Card.Body>
-                        <form>
-                          <div className="input-field row">
-                              <input placeholder="Old Password" type="password" id="newPassword" onChange={this.handleChange} required />
-                          </div>
-                          <div className="input-field row">
-                              <input placeholder="New Password" type="password" id="oldPassword"  onChange={this.handleChange} required />    
-                          </div>
-                        </form>
-                        </Card.Body>
-                        <Card.Footer>
-                          <button className="btn blue lighten-1 z-depth-5 btn1" type="submit">Submit</button>
-                          <button className="btn red lighten-1 z-depth-5 btn1" onClick={this.handleClose}>Cancel</button>
-                        </Card.Footer>
-                      </Card>
+                      <ChangeAdminPassword></ChangeAdminPassword>
                     </TabPanel>
                 </Tabs>
               </Modal.Body>

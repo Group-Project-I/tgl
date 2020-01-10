@@ -78,3 +78,23 @@ export const changeEmail = (currentPassword, newEmail) => {
         })
     }
 }
+
+export const updatePassword = (oldPassword, newPassword) => {
+    return(dispatch, getState, {getFirebase}) => {
+        const firebase = getFirebase()
+
+        var user = firebase.auth().currentUser;
+        var cred = firebase.auth.EmailAuthProvider.credential(user.email, oldPassword); 
+        
+        user.reauthenticateWithCredential(cred).then(() => {
+            user = firebase.auth().currentUser;
+            user.updatePassword(newPassword).then(() => {
+                dispatch({type: 'PASSWORD_UPDATED'})
+            }).catch((err) =>{
+                dispatch({type: 'FAILED_TO_UPDATE_PASSWORD', err})
+            })
+        }).catch((err) => {
+            dispatch({type: 'FAILED_TO_REAUTHENTICATE', err})
+        })
+    }
+}

@@ -49,6 +49,18 @@ const authReducer = (state = initState, action) => {
                 ...state,
                 authUpdateError: 'Invalid Password'
             }
+        case 'PASSWORD_UPDATED':
+            console.log('Password Updated')
+            return{
+                ...state,
+                authUpdateError: 'Password Updated Successfully'
+            }
+        case 'FAILED_TO_UPDATE_PASSWORD':
+            console.log('Failed to update password')
+            return{
+                ...state,
+                authUpdateError: action.err.message
+            }
         default:
             return state
     }
