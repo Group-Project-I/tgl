@@ -7,6 +7,7 @@ import {compose} from 'redux'
 import moment from 'moment'
 import {Link} from "react-router-dom";
 import Particles from 'react-particles-js';
+import {Spinner} from "react-activity";
 
 class ManageCompletedHires extends Component {
 
@@ -473,7 +474,7 @@ class ManageCompletedHires extends Component {
 
         return (
             this.state.loading === 1 ? (
-                    <div className="center "><br/><br/><br/><br/><h1>Loading</h1></div>
+                    <div className="text-center" style={{paddingTop:"500px"}}><Spinner color="#007bff" size={32} speed={1} animating={true} /></div>
                 ) :
                 <div className="completehire">
                     <br/><br/><br/><br/>

@@ -7,6 +7,7 @@ import {Redirect} from 'react-router-dom'
 import {declineHireRequests} from '../../../store/actions/customerHireActions'
 import {Link} from "react-router-dom";
 import {updateRequest} from "../../../store/actions/customerHireActions";
+import {Spinner} from "react-activity";
 
 // function topFunction() {
 //     document.body.scrollTop = 0;
@@ -206,7 +207,7 @@ class ManageHireRequest2 extends Component {
             </div>
 
 
-        ):<div className="center"><br/><br/><br/><br/><br/><br/><br/><br/><h1>Loading...</h1></div>
+        ):<div className="text-center" style={{paddingTop:"500px"}}><Spinner color="#007bff" size={32} speed={1} animating={true} /></div>
         return <div>{load}</div>
 
 
