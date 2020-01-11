@@ -4,7 +4,9 @@ import {connect} from 'react-redux'
 import {addImportHire} from '../../../../store/actions/adminHireActions'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-// import { thisExpression } from '@babel/types'
+import Card from 'react-bootstrap/Card'
+import { Squares } from 'react-activity';
+import 'react-activity/dist/react-activity.css';
 
 class AddImport extends Component {
     state = {
@@ -156,87 +158,125 @@ class AddImport extends Component {
         }
         return (
             this.state.loading === 1 ? (
-                <div><br/><br/><br/><br/><h1>Loading</h1></div>
+                <div style={{paddingTop:"300px"}}>
+                    <Squares color="#007bff" size={32} speed={1} animating={true} />
+                </div>
             ) :
-            <div>
-                <br/><br/>
-                <h2 className="center">Add Import</h2><br/><br/>
-                <form onSubmit={this.handleSubmit} >
-                    <div className="row col-4">
-                        <select className="form-control" placeholder="Container Type" id="containerType" onChange={this.handleContainerType} required>
-                            <option value="20">20ft</option>
-                            <option value="40">40ft</option>
-                        </select>
-                    </div>
-                    <br/><hr/><h5>Container Pickup Details</h5> <br/>
-                    <div className="row">
-                        <div className="input-field col-6">
-                            <input placeholder="Pickup Location" type="text" id="pickupLocation" onChange={this.handleChange} required />
+            <Card border="primary">
+                <Card.Body>
+                    <br/><br/><h2 className="center">Add Import</h2><br/><br/>
+                    <form onSubmit={this.handleSubmit} >
+                        <div className="row col-4">
+                            <select className="form-control" placeholder="Container Type" id="containerType" onChange={this.handleContainerType} required>
+                                <option value="20">20ft</option>
+                                <option value="40">40ft</option>
+                            </select>
                         </div>
-                        <div className="input-field col-6">
-                            <input placeholder="Pickup Date and Time" ref="pickup" onFocus={this.handleDate} type="text" id="pickupDatetime" onChange={this.handleChange} required />
-                        </div>
-                    </div>
-                    <br/><hr/><h5>Cargo Details</h5> <br/>
-                    <div className="row">
-                        <div className="input-field col-6">
-                            <input placeholder="Cargo Type" type="text" id="cargoType" onChange={this.handleChange} required />
-                        </div>
-                        <div className="input-field col-6">
-                            <input placeholder="Weight" type="text" id="weight" onChange={this.handleChange} required />
-                        </div>
-                    </div>
-                    <br/><hr/><h5>Unloading Details</h5><br/>
-                    <div className="row">
-                        <div className="input-field col-6">
-                            <input placeholder="unloading Port" type="text" id="unloadingPort" onChange={this.handleChange} required />
-                        </div>
-                        <div className="input-field col-6">
-                            <input placeholder="Vessel Arrival Date and Time" onFocus={this.handleDate} type="text" id="vesselArrivalDatetime" onChange={this.handleChange} required />
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col-6">
-                            <input placeholder="Destination" type="text" id="destination" onChange={this.handleChange} required />
-                        </div>
-                    </div>
-                    <br/><hr/><h5>Customer</h5><br/>
-                    <div className="row">
-                        <div className="input-field col-6">
-                            <select className="form-control" id="customerId" onFocus={this.getCustomers} onChange={this.handleCustomer}>
-                                {/* {this.props.customers.sort((a,b) => { return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()}).reverse().map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName + " - " + x.mobile}</option>)})} */}
-                                {this.state.availableCustomers ?  this.state.availableCustomers.map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName + " - " + x.mobile}</option>)}) : null}
+                        <br/>
+                        <Card border="primary" className="text-center">
+                            <Card.Header color="blue"><h5>Container Pickup Details</h5></Card.Header>
+                            <Card.Body>
+                            <div className="row">
+                                <div className="input-field col-6">
+                                    <input placeholder="Pickup Location" type="text" id="pickupLocation" onChange={this.handleChange} required />
+                                </div>
+                                <div className="input-field col-6">
+                                    <input placeholder="Pickup Date and Time" ref="pickup" onFocus={this.handleDate} type="text" id="pickupDatetime" onChange={this.handleChange} required />
+                                </div>
+                            </div>
+                            </Card.Body>
+                        </Card>
+                        <br/>
+                        <Card border="primary" className="text-center">
+                            <Card.Header color="blue"><h5>Cargo Details</h5></Card.Header>
+                            <Card.Body>
+                            <div className="row">
+                                <div className="input-field col-6">
+                                    <input placeholder="Cargo Type" type="text" id="cargoType" onChange={this.handleChange} required/>
+                                </div>
+                                <div className="input-field col-6">
+                                    <input placeholder="Weight" type="text" id="weight" onChange={this.handleChange} required />
+                                </div>
+                            </div>
+                            </Card.Body>
+                        </Card>
+                        <br/>
+                        <Card border="primary" className="text-center">
+                            <Card.Header color="blue"><h5>Unloading Details</h5></Card.Header>
+                            <Card.Body>
+                            <div className="row">
+                                <div className="input-field col-6">
+                                    <input placeholder="unloading Port" type="text" id="unloadingPort" onChange={this.handleChange} required />
+                                </div>
+                                <div className="input-field col-6">
+                                    <input placeholder="Vessel Arrival Date and Time" onFocus={this.handleDate} type="text" id="vesselArrivalDatetime" onChange={this.handleChange} required />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="input-field col-6">
+                                    <input placeholder="Destination" type="text" id="destination" onChange={this.handleChange} required />
+                                </div>
+                            </div>
+                            </Card.Body>
+                        </Card>
+                        <br/>
+                        <Card border="primary" className="text-center">
+                            <Card.Header color="blue"><h5>Customer</h5></Card.Header>
+                            <Card.Body>
+                            <div className="row">
+                                <div className="input-field col-6">
+                                    <select className="form-control" id="customerId" onFocus={this.getCustomers} onChange={this.handleCustomer}>
+                                        {/* {this.props.customers.sort((a,b) => { return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()}).reverse().map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName + " - " + x.mobile}</option>)})} */}
+                                        {this.state.availableCustomers ?  this.state.availableCustomers.map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName + " - " + x.mobile}</option>)}) : null}
 
-                            </select>
+                                    </select>
+                                </div>
+                            </div>
+                            </Card.Body>
+                        </Card>
+                        <br/>
+                        <Card border="primary" className="text-center">
+                            <Card.Header color="blue"><h5>Driver</h5></Card.Header>
+                            <Card.Body>
+                            <div className="row">
+                                <div className="input-field col-6">
+                                    <select className="form-control" id="driverId" onFocus={this.availableDrivers} onChange={this.handleDriver} onBlur={this.handleDriver}>
+                                        {this.state.freeDrivers ? this.state.freeDrivers.map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName + " - " + x.mobile}</option>)}) : null}
+                                    </select>
+                                </div>
+                            </div>
+                            </Card.Body>
+                        </Card>
+                        <br/>
+                        <Card border="primary" className="text-center">
+                            <Card.Header color="blue"><h5>Vehicle</h5></Card.Header>
+                            <Card.Body>
+                            <div className="row">
+                                <div className="input-field col-6">
+                                    <select className="form-control" id="vehicleId" onChange={this.handleVehicle} onFocus={this.availableVehicles} onBlur={this.handleVehicle}>
+                                        {this.state.freeVehicles ? this.state.freeVehicles.map((x, i) => {return (<option value={x.id + "_" + x.vehicleNo} key={i}>{x.vehicleNo + " - " + x.trailerNo}</option>)}) : null}
+                                    </select>
+                                </div>
+                            </div>
+                            </Card.Body>
+                        </Card>
+                        <br/>
+                        <Card border="primary" className="text-center">
+                            <Card.Header color="blue"><h5>Remarks</h5></Card.Header>
+                            <Card.Body>
+                            <div className="input-field row col-12">
+                                <textarea placeholder="Remarks" style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange}/>
+                            </div>
+                            </Card.Body>
+                        </Card>
+                        <br/><br/>
+                        <div className="input-field center">
+                            <button className="btn blue lighten-1 z-depth-5 btn1" type="submit">Add</button>
+                            <button className="btn red lighten-1 z-depth-5 btn1">Cancel</button>
                         </div>
-                    </div>
-                    <br/><hr/><h5>Driver</h5><br/>
-                    <div className="row">
-                        <div className="input-field col-6">
-                            <select className="form-control" id="driverId" onFocus={this.availableDrivers} onChange={this.handleDriver} onBlur={this.handleDriver}>
-                                {this.state.freeDrivers ? this.state.freeDrivers.map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName + " - " + x.mobile}</option>)}) : null}
-                            </select>
-                        </div>
-                    </div>
-                    <br/><hr/><h5>Vehicle</h5><br/>
-                    <div className="row">
-                        <div className="input-field col-6">
-                            <select className="form-control" id="vehicleId" onChange={this.handleVehicle} onFocus={this.availableVehicles} onBlur={this.handleVehicle}>
-                                {this.state.freeVehicles ? this.state.freeVehicles.map((x, i) => {return (<option value={x.id + "_" + x.vehicleNo} key={i}>{x.vehicleNo + " - " + x.trailerNo}</option>)}) : null}
-                            </select>
-                        </div>
-                    </div>
-                    <br/>
-                    <div className="input-field row col-12">
-                        <textarea placeholder="Remarks" style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange}/>
-                    </div>
-                    <br/><br/>
-                    <div className="input-field center">
-                        <button className="btn blue lighten-1 z-depth-5 btn1" type="submit">Add</button>
-                        <button className="btn red lighten-1 z-depth-5 btn1">Cancel</button>
-                    </div>
-                </form>
-            </div>
+                    </form>
+                </Card.Body>
+            </Card>
         )     
         
     }

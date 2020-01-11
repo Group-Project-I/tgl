@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
     auth: authReducer,
     hire: adminHireReducer,
     customer:customerReducer,
-    vehicle: adminReducer,
+    admin: adminReducer,
     firestore: firestoreReducer,
     firebase: firebaseReducer
 });

@@ -34,6 +34,36 @@ const adminReducer = (state = initState, action) => {
         case 'FAILED_TO_UPDATE_AVAILABILITY':
             console.log('User availability update failed')
             return state;
+        case 'NOTIFICATION READ AND DELETED':
+            console.log('notification read and deleted')
+            return state;
+        case 'FAILED TO DELETE NOTIFICATION':
+            console.log('Error deleting notification')
+            return state;
+        case 'CITY_ADDED_SUCCESSFULLY':
+            console.log('City added successfully')
+            return {
+                ...state,
+                cityAdded: 'City Added Successfully'
+            };
+        case 'FAILED_TO_ADD_CITY':
+            console.log('Error adding city')
+            return {
+                ...state,
+                cityAdded: action.err.message
+            };
+        case 'PRICING_UPDATED':
+            console.log('Pricing updated successfully')
+            return{
+                ...state,
+                cityEdited: 'Updated Successfully'
+            }
+        case 'ERROR_UPDATING_PRICING':
+            console.log('Error editing pricing')
+            return {
+                ...state,
+                cityEdited: action.err.message
+            }
         default:
             return state
     }

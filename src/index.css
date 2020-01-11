@@ -91,7 +91,9 @@ code {
 .topic{
     color: red;
 }
-
+.topic1{
+  color: #0056b3;
+}
 .tablist{
   /*background-color: rgba(0,255,255,0.4) !important;*/
   padding-top: 10px;
@@ -177,6 +179,52 @@ code {
   background-repeat: no-repeat;
 
 }
+.badge1{
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 10px;
+  margin-left: 10px;
+
+}
+
+.managehire_form1{
+  background-image: url("../src/img/joao-marcelo-martins-hFoPRRwjVgg-unsplash.jpg");
+  background-repeat: no-repeat;
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-bottom: 140px;
+  height: auto;
+  background-size: cover;
+}
+.managehire_form2{
+  background-image: url("../src/img/taryn-kaahanui-pwP-EXdIQQY-unsplash.jpg");
+  background-repeat: no-repeat;
+  padding-left: 300px;
+  padding-right: 300px;
+  padding-bottom: 140px;
+  height: auto;
+  background-size: cover;
+}
+
+.completehire{
+  /*background-image: url("../src/img/taryn-kaahanui-pwP-EXdIQQY-unsplash.jpg");*/
+  background-color: #343a40;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom:600px;
+
+}
+
+
+.www{
+  background-color: rgba(255,255,255,0.8) !important;;
+  border-radius: 30px;
+  padding-top: 50px;
+  padding-left: 70px;
+  padding-right: 70px;
+  padding-bottom: 50px;
+}
+
 .ml-auto .nav-link{
   text-decoration: none;
 }
@@ -230,7 +278,13 @@ code {
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
 
-
+.modal {
+  width: fit-content;
+  background-attachment: none;
+  /* padding-top: 100px; */
+  background: none;
+  height: 100Vh;
+}
 
 
 #sidebar-wrapper {

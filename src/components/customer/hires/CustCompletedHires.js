@@ -22,10 +22,10 @@ class CompletedHires extends Component {
         const completedExportHires = this.props.hires.filter(item => item.hireType === "export" && item.hireStatus === 'completed' && item.customerId === auth.uid )    
         return (
             // <div className="main-panel">
-            <div id="content" className="container-fluid" role="main">
+            <div id="content" className="container-fluid " role="main">
                 <br/><br/><br/><br/>
-                <Tabs className="center">
-                    <TabList>
+                <Tabs className="center ">
+                    <TabList className="fadeInDown animated fast ">
                         <Tab>IMPORTS</Tab>
                         <Tab>EXPORTS</Tab>
                     </TabList>
