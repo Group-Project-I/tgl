@@ -58,3 +58,43 @@ export const signUp = (newUser) => {
         })
     }
 }
+
+export const changeEmail = (currentPassword, newEmail) => {
+    return(dispatch, getState, {getFirebase}) => {
+        const firebase = getFirebase()
+
+        var user = firebase.auth().currentUser;
+        var cred = firebase.auth.EmailAuthProvider.credential(user.email, currentPassword); 
+        
+        user.reauthenticateWithCredential(cred).then(() => {
+            user = firebase.auth().currentUser;
+            user.updateEmail(newEmail).then(() => {
+                dispatch({type: 'EMAIL_UPDATED'})
+            }).catch((err) =>{
+                dispatch({type: 'FAILED_TO_UPDATE_EMAIL', err})
+            })
+        }).catch((err) => {
+            dispatch({type: 'FAILED_TO_REAUTHENTICATE', err})
+        })
+    }
+}
+
+export const updatePassword = (oldPassword, newPassword) => {
+    return(dispatch, getState, {getFirebase}) => {
+        const firebase = getFirebase()
+
+        var user = firebase.auth().currentUser;
+        var cred = firebase.auth.EmailAuthProvider.credential(user.email, oldPassword); 
+        
+        user.reauthenticateWithCredential(cred).then(() => {
+            user = firebase.auth().currentUser;
+            user.updatePassword(newPassword).then(() => {
+                dispatch({type: 'PASSWORD_UPDATED'})
+            }).catch((err) =>{
+                dispatch({type: 'FAILED_TO_UPDATE_PASSWORD', err})
+            })
+        }).catch((err) => {
+            dispatch({type: 'FAILED_TO_REAUTHENTICATE', err})
+        })
+    }
+}

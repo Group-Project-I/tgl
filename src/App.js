@@ -26,6 +26,7 @@ import HireRequests from './components/admin/dashboard/hires/HireRequests'
 import OngoingHires from './components/admin/dashboard/hires/OngoingHires'
 import ManageHire from './components/admin/dashboard/hires/ManageHire'
 // import ManageHireRequest from './components/admin/dashboard/ManageHireRequest'
+import PricingTable from './components/admin/dashboard/pricingComponent/PricingTable'
 
 import ManageCustomer from './components/admin/dashboard/customers/ManageCustomer'
 import ManageDriver from './components/admin/dashboard/drivers/ManageDriver'
@@ -97,6 +98,7 @@ function App(props) {
               <Route path='/admin/hires/:id' component={ManageHire} />
 
               <Route path='/admin/disabled' component={DisabledUsers}/>
+              <Route path='/admin/hireCharges' component={PricingTable} />
 
               <Route path='/User/addHire' component={CustomerAddHire}/>
               <Route path='/User/Home' component={Dashboard}/>

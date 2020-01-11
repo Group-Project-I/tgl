@@ -153,3 +153,35 @@ export const readNotification = (id) => {
         })
     }
 }
+
+export const addCity = (details) => {
+    return(dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        let data = {
+            id: details.id,
+            import20ft: details.import20ft,
+            import40ft: details.import40ft,
+            export20ft: details.export20ft,
+            export40ft: details.export40ft
+        }
+        firestore.collection('pricing').doc(details.id).set(data).then(() => {
+            dispatch({type: 'CITY_ADDED_SUCCESSFULLY'})
+        }).catch(err => {
+            dispatch({type: 'FAILED_TO_ADD_CITY', err})
+        })
+    }
+}
+
+export const editCity = (details) => {
+    return(dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        firestore.collection('pricing').doc(details.id).update({
+            ...details
+        }).then(() => {
+            dispatch({type: 'PRICING_UPDATED'});
+        }).catch((err) => {
+            dispatch({type: 'ERROR_UPDATING_PRICING', err});
+        })
+    }
+}
+
