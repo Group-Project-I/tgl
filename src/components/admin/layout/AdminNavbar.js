@@ -10,7 +10,6 @@ import {FaEnvelope, FaCog} from 'react-icons/fa'
 import { MdNotifications, MdNotificationsActive, MdBeenhere, MdEventAvailable, MdEdit, MdPersonAdd} from "react-icons/md";
 import Modal from 'react-bootstrap/Modal'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import Card from 'react-bootstrap/Card'
 import ChangeAdminEmail from '../layout/changeAuthenticationDetails/ChangeAdminEmail'
 import ChangeAdminPassword from '../layout/changeAuthenticationDetails/ChangeAdminPassword'
 
@@ -94,7 +93,7 @@ export class AdminNavbar extends Component{
  
             <NavDropdown title={<FaCog size={28}/>} id="basic-nav-dropdown">
               <NavDropdown.Item onClick={this.handleShow}>Change Email/Password</NavDropdown.Item>
-              <NavDropdown.Item>Manage Hire Charges</NavDropdown.Item>
+              <NavDropdown.Item><NavLink to={'/admin/hireCharges'} className="black-text" style={{textDecoration: 'none'}}>Manage Hire Charges</NavLink></NavDropdown.Item>
               <NavDropdown.Item><NavLink to={'/'}><Button onClick={this.props.signOut}>Logout</Button></NavLink></NavDropdown.Item>
             </NavDropdown>
 
