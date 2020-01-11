@@ -11,17 +11,18 @@ import 'react-activity/dist/react-activity.css';
 class AddExport extends Component {
     state = {
         containerType: '20',
-        containerPickupLocation: '',
+        // containerPickupLocation: '',
         containerPickupAddressLine1: '',
         containerPickupAddressLine2: '',
         containerPickupCity: '',
-        cargoPickupDatetime: '',
+        pickupDatetime: '',
         cargoLocationAddressLine1: '',
         cargoLocationAddressLine2: '',
         cargoLocationCity: '',
         cargoType: '',
         netWeight: '',
         loadingPort: 'Colombo',
+        loadingTerminal: '',
         vessel: '',
         loadingDatetime: '',
         driverId: '',
@@ -213,7 +214,7 @@ class AddExport extends Component {
                             <h5>Pick up Date and Time</h5>
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
-                                    <input placeholder="Cargo Pickup Date and Time" onFocus={this.handleDate} ref="pickup" type="text" id="cargoPickupDatetime"  onChange={this.handleChange} required />    
+                                    <input placeholder="Cargo Pickup Date and Time" onFocus={this.handleDate} ref="pickup" type="text" id="pickupDatetime"  onChange={this.handleChange} required />    
                                 </div>
                             </div>
                             <hr/><h5>Location</h5> 
@@ -252,6 +253,11 @@ class AddExport extends Component {
                                 <select className="form-control col-4" placeholder="Loading Port" id="loadingPort" onChange={this.handleLoadingPort} required>
                                     <option value="Colombo">Colombo</option>
                                 </select>
+                            </div>
+                            <div className="row">
+                                <div className="input-field col-6">
+                                    <input placeholder="Loading Terminal" type="text" id="loadingTerminal" onChange={this.handleChange} required/>
+                                </div>
                             </div>
                             <hr/>
                             <div className="row" style={{paddingTop: '40px'}}> 

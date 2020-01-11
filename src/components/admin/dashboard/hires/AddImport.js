@@ -11,11 +11,11 @@ import 'react-activity/dist/react-activity.css';
 class AddImport extends Component {
     state = {
         containerType: '20',
-        pickupLocation: '',
+        // pickupLocation: '',
         containerPickupAddressLine1: '',
         containerPickupAddressLine2: '',
         containerPickupCity: '',
-        containerPickupDatetime: '',
+        pickupDatetime: '',
         cargoType: '',
         netWeight: '',
         unloadingPort: 'Colombo',
@@ -195,7 +195,7 @@ class AddImport extends Component {
                             <h5>Pick up Date and Time</h5>
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
-                                    <input placeholder="Pickup Date and Time" ref="pickup" onFocus={this.handleDate} type="text" id="containerPickupDatetime" onChange={this.handleChange} required />
+                                    <input placeholder="Pickup Date and Time" ref="pickup" onFocus={this.handleDate} type="text" id="pickupDatetime" onChange={this.handleChange} required />
                                 </div>
                             </div>
                             <hr/><h5>Location</h5>
@@ -232,6 +232,8 @@ class AddImport extends Component {
                         <Card border="primary" className="text-center">
                             <Card.Header color="blue"><h4>Unloading Details</h4></Card.Header>
                             <Card.Body>
+                            <br/>
+                            <hr/><h5>Unloading Port</h5>
                             <div className="row" style={{paddingTop: '50px'}}>
                                 <div className="col-4"></div>
                                 <select className="form-control col-4" placeholder="Unloading Port" id="unloadingPort" onChange={this.handleLoadingPort} required>
