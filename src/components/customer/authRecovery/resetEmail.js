@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { Card, Alert } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import {connect } from 'react-redux'
 import {resetEmail} from '../../../store/actions/customerActions'
 import image from '../../../img/bgImg7.jpg'
@@ -8,17 +8,17 @@ import image from '../../../img/bgImg7.jpg'
 class ResetEmail extends React.Component{
   state={
     email:'',
-    updated:'1'
+    updated: null,
   }
 
-  componentWillReceiveProps(nextProps) {
+//   componentWillReceiveProps(nextProps) {
         
-    if(this.props.customer){
-        this.setState({
-            ...nextProps.customer[0],updated: !this.state.updated
-        });
-    }
-}
+//     if(this.props.customer){
+//         this.setState({
+//             ...nextProps.customer[0],updated: !this.state.updated
+//         });
+//     }
+// }
   handleChange = (e) => {
     this.setState({
         [e.target.id]: e.target.value
@@ -30,13 +30,16 @@ class ResetEmail extends React.Component{
     e.preventDefault();
     // console.log(this.state);
     this.props.resetEmail(this.state);
-    this.setState({
-      updated:'0'
-    });
+    this.setState   ({
+      updated: 1
+  })
  }
 
   render(){
+    const {authUpdateError} = this.props
+
     return(
+
     //   <div style={{  backgroundColor: "#dee7e7 ", margin:'0',padding:'0' ,marginBottom:'0'}}>
     <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.2' ,margin:'0',padding:'0',height:'1000px'}}>
     <div className='container'>
@@ -49,11 +52,9 @@ class ResetEmail extends React.Component{
                 <Link to='/User/profile'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/> 
               </div>
               <hr/>
-              {/* {(this.state.updated='1'?<Alert variant='success'>Updated successfully</Alert>:<Alert>Error</Alert>)} */}
-              <div className="green-text center">
-                        <h4>{this.state.updated ? "Updated Successfully" : null}</h4>
+              <div className= { authUpdateError != 'Email Updated Successfully' ? "red-text" : "green-text"}>
+                        {this.state.updated ? authUpdateError : null}
                     </div>
-            </div>
             <div className='row main-section'>
               <div className='col-md-4 sub-section'>
                 <img src={require('../../../img/email.png')} style={{width:'400px',height:'500px',opacity:'0.7'}} alt="pwdImage"/>
@@ -68,14 +69,20 @@ class ResetEmail extends React.Component{
                 </form>
               </div>
             </div>
-          
+          </div>
         </Card>
         </div> 
-        </div>   
+        </div>  
+        
     )
   }
 }
   
+const mapStateToProps = (state) => {
+  return {
+      authUpdateError: state.auth.authUpdateError
+  }
+}
 const mapDispatchToProps = (dispatch) => {
   return{
     resetEmail : (email) => dispatch(resetEmail(email))
@@ -83,4 +90,4 @@ const mapDispatchToProps = (dispatch) => {
 } 
 
 
- export default connect(null,mapDispatchToProps)(ResetEmail)
+ export default connect(mapStateToProps,mapDispatchToProps)(ResetEmail)

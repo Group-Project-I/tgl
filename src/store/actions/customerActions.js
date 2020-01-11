@@ -10,13 +10,11 @@ export const clean = () => ({
 export const resetEmail =(creds) =>{
   return(dispatch ,getState)=>{
     var user = firebase.auth().currentUser;
-    user.updateEmail(creds.email).then(function() {
+    user.updateEmail(creds.email).then(()=> {
       // Update successful.
-      // <Alert variant='success'>Updated Successfully</Alert>
-      dispatch ({type: 'RESET_EMAIL_SUCCESS'})
-    }).catch(function(error) {
+         dispatch ({type: 'RESET_EMAIL_SUCCESS'})
+    }).catch((error)=> {
       // An error happened.
-      // <Alert variant='danger'>An error occured</Alert>
       dispatch ({type: 'RESET_EMAIL_FAILED',error})
     });
   }
