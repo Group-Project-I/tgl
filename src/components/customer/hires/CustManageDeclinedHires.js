@@ -6,6 +6,7 @@ import moment from 'moment'
 import {Link, Redirect} from 'react-router-dom'
 import {acceptHireRequest} from '../../../store/actions/adminHireActions'
 import {declineHireRequest} from '../../../store/actions/adminHireActions'
+import {Spinner} from "react-activity";
 
 class ManageDeclinedHires extends Component {
     state = {
@@ -47,7 +48,7 @@ class ManageDeclinedHires extends Component {
         }
         return (
             this.state.loading === 1 ? (
-                    <div className="center"><br/><br/><br/><br/><br/><br/><br/><br/><h1>Loading...</h1></div>
+                    <div className="text-center" style={{paddingTop:"500px"}}><Spinner color="#007bff" size={32} speed={1} animating={true} /></div>
                 ) :
 
                     <div className="managehire_form1">
