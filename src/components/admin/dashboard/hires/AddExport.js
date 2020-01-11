@@ -11,11 +11,18 @@ import 'react-activity/dist/react-activity.css';
 class AddExport extends Component {
     state = {
         containerType: '20',
-        pickupLocation: '',
-        pickupDatetime: '',
+        containerPickupLocation: '',
+        containerPickupAddressLine1: '',
+        containerPickupAddressLine2: '',
+        containerPickupCity: '',
+        cargoPickupDatetime: '',
+        cargoLocationAddressLine1: '',
+        cargoLocationAddressLine2: '',
+        cargoLocationCity: '',
         cargoType: '',
-        weight: '',
-        loadingPort: '',
+        netWeight: '',
+        loadingPort: 'Colombo',
+        vessel: '',
         loadingDatetime: '',
         driverId: '',
         driverName: '',
@@ -53,6 +60,14 @@ class AddExport extends Component {
         if(e.target.value){
             this.setState({
                 containerType: e.target.value
+            })
+        }
+    }
+
+    handleLoadingPort = (e) => {
+        if(e.target.value){
+            this.setState({
+                loadingPort: e.target.value
             })
         }
     }
@@ -173,49 +188,85 @@ class AddExport extends Component {
                         </div>
                         <br/>
                         <Card border="primary" className="text-center">
-                            <Card.Header color="blue"><h5>Container Pickup Details</h5></Card.Header>
+                            <Card.Header color="blue"><h4>Container Pickup Details</h4></Card.Header>
                             <Card.Body>
-                            <div className="row">
+                            <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
-                                    <input placeholder="Pickup Location" type="text" id="pickupLocation" onChange={this.handleChange} required />
+                                    <input placeholder="Address Line 1" type="text" id="containerPickupAddressLine1" onChange={this.handleChange} required />
                                 </div>
                                 <div className="input-field col-6">
-                                    <input placeholder="Pickup Date and Time" onFocus={this.handleDate} ref="pickup" type="text" id="pickupDatetime"  onChange={this.handleChange} required />    
+                                    <input placeholder="Address Line 2" type="text" id="containerPickupAddressLine2" onChange={this.handleChange} required />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="input-field col-6">
+                                    <input placeholder="City" type="text" id="containerPickupCity" onChange={this.handleChange} required />
                                 </div>
                             </div>
                             </Card.Body>
                         </Card>
                         <br/>
                         <Card border="primary" className="text-center">
-                            <Card.Header><h5>Cargo Details</h5></Card.Header>
+                            <Card.Header><h4>Cargo Details</h4></Card.Header>
                             <Card.Body>
-                            <div className="row">
+                            <br/>
+                            <h5>Pick up Date and Time</h5>
+                            <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
-                                    <input placeholder="Cargo Type" type="text" id="cargoType" onChange={this.handleChange} required/>
+                                    <input placeholder="Cargo Pickup Date and Time" onFocus={this.handleDate} ref="pickup" type="text" id="cargoPickupDatetime"  onChange={this.handleChange} required />    
+                                </div>
+                            </div>
+                            <hr/><h5>Location</h5> 
+                            <div className="row" style={{paddingTop: '40px'}}>
+                                <div className="input-field col-6">
+                                    <input placeholder="Address Line 1" type="text" id="cargoLocationAddressLine1" onChange={this.handleChange} required />
                                 </div>
                                 <div className="input-field col-6">
-                                    <input placeholder="Weight" type="text" id="weight" onChange={this.handleChange} required/>
+                                    <input placeholder="Address Line 2" type="text" id="cargoLocationAddressLine2" onChange={this.handleChange} required />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="input-field col-6">
+                                    <input placeholder="City" type="text" id="cargoLocationCity" onChange={this.handleChange} required />
+                                </div>
+                            </div>
+                            <hr/>
+                            <div className="row" style={{paddingTop: '40px'}}>
+                                <div className="input-field col-6">
+                                    <input placeholder="Cargo Type(s)" type="text" id="cargoType" onChange={this.handleChange} required/>
+                                </div>
+                                <div className="input-field col-6">
+                                    <input placeholder="Net Weight" type="text" id="netWeight" onChange={this.handleChange} required/>
                                 </div>
                             </div>
                             </Card.Body>
                         </Card>
                         <br/>
                         <Card border="primary" className="text-center">
-                            <Card.Header><h5>Loading Details</h5></Card.Header>
+                            <Card.Header><h4>Loading Details</h4></Card.Header>
                             <Card.Body>
-                            <div className="row">
-                                <div className="input-field col-6">
-                                    <input placeholder="Loading Port" type="text" id="loadingPort" onChange={this.handleChange} required/>
-                                </div>
+                            <br/>
+                            <hr/><h5>Loading Port</h5>
+                            <div className="row" style={{paddingTop: '50px'}}>
+                                <div className="col-4"></div>
+                                <select className="form-control col-4" placeholder="Loading Port" id="loadingPort" onChange={this.handleLoadingPort} required>
+                                    <option value="Colombo">Colombo</option>
+                                </select>
+                            </div>
+                            <hr/>
+                            <div className="row" style={{paddingTop: '40px'}}> 
                                 <div className="input-field col-6">
                                     <input placeholder="Loading Date and Time" onFocus={this.handleDate} type="text" id="loadingDatetime" onChange={this.handleChange} required />
+                                </div>
+                                <div className="input-field col-6">
+                                    <input placeholder="Vessel" type="text" id="vessel" onChange={this.handleChange} required/>
                                 </div>
                             </div>
                             </Card.Body>
                         </Card>
                         <br/>
                         <Card border="primary" className="text-center" style={{ width: '40rem' }}>
-                            <Card.Header><h5>Customer</h5></Card.Header>
+                            <Card.Header><h4>Customer</h4></Card.Header>
                             <Card.Body>
                             <div className="row">
                                 <div className="input-field col-6">
@@ -228,7 +279,7 @@ class AddExport extends Component {
                         </Card>
                         <br/>
                         <Card border="primary" className="text-center" style={{ width: '40rem' }}>
-                            <Card.Header><h5>Driver</h5></Card.Header>
+                            <Card.Header><h4>Driver</h4></Card.Header>
                             <Card.Body>
                             <div className="row">
                                 <div className="input-field col-6">
@@ -241,7 +292,7 @@ class AddExport extends Component {
                         </Card>
                         <br/>
                         <Card border="primary" className="text-center" style={{ width: '40rem' }}>
-                            <Card.Header><h5>Vehicle</h5></Card.Header>
+                            <Card.Header><h4>Vehicle</h4></Card.Header>
                             <Card.Body>
                             <div className="row">
                                 <div className="input-field col-6">
@@ -254,10 +305,10 @@ class AddExport extends Component {
                         </Card>
                         <br/>
                         <Card border="primary" className="text-center">
-                            <Card.Header><h5>Remarks</h5></Card.Header>
+                            <Card.Header><h4>Remarks</h4></Card.Header>
                             <Card.Body>
                             <div className="input-field row col-12">
-                                <textarea placeholder="Remarks" style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange} />
+                                <textarea placeholder="Mention any Additional Information(Perishable goods, Reefer temperature, Number and kind of packages etc.)" style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange} />
                             </div>
                             </Card.Body>
                         </Card>
