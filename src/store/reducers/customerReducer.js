@@ -33,27 +33,24 @@ const customerReducer =(state = initState ,action) => {
             console.log('messsage sent error',action.error)
             return state
         case 'RESET_PASSWORD' :
-            console.log('CHANGED PASSWORD',action.newPasSword)
+            console.log('CHANGED PASSWORD',action.newPassword)
             return state
         case 'PASSWORD_RESET_ERROR' :
             console.log('PASSWORD_RESET_ERROR',action.error)
             return state
-        case 'RECOVERY_START':
-            return{ ...state,
-                recoverPassword:{...state.recoverPassword,loading:true}}
-            // return recoveryStart(state);
+        case 'RESET_EMAIL_SUCCESS':
+            console.log('Email updated')
+            return{
+                ...state,
+                authUpdateError: 'Email Updated Successfully'
+            }
 
-        case 'RECOVERY_SUCCESS':
-                return{ ...state,
-                    recoverPassword:{...state.recoverPassword,loading:false,error:false}}
-            //return recoverySuccess(state);
-
-        case 'RECOVERY_FAIL':
-            console.log('error')
-                // return{ ...state,
-                //     recoverPassword:{...state.recoverPassword,loading:false,error: }
-                //  }
-               // return recoveryFail(state, payload);
+        case 'RESET_EMAIL_FAILED':
+            console.log('Failed to update email')
+            return{
+                ...state,
+                authUpdateError: action.error.message
+            }
         case 'CLEAN_UP':
             return cleanUp(state);
         case 'SEND_INQUIRY':
