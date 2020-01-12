@@ -190,6 +190,7 @@ code {
   padding-bottom: 140px;
   height: auto;
   background-size: cover;
+
 }
 .managehire_form2{
   background-image: url("../src/img/taryn-kaahanui-pwP-EXdIQQY-unsplash.jpg");
@@ -199,7 +200,9 @@ code {
   padding-bottom: 140px;
   height: auto;
   background-size: cover;
+
 }
+
 
 .completehire{
   /*background-image: url("../src/img/taryn-kaahanui-pwP-EXdIQQY-unsplash.jpg");*/
@@ -215,9 +218,10 @@ code {
   background-color: rgba(255,255,255,0.8) !important;;
   border-radius: 30px;
   padding-top: 50px;
-  padding-left: 70px;
-  padding-right: 70px;
+  /*padding-left: 70px;*/
+  /*padding-right: 70px;*/
   padding-bottom: 50px;
+
 }
 
 .ml-auto .nav-link{
