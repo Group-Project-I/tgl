@@ -8,6 +8,7 @@ import {declineHireRequests} from '../../../store/actions/customerHireActions'
 import {Link} from "react-router-dom";
 import {updateRequest} from "../../../store/actions/customerHireActions";
 import {Spinner} from "react-activity";
+import Card from "react-bootstrap/Card";
 
 // function topFunction() {
 //     document.body.scrollTop = 0;
@@ -18,13 +19,20 @@ class ManageHireRequest1 extends Component {
 
     state = {
         containerType : '',
-        pickupLocation: '',
+        // pickupLocation: '',
+        containerPickupAddressLine1: '',
+        containerPickupAddressLine2: '',
+        containerPickupCity: '',
         pickupDatetime: '',
         cargoType: '',
-        weight: '',
-        unloadingPort: '',
+        netWeight: '',
+        unloadingPort: 'Colombo',
+        unloadingTerminal: '',
+        vessel: '',
         vesselArrivalDatetime: '',
-        destination: '',
+        destinationAddressLine1: '',
+        destinationAddressLine2: '',
+        destinationCity: '',
         remarks: '',
         loading: 1,
         updated: 1,
@@ -96,11 +104,15 @@ class ManageHireRequest1 extends Component {
 
 
 
-                <div className="managehire_form2">
+                <div className="container-fluid managehire_form2">
                     <br/><br/><br/><br/><br/><br/><br/><br/>
                     <h1 className="center add_head fadeInLeft animated fast"><span className="topic1">Hire</span> <span className="topic">Request</span><hr className="bg-dark mb-4 w-25"/></h1><br/><br/>
                     <div className="www fadeIn animated slow delay-1s">
+                        <Card border="primary">
+                            <Card.Body>
                     <div className="container">
+
+
                         <form onSubmit={this.handleSubmit} autoComplete='off'>
                             <div className="green-text center">
                                 <h3>{this.state.updated ? "Updated Successfully" : null}</h3><br/><br/>
@@ -108,7 +120,7 @@ class ManageHireRequest1 extends Component {
                         <div className="row">
                         <div className="col-6">
 
-                            <h6 className="left"><b className='blue-text'>Hire Type </b><br/><br/>
+                            <h6 className="left container-fluid"><b className='blue-text'>Hire Type </b><br/><br/>
                                 <input type="text" id="hireType" value={this.state.hireType.toUpperCase()}  required/></h6>
                             {/*<select className="form-control select1" id="hireType" value={this.state.hireType} onChange={this.handleHireType} required>*/}
                             {/*    <option value="import">import</option>*/}
@@ -116,7 +128,7 @@ class ManageHireRequest1 extends Component {
                             {/*</select></h6>*/}
                         </div>
                         <div className="col-6">
-                            <h6 className="left">
+                            <h6 className="left container-fluid">
                                 <b className='blue-text'>Container Type </b><br/><br/>
                                 {/*<input type="text" id="containerType" value={this.state.containerType} onChange={this.handleChange} required/></h6>*/}
                             <select className="form-control select1" id="containerType" value={this.state.containerType} onChange={this.handleContainerType} required>
@@ -127,20 +139,21 @@ class ManageHireRequest1 extends Component {
                         </div>
                         <br/><hr/><h5 className="center">Container Pickup Details</h5> <br/>
                         <div className="row" >
+
                             <div className="col-6">
-                                <h6 className="left"><b className='blue-text'>Container Pickup Location </b> <input type="text" id="pickupLocation" value={this.state.pickupLocation} onChange={this.handleChange} required/></h6>
+                                <h6 className="left container-fluid"><b className='blue-text'>Container Pickup Date </b> <input type="text" id="pickupDatetime" onFocus={this.handleDate} value={this.state.pickupDatetime} onChange={this.handleChange} required/></h6>
                             </div>
                             <div className="col-6">
-                                <h6 className="left"><b className='blue-text'>Container Pickup Date </b> <input type="text" id="pickupDatetime" onFocus={this.handleDate} value={this.state.pickupDatetime} onChange={this.handleChange} required/></h6>
+                                <h6 className="left container-fluid"><b className='blue-text'>Container Pickup Location </b> <input type="text" id="pickupLocation" value={this.state.pickupLocation} onChange={this.handleChange} required/></h6>
                             </div>
                         </div>
                         <br/><hr/><h5 className="center">Cargo Details</h5> <br/>
                         <div className="row" >
                             <div className="col-6">
-                                <h6 className="left"><b className='blue-text'>Cargo Type </b> <input type="text" id="cargoType" value={this.state.cargoType} onChange={this.handleChange} required/></h6>
+                                <h6 className="left container-fluid"><b className='blue-text'>Cargo Type </b> <input type="text" id="cargoType" value={this.state.cargoType} onChange={this.handleChange} required/></h6>
                             </div>
                             <div className="col-6">
-                                <h6 className="left"><b className='blue-text'>Cargo Weight </b> <input type="text" id="weight" value={this.state.weight} onChange={this.handleChange} required/></h6>
+                                <h6 className="left container-fluid"><b className='blue-text'>Cargo Weight </b> <input type="text" id="weight" value={this.state.weight} onChange={this.handleChange} required/></h6>
                             </div>
                         </div>
                         {/*{this.state.hireType === "import" ?*/}
@@ -148,16 +161,16 @@ class ManageHireRequest1 extends Component {
                                 <br/><hr/><h5 className="center">Unloading Details</h5><br/>
                                 <div className="row" >
                                     <div className="col-6">
-                                        <h6 className="left"><b className='blue-text'>Unloading Port </b> <input type="text" id="unloadingPort" value={this.state.unloadingPort} onChange={this.handleChange} required/></h6>
+                                        <h6 className="left container-fluid"><b className='blue-text'>Unloading Port </b> <input type="text" id="unloadingPort" value={this.state.unloadingPort} onChange={this.handleChange} required/></h6>
                                     </div>
                                     <div className="col-6">
-                                        <h6 className="left"><b className='blue-text '>Vessel Arrival Date </b> <input type="text" id="vesselArrivalDatetime" onFocus={this.handleDate} value={this.state.vesselArrivalDatetime} onChange={this.handleChange} required/></h6>
+                                        <h6 className="left container-fluid"><b className='blue-text '>Vessel Arrival Date </b> <input type="text" id="vesselArrivalDatetime" onFocus={this.handleDate} value={this.state.vesselArrivalDatetime} onChange={this.handleChange} required/></h6>
                                         {/*moment(this.state.vesselArrivalDatetime).format('MMMM Do YYYY, h:mm:ss a')*/}
                                     </div>
                                 </div>
                                 <div className="row" >
                                     <div className="col-6">
-                                        <h6 className="left"><b className='blue-text'>Destination </b> <input type="text" id="destination" value={this.state.destination} onChange={this.handleChange} required/></h6>
+                                        <h6 className="left container-fluid"><b className='blue-text'>Destination </b> <input type="text" id="destination" value={this.state.destination} onChange={this.handleChange} required/></h6>
                                     </div>
                                 </div>
                             </div>
@@ -203,13 +216,15 @@ class ManageHireRequest1 extends Component {
                                 <Link to="/User/UserManageTools"><button className="btn orange lighten-1 z-depth-5 btn1">Back</button></Link>
                             </div>
                             <br/><br/>
-                        </form>
-                    </div>
+                        </form></div>
+                            </Card.Body>
+                        </Card>
+
                     </div>
                 </div>
 
 
-        ):<div className="text-center" style={{paddingTop:"500px"}}><Spinner color="#007bff" size={32} speed={1} animating={true} /></div>
+        ):<div className="text-center" style={{paddingTop:"400px"}}><Spinner color="#007bff" size={32} speed={1} animating={true} /></div>
         return <div>{load}</div>
 
 

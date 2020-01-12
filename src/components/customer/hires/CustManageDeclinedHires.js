@@ -33,9 +33,7 @@ class ManageDeclinedHires extends Component {
 
         if(this.props.drivers && this.props.hires){
             this.setState({
-                ...nextProps,
-                loading: 0,
-                remarks: this.props.hire[0].remarks
+                ...nextProps, loading: 0, remarks: this.props.hire[0].remarks
             });
         }
 
@@ -48,10 +46,10 @@ class ManageDeclinedHires extends Component {
         }
         return (
             this.state.loading === 1 ? (
-                    <div className="text-center" style={{paddingTop:"500px"}}><Spinner color="#007bff" size={32} speed={1} animating={true} /></div>
+                    <div className="text-center" style={{paddingTop:"400px"}}><Spinner color="#007bff" size={32} speed={1} animating={true} /></div>
                 ) :
 
-                    <div className="managehire_form1">
+                    <div className="container-fluid managehire_form1 ">
 
                         <br/><br/><br/><br/><br/><br/><br/><br/>
                         <h1 className="center add_head fadeInLeft animated fast"><span className="topic1">Declined</span> <span className="topic">Hire</span><hr className="bg-dark mb-4 w-25"/></h1><br/><br/>
@@ -59,28 +57,28 @@ class ManageDeclinedHires extends Component {
                         <div className="container">
                             <div className="row" >
                         <div className="col-6" >
-                            <h6 className="left"><b className='blue-text'>Hire Type </b> <input type="text" value={this.props.hire[0].hireType.toUpperCase()}/></h6>
+                            <h6 className="left container-fluid"><b className='blue-text'>Hire Type </b> <input type="text" value={this.props.hire[0].hireType.toUpperCase()}/></h6>
                         </div>
                         <div className="col-6" >
-                            <h6 className="left"><b className='blue-text'>Container Type </b> <input type="text" value={this.props.hire[0].containerType + " ft"}/></h6>
+                            <h6 className="left container-fluid"><b className='blue-text'>Container Type </b> <input type="text" value={this.props.hire[0].containerType + " ft"}/></h6>
                         </div>
                             </div>
                             <br/><hr/><h5 className="center">Container Pickup Details</h5> <br/><br/>
                         <div className="row">
                             <div className="col-6">
-                                <h6 className="left"><b className='blue-text'>Container Pickup Location </b> <input type="text" value={this.props.hire[0].pickupLocation}/></h6>
+                                <h6 className="left container-fluid"><b className='blue-text'>Container Pickup Location </b> <input type="text" value={this.props.hire[0].pickupLocation}/></h6>
                             </div>
                             <div className="col-6">
-                                <h6 className="left"><b className='blue-text'>Container Pickup Date </b> <input type="text" value={moment(this.props.hire[0].pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}/></h6>
+                                <h6 className="left container-fluid"><b className='blue-text'>Container Pickup Date </b> <input type="text" value={moment(this.props.hire[0].pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}/></h6>
                             </div>
                         </div>
                             <br/><hr/><h5 className="center">Cargo Details</h5> <br/><br/>
                         <div className="row">
                             <div className="col-6">
-                                <h6 className="left"><b className='blue-text'>Cargo Type </b> <input type="text" value={this.props.hire[0].cargoType}/></h6>
+                                <h6 className="left container-fluid"><b className='blue-text'>Cargo Type </b> <input type="text" value={this.props.hire[0].cargoType}/></h6>
                             </div>
                             <div className="col-6">
-                                <h6 className="left"><b className='blue-text'>Cargo Weight </b> <input type="text" value={this.props.hire[0].weight}/></h6>
+                                <h6 className="left container-fluid"><b className='blue-text'>Cargo Weight </b> <input type="text" value={this.props.hire[0].weight}/></h6>
                             </div>
                         </div>
                         {this.props.hire[0].hireType === "import" ?
@@ -88,15 +86,15 @@ class ManageDeclinedHires extends Component {
                                 <br/><hr/><h5 className="center">Unloading Details</h5><br/><br/>
                                 <div className="row">
                                     <div className="col-6">
-                                        <h6 className="left"><b className='blue-text'>Unloading Port </b> <input type="text" value={this.props.hire[0].unloadingPort}/></h6>
+                                        <h6 className="left container-fluid"><b className='blue-text'>Unloading Port </b> <input type="text" value={this.props.hire[0].unloadingPort}/></h6>
                                     </div>
                                     <div className="col-6">
-                                        <h6 className="left"><b className='blue-text'>Vessel Arrival Date </b> <input type="text" value={moment(this.props.hire[0].vesselArrivalDatetime).format('MMMM Do YYYY, h:mm:ss a')}/></h6>
+                                        <h6 className="left container-fluid"><b className='blue-text'>Vessel Arrival Date </b> <input type="text" value={moment(this.props.hire[0].vesselArrivalDatetime).format('MMMM Do YYYY, h:mm:ss a')}/></h6>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-6">
-                                        <h6 className="left"><b className='blue-text'>Destination </b> <input type="text" value={this.props.hire[0].destination}/></h6>
+                                        <h6 className="left container-fluid"><b className='blue-text'>Destination </b> <input type="text" value={this.props.hire[0].destination}/></h6>
                                     </div>
                                 </div>
                             </div> :
@@ -104,10 +102,10 @@ class ManageDeclinedHires extends Component {
                                 <br/><hr/><h5 className="center">Loading Details</h5><br/><br/>
                                 <div className="row">
                                     <div className="col-6">
-                                        <h6 className="left"><b className='blue-text'>Loading Port </b> <input type="text" value={this.props.hire[0].loadingPort}/></h6>
+                                        <h6 className="left container-fluid"><b className='blue-text'>Loading Port </b> <input type="text" value={this.props.hire[0].loadingPort}/></h6>
                                     </div>
                                     <div className="col-6">
-                                        <h6 className="left"><b className='blue-text'>Loading Date </b> <input type="text" value={this.props.hire[0].loadingDatetime}/></h6>
+                                        <h6 className="left container-fluid"><b className='blue-text'>Loading Date </b> <input type="text" value={this.props.hire[0].loadingDatetime}/></h6>
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +138,7 @@ class ManageDeclinedHires extends Component {
                     </div>
                             <br/><br/>
                             <div className="input-field right">
-                                <Link to="/User/UserManageTools"><button className="btn orange lighten-1 z-depth-5 btn1">Back</button></Link>
+                                <Link to="/User/UserManageTools"><button className="btn orange lighten-1 z-depth-5 btn1" style={{marginRight: '50px'}}>Back</button></Link>
                             </div>
                     <br/><br/>
                     </div>
