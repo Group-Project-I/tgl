@@ -39,7 +39,10 @@ class AddHireExport extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         // console.log(this.state);
-        this.props.addExportHires(this.state)
+        this.props.addExportHires(this.state);
+        this.setState({
+            redir : 1
+        })
     }
 
     handleDate = (e) => {
