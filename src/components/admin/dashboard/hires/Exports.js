@@ -12,7 +12,7 @@ const Exports = ({exportHires, history}) => {
     const columns = [
         { title: "Type", field: "containerType", width: 75, align: "center"},
         { title: "Pickup Date", field: "pickupDatetime", headerFilter:"input", sorter: "datetime", sorterParams:{format:"MMM Do YYYY, h:mm a"}},
-        { title: "Pickup Location", field: "pickupLocation", headerFilter:"input"},
+        { title: "Cargo Location", field: "pickupLocation", headerFilter:"input"},
         { title: "Cargo Type", field: "cargoType", headerFilter:"input", width: 150},
         { title: "Loading Date", field: "loadingDatetime", headerFilter:"input", sorter: "datetime", sorterParams:{format:"MMM Do YYYY, h:mm a"}},
         { title: "Driver", field: "driverName", headerFilter:"input"},
@@ -32,7 +32,7 @@ const Exports = ({exportHires, history}) => {
             id: exp.id, 
             containerType: exp.containerType, 
             pickupDatetime: moment(exp.pickupDatetime).format('MMM Do YYYY, h:mm a'), 
-            pickupLocation: exp.pickupLocation,
+            pickupLocation: exp.cargoLocationCity,
             cargoType: exp.cargoType, 
             loadingDatetime: moment(exp.loadingDatetime).format('MMM Do YYYY, h:mm a'), 
             driverName: exp.driverName,

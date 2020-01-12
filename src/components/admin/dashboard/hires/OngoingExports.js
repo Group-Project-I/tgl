@@ -25,7 +25,7 @@ const OngoingExports = ({ongoingExportHires, history}) => {
             id: exp.id, 
             containerType: exp.containerType, 
             pickupDatetime: moment(exp.pickupDatetime).format('MMM Do YYYY, h:mm a'), 
-            pickupLocation: exp.pickupLocation,
+            pickupLocation: exp.cargoLocationCity,
             cargoType: exp.cargoType, 
             loadingDatetime: moment(exp.loadingDatetime).format('MMM Do YYYY, h:mm a'), 
             driverName: exp.driverName,
