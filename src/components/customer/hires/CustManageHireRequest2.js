@@ -8,6 +8,7 @@ import {declineHireRequests} from '../../../store/actions/customerHireActions'
 import {Link} from "react-router-dom";
 import {updateRequest} from "../../../store/actions/customerHireActions";
 import {Spinner} from "react-activity";
+import Card from "react-bootstrap/Card";
 
 // function topFunction() {
 //     document.body.scrollTop = 0;
@@ -18,11 +19,19 @@ class ManageHireRequest2 extends Component {
 
     state = {
         containerType : '',
-        pickupLocation: '',
+        // pickupLocation: '',
+        containerPickupAddressLine1: '',
+        containerPickupAddressLine2: '',
+        containerPickupCity: '',
         pickupDatetime: '',
+        cargoLocationAddressLine1: '',
+        cargoLocationAddressLine2: '',
+        cargoLocationCity: '',
         cargoType: '',
-        weight: '',
-        loadingPort: '',
+        netWeight: '',
+        loadingPort: 'Colombo',
+        loadingTerminal: '',
+        vessel: '',
         loadingDatetime: '',
         remarks: '',
         loading: 1,
@@ -67,6 +76,13 @@ class ManageHireRequest2 extends Component {
             })
         }
     }
+    handleLoadingPort= (e) => {
+        if(e.target.value){
+            this.setState({
+                loadingPort: e.target.value
+            })
+        }
+    }
     // handleHireType = (e) => {
     //     if(e.target.value){
     //         this.setState({
@@ -95,19 +111,23 @@ class ManageHireRequest2 extends Component {
 
 
 
-            <div className="managehire_form2">
+            <div className="container-fluid managehire_form2">
                 <br/><br/><br/><br/><br/><br/><br/><br/>
-                <h1 className="center add_head fadeInLeft animated fast"><span className="topic1">Hire</span> <span className="topic">Request</span><hr className="bg-dark mb-4 w-25"/></h1><br/><br/>
-                <div className="www fadeIn animated slow delay-1s">
-                    <div className="container">
+
+                <div className="container www fadeIn animated slow delay-1s">
+                    <Card border="primary">
+                        <Card.Body>
+                            <h1 className="center add_head "><span className="topic1">Hire</span> <span className="topic">Request</span><hr className="bg-dark mb-4 w-25"/></h1><br/><br/>
                         <form onSubmit={this.handleSubmit} autoComplete='off'>
                             <div className="green-text center">
                                 <h3>{this.state.updated ? "Updated Successfully" : null}</h3><br/><br/>
                             </div>
+                            <Card border="primary" className="text-center">
+                                <Card.Body>
                             <div className="row">
                                 <div className="col-6">
 
-                                    <h6 className="left"><b className='blue-text'>Hire Type </b><br/><br/>
+                                    <h6 className="left container-fluid"><b className='blue-text left'>Hire Type </b><br/><br/>
                                         <input type="text" id="hireType" value={this.state.hireType.toUpperCase()}  required/></h6>
                                     {/*<select className="form-control select1" id="hireType" value={this.state.hireType} onChange={this.handleHireType} required>*/}
                                     {/*    <option value="import">import</option>*/}
@@ -115,8 +135,8 @@ class ManageHireRequest2 extends Component {
                                     {/*</select></h6>*/}
                                 </div>
                                 <div className="col-6">
-                                    <h6 className="left">
-                                        <b className='blue-text'>Container Type </b><br/><br/>
+                                    <h6 className="left container-fluid">
+                                        <b className='blue-text left'>Container Type </b><br/><br/><br/>
                                         {/*<input type="text" id="containerType" value={this.state.containerType} onChange={this.handleChange} required/></h6>*/}
                                         <select className="form-control select1" id="containerType" value={this.state.containerType} onChange={this.handleContainerType} required>
                                             <option value="20">20ft</option>
@@ -124,24 +144,60 @@ class ManageHireRequest2 extends Component {
                                         </select></h6>
                                 </div>
                             </div>
-                            <br/><hr/><h5 className="center">Container Pickup Details</h5> <br/>
+                                </Card.Body>
+                            </Card>
+                            <br/><Card border="primary" className="text-center">
+                            <Card.Header color="blue"><h4>Container Pickup Details</h4></Card.Header>
+                            <Card.Body> <br/>
                             <div className="row" >
+
                                 <div className="col-6">
-                                    <h6 className="left"><b className='blue-text'>Container Pickup Location </b> <input type="text" id="pickupLocation" value={this.state.pickupLocation} onChange={this.handleChange} required/></h6>
+                                    <h6 className="left container-fluid"><b className='blue-text left'>Address Line 1 </b> <input type="text" id="containerPickupAddressLine1" value={this.state.containerPickupAddressLine1} onChange={this.handleChange} required/></h6>
                                 </div>
                                 <div className="col-6">
-                                    <h6 className="left"><b className='blue-text'>Container Pickup Date </b> <input type="text" id="pickupDatetime" onFocus={this.handleDate} value={this.state.pickupDatetime} onChange={this.handleChange} required/></h6>
+                                    <h6 className="left container-fluid"><b className='blue-text left'>Address Line 2 </b> <input type="text" id="containerPickupAddressLine2" value={this.state.containerPickupAddressLine2} onChange={this.handleChange} required/></h6>
                                 </div>
                             </div>
-                            <br/><hr/><h5 className="center">Cargo Details</h5> <br/>
-                            <div className="row" >
-                                <div className="col-6">
-                                    <h6 className="left"><b className='blue-text'>Cargo Type </b> <input type="text" id="cargoType" value={this.state.cargoType} onChange={this.handleChange} required/></h6>
+                                <div className="row">
+                                    <div className="col-6">
+                                        <h6 className="left container-fluid"><b className='blue-text left'>City </b> <input type="text" id="containerPickupCity" value={this.state.containerPickupCity} onChange={this.handleChange} required/></h6>
+                                    </div>
                                 </div>
+
+                            </Card.Body>
+                        </Card>
+                            <br/><Card border="primary" className="text-center">
+                            <Card.Header color="blue"><h4>Cargo Details</h4></Card.Header>
+                            <Card.Body><br/>
+                            <div className="row">
                                 <div className="col-6">
-                                    <h6 className="left"><b className='blue-text'>Cargo Weight </b> <input type="text" id="weight" value={this.state.weight} onChange={this.handleChange} required/></h6>
+                                    <h6 className="left container-fluid"><b className='blue-text left'>Cargo Pickup Date and Time </b> <input type="text" id="pickupDatetime" onFocus={this.handleDate} value={this.state.pickupDatetime} onChange={this.handleChange} required/></h6>
                                 </div>
                             </div>
+                            <div className="row" >
+                                <div className="col-6">
+                                    <h6 className="left container-fluid"><b className='blue-text left'>Address Line 1 </b> <input type="text" id="cargoLocationAddressLine1" value={this.state.cargoLocationAddressLine1} onChange={this.handleChange} required/></h6>
+                                </div>
+                                <div className="col-6">
+                                    <h6 className="left container-fluid"><b className='blue-text left'>Address Line 2 </b> <input type="text" id="cargoLocationAddressLine2" value={this.state.cargoLocationAddressLine2} onChange={this.handleChange} required/></h6>
+                                </div>
+
+                            </div>
+                                <div className="row">
+                                    <div className="col-6">
+                                        <h6 className="left container-fluid"><b className='blue-text left'>City </b> <input type="text" id="cargoLocationCity" value={this.state.cargoLocationCity} onChange={this.handleChange} required/></h6>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-6">
+                                        <h6 className="left container-fluid"><b className='blue-text left'>Cargo Type </b> <input type="text" id="cargoType" value={this.state.cargoType} onChange={this.handleChange} required/></h6>
+                                    </div>
+                                    <div className="col-6">
+                                        <h6 className="left container-fluid"><b className='blue-text left'>Net Weight </b> <input type="text" id="netWeight" value={this.state.netWeight} onChange={this.handleChange} required/></h6>
+                                    </div>
+                                </div>
+                            </Card.Body>
+                        </Card>
                             {/*{this.state.hireType === "import" ?*/}
                             {/*    <div>*/}
                             {/*        <br/><hr/><h5 className="center">Unloading Details</h5><br/>*/}
@@ -161,15 +217,33 @@ class ManageHireRequest2 extends Component {
                             {/*        </div>*/}
                             {/*    </div> :*/}
                                 <div>
-                                    <br/><hr/><h5 className="center">Loading Details</h5><br/>
+                                    <br/><Card border="primary" className="text-center">
+                                    <Card.Header><h4>Loading Details</h4></Card.Header>
+                                    <Card.Body><br/>
                                     <div className="row" >
                                         <div className="col-6">
-                                            <h6 className="left"><b className='blue-text'>Loading Port </b> <input type="text" id="loadingPort" value={this.state.loadingPort} onChange={this.handleChange} required/></h6>
-                                        </div>
-                                        <div className="col-6">
-                                            <h6 className="left"><b className='blue-text'>Loading Date </b> <input type="text" id="loadingDatetime" onFocus={this.handleDate} value={this.state.loadingDatetime} onChange={this.handleChange} required/></h6>
+                                        <h6 className="left container-fluid"><b className='blue-text left'>Loading Port </b><br/><br/>
+                                            <select className="form-control col-6" placeholder="Loading Port" id="loadingPort" value={this.state.loadingPort} onChange={this.handleLoadingPort} required>
+                                            <option value="Colombo">Colombo</option>
+                                            </select></h6>
                                         </div>
                                     </div>
+                                        <div className="row">
+                                            <div className="col-6">
+                                                <h6 className="left container-fluid"><b className='blue-text left'>Loading Terminal </b><input type="text" id="loadingTerminal" value={this.state.loadingTerminal} onChange={this.handleChange} required/></h6>
+                                            </div>
+                                        </div>
+                                        <hr/><h5>Vessel Details</h5>
+                                        <div className="row">
+                                            <div className="col-6">
+                                                <h6 className="left container-fluid"><b className='blue-text left'>Vessel </b> <input type="text" id="vessel" value={this.state.vessel} onChange={this.handleChange} required/></h6>
+                                            </div>
+                                        <div className="col-6">
+                                            <h6 className="left container-fluid"><b className='blue-text left'>Loading Date </b> <input type="text" id="loadingDatetime" onFocus={this.handleDate} value={this.state.loadingDatetime} onChange={this.handleChange} required/></h6>
+                                        </div>
+                                    </div>
+                                    </Card.Body>
+                                </Card>
                                 </div>
                             {/*}*/}
                             {/*<br/><hr/><h5 className="center">Customer</h5><br/>*/}
@@ -188,10 +262,14 @@ class ManageHireRequest2 extends Component {
                             {/*    </div>*/}
                             {/*</div>*/}
 
-                            <br/><hr/><h5 className="center">Remarks</h5><br/>
+                            <br/><Card border="primary" className="text-center">
+                            <Card.Header><h4>Remarks</h4></Card.Header>
+                            <Card.Body><br/>
                             <div className="input-field row col-12" >
                                 <textarea type="text" id="remarks" placeholder="Remarks" value={this.state.remarks} style={{ minHeight: 100 }}  onChange={this.handleChange} required/>
                             </div>
+                            </Card.Body>
+                        </Card>
                             <br/><br/>
 
 
@@ -202,12 +280,14 @@ class ManageHireRequest2 extends Component {
                             </div>
                             <br/><br/>
                         </form>
-                    </div>
+                        </Card.Body>
+                    </Card>
+
                 </div>
             </div>
 
 
-        ):<div className="text-center" style={{paddingTop:"500px"}}><Spinner color="#007bff" size={32} speed={1} animating={true} /></div>
+        ):<div className="text-center" style={{paddingTop:"400px"}}><Spinner color="#007bff" size={32} speed={1} animating={true} /></div>
         return <div>{load}</div>
 
 

@@ -6,11 +6,13 @@ import { ReactTabulator } from 'react-tabulator'
 
 const ExportRequests = ({exportHireRequests, history}) => {
     if (!exportHireRequests.length) return <div><br/><br/><h3>No Export Requests</h3><br/></div>
+    global.moment = require("moment");
 
     const columns = [
         { title: "Type", field: "containerType", width: 75, align: "center"},
         { title: "Pickup Date", field: "pickupDatetime", headerFilter:"input"},
-        { title: "Pickup Location", field: "pickupLocation", headerFilter:"input"},
+        { title: "Pickup Location", field: "containerPickupCity", headerFilter:"input"},
+        { title: "Cargo Location", field: "cargoLocationCity", headerFilter:"input", width: 150},
         { title: "Cargo Type", field: "cargoType", headerFilter:"input", width: 150},
         { title: "Loading Date", field: "loadingDatetime", headerFilter:"input"},
 
@@ -28,7 +30,8 @@ const ExportRequests = ({exportHireRequests, history}) => {
                 id: exp.id,
                 containerType: exp.containerType,
                 pickupDatetime: moment(exp.pickupDatetime).format('MMM Do YYYY, h:mm:ss a'),
-                pickupLocation: exp.pickupLocation,
+                containerPickupCity: exp.containerPickupCity,
+                cargoLocationCity: exp.cargoLocationCity,
                 cargoType: exp.cargoType,
                 loadingDatetime: moment(exp.loadingDatetime).format('MMM Do YYYY, h:mm:ss a'),
 
