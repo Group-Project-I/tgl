@@ -8,6 +8,7 @@ import {declineHireRequests} from '../../../store/actions/customerHireActions'
 import {Link} from "react-router-dom";
 import {updateRequest} from "../../../store/actions/customerHireActions";
 import {Spinner} from "react-activity";
+import Card from "react-bootstrap/Card";
 
 // function topFunction() {
 //     document.body.scrollTop = 0;
@@ -18,13 +19,20 @@ class ManageHireRequest1 extends Component {
 
     state = {
         containerType : '',
-        pickupLocation: '',
+        // pickupLocation: '',
+        containerPickupAddressLine1: '',
+        containerPickupAddressLine2: '',
+        containerPickupCity: '',
         pickupDatetime: '',
         cargoType: '',
-        weight: '',
-        unloadingPort: '',
+        netWeight: '',
+        unloadingPort: 'Colombo',
+        unloadingTerminal: '',
+        vessel: '',
         vesselArrivalDatetime: '',
-        destination: '',
+        destinationAddressLine1: '',
+        destinationAddressLine2: '',
+        destinationCity: '',
         remarks: '',
         loading: 1,
         updated: 1,
@@ -100,7 +108,11 @@ class ManageHireRequest1 extends Component {
                     <br/><br/><br/><br/><br/><br/><br/><br/>
                     <h1 className="center add_head fadeInLeft animated fast"><span className="topic1">Hire</span> <span className="topic">Request</span><hr className="bg-dark mb-4 w-25"/></h1><br/><br/>
                     <div className="www fadeIn animated slow delay-1s">
+                        <Card border="primary">
+                            <Card.Body>
                     <div className="container">
+
+
                         <form onSubmit={this.handleSubmit} autoComplete='off'>
                             <div className="green-text center">
                                 <h3>{this.state.updated ? "Updated Successfully" : null}</h3><br/><br/>
@@ -127,11 +139,12 @@ class ManageHireRequest1 extends Component {
                         </div>
                         <br/><hr/><h5 className="center">Container Pickup Details</h5> <br/>
                         <div className="row" >
-                            <div className="col-6">
-                                <h6 className="left container-fluid"><b className='blue-text'>Container Pickup Location </b> <input type="text" id="pickupLocation" value={this.state.pickupLocation} onChange={this.handleChange} required/></h6>
-                            </div>
+
                             <div className="col-6">
                                 <h6 className="left container-fluid"><b className='blue-text'>Container Pickup Date </b> <input type="text" id="pickupDatetime" onFocus={this.handleDate} value={this.state.pickupDatetime} onChange={this.handleChange} required/></h6>
+                            </div>
+                            <div className="col-6">
+                                <h6 className="left container-fluid"><b className='blue-text'>Container Pickup Location </b> <input type="text" id="pickupLocation" value={this.state.pickupLocation} onChange={this.handleChange} required/></h6>
                             </div>
                         </div>
                         <br/><hr/><h5 className="center">Cargo Details</h5> <br/>
@@ -203,8 +216,10 @@ class ManageHireRequest1 extends Component {
                                 <Link to="/User/UserManageTools"><button className="btn orange lighten-1 z-depth-5 btn1">Back</button></Link>
                             </div>
                             <br/><br/>
-                        </form>
-                    </div>
+                        </form></div>
+                            </Card.Body>
+                        </Card>
+
                     </div>
                 </div>
 
