@@ -27,7 +27,7 @@ const ImportRequests = ({importHireRequests, history}) => {
             pickupDatetime: moment(imp.pickupDatetime).format('MMM Do YYYY, h:mm a'), 
             cargoType: imp.cargoType, 
             vesselArrivalDatetime: moment(imp.vesselArrivalDatetime).format('MMM Do YYYY, h:mm a'), 
-            destination: imp.destination, 
+            destination: imp.destinationCity, 
             customerName: imp.customerName,
         })
     }       

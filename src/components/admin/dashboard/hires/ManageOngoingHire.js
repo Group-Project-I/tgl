@@ -63,77 +63,178 @@ class ManageOngoingHire extends Component {
                                 <h6 className="left"><b className='blue-text'>Container Type: </b> {this.props.hire[0].containerType}ft</h6>
                             </div>
                             <br/>
-                            <Card border="primary" className="text-center">
-                                <Card.Header color="blue"><h5>Container Pickup Details</h5></Card.Header>
-                                <Card.Body>
-                                <div className="row" style={{padding: '20px'}}>
-                                    <div className="col-6">
-                                        <h6 className="left"><b className='blue-text right-aligned'>Container Pickup Location: </b> {this.props.hire[0].pickupLocation}</h6>
-                                    </div>
-                                    <div className="col-6">
-                                        <h6 className="left"><b className='blue-text'>Container Pickup Date: </b> {moment(this.props.hire[0].pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
-                                    </div>
-                                </div>
-                                </Card.Body>
-                            </Card>
-                            <br/>
-                            <Card border="primary" className="text-center">
-                                <Card.Header color="blue"><h5>Cargo Details</h5></Card.Header>
-                                <Card.Body>
-                                <div className="row" style={{padding: '20px'}}>
-                                    <div className="col-6">
-                                        <h6 className="left"><b className='blue-text'>Cargo Type: </b> {this.props.hire[0].cargoType}</h6>
-                                    </div>
-                                    <div className="col-6">
-                                        <h6 className="left"><b className='blue-text'>Cargo Weight: </b> {this.props.hire[0].weight}</h6>
-                                    </div>
-                                </div>
-                                </Card.Body>
-                            </Card>
                             {this.props.hire[0].hireType === "import" ? 
-                                <div>
+                            <div>
+                                <Card border="primary" className="text-center">
+                                    <Card.Header color="blue"><h5>Container Pickup Details</h5></Card.Header>
+                                    <Card.Body>
+                                    <h6>Pickup Date and Time</h6>
+                                    <div className="row" style={{paddingTop: '40px'}}>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text right-aligned'>Container Pickup Date: </b> {moment(this.props.hire[0].pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                    <h6>Location</h6>
+                                    <div className="row" style={{paddingTop: '40px'}}>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text right-aligned'>Address Line 1: </b> {this.props.hire[0].containerPickupAddressLine1}</h6>
+                                        </div>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text right-aligned'>Address Line 2: </b> {this.props.hire[0].containerPickupAddressLine2}</h6>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text right-aligned'>City: </b> {this.props.hire[0].containerPickupCity}</h6>
+                                        </div>
+                                    </div>
+                                    </Card.Body>
+                                </Card>
+                                <br/>
+                                <Card border="primary" className="text-center">
+                                    <Card.Header color="blue"><h5>Cargo Details</h5></Card.Header>
+                                    <Card.Body>
+                                    <div className="row" style={{paddingTop: '40px'}}>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Cargo Type(s): </b> {this.props.hire[0].cargoType}</h6>
+                                        </div>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Net Weight: </b> {this.props.hire[0].netWeight}</h6>
+                                        </div>
+                                    </div>
+                                    </Card.Body>
+                                </Card>     
+                                <br/>
+                                <Card border="primary" className="text-center">
+                                    <Card.Header color="blue"><h5>Unloading Details</h5></Card.Header>
+                                    <Card.Body>
+                                    <div className="row" style={{paddingTop: '40px'}}>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Unloading Port: </b> {this.props.hire[0].unloadingPort}</h6>
+                                        </div>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Unloading Terminal: </b> {this.props.hire[0].unloadingTerminal}</h6>
+                                        </div>
+                                    </div>
+                                    <hr/><h6>Vessel Details</h6>
+                                    <div className="row" style={{paddingTop: '40px'}}>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Vessel: </b> {this.props.hire[0].vessel}</h6>
+                                        </div>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text center'>Vessel Arrival Date: </b> {moment(this.props.hire[0].vesselArrivalDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                                        </div>
+                                    </div>
+                                    </Card.Body>
+                                </Card>
+                                <br/>
+                                <Card border="primary" className="text-center">
+                                    <Card.Header color="blue"><h5>Destination Address</h5></Card.Header>
+                                    <Card.Body>
+                                    <div className="row" style={{paddingTop: '40px'}}>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Address Line 1: </b> {this.props.hire[0].destinationAddressLine1}</h6>
+                                        </div>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Address Line 2: </b> {this.props.hire[0].destinationAddressLine2}</h6>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>City: </b> {this.props.hire[0].destinationCity}</h6>
+                                        </div>
+                                    </div>
+                                    </Card.Body>
+                                </Card>
+                            </div> : 
+                            <div>
+                                <br/>
+                                <Card border="primary" className="text-center">
+                                    <Card.Header color="blue"><h5>Container Pickup Details</h5></Card.Header>
+                                    <Card.Body>
+                                    <div className="row" style={{paddingTop: '40px'}}>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Address Line 1: </b> {this.props.hire[0].containerPickupAddressLine1}</h6>
+                                        </div>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Address Line 2: </b> {this.props.hire[0].containerPickupAddressLine2}</h6>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>City: </b> {this.props.hire[0].containerPickupCity}</h6>
+                                        </div>
+                                    </div>
+                                    </Card.Body>
+                                </Card>
+                                <br/>
+                                <Card border="primary" className="text-center">
+                                    <Card.Header color="blue"><h5>Cargo Details</h5></Card.Header>
+                                    <Card.Body>
                                     <br/>
-                                    <Card border="primary" className="text-center">
-                                        <Card.Header color="blue"><h5>Unloading Details</h5></Card.Header>
-                                        <Card.Body>
-                                        <div className="row" style={{padding: '20px'}}>
-                                            <div className="col-6">
-                                                <h6 className="left"><b className='blue-text'>Unloading Port: </b> {this.props.hire[0].unloadingPort}</h6>
-                                            </div>
-                                            <div className="col-6">
-                                                <h6 className="left"><b className='blue-text center'>Vessel Arrival Date: </b> {moment(this.props.hire[0].vesselArrivalDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
-                                            </div>
+                                    <h6>Pick up Date and Time</h6>
+                                    <div className="row" style={{paddingTop: '40px'}}>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Cargo Pickup Date: </b> {moment(this.props.hire[0].pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
                                         </div>
-                                        <div className="row" style={{padding: '20px'}}>
-                                            <div className="col-6">
-                                                <h6 className="left"><b className='blue-text'>Destination: </b> {this.props.hire[0].destination}</h6>
-                                            </div>
-                                        </div>
-                                        </Card.Body>
-                                    </Card>
-                                </div> : 
-                                <div>
+                                    </div>
                                     <br/>
-                                    <Card border="primary" className="text-center">
-                                        <Card.Header color="blue"><h5>Loading Details</h5></Card.Header>
-                                        <Card.Body>
-                                        <div className="row" style={{padding: '20px'}}>
-                                            <div className="col-6">
-                                                <h6 className="left"><b className='blue-text'>Loading Port: </b> {this.props.hire[0].loadingPort}</h6>
-                                            </div>
-                                            <div className="col-6">
-                                                <h6 className="left"><b className='blue-text'>Loading Date: </b> {this.props.hire[0].loadingDatetime}</h6>
-                                            </div>
+                                    <hr/><h6>Location</h6>
+                                    <div className="row" style={{paddingTop: '40px'}}>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Address Line 1: </b> {this.props.hire[0].cargoLocationAddressLine1}</h6>
                                         </div>
-                                        </Card.Body>
-                                    </Card>
-                                </div> 
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Address Line 2: </b> {this.props.hire[0].cargoLocationAddressLine2}</h6>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>City: </b> {this.props.hire[0].cargoLocationCity}</h6>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <hr/>
+                                    <div className="row" style={{paddingTop: '40px'}}>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Cargo Type: </b> {this.props.hire[0].cargoType}</h6>
+                                        </div>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Net Weight: </b> {this.props.hire[0].netWeight}</h6>
+                                        </div>
+                                    </div>
+                                    </Card.Body>
+                                </Card>
+                                <br/>
+                                <Card border="primary" className="text-center">
+                                    <Card.Header color="blue"><h5>Loading Details</h5></Card.Header>
+                                    <Card.Body>
+                                    <div className="row" style={{paddingTop: '40px'}}>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Loading Port: </b> {this.props.hire[0].loadingPort}</h6>
+                                        </div>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Loading Terminal: </b> {this.props.hire[0].loadingTerminal}</h6>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Loading Date: </b> {this.props.hire[0].loadingDatetime}</h6>
+                                        </div>
+                                        <div className="col-6">
+                                            <h6 className="left"><b className='blue-text'>Vessel: </b> {this.props.hire[0].vessel}</h6>
+                                        </div>
+                                    </div>
+                                    </Card.Body>
+                                </Card>
+                            </div> 
                             }    
                             <br/>
                             <Card border="primary" className="text-center">
                                 <Card.Header color="blue"><h5>Customer</h5></Card.Header>
                                 <Card.Body>
-                                <div className="row" style={{padding: '20px'}}>
+                                <div className="row" style={{paddingTop: '40px'}}>
                                     <div className="col-3">
                                         <h6 className="left"><b className='blue-text'>Name: </b> {this.props.hire[0].customerName}</h6>
                                     </div>
@@ -153,7 +254,7 @@ class ManageOngoingHire extends Component {
                             <Card border="primary" className="text-center">
                                 <Card.Header color="blue"><h5>Driver On Hire</h5></Card.Header>
                                 <Card.Body>
-                                <div className="row" style={{padding: '20px'}}>
+                                <div className="row" style={{paddingTop: '40px'}}>
                                     <div className="col-3">
                                         <h6 className="left"><b className='blue-text'>Name: </b> {this.props.hire[0].driverName}</h6>
                                     </div>
@@ -173,7 +274,7 @@ class ManageOngoingHire extends Component {
                             <Card border="primary" className="text-center">
                                 <Card.Header color="blue"><h5>Vehicle On Hire</h5></Card.Header>
                                 <Card.Body>
-                                <div className="row" style={{padding: '20px'}}>
+                                <div className="row" style={{paddingTop: '40px'}}>
                                     <div className="col-6">
                                         <h6 className="left"><b className='blue-text'>Vehicle: </b> {this.props.hire[0].vehicleNo}</h6>
                                     </div>
@@ -187,7 +288,7 @@ class ManageOngoingHire extends Component {
                             <Card border="primary" className="text-center">
                                 <Card.Header color="blue"><h5>Special Notes</h5></Card.Header>
                                 <Card.Body>
-                                <div className="row" style={{padding: '20px'}}>
+                                <div className="row" style={{paddingTop: '40px'}}>
                                     <div className="col-12">
                                         <h6 className="left"><b className='blue-text'>Remarks: </b> {this.props.hire[0].remarks}</h6>
                                     </div>
