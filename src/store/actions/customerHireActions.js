@@ -10,7 +10,7 @@ export const addImportHires = (importHire) => {
             containerPickupCity: importHire.containerPickupCity,
             pickupDatetime: importHire.pickupDatetime,
             cargoType: importHire.cargoType,
-            neyWeight: importHire.netWeight,
+            netWeight: importHire.netWeight,
             unloadingPort: importHire.unloadingPort,
             unloadingTerminal: importHire.unloadingTerminal,
             vessel: importHire.vessel,

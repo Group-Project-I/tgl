@@ -183,8 +183,8 @@ background-size: cover;
 .managehire_form2{
   background-image: url("../src/img/taryn-kaahanui-pwP-EXdIQQY-unsplash.jpg");
   background-repeat: no-repeat;
-  padding-left: 300px;
-  padding-right: 300px;
+  /*padding-left: 300px;*/
+  /*padding-right: 300px;*/
   padding-bottom: 140px;
   height: auto;
   background-size: cover;
