@@ -9,7 +9,6 @@ import Card from "react-bootstrap/Card";
 class AddHireExport extends Component {
     state = {
         containerType: '20',
-        // pickupLocation: '',
         containerPickupAddressLine1: '',
         containerPickupAddressLine2: '',
         containerPickupCity: '',
