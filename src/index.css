@@ -43,6 +43,11 @@ code {
 
 
 }
+.dropdownItem{
+  color: #590000;
+  background-color: #590000;
+
+}
 .select1{
   background-color: rgba(255,255,255,0.6) !important;
   border: none;
