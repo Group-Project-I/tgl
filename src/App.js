@@ -35,7 +35,6 @@ import DisabledUsers from './components/admin/dashboard/DisabledUsers'
 
 //customer
 import CustomerAddHire from './components/customer/customerAddHire'
-import Dashboard from './components/customer/dashboard'
 import Profile from './components/customer/profileOld'
 import EditProfile from './components/customer/editProfile'
 import ResetPassword from './components/customer/authRecovery/resetPassword'
