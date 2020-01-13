@@ -82,6 +82,37 @@ export const sendInquiries =( message)=>{
     }
 
 }
+// export const addNotifications=(notification)=>{
+
+//   return(dispatch,getState,{getFirebase,getFirestore}) => {
+//     const state= getState()
+//     const auth= state.firebase.auth
+//     const firestore = getFirestore()
+//     firestore.collection('notifications').add({
+//       ...notification,
+//       to:auth.uid,
+//       from:'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2'
+//  /*change detail*/     
+//     }).then(() =>{
+//          dispatch ({type: 'SEND_MESSAGE',message})
+//     }).catch((error) => {
+//       dispatch({type:'SEND_MESSAGE_ERROR',error})
+//     })
+
+//   }
+
+// }
+// export const readNotication=()=>{
+
+//   return(dispatch,getState,{getFirebase,getFirestore}) => {
+//     const firestore = getFirestore();
+//     firestore.collection('notifications').doc(id).delete().then(() => {
+//         dispatch({type: 'NOTIFICATION READ AND DELETED'})
+//     }).catch(err => {
+//         dispatch({type: 'FAILED TO DELETE NOTIFICATION', err})
+//     })
+//   }
+// }
 
 // export const editHire = (customerId, data, records) => {
 //

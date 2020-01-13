@@ -53,8 +53,8 @@ class ResetEmail extends React.Component{
               </div>
               <hr/>
               <div className= { authUpdateError != 'Email Updated Successfully' ? "red-text" : "green-text"}>
-                        {this.state.updated ? authUpdateError : null}
-                    </div>
+                {this.state.updated ? authUpdateError : null}
+              </div>
             <div className='row main-section'>
               <div className='col-md-4 sub-section'>
                 <img src={require('../../../img/email.png')} style={{width:'400px',height:'500px',opacity:'0.7'}} alt="pwdImage"/>
@@ -88,6 +88,4 @@ const mapDispatchToProps = (dispatch) => {
     resetEmail : (email) => dispatch(resetEmail(email))
   }
 } 
-
-
  export default connect(mapStateToProps,mapDispatchToProps)(ResetEmail)
