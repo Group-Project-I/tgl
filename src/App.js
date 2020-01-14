@@ -48,6 +48,7 @@ import DeclinedHire from './components/customer/hires/CustDeclinedHires'
 import OngoingHire from './components/customer/hires/CustOngoingHire'
 import ManageHires from './components/customer/hires/CustManageHires'
 import ManageTools from './components/customer/hires/CustManageTools'
+import Chat from './components/admin/dashboard/chat/Chat'
 
 
 
@@ -99,6 +100,7 @@ function App(props) {
 
               <Route path='/admin/disabled' component={DisabledUsers}/>
               <Route path='/admin/hireCharges' component={PricingTable} />
+              <Route path="/admin/chat" component={Chat} />
 
               <Route path='/User/addHire' component={CustomerAddHire}/>
               <Route path='/User/Home' component={Homepage}/>

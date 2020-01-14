@@ -185,3 +185,16 @@ export const editCity = (details) => {
     }
 }
 
+export const sendMessage = (message, senderId, receiverId) => {
+    return(dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        firestore.collection('chats').doc(receiverId).update({
+            messages: firebase.firestore.FieldValue.arrayUnion({
+                message: message,
+                sender: senderId,
+                time: new Date()
+            })
+        })
+    }
+}
+
