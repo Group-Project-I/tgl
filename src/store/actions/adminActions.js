@@ -50,7 +50,7 @@ export const addCustomer = (newCustomer) => {
             dispatch({type: 'CUSTOMER_ADDED'})
             
         }).catch(err => {
-            dispatch({type: 'FAILED_TO_ADD_CUSTOMER', err})
+            dispatch({type:'FAILED_TO_ADD_CUSTOMER', err})
         })
     }
 }

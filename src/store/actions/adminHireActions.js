@@ -1,3 +1,6 @@
+// import { FirebaseStorage } from "@firebase/storage-types";
+import { auth } from "firebase";
+
 export const addImportHire = (importHire) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
@@ -31,13 +34,15 @@ export const addImportHire = (importHire) => {
         }).catch((err) => {
             dispatch({type: 'ADD_IMPORT_ERROR', err});
         })
-        
+
 
     }
 };
 
 export const addExportHire = (exportHire) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
+        const state= getState()
+        const auth= state.firebase.auth
         const firestore = getFirestore();
         firestore.collection('hires').add({
             containerType: exportHire.containerType,
@@ -70,6 +75,7 @@ export const addExportHire = (exportHire) => {
             dispatch({type: 'ADD_EXPORT_ERROR', err});
         })
 
+       
     }
 };
 
@@ -88,6 +94,18 @@ export const acceptHireRequest = (id, hireRequest) => {
         }).catch((err) => {
             dispatch({type: 'ERROR_UPDATING_HIRE_REQUEST', err})
         })
+        // firestore.collection('notifications').add({
+        //     to:auth.uid,
+        //     from:'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
+        //     type:'hire accepted',
+        //     data:"Hire Accepted",
+        //     link:'/User/UserManageTools',
+        //     createdAt:new Date()}).then(() => {
+        //         dispatch({type: 'Hire_Accept_Notication_Added'});
+        //     }).catch((err) => {
+        //         dispatch({type: 'Notificaton_Add_ERROR', err});
+        //     })
+
     }
 }
 
