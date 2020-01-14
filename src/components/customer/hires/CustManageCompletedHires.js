@@ -9,6 +9,7 @@ import {Link} from "react-router-dom";
 import Particles from 'react-particles-js';
 import { Squares } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
+import Card from "react-bootstrap/Card";
 
 class ManageCompletedHires extends Component {
 
@@ -571,6 +572,146 @@ class ManageCompletedHires extends Component {
                 ) :
                 <div className="completehire">
                     <br/><br/><br/><br/>
+                    <Card border="primary" className="text-center">
+                        <Card.Header color="blue"><h4>Hire Status</h4></Card.Header>
+                        <Card.Body>
+                            <br/><br/>
+                    {this.props.hire[0].hireType === "import" ?
+                        <div style={{margin: 'auto'}}>
+                            <div id="progress-bar">
+                                <div className="bar"></div>
+
+                                <div className="circle-holder">
+                                    <div className="circle done">
+                                        <i className="fas fa-shipping-fast"></i>
+                                        <span className="status">Truck Dispatched</span>
+                                    </div>
+
+                                    <div className="circle">
+                                        <i className="fas fa-warehouse"></i>
+                                        <span className="status">At Pickup location</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i className="fas fa-truck-loading"></i>
+                                        <span className="status">Cargo loaded</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i id="result-icon"
+                                           className=" ml-19 fas fa-truck-moving"></i>
+                                        <span id="result-text"
+                                              className="status ml-0">In Transit</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i id="result-icon" className="fas fa-map-marker-alt"></i>
+                                        <span id="result-text"
+                                              className="status ml-0">Destination Reached</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i id="result-icon" className=" ml-19 fas fa-ship"></i>
+                                        <span id="result-text"
+                                              className="status ml-0">Hire Completed</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/><br/><br/><br/>
+                            {/*<div*/}
+                            {/*    style={{marginLeft:'auto',marginRight:'auto', marginTop:'100px', width: '600px', textAlign: 'center'}}*/}
+                            {/*>*/}
+                            {/*    <div>*/}
+                            {/*        <input type="radio" name="shipment" value="0"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Kabul</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="1"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Sevk</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="2"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Dağıtım</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="3"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Ziyaret</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="4"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Teslim</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="5"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">İade</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="6"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Hasar</label>*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
+                        </div> :
+                        <div style={{margin: 'auto'}}>
+                            <div id="progress-bar">
+                                <div className="bar"></div>
+
+                                <div className="circle-holder">
+                                    <div className="circle done">
+                                        <i className="fas fa-shipping-fast"></i>
+                                        <span className="status">Truck Dispatched</span>
+                                    </div>
+
+                                    <div className="circle">
+                                        <i className="fas fa-warehouse"></i>
+                                        <span className="status">At Container Pickup location</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i id="result-icon" className=" ml-19 fas fa-truck-moving"></i>
+                                        <span id="result-text"
+                                              className="status ml-0">In Transit</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i className="fas fa-truck-loading"></i>
+                                        <span className="status">Cargo loaded</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i id="result-icon" className=" ml-19 fas fa-truck-moving"></i>
+                                        <span id="result-text"
+                                              className="status ml-0">In Transit</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i id="result-icon" className="fas fa-map-marker-alt"></i>
+                                        <span id="result-text"
+                                              className="status ml-0">Loading Port Reached</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i id="result-icon" className=" ml-19 fas fa-ship"></i>
+                                        <span id="result-text"
+                                              className="status ml-0">Hire Completed</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/><br/><br/><br/>
+                            {/*<div*/}
+                            {/*    style={{marginLeft:'auto',marginRight:'auto', marginTop:'100px', width: '600px', textAlign: 'center'}}*/}
+                            {/*>*/}
+                            {/*    <div>*/}
+                            {/*        <input type="radio" name="shipment" value="0"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Kabul</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="1"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Sevk</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="2"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Dağıtım</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="3"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Ziyaret</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="4"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Teslim</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="5"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">İade</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="6"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Hasar</label>*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
+                        </div>
+                    }
+                        </Card.Body>
+                    </Card>
                     <div className="input-field center">
 
                         <Link to="/User/UserManageTools"><button className="btn orange lighten-1 z-depth-5 btn1">Back</button></Link>
