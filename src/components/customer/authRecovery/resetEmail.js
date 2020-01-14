@@ -12,7 +12,7 @@ class ResetEmail extends React.Component{
   }
 
 //   componentWillReceiveProps(nextProps) {
-        
+//
 //     if(this.props.customer){
 //         this.setState({
 //             ...nextProps.customer[0],updated: !this.state.updated
