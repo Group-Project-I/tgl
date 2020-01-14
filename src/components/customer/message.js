@@ -35,11 +35,11 @@ handleSubmit = (e) => {
     render(){
         const {messages} =this.props
         return(
-            <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.2' ,margin:'0',padding:'0', height:'1000px'}}>
+            // <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.2' ,margin:'0',padding:'0', height:'1000px'}}>
 
             <div className="container">
-                 <br/><br/><br/><br/>
-                 <Card className={'user-card'} style={{backgroundColor:' #dde6e6',opacity:'1'}}>
+                 <br/><br/>
+                 <div className={'user-card'} style={{ opacity:'1'}}>
                  <div className='cust-heading ' >
                     <hr/>
                     <div style={{padding:'0 20px '}}>
@@ -60,8 +60,8 @@ handleSubmit = (e) => {
                     </div>
        
                     <div className='col-md-8 ' style={{ width: '18rem' ,padding:'0 70px'}}>
-                        <Card   style={{height:'600px',backgroundColor:'#aad2d1'}}>
-                            <Card.Body style={{height:'500px'}}>
+                        <Card   style={{height:'400px',backgroundColor:'#aad2d1'}}>
+                            <Card.Body style={{height:'300px'}}>
 
                             </Card.Body>
                             <Card.Footer style={{height:'100px'}}>
@@ -77,11 +77,12 @@ handleSubmit = (e) => {
                                              
                         </Card>
                     </div>
+                   <hr/>
                 </div>
                 <hr/>
-                </Card>
+                </div>
             </div>
-            </div>
+            // </div>
         )
     }
 }

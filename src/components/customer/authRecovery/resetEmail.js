@@ -41,10 +41,10 @@ class ResetEmail extends React.Component{
     return(
 
     //   <div style={{  backgroundColor: "#dee7e7 ", margin:'0',padding:'0' ,marginBottom:'0'}}>
-    <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.2' ,margin:'0',padding:'0',height:'1000px'}}>
+    // <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.2' ,margin:'0',padding:'0',height:'1000px'}}>
     <div className='container'>
-        <br/><br/><br/><br/>
-        <Card className={'user-card'}  >
+        
+        <div className={'user-card'}  >
             <div className='cust-heading' >
               <hr/>
               <div style={{padding:'0 20px '}}>
@@ -70,9 +70,9 @@ class ResetEmail extends React.Component{
               </div>
             </div>
           </div>
-        </Card>
+        </div>
         </div> 
-        </div>  
+        // </div>  
         
     )
   }

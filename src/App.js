@@ -36,7 +36,7 @@ import DisabledUsers from './components/admin/dashboard/DisabledUsers'
 //customer
 import CustomerAddHire from './components/customer/customerAddHire'
 import Dashboard from './components/customer/dashboard'
-import Profile from './components/customer/profile'
+import Profile from './components/customer/profileOld'
 import EditProfile from './components/customer/editProfile'
 import ResetPassword from './components/customer/authRecovery/resetPassword'
 import PasswordChange from './components/customer/authRecovery/resetPassword'
@@ -48,7 +48,8 @@ import DeclinedHire from './components/customer/hires/CustDeclinedHires'
 import OngoingHire from './components/customer/hires/CustOngoingHire'
 import ManageHires from './components/customer/hires/CustManageHires'
 import ManageTools from './components/customer/hires/CustManageTools'
-
+import Chat from './components/admin/dashboard/chat/Chat'
+import UserProfile from './components/customer/userProfile'
 
 
 function App(props) {
@@ -99,13 +100,14 @@ function App(props) {
 
               <Route path='/admin/disabled' component={DisabledUsers}/>
               <Route path='/admin/hireCharges' component={PricingTable} />
+              <Route path="/admin/chat" component={Chat} />
 
               <Route path='/User/addHire' component={CustomerAddHire}/>
               <Route path='/User/Home' component={Homepage}/>
               <Route path='/User/resetPassword' component={ResetPassword}/>
               <Route path ='/User/messages' component={Message}/>
               <Route exact path='/User/profile' component={Profile}/>
-              <Route exact path='/User/profile/:id' component={EditProfile}/>
+              <Route exact path='/User/profile/:id' component={UserProfile}/>
               <Route path ='/forgetPassword' component={PasswordChange}/>
               <Route path ='/resetEmail' component={ResetEmail}/>
 
