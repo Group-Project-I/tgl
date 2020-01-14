@@ -1,50 +1,62 @@
 import React from 'react'
-import {NavLink,Link} from 'react-router-dom'
-import {Button, Nav, Navbar,Dropdown} from 'react-bootstrap'
+import {NavLink} from 'react-router-dom'
+import {Button, Nav, Navbar,NavDropdown} from 'react-bootstrap'
 import {connect} from 'react-redux'
 import {signOut} from '../../store/actions/authActions'
+import {firestoreConnect} from 'react-redux-firebase'
+import {compose} from 'redux'
 
-const SignedInLinks = (props) => {
-
-    return(
+class SignedInLinks extends React.Component{
+    render(){
+        const {auth} = this.props
+   return(
+        
         <Navbar bg="dark" variant="dark" style={{ minWidth: 700, position: 'fixed' }}>
             <div className="container" >
                 
-                <NavLink to='/'style={{ minWidth: 350 }} ><h3>Trans Global Logistics</h3></NavLink>
-                <Nav className="justify-content-end mr-auto" style={{ width: "80%" }}>
-                    <Nav.Link><Dropdown>
-                        <Dropdown.Toggle variant="dark" id="dropdown-basic"> Hires   </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                        <Dropdown.Item  ><NavLink to='/User/addHire'style={{textDecoration: 'none',color:'black'}} >+Add Hire</NavLink></Dropdown.Item>
-                        <Dropdown.Item><NavLink to='/User/UserManageTools' style={{textDecoration: 'none' ,color:'black'}}>Manage Hire</NavLink></Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown></Nav.Link>
-                    <Nav.Link><NavLink to='/' style={{textDecoration: 'none'}}>Home</NavLink></Nav.Link>
-                    <Nav.Link><NavLink to='/about' style={{textDecoration: 'none'}}>About</NavLink></Nav.Link>
-                    <Nav.Link><NavLink to='/services' style={{textDecoration: 'none'}}>Services</NavLink></Nav.Link>
-                    <Nav.Link><NavLink to='/contact'style={{textDecoration: 'none'}}>Contact</NavLink></Nav.Link>
-                    <Nav.Link><Dropdown >
-                        <Dropdown.Toggle variant="dark" id="dropdown-basic">
-                        <i class="fas fa-user-circle"></i></Dropdown.Toggle>
-                        <Dropdown.Menu>
-                        <Dropdown.Item ><NavLink to='/User/profile' style={{textDecoration: 'none',color:'black'}}>Profile</NavLink></Dropdown.Item>
-                        <Dropdown.Item ><NavLink to='/User/messages' style={{textDecoration: 'none',color:'black'}}>Messages</NavLink></Dropdown.Item>
-                        <Dropdown.Item ><NavLink to='/'><Button onClick={props.signOut}style={{textDecoration: 'none'}}>Logout</Button></NavLink></Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown></Nav.Link>
-                    {/* <Nav.Link> <NavLink to='/'><Button onClick={props.signOut} style={{textDecoration: 'none'}}>Logout</Button></NavLink></Nav.Link> */}
-                    <Nav.Link><NavLink to='/' style={{textDecoration: 'none' ,paddingTop:'20px'}}><i class="fas fa-bell"></i></NavLink></Nav.Link>
+            <NavLink to='/'style={{ minWidth: 350 }} ><h3>Trans Global Logistics</h3></NavLink>
+            <Nav className="justify-content-end mr-auto" style={{ width: "85%" }}>
+                <NavDropdown title='Hires' id="basic-nav-dropdown">
+                    <NavDropdown.Item><NavLink to='/User/addHire'style={{textDecoration: 'none',color:'black'}} >Add Hire</NavLink></NavDropdown.Item>
+                    <NavDropdown.Item><NavLink to='/User/UserManageTools' style={{textDecoration: 'none' ,color:'black'}}>Manage Hire</NavLink></NavDropdown.Item>
+                </NavDropdown>
+                    
+                <Nav.Link><NavLink to='/' style={{textDecoration: 'none',color:'#C0C0C0'}}>Home</NavLink></Nav.Link>
+                <Nav.Link><NavLink to='/about' style={{textDecoration: 'none',color:'#C0C0C0'}}>About</NavLink></Nav.Link>
+                <Nav.Link><NavLink to='/services' style={{textDecoration: 'none',color:'#C0C0C0'}}>Services</NavLink></Nav.Link>
+                <Nav.Link><NavLink to='/contact'style={{textDecoration: 'none',color:'#C0C0C0'}}>Contact</NavLink></Nav.Link>
+                
+                <NavDropdown title={<i class="fas fa-user-circle"></i>} id="basic-nav-dropdown">
+                <NavDropdown.Item><NavLink to={'/User/profile/' + auth.uid} style={{textDecoration: 'none',color:'black'}}>Profile</NavLink></NavDropdown.Item>
+                <NavDropdown.Item><NavLink to='/User/messages' style={{textDecoration: 'none',color:'black'}}>Messages</NavLink></NavDropdown.Item>
+                <NavDropdown.Item><NavLink to={'/'}><Button onClick={this.props.signOut}>Logout</Button></NavLink></NavDropdown.Item>
+                </NavDropdown>
+                <Nav.Link><NavLink to='/' style={{textDecoration: 'none' ,paddingTop:'20px',color:'#C0C0C0'}}><i class="fas fa-bell"></i></NavLink></Nav.Link>
 
-                </Nav>
+            </Nav>
             </div> 
         </Navbar>       
     )
+    }
+    
 }
+const mapStateToProps=(state)=>{
+    //console.log(state);
+    return{
+        auth: state.firebase.auth,
+        customers: state.firestore.ordered.customers
 
+    }
+}
 const mapDispatchToProps = (dispatch) => {
     return {
         signOut: () => dispatch(signOut())
     }
 }
 
-export default connect(null,mapDispatchToProps)(SignedInLinks);
+export default compose(
+    connect(mapStateToProps,mapDispatchToProps),
+    firestoreConnect([
+        {collection: 'customers'}
+    ])
+)(SignedInLinks)

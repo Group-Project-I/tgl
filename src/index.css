@@ -14,7 +14,7 @@ code {
     monospace;
 }
 .user-card{
-  background-color: #81cbdd;
+  ;
 
 }
 .content{
@@ -59,9 +59,9 @@ code {
 
 .form1{
 
-  background-color: rgba(255,255,255,0.8) !important;
-  margin-left: 140px;
-  margin-right: 140px;
+  background-color: rgba(255,255,255,0.5) !important;
+  /*margin-left: 140px;*/
+  /*margin-right: 140px;*/
   border-radius: 20px;
 
 
@@ -71,10 +71,11 @@ code {
 .form2{
   background-color: transparent;
   opacity: 0.5;
-  margin-left: 25px;
-  margin-right: 25px;
-  padding-left: 30px;
-  padding-right: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
+  /*padding-left: 10px;*/
+  /*padding-right: 10px;*/
+  padding-bottom: 10px;
 
 
 
@@ -93,26 +94,6 @@ code {
 }
 .topic1{
   color: #0056b3;
-}
-.tablist{
-  /*background-color: rgba(0,255,255,0.4) !important;*/
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  color: white;
-
-
-
-}
-
-.image1{
-  background-image: url("../src/img/bg2.jpg");
-
-  padding-bottom: 200px;
-  height: 1000px;
-
-  background-repeat: no-repeat;
 }
 ::placeholder{
   color: gray !important;
@@ -174,9 +155,11 @@ code {
 
 
   background-image: url("../src/img/index2.jpg");
-
+  /*background-repeat: no-repeat;*/
+background-size: cover;
   padding-bottom: 250px;
-  background-repeat: no-repeat;
+  height: 1050px;
+
 
 }
 .badge1{
@@ -195,16 +178,19 @@ code {
   padding-bottom: 140px;
   height: auto;
   background-size: cover;
+
 }
 .managehire_form2{
   background-image: url("../src/img/taryn-kaahanui-pwP-EXdIQQY-unsplash.jpg");
   background-repeat: no-repeat;
-  padding-left: 300px;
-  padding-right: 300px;
+  /*padding-left: 300px;*/
+  /*padding-right: 300px;*/
   padding-bottom: 140px;
   height: auto;
   background-size: cover;
+
 }
+
 
 .completehire{
   /*background-image: url("../src/img/taryn-kaahanui-pwP-EXdIQQY-unsplash.jpg");*/
@@ -220,9 +206,10 @@ code {
   background-color: rgba(255,255,255,0.8) !important;;
   border-radius: 30px;
   padding-top: 50px;
-  padding-left: 70px;
-  padding-right: 70px;
+  /*padding-left: 70px;*/
+  /*padding-right: 70px;*/
   padding-bottom: 50px;
+
 }
 
 .ml-auto .nav-link{

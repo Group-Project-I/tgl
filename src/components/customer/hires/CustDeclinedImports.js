@@ -8,9 +8,10 @@ const DeclinedImports = ({declinedImportHires, history}) => {
     const columns = [
         { title: "Type", field: "containerType", width: 75, align: "center"},
         { title: "Pickup Date", field: "pickupDatetime", headerFilter:"input"},
+        { title: "Pickup City", field: "containerPickupCity", headerFilter:"input", width: 150},
         { title: "Cargo Type", field: "cargoType", headerFilter:"input", width: 150},
         { title: "Vessel Arrival Date", field: "vesselArrivalDatetime", headerFilter:"input"},
-        { title: "Destination", field: "destination", headerFilter:"input", width: 150},
+        { title: "Destination City", field: "destinationCity", headerFilter:"input", width: 150},
         {title:"Status",align: "center", field:"hireStatus", formatter:"traffic", formatterParams:{
                 color:["red"],
             }}
@@ -23,9 +24,10 @@ const DeclinedImports = ({declinedImportHires, history}) => {
                 id: imp.id,
                 containerType: imp.containerType,
                 pickupDatetime: moment(imp.pickupDatetime).format('MMM Do YYYY, h:mm:ss a'),
+                containerPickupCity: imp.containerPickupCity,
                 cargoType: imp.cargoType,
                 vesselArrivalDatetime: moment(imp.vesselArrivalDatetime).format('MMM Do YYYY, h:mm:ss a'),
-                destination: imp.destination,
+                destinationCity: imp.destinationCity,
                 hireStatus: imp.hireStatus === "declined" ? 1 : 2
             })
         }
