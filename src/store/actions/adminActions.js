@@ -189,11 +189,21 @@ export const sendMessage = (message, senderId, receiverId) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
         firestore.collection('chats').doc(receiverId).update({
+            read: receiverId,
             messages: firebase.firestore.FieldValue.arrayUnion({
                 message: message,
                 sender: senderId,
                 time: new Date()
             })
+        })
+    }
+}
+
+export const readMessage = (messageId) => {
+    return(dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        firestore.collection('chats').doc(messageId).update({
+            read: ""
         })
     }
 }

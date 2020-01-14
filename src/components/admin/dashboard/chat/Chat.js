@@ -3,8 +3,9 @@ import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import moment from 'moment'
-import ViewChat from './ViewChat'
 import {sendMessage} from '../../../../store/actions/adminActions'
+import {readMessage} from '../../../../store/actions/adminActions'
+import {MdLens, MdSend} from 'react-icons/md'
 
 class Chat extends React.Component {
 
@@ -29,15 +30,16 @@ class Chat extends React.Component {
     // }
 
     chatClick = (chat) => {
-        console.log('boom', chat)
         this.setState({
             chatId: chat.id,
             messages: chat.messages,
-            // chatData: chat,
-            
         })
-        if(this.state.chatId){
-        console.log('cht', this.state)}
+        this.props.chats.forEach(function(obj){
+            document.getElementById(obj.id).className = "chat_list"
+        })
+        document.getElementById(chat.id).className = "chat_list active_chat"
+
+        this.props.readMessage(chat.id)
     }
 
     handleChange = (e) => {
@@ -52,8 +54,6 @@ class Chat extends React.Component {
         if(this.state.chatId){
             this.props.sendMessage(this.state.newMessage, this.props.auth.uid, this.state.chatId)
         }
-        // this.scrollToBottom()
-
     }
 
     componentWillReceiveProps(nextProps) {
@@ -63,23 +63,18 @@ class Chat extends React.Component {
             x.forEach(function(obj){
                 msgs = obj.messages
             })
-            // console.log('buhahaha', msgs)
+
             this.setState({
                 messages: msgs,
                 loading: 0
             })
         }
-        // this.scrollToBottom();
       }
-    // componentDidMount(){
-    //     this.scrollToBottom();
-    // }
 
     render() {
 
         const {chats} = this.props
-        var chatData =this.state.messages
-        console.log('chat data',chatData)
+        // var chatData =this.state.messages
 
         return(
             <div id="content" className="container-fluid" role="main">
@@ -103,11 +98,11 @@ class Chat extends React.Component {
                         <div className="inbox_chat">
                             {chats && chats.map(chat =>{
                                 return(
-                                    <div className="chat_list active_chat" onClick={() => this.chatClick(chat)} onMouseDown = {() => this.chatClick(chat)} onMouseUp = {() => this.chatClick(chat)}>
+                                    <div className="chat_list" id={chat.id} onClick={() => this.chatClick(chat)} onMouseDown = {() => this.chatClick(chat)} onMouseUp = {() => this.chatClick(chat)}>
                                     <div className="chat_people">
                                         <div className="chat_img"> <img className="chatImg" src="https://ptetutorials.com/images/user-profile.png" alt="sunil" /> </div>
                                         <div className="chat_ib">
-                                        <h5>{chat.userName}<span className="chat_date">{moment(chat.messages[chat.messages.length - 1].time.toDate()).format('MMM Do YYYY')}</span></h5>
+                                        <h5>{chat.userName}<span className="chat_date">{moment(chat.messages[chat.messages.length - 1].time.toDate()).format('MMM Do YYYY')}</span>{chat.read === 'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2' ? <MdLens style={{paddingLeft: '3px', color:'green'}}></MdLens> : null}</h5>
                                         <p>{chat.messages[chat.messages.length - 1].message}</p>
                                         </div>
                                     </div>
@@ -139,9 +134,6 @@ class Chat extends React.Component {
                                     
                                 )
                             })}
-                            {/* <div style={{ float:"left", clear: "both" }}
-                                ref={(el) => { this.messagesEnd = el; }}>
-                            </div> */}
                         </div>
                         <form onSubmit={this.handleSubmit}>
                             <div className="type_msg">
@@ -170,7 +162,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        sendMessage: (message, senderId, receiverId) => dispatch(sendMessage(message, senderId, receiverId)) 
+        sendMessage: (message, senderId, receiverId) => dispatch(sendMessage(message, senderId, receiverId)),
+        readMessage: (messageId) => dispatch(readMessage(messageId))  
     }
 }
 
