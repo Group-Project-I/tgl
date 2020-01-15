@@ -98,3 +98,40 @@ export const updatePassword = (oldPassword, newPassword) => {
         })
     }
 }
+// reset customer email
+export const resetEmail =(newEmail,password) =>{
+    return(dispatch ,getState,{getFirebase})=>{
+      var firebase=getFirebase()
+      var user = firebase.auth().currentUser;
+      var credentials = firebase.auth.EmailAuthProvider.credential(user.email, password)
+      console.log(credentials)
+      user.reauthenticateWithCredential(credentials).then(() => {
+        var user = firebase.auth().currentUser;
+        user.updateEmail(newEmail).then(()=> {
+          // Update successful.
+            dispatch ({type: 'EMAIL_UPDATED'})
+        }).catch((error)=> {
+          // An error happened.
+          dispatch ({type: 'Failed to update email',error})
+        });
+      }).catch((err) => {
+        dispatch({type: 'FAILED_TO_REAUTHENTICATE', err})
+    })
+    }
+  }
+  
+  /*action creator for  forget passsword*/
+  export const recoverPassword =(creds) => {
+    return(dispatch ,getState,{getFirebase,getFirestore})=>{
+      var firebase=getFirebase();
+      var auth =firebase.auth();
+      //test the function
+      // var email='thilini96ucsc@gmail.com';
+      var state = getState();
+      console.log(state)
+      auth.sendPasswordResetEmail(creds.email).then(() =>{
+              }).catch((error) => {
+           dispatch({type:'PASSWORD_RESET_ERROR',error})
+       })
+    }
+  }

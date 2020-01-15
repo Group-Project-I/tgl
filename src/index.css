@@ -7,7 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
+.small-menu-classname{
+  background-color: #212529;
+  color:'black';
+}
 p{
   text-align:justify;
 }

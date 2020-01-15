@@ -38,7 +38,7 @@ import CustomerAddHire from './components/customer/customerAddHire'
 import Profile from './components/customer/profileOld'
 import EditProfile from './components/customer/editProfile'
 import ResetPassword from './components/customer/authRecovery/resetPassword'
-import PasswordChange from './components/customer/authRecovery/resetPassword'
+import ChangePassword from './components/customer/authRecovery/changePassword'
 import ResetEmail from './components/customer/authRecovery/resetEmail'
 import Message from './components/customer/message'
 import CompletedHires from './components/customer/hires/CustCompletedHires'
@@ -102,10 +102,11 @@ function App(props) {
               <Route path='/User/addHire' component={CustomerAddHire}/>
               <Route path='/User/Home' component={Homepage}/>
               <Route path='/User/resetPassword' component={ResetPassword}/>
+              <Route path='/User/changePassword' component={ChangePassword}/>
               <Route path ='/User/messages' component={Message}/>
               <Route exact path='/User/profile' component={Profile}/>
               <Route exact path='/User/profile/:id' component={UserProfile}/>
-              <Route path ='/forgetPassword' component={PasswordChange}/>
+              {/* <Route path ='/forgetPassword' component={PasswordChange}/> */}
               <Route path ='/resetEmail' component={ResetEmail}/>
 
               <Route path='/User/UserHireRequests' component={HireRequest}/>

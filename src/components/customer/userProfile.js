@@ -8,6 +8,7 @@ import EditProfile from './editProfile'
 import Profile from './profile'
 import Message from './message'
 import ResetEmial from './authRecovery/resetEmail'
+import ChangePassword from './authRecovery/changePassword'
 import {Redirect} from 'react-router-dom'
 import { Squares } from 'react-activity'
 import image from '../../img/index4.jpg'
@@ -60,7 +61,11 @@ class UserProfile extends Component {
                         <Message/>
                     </TabPanel>
                     <TabPanel>
-                        <ResetEmial/>
+                        <div className='row container-fluid'>
+                        <div className='col-md-6'><ResetEmial/></div>
+                        <div className='col-md-6'><ChangePassword/></div>
+                        </div>
+                        
                     </TabPanel>
                 </Tabs>
                 </div>  

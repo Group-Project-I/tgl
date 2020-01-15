@@ -1,13 +1,13 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import { Card } from 'react-bootstrap'
 import {connect } from 'react-redux'
-import {resetEmail} from '../../../store/actions/customerActions'
+import {resetEmail} from '../../../store/actions/authActions'
 import image from '../../../img/bgImg7.jpg'
 
 class ResetEmail extends React.Component{
   state={
     email:'',
+    password:'',
     updated: null,
   }
 
@@ -28,8 +28,8 @@ class ResetEmail extends React.Component{
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(this.state);
-    this.props.resetEmail(this.state);
+    console.log("btn clicked");
+    this.props.resetEmail(this.state.email,this.state.password);
     this.setState   ({
       updated: 1
   })
@@ -44,35 +44,36 @@ class ResetEmail extends React.Component{
     // <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.2' ,margin:'0',padding:'0',height:'1000px'}}>
     <div className='container'>
         
-        <div className={'user-card'}  >
+        <div className={'user-card text-center' }  >
             <div className='cust-heading' >
               <hr/>
               <div style={{padding:'0 20px '}}>
               <h1 style={{float:'left'}}> EMAIL RECOVERY</h1> 
-                <Link to='/User/profile'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/> 
               </div>
-              <hr/>
+              <hr/><br/><br/>
               <div className= { authUpdateError != 'Email Updated Successfully' ? "red-text" : "green-text"}>
                 {this.state.updated ? authUpdateError : null}
-              </div>
+              </div><br/>
             <div className='row main-section'>
-              <div className='col-md-4 sub-section'>
-                <img src={require('../../../img/email.png')} style={{width:'400px',height:'500px',opacity:'0.7'}} alt="pwdImage"/>
-              </div>
-              <div className='col-md-6 sub-section content'style={{paddingLeft:'100px'}} >
-                <p style={{textAlign:'justify' }}>Please enter your new email address below to  recover your account</p>
+              
+              <div className='col sub-section content' >
                 <form onSubmit={this.handleSubmit}>
-                  <div className='form-group'>
-                    <input placeholder=' Email Address' id ='email' name='email' type='text' onChange={this.handleChange} required/>
+                  <div className='input-field row'>
+                    <input placeholder='New Email Address' id ='email' name='email' type='text' onChange={this.handleChange} required/>
                   </div>
-                  <button className='btn d-flex justify-content-center' type ='submit'>Reset Email</button>
+                  <div className="input-field row">
+                            <input placeholder="Password" type="password" id="password" onChange={this.handleChange} required />
+                        </div><br/>
+                  <div className='input-field'>
+                  <button className='btn blue lighten-1 z-depth-5 btn1' type ='submit'>Submit</button>
+                  </div>
                 </form>
               </div>
             </div>
           </div>
         </div>
         </div> 
-        // </div>  
+        //  </div>  
         
     )
   }
@@ -85,7 +86,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return{
-    resetEmail : (email) => dispatch(resetEmail(email))
+    resetEmail : (email,password) => dispatch(resetEmail(email,password))
   }
 } 
  export default connect(mapStateToProps,mapDispatchToProps)(ResetEmail)

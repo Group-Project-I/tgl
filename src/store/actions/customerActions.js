@@ -7,20 +7,26 @@ export const clean = () => ({
 });
 // reset email
 
-export const resetEmail =(creds) =>{
+export const resetEmail =(newEmail,password) =>{
   return(dispatch ,getState)=>{
     var user = firebase.auth().currentUser;
-    user.updateEmail(creds.email).then(()=> {
-      // Update successful.
-         dispatch ({type: 'RESET_EMAIL_SUCCESS'})
-    }).catch((error)=> {
-      // An error happened.
-      dispatch ({type: 'RESET_EMAIL_FAILED',error})
-    });
+    var credentials = firebase.auth.EmailAuthProvider.credential(user.email, password)
+    user.reauthenticateWithCredential(credentials).then(() => {
+      var user = firebase.auth().currentUser;
+      user.updateEmail(newEmail).then(()=> {
+        // Update successful.
+          dispatch ({type: 'RESET_EMAIL_SUCCESS'})
+      }).catch((error)=> {
+        // An error happened.
+        dispatch ({type: 'RESET_EMAIL_FAILED',error})
+      });
+    }).catch((err) => {
+      dispatch({type: 'FAILED_TO_REAUTHENTICATE', err})
+  })
   }
 }
 
-// recover passsword
+/*action creator for  forget passsword*/
 export const recoverPassword =(creds) => {
   return(dispatch ,getState,{getFirebase,getFirestore})=>{
     var firebase=getFirebase();
