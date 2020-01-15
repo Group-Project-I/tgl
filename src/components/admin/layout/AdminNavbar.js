@@ -59,8 +59,8 @@ export class AdminNavbar extends Component{
   
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <Nav className="justify-content-end mr-auto" style={{ width: "85%" }}>
-            <Nav.Link><NavLink to='/admin/addhire' style={{textDecoration: 'none'}}>+Add Hire</NavLink></Nav.Link>
-            <Nav.Link><NavLink to={'/admin/chat/' + this.props.auth.uid}><FaEnvelope size={28}/></NavLink></Nav.Link>
+            <Nav.Link as={NavLink} to='/admin/addhire' style={{textDecoration: 'none'}}>+Add Hire</Nav.Link>
+            <Nav.Link as={NavLink} to={'/admin/chat/' + this.props.auth.uid}><FaEnvelope size={28}/></Nav.Link>
             <NavDropdown title={notifications.length === 0 ? <MdNotifications size={28}/> : <MdNotificationsActive size={28}/>} id="basic-nav-dropdown" disabled={!notifications.length}>
               {notifications && notifications.map(notification => {
                 return(

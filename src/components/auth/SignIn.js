@@ -23,7 +23,7 @@ class SignIn extends Component {
     }
 
     render() {
-        const {authError, user, auth} = this.props
+        const {authError, user} = this.props
 
         if (user.userType === 'admin'){
             localStorage.setItem('userId', 'admin')

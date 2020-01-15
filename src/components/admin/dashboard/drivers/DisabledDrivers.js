@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import moment from 'moment'
 import { ReactTabulator } from 'react-tabulator'
 
@@ -17,6 +16,7 @@ const DisabledDrivers = ({drivers, history}) => {
 
     var data = []
 
+    // eslint-disable-next-line
     {drivers && drivers.map(driver =>{
         data.push({
             id: driver.id, 

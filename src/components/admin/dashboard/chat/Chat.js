@@ -5,13 +5,13 @@ import {compose} from 'redux'
 import moment from 'moment'
 import {sendMessage} from '../../../../store/actions/adminActions'
 import {readMessage} from '../../../../store/actions/adminActions'
-import {MdLens, MdSend} from 'react-icons/md'
+import {MdLens} from 'react-icons/md'
 
 class Chat extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     state = {
         chatData: '',
@@ -57,8 +57,8 @@ class Chat extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.chats != this.props.chats) {
-            var x = nextProps.chats.filter(item => item.id == this.state.chatId)
+        if (nextProps.chats !== this.props.chats) {
+            var x = nextProps.chats.filter(item => item.id === this.state.chatId)
             var msgs
             x.forEach(function(obj){
                 msgs = obj.messages

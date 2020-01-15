@@ -39,6 +39,7 @@ class Vehicles extends Component {
 
         var data = []
 
+        // eslint-disable-next-line
         {vehicles && vehicles.map(vehicle =>{
             data.push({
                 id: vehicle.id, 
