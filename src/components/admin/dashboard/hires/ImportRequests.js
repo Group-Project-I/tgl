@@ -20,6 +20,7 @@ const ImportRequests = ({importHireRequests, history}) => {
 
     var data = []
 
+    // eslint-disable-next-line
     {importHireRequests && importHireRequests.map(imp =>{
         data.push({
             id: imp.id, 

@@ -49,6 +49,16 @@ export const signUp = (newUser) => {
                     nic: newUser.nic,
                     disabled: false,
                     createdAt: new Date()
+                }).then(() => {
+                    let data={
+                        to: 'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
+                        from: docRef.id,
+                        data: 'New user registered to the system',
+                        link: '/admin/customers/' + docRef.id,
+                        type: 'new user',
+                        createdAt: new Date()
+                    }
+                    return firestore.collection('notifications').add(data)
                 })
             })
         }).then(() => {

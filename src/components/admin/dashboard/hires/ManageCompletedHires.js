@@ -118,15 +118,15 @@ class ManageCompletedHires extends Component {
                 borderTopWidth: 0 
             },
             tableCellHeader: {
-                margin: "auto", 
-                margin: 5, 
+                margin: "auto 5", 
+                // margin: 5, 
                 fontSize: 12,
                 fontWeight: 500,
                 color: "blue"
             },  
             tableCell: { 
-                margin: "auto", 
-                margin: 5, 
+                margin: "auto 5", 
+                // margin: 5, 
                 fontSize: 10 
             },
             heading: {

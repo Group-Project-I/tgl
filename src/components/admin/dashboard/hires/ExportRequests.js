@@ -20,6 +20,7 @@ const ExportRequests = ({exportHireRequests, history}) => {
 
     var data = []
 
+    // eslint-disable-next-line
     {exportHireRequests && exportHireRequests.map(exp =>{
         data.push({
             id: exp.id, 

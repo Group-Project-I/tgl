@@ -29,7 +29,7 @@ class ChangeAdminPassword extends Component {
         return(
             <Card border="primary" className="text-center">
                 <Card.Body>
-                    <div className= { authUpdateError != 'Password Updated Successfully' ? "red-text" : "green-text"}>
+                    <div className= { authUpdateError !== 'Password Updated Successfully' ? "red-text" : "green-text"}>
                         {this.state.updated ? authUpdateError : null}
                     </div>
                     <form onSubmit={this.handleSubmit} autoComplete='off'>

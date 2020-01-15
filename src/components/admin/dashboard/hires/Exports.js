@@ -1,6 +1,4 @@
 import React from 'react'
-import {Badge} from 'react-bootstrap'
-import {Link} from 'react-router-dom'
 import moment from 'moment'
 import { ReactTabulator } from 'react-tabulator'
 
@@ -27,6 +25,7 @@ const Exports = ({exportHires, history}) => {
 
     var data = []
 
+    // eslint-disable-next-line
     {exportHires && exportHires.map(exp =>{
         data.push({
             id: exp.id, 

@@ -7,7 +7,6 @@ import DisabledVehicles from './vehicles/DisabledVehicles'
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-import {Redirect} from 'react-router-dom'
 import { Squares } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
 
@@ -31,7 +30,7 @@ class ManageCustomer extends Component {
     }
 
     render() {
-        const {auth} = this.props
+        // const {auth} = this.props
         // if (!auth.uid) return <Redirect to='/signin' />
 
         const customers = this.props.customers

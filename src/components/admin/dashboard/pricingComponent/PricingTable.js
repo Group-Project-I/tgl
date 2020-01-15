@@ -1,18 +1,18 @@
 import React, {Component} from 'react'
-import { Collapse, Button, CardBody, Card } from 'reactstrap';
+import { Button} from 'reactstrap';
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-import {Redirect, Link} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import { ReactTabulator } from 'react-tabulator'
 import Modal from 'react-bootstrap/Modal'
 import AddCity from './AddCity'
 import EditCity from './EditCity'
 
 class PricingTable extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     state = {
         showAdd: false,
@@ -62,6 +62,7 @@ class PricingTable extends Component {
 
         var data = []
 
+        // eslint-disable-next-line
         {priceList && priceList.map(item =>{
             data.push({
                 id: item.id, 

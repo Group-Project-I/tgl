@@ -20,6 +20,7 @@ const OngoingImports = ({ongoingImportHires, history}) => {
 
     var data = []
 
+    // eslint-disable-next-line
     {ongoingImportHires && ongoingImportHires.map(imp =>{
         data.push({
             id: imp.id, 
