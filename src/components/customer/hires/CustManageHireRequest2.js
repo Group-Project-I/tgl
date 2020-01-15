@@ -40,7 +40,7 @@ class ManageHireRequest2 extends Component {
 
     componentWillReceiveProps(nextProps) {
 
-        if(this.props.hire){
+        if(this.props.hires){
             this.setState({
                 ...nextProps.hire[0],
                 loading: 0,
