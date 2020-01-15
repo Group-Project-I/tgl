@@ -4,7 +4,7 @@ import AddCustomer from './AddCustomer'
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-import {Redirect, Link} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import moment from 'moment'
 import { ReactTabulator } from 'react-tabulator'
 
@@ -22,7 +22,7 @@ class Customers extends Component {
       }
 
     render () {
-        const {auth, customers} = this.props
+        const {customers} = this.props
         if (!localStorage.getItem('userId')) return <Redirect to='/signin' />
 
         global.moment = require("moment");
@@ -38,7 +38,7 @@ class Customers extends Component {
         // console.log('boom',this.state)
 
         var data = []
-
+        // eslint-disable-next-line
         {customers && customers.map(customer =>{
             data.push({
                 id: customer.id, 

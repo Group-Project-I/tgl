@@ -31,6 +31,7 @@ class AddCustomer extends Component {
         e.preventDefault();
         // console.log(this.state);
         this.props.addCustomer(this.state)
+        // this.setState(state => ({ collapse: !state.collapse }));
     }
 
     render() {

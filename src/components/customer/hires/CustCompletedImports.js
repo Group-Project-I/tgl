@@ -1,7 +1,6 @@
 import React from 'react'
 import moment from 'moment'
 import { ReactTabulator } from 'react-tabulator'
-import Button from "reactstrap/es/Button";
 
 const CompletedImports = ({completedImportHires, history}) => {
     if (!completedImportHires.length) return <div><br/><br/><h3>No Completed Imports</h3><br/></div>

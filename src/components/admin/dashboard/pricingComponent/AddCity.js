@@ -31,7 +31,7 @@ class AddCity extends Component {
         return(
             <Card border="primary" className="text-center">
                 <Card.Body>
-                    <div className= { cityAdded != 'City Added Successfully' ? "red-text" : "green-text"}>
+                    <div className= { cityAdded !== 'City Added Successfully' ? "red-text" : "green-text"}>
                         {this.state.updated ? cityAdded : null}
                     </div>
                     <form onSubmit={this.handleSubmit} autoComplete='off'>

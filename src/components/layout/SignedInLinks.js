@@ -21,17 +21,17 @@ class SignedInLinks extends React.Component{
                     <NavDropdown.Item><NavLink to='/User/UserManageTools' style={{textDecoration: 'none' ,color:'black'}}>Manage Hire</NavLink></NavDropdown.Item>
                 </NavDropdown>
                     
-                <Nav.Link><NavLink to='/' style={{textDecoration: 'none',color:'#C0C0C0'}}>Home</NavLink></Nav.Link>
-                <Nav.Link><NavLink to='/about' style={{textDecoration: 'none',color:'#C0C0C0'}}>About</NavLink></Nav.Link>
-                <Nav.Link><NavLink to='/services' style={{textDecoration: 'none',color:'#C0C0C0'}}>Services</NavLink></Nav.Link>
-                <Nav.Link><NavLink to='/contact'style={{textDecoration: 'none',color:'#C0C0C0'}}>Contact</NavLink></Nav.Link>
+                <Nav.Link as={NavLink} to='/' style={{textDecoration: 'none',color:'#C0C0C0'}}>Home</Nav.Link>
+                <Nav.Link as={NavLink} to='/about' style={{textDecoration: 'none',color:'#C0C0C0'}}>About</Nav.Link>
+                <Nav.Link as={NavLink} to='/services' style={{textDecoration: 'none',color:'#C0C0C0'}}>Services</Nav.Link>
+                <Nav.Link as={NavLink} to='/contact' style={{textDecoration: 'none',color:'#C0C0C0'}}>Contact</Nav.Link>
                 
-                <NavDropdown title={<i class="fas fa-user-circle"></i>} id="basic-nav-dropdown">
-                <NavDropdown.Item><NavLink to={'/User/profile/' + auth.uid} style={{textDecoration: 'none',color:'black'}}>Profile</NavLink></NavDropdown.Item>
-                <NavDropdown.Item><NavLink to='/User/messages' style={{textDecoration: 'none',color:'black'}}>Messages</NavLink></NavDropdown.Item>
-                <NavDropdown.Item><NavLink to={'/'}><Button onClick={this.props.signOut}>Logout</Button></NavLink></NavDropdown.Item>
+                <NavDropdown style={{paddingTop: '5px'}} title={<i class="fas fa-user-circle"></i>} id="basic-nav-dropdown">
+                    <NavDropdown.Item><NavLink to={'/User/profile/' + auth.uid} style={{textDecoration: 'none',color:'black'}}>Profile</NavLink></NavDropdown.Item>
+                    <NavDropdown.Item><NavLink to='/User/messages' style={{textDecoration: 'none',color:'black'}}>Messages</NavLink></NavDropdown.Item>
+                    <NavDropdown.Item><NavLink to={'/'}><Button onClick={this.props.signOut}>Logout</Button></NavLink></NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link><NavLink to='/' style={{textDecoration: 'none' ,paddingTop:'20px',color:'#C0C0C0'}}><i class="fas fa-bell"></i></NavLink></Nav.Link>
+                <Nav.Link as={NavLink} to='/' style={{textDecoration: 'none' ,paddingTop:'12px',color:'#C0C0C0'}}><i class="fas fa-bell"></i></Nav.Link>
 
             </Nav>
             </div> 
