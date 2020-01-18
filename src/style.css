@@ -1,15 +1,115 @@
-body{
-    margin :0;
-    /* background-image: url('./img/importreq.jpg'); */
+/*body{*/
+/*    margin :0;*/
+/*    !* background-image: url('./img/importreq.jpg'); *!*/
+/*}*/
+/*a{*/
+/*    text-decoration: none;*/
+/*}*/
+/*.msg-display{*/
+
+/*}*/
+/*.simplebar-scrollbar:before{*/
+/*    background-color: red;*/
+/*}*/
+
+/*body {*/
+/*    background-color: white;*/
+/*}*/
+
+#progress-bar {
+    position: relative;
+    max-width: 720px;
+    height: 12px;
+    background-color: #eee;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    box-shadow: 0px 3px 15px -4px rgba(0, 0, 0, 0.75);
 }
-a{
-    text-decoration: none;
+#progress-bar .circle-holder {
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    display: flex;
+    justify-content: space-between;
 }
-.msg-display{
+#progress-bar .circle {
+    transition: 400ms;
+    width: 60px;
+    height: 60px;
+    background-color: #2e2d2d;
+    color: #2e2d2d;
+    border-radius: 30px;
+    margin-top: -24px;
+    font-size: 20px;
+    box-shadow: 0px 3px 15px -4px rgba(0, 0, 0, 0.75);
+}
+#progress-bar .circle i {
+    position: absolute;
+    color: white;
+    top: -9px;
+    font-size: 20pt;
+    margin-left: 13px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 
 }
-.simplebar-scrollbar:before{
-    background-color: red;
+#progress-bar .circle span {
+    position: absolute;
+    max-width: 80px;
+    font-size: 0.8rem;
+    text-align: center;
+    top: 42px;
+    margin-left: -11px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+#progress-bar .circle:first-of-type {
+    margin-left: -2px;
+}
+#progress-bar .circle:last-of-type {
+    margin-right: -2px;
+}
+#progress-bar .bar {
+    transition: 400ms;
+    float: left;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(to right, #ede10a, #ede10a, #2e2d2d);
+    border-radius: 10px;
+}
+
+.ml-0 {
+    margin-left: 0 !important;
+}
+.ml-17 {
+    margin-left: 17px !important;
+}
+
+.ml-19{
+    margin-left: 19px !important;
+}
+
+#progress-bar .one-third {
+    width: 33%;
+    background: linear-gradient(to right, #ede10a, #ede10a, #2e2d2d);
+}
+
+#progress-bar .two-third {
+    width: 67%;
+    background: linear-gradient(to right, #ede10a, #ede10a, #2e2d2d);
+}
+
+#progress-bar .full {
+    width: 100%;
+    background: linear-gradient(to right, #ede10a, #ede10a, #2e2d2d);
+}
+
+#progress-bar .yellow {
+    background-color: #ede10a;
+    color: #ede10a;
 }
 
 
+label{
+    margin-right: 20px;
+}

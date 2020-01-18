@@ -144,7 +144,7 @@ class AddHireImport extends Component {
                                     </div>
                                     <hr/><h5>Location</h5>
                                     <div className="row" style={{paddingTop: '40px'}}>
-                                        <div className="input-field col-6">
+                                        <div className="input-field col-6 w-100">
                                             <input placeholder="Address Line 1" type="text" id="containerPickupAddressLine1" onChange={this.handleChange} required />
                                         </div>
                                         <div className="input-field col-6">

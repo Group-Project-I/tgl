@@ -261,6 +261,7 @@ class ManageDeclinedHires extends Component {
                                                     <h6 className="left"><b className='blue-text'>Status: </b> <b className="red badge1">{this.props.hire[0].hireStatus}</b> </h6>
                                                 </div>
                                             </div>
+
                                         </Card.Body>
                                     </Card>
 
