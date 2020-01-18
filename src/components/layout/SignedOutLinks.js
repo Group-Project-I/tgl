@@ -35,9 +35,8 @@ const SignedOutLinks = () => {
                     <Nav.Link as={NavLink} to='/signin' style={{textDecoration: 'none'}}><Button variant="primary">Login</Button></Nav.Link>
                 </Nav>
                 </Navbar.Collapse>
-                
-//             </div>
-//         </Navbar>
+            </div>
+         </Navbar>
         
         
     )
