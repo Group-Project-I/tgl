@@ -11,7 +11,7 @@ import {Redirect, withRouter} from 'react-router-dom'
 
 class HireRequests extends Component {
     static defaultProps = { // <-- DEFAULT PROPS
-        hires: []
+        hire: []
     }
 
     render() {

@@ -107,7 +107,7 @@ const mapStateToProps = (state, ownProps) => {
     return{
         auth: state.firebase.auth,
         id: id,
-        hire: state.firestore.ordered.hires,
+        hires: state.firestore.ordered.hires,
     }
 
 }
