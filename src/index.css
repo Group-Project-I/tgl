@@ -118,6 +118,9 @@ code {
   margin-right: 10px;
   width: 95px;
 }
+.btnLong{
+  width: 150px
+}
 .image3{
   background-image: url("../src/img/addhire5.jpg");
   padding-top: 60px;
@@ -478,7 +481,7 @@ align-content: center;
 }
 
 .signin{
-height: 370px;
+height: 400px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
@@ -486,7 +489,7 @@ background-color: rgba(0,0,0,0.5) !important;
 }
 
 .signup{
-  height: 850px;
+  height: 800px;
   margin-top: auto;
   margin-bottom: auto;
   width: 400px;
