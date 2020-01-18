@@ -2,8 +2,8 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import {Navbar, Nav} from 'react-bootstrap'
-import ResponsiveMenu from 'react-responsive-navbar'
-import { FaAlignJustify } from "react-icons/fa";
+// import ResponsiveMenu from 'react-responsive-navbar'
+// import { FaAlignJustify } from "react-icons/fa";
 // import {Link} from 'react-router-dom'
 
 const SignedOutLinks = () => {
@@ -36,8 +36,8 @@ const SignedOutLinks = () => {
                 </Nav>
                 </Navbar.Collapse>
                 
-//             </div>
-//         </Navbar>
+             </div>
+        </Navbar>
         
         
     )

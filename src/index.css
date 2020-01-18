@@ -481,7 +481,7 @@ align-content: center;
 }
 
 .signin{
-height: 370px;
+height: 400px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
@@ -489,7 +489,7 @@ background-color: rgba(0,0,0,0.5) !important;
 }
 
 .signup{
-  height: 850px;
+  height: 800px;
   margin-top: auto;
   margin-bottom: auto;
   width: 400px;
