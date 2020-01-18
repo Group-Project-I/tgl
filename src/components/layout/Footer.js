@@ -13,7 +13,7 @@ const Footer = () => {
                     <div className="col-md-3 col-lg-4 col-xl-3">
                         <h4>Trans Global Logistics</h4>
                         <hr className="bg-white mb-2 mt-0 d-inline-block mx-auto w-25"/>
-                        <p>
+                        <p style={{textAlign:'justify'}}> 
                             We have established a strong presence in the transportation industry. Our award-winning services earn a reputation for quality and excellence that few can rival.
                         </p>
                     </div>

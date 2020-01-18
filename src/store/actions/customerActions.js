@@ -7,20 +7,26 @@ export const clean = () => ({
 });
 // reset email
 
-export const resetEmail =(creds) =>{
+export const resetEmail =(newEmail,password) =>{
   return(dispatch ,getState)=>{
     var user = firebase.auth().currentUser;
-    user.updateEmail(creds.email).then(()=> {
-      // Update successful.
-         dispatch ({type: 'RESET_EMAIL_SUCCESS'})
-    }).catch((error)=> {
-      // An error happened.
-      dispatch ({type: 'RESET_EMAIL_FAILED',error})
-    });
+    var credentials = firebase.auth.EmailAuthProvider.credential(user.email, password)
+    user.reauthenticateWithCredential(credentials).then(() => {
+      var user = firebase.auth().currentUser;
+      user.updateEmail(newEmail).then(()=> {
+        // Update successful.
+          dispatch ({type: 'RESET_EMAIL_SUCCESS'})
+      }).catch((error)=> {
+        // An error happened.
+        dispatch ({type: 'RESET_EMAIL_FAILED',error})
+      });
+    }).catch((err) => {
+      dispatch({type: 'FAILED_TO_REAUTHENTICATE', err})
+  })
   }
 }
 
-// recover passsword
+/*action creator for  forget passsword*/
 export const recoverPassword =(creds) => {
   return(dispatch ,getState,{getFirebase,getFirestore})=>{
     var firebase=getFirebase();
@@ -82,6 +88,51 @@ export const sendInquiries =( message)=>{
     }
 
 }
+export const sendFeedback=(variables)=>{
+  return( dispatch,getState,{getFirebase,getFirestore}) =>{
+
+  const templateId = 'template_MDkJHMoB';
+  const state=getState()
+  window.emailjs.send(
+      'gmail', 
+      templateId,
+      variables
+      ).then(res => {
+        console.log('Email successfully sent!')
+      })
+      // Handle errors here however you like, or use a React error boundary
+      .catch(err => console.error('Oh well, you failed. Here some thoughts on the error that occured:', err))
+    }
+  }
+export const addNotifications=(notification,dataType,data)=>{
+  return(dispatch,getState,{getFirebase,getFirestore}) => {
+    const state= getState()
+    const auth= state.firebase.auth
+    const firestore = getFirestore()
+    firestore.collection('notifications').add({
+      ...notification,
+      from:'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
+      type:'hire accepted',
+      data:"Hire Accepted",
+      link:'/User/UserManageTools',
+      createdAt:new Date()}).then(() => {
+          dispatch({type: 'Hire_Accept_Notication_Added'});
+      }).catch((err) => {
+          dispatch({type: 'Notificaton_Add_ERROR', err});
+      })
+  }
+}
+// export const readNotication=()=>{
+
+//   return(dispatch,getState,{getFirebase,getFirestore}) => {
+//     const firestore = getFirestore();
+//     firestore.collection('notifications').doc(id).delete().then(() => {
+//         dispatch({type: 'NOTIFICATION READ AND DELETED'})
+//     }).catch(err => {
+//         dispatch({type: 'FAILED TO DELETE NOTIFICATION', err})
+//     })
+//   }
+// }
 
 // export const editHire = (customerId, data, records) => {
 //

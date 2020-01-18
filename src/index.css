@@ -7,16 +7,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
+.small-menu-classname{
+  background-color: #212529;
+  color:'black';
+}
+p{
+  text-align:justify;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-/* .user-card{
-  ;
-
-} */
 .content{
   margin-top: 70px 10px;
   padding-top: 50px;
