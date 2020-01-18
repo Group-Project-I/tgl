@@ -7,6 +7,7 @@ import {compose} from 'redux'
 import Card from 'react-bootstrap/Card'
 import { Squares } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
+import Modal from 'react-bootstrap/Modal'
 
 class AddImport extends Component {
     state = {
@@ -167,6 +168,38 @@ class AddImport extends Component {
         
     }
 
+    handleShow = (e) => {
+        e.preventDefault()
+        if(this.props.pricing){
+            var city = this.props.pricing.filter(item => item.id === this.state.destinationCity.toUpperCase())
+            if(city.length && this.state.containerType === '20'){
+                this.setState({
+                    show: true,
+                    cost: city[0].import20ft
+                })
+            }else if(city.length && this.state.containerType === '40'){
+                this.setState({
+                    show: true,
+                    cost: city[0].import40ft
+                })
+            }else{
+                this.setState({
+                    show: true,
+                    cost: null
+                })
+            }
+            
+        }
+        
+    }
+
+    handleClose = () => {
+        // e.preventDefault();
+        this.setState({
+          show: false,
+        })
+    }
+
     render() {
         if(this.state.redir === 1){
             return <Redirect to='/admin/hires' />
@@ -272,8 +305,39 @@ class AddImport extends Component {
                                     <input placeholder="City" type="text" id="destinationCity" onChange={this.handleChange} required />
                                 </div>
                             </div>
+                            <div>
+                            <div className="input-field center">
+                                <button className={this.state.destinationCity ? "btn orange lighten-1 z-depth-5 btnLong" : "invisible"}  id="btnLong" onClick={this.handleShow} >Show Estimate</button>
+                            </div>
+                            </div>
                             </Card.Body>
                         </Card>
+                        <Modal show={this.state.show} onHide={this.handleClose} size="md" backdrop={false} aria-labelledby="contained-modal-title-vcenter" centered style={{overflow:'unset'}}>
+                        <Modal.Header closeButton>
+                            <Modal.Title> <div className="center">Estimated Cost</div> </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <div className='row'>
+                                <h5 className='blue-text' style={{paddingRight: '5px'}}>Destination: </h5> {this.state.destinationCity}
+                            </div>
+                            <div className="row">
+                                <h5 className='blue-text' style={{paddingRight: '5px'}}>Container Type: </h5> {this.state.containerType}ft 
+                            </div>
+                            {this.state.cost ? 
+                                <div>
+                                    <div className="row">
+                                        <h5 className='blue-text' style={{paddingRight: '5px'}}>Estimated Cost: </h5> Rs.{this.state.cost} 
+                                    </div>  
+                                    <hr/>
+                                    Note that the estimated cost may subject to change. Contact the administrator for inquiries.
+                                </div>
+                                :
+                                <div className="row">
+                                    No cost estimation available for the provided destinaiton address. Please contact the administrator for inquiries.
+                                </div>  
+                            }
+                        </Modal.Body>
+                        </Modal>
                         <br/>
                         <Card border="primary" className="text-center">
                             <Card.Header color="blue"><h4>Customer</h4></Card.Header>
@@ -342,7 +406,8 @@ const mapStateToProps = (state) => {
         customers: state.firestore.ordered.customers,
         drivers: state.firestore.ordered.drivers,
         vehicles: state.firestore.ordered.vehicles,
-        hires: state.firestore.ordered.hires
+        hires: state.firestore.ordered.hires,
+        pricing: state.firestore.ordered.pricing
     }
 }
 
@@ -358,6 +423,7 @@ export default compose(
         {collection: 'customers'},
         {collection: 'drivers'},
         {collection: 'vehicles'},
-        {collection: 'hires'}
+        {collection: 'hires'},
+        {collection: 'pricing'}
     ])
 )(AddImport);
