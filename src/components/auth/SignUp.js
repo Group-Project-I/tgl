@@ -74,12 +74,12 @@ class SignUp extends Component {
                                     <div className="input-field">
                                         <input placeholder="Confirm Password" type="password" id="confPassword" onChange={this.handleChange} required />
                                     </div>
-                                    <div className="input-field">
+                                    <div className="input-field center">
                                         <button className="btn blue lighten-1 z-depth-0">Register</button>
                                     </div>
                                 </form>
                             </div>
-                            <div className="card-footer">
+                            <div className="card-footer center">
                                 <div className="d-flex justify-content-center links">
                                     Already have an account?<p><NavLink to='/signin' className="text-blue">Sign In</NavLink></p>
                                 </div>
