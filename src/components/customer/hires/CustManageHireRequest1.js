@@ -40,7 +40,7 @@ class ManageHireRequest1 extends Component {
 
     componentWillReceiveProps(nextProps) {
 
-        if(this.props.hires){
+        if(this.props.hires && this.props.customer){
             this.setState({
                 ...nextProps.hire[0],
                 loading: 0,
@@ -129,7 +129,7 @@ class ManageHireRequest1 extends Component {
                                             <div className="col-6">
 
                                                 <h6 className="left container-fluid"><b className='blue-text left'>Hire Type </b><br/><br/>
-                                                    <input type="text" id="hireType" value={this.state.hireType.toUpperCase()}  required/></h6>
+                                                    <input type="text" id="hireType" value={this.state.hireType.toUpperCase()} /></h6>
                                                 {/*<select className="form-control select1" id="hireType" value={this.state.hireType} onChange={this.handleHireType} required>*/}
                                                 {/*    <option value="import">import</option>*/}
                                                 {/*    <option value="export">export</option>*/}

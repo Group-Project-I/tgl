@@ -7,6 +7,9 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Link} from "react-router-dom";
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+
 
 class AddHireImport extends Component {
     state = {
@@ -29,6 +32,21 @@ class AddHireImport extends Component {
         remarks: '',
         loading: 1,
         redir : 0,
+        showPrice: false
+    }
+
+    handleClosePrice = () => {
+        // e.preventDefault();
+        this.setState({
+            showPrice: false,
+        })
+    }
+
+    handleShowPrice = (e) => {
+        e.preventDefault()
+        this.setState({
+            showPrice: true
+        })
     }
 
 
@@ -216,6 +234,49 @@ class AddHireImport extends Component {
                                                         <input placeholder="City" type="text" id="destinationCity" onChange={this.handleChange} required />
                                                     </div>
                                                 </div>
+
+                                                {/*start price*/}
+
+                                                <Button color="primary" onClick={this.handleShowPrice} style={{ marginBottom: '1rem' }}>Get Estimated Hire Cost <i
+                                                    className="fas fa-cog fa-spin"></i></Button>
+                                                <Modal show={this.state.showPrice} onHide={this.handleClosePrice} size="md" backdrop={true} aria-labelledby="contained-modal-title-vcenter" centered style={{overflow:'unset'}}>
+                                                    <Modal.Header closeButton>
+                                                        <Modal.Title className="center"><h2 >Cost Estimation</h2></Modal.Title>
+                                                    </Modal.Header>
+                                                    <Modal.Body>
+                                                        <Card border="primary" className="text-center">
+                                                            <Card.Body>
+                                                                {/*<div className= { cityEdited != 'Updated Successfully' ? "red-text" : "green-text"}>*/}
+                                                                {/*    {this.state.updated ? cityEdited : null}*/}
+                                                                {/*</div>*/}
+                                                                <form >
+                                                                    <div className="input-field row">
+                                                                        <h5 className='blue-text'>Container Type </h5>
+                                                                        <input type="text" id="containerType" value={this.state.containerType + " ft"} required />
+                                                                    </div>
+                                                                    <div className="input-field row">
+                                                                        <h5 className='blue-text'>Destination City</h5>
+                                                                        <input type="text" id="destinationCity" value={this.state.destinationCity} required />
+                                                                    </div>
+                                                                    <div className="input-field row">
+                                                                        <h5 className='red-text'>Estimated Cost for Hire</h5>
+                                                                        {/*{this.state.containerType === "20" ?*/}
+                                                                        {/*    <input type="text" id="import20ft"*/}
+                                                                        {/*           value={this.props.pricingList.filter(item => item.id === this.state.destinationCity).map(a => a.import20ft)[0]}*/}
+                                                                        {/*           required/>:*/}
+                                                                        {/*    <input type="text" id="import40ft"*/}
+                                                                        {/*           value={this.props.pricingList.filter(item => item.id === this.state.destinationCity).map(a => a.import40ft)[0]}*/}
+                                                                        {/*           required/>*/}
+                                                                        {/*}*/}
+                                                                    </div>
+                                                                </form>
+                                                            </Card.Body>
+                                                        </Card>
+                                                    </Modal.Body>
+                                                </Modal>
+
+                                                {/*end price*/}
+
                                             </Card.Body>
                                         </Card>
 
@@ -263,8 +324,8 @@ class AddHireImport extends Component {
 const mapStateToProps = (state) => {
     return{
         customer: state.firestore.ordered.customers,
-        hires: state.firestore.ordered.hires
-
+        hires: state.firestore.ordered.hires,
+        pricingList: state.firestore.ordered.pricing
     }
 }
 
@@ -278,6 +339,8 @@ export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
         {collection: 'hires'},
-        {collection: 'customers'}
+        {collection: 'customers'},
+        {collection: 'pricing'},
+
     ])
 )(AddHireImport);

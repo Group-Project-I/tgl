@@ -31,7 +31,7 @@ class SignedInLinks extends React.Component{
                     <NavDropdown.Item><NavLink to='/User/messages' style={{textDecoration: 'none',color:'black'}}>Messages</NavLink></NavDropdown.Item>
                     <NavDropdown.Item><NavLink to={'/'}><Button onClick={this.props.signOut}>Logout</Button></NavLink></NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link as={NavLink} to='/' style={{textDecoration: 'none' ,paddingTop:'12px',color:'#C0C0C0'}}><i class="fas fa-bell"></i></Nav.Link>
+                <Nav.Link as={NavLink} to='/' style={{textDecoration: 'none' ,paddingTop:'12px',color:'#C0C0C0',paddingRight:'25px'}}><i class="fas fa-bell"></i></Nav.Link>
 
             </Nav>
             </div> 

@@ -22,7 +22,7 @@ class ManageHires extends Component {
 
     componentWillReceiveProps(nextProps) {
 
-        if(this.props.hire){
+        if(this.props.hires){
             this.setState({
                 // ...nextProps.hire[0],
                 load: 0,
@@ -33,26 +33,26 @@ class ManageHires extends Component {
 
     render() {
         const load = this.state.load === 0 ? (
-            this.props.hire.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "completed"?  (
+            this.props.hires.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "completed"?  (
                 <div>
-                    <ManageCompletedHire hire={this.props.hire.filter(item => item.id === this.props.id)}></ManageCompletedHire>
+                    <ManageCompletedHire hire={this.props.hires.filter(item => item.id === this.props.id)}></ManageCompletedHire>
                 </div>
 
-            ) : this.props.hire.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "request" && this.props.hire.filter(item => item.id === this.props.id ).map(a => a.hireType)[0] === "import"? (
+            ) : this.props.hires.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "request" && this.props.hires.filter(item => item.id === this.props.id ).map(a => a.hireType)[0] === "import"? (
                 <div id="content"  role="main">
-                    <ManageHireRequests1 hire={this.props.hire.filter(item => item.id === this.props.id)}></ManageHireRequests1>
+                    <ManageHireRequests1 hire={this.props.hires.filter(item => item.id === this.props.id)}></ManageHireRequests1>
                 </div>
-            ) : this.props.hire.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "request" && this.props.hire.filter(item => item.id === this.props.id ).map(a => a.hireType)[0] === "export"? (
+            ) : this.props.hires.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "request" && this.props.hires.filter(item => item.id === this.props.id ).map(a => a.hireType)[0] === "export"? (
                 <div id="content"  role="main">
-                    <ManageHireRequests2 hire={this.props.hire.filter(item => item.id === this.props.id)}></ManageHireRequests2>
+                    <ManageHireRequests2 hire={this.props.hires.filter(item => item.id === this.props.id)}></ManageHireRequests2>
                 </div>
-            ) : this.props.hire.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "ongoing" ? (
+            ) : this.props.hires.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "ongoing" ? (
                 <div id="content"  role="main">
-                    <ManageOngoingHires hire={this.props.hire.filter(item => item.id === this.props.id)}></ManageOngoingHires>
+                    <ManageOngoingHires hire={this.props.hires.filter(item => item.id === this.props.id)}></ManageOngoingHires>
                 </div>
             ) : (
                 <div id="content"  role="main">
-                    <ManageDeclinedHire hire={this.props.hire.filter(item => item.id === this.props.id)}></ManageDeclinedHire>
+                    <ManageDeclinedHire hire={this.props.hires.filter(item => item.id === this.props.id)}></ManageDeclinedHire>
                 </div>
             )
 
@@ -70,7 +70,7 @@ const mapStateToProps = (state, ownProps) => {
     return{
         auth: state.firebase.auth,
         id: id,
-        hire: state.firestore.ordered.hires,
+        hires: state.firestore.ordered.hires,
     }
 
 }
@@ -79,6 +79,6 @@ export default compose(
     connect(mapStateToProps),
     firestoreConnect(props => [{
         collection: 'hires',
-        // doc: props.id,
+        doc: props.id
     }])
 )(ManageHires)
