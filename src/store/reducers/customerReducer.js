@@ -44,7 +44,6 @@ const customerReducer =(state = initState ,action) => {
                 ...state,
                 authUpdateError: 'Email Updated Successfully'
             }
-
         case 'RESET_EMAIL_FAILED':
             console.log('Failed to update email')
             return{
@@ -56,7 +55,13 @@ const customerReducer =(state = initState ,action) => {
         case 'SEND_INQUIRY':
                 console.log('sent message',action.message)
                 return state
-                        
+
+        case 'NOTIFICATION READ AND DELETED':
+                console.log('notification read and deleted')
+                return state;
+        case 'FAILED TO DELETE NOTIFICATION':
+                console.log('Error deleting notification')
+                return state;        
         default:
             return state
     }

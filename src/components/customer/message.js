@@ -55,10 +55,9 @@ handleSubmit = (e) => {
                         <Card style={{backgroundColor:'#aad2d1'}} >
                             {/* <Card.Header style={{position:'fixed'}}> </Card.Header> */}
                             <Card.Body> <ViewMessage messages ={messages} /></Card.Body>
-                           
                         </Card>
                     </div>
-       
+       {/* sending msg */}
                     <div className='col-md-8 ' style={{ width: '18rem' ,padding:'0 70px'}}>
                         <Card   style={{height:'400px',backgroundColor:'#aad2d1'}}>
                             <Card.Body style={{height:'300px'}}>

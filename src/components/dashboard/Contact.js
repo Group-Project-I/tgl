@@ -1,9 +1,8 @@
 import React from 'react'
 import {connect } from 'react-redux'
-import {sendInquiries} from '../../store/actions/customerActions'
+import {sendFeedback} from '../../store/actions/customerActions'
 
 
-// const Contact = () => {
 class Contact extends React.Component{
 
     state ={
@@ -22,8 +21,16 @@ class Contact extends React.Component{
     handleSubmit = (e) => {
         e.preventDefault();
         // console.log(this.state);
-        this.props.sendInquiries(this.state)
+        // this.props.sendInquiries(this.state)
+        var variables ={
+            message_html: this.state.message, 
+            from_name: this.state.name, 
+            reply_to: this.state.email
+        }
+        this.props.sendFeedback(variables)
     }
+
+ 
 
     render(){
         return(
@@ -61,6 +68,7 @@ class Contact extends React.Component{
                                 <h4>We would love to hear from you !</h4>
                             </div>
                         </div>
+  {/* inquiry form starts from here                     */}
                         <div className="col-md-9 testing">
                             <div className="contact-forms">
                                 <form onSubmit={this.handleSubmit}>
@@ -101,7 +109,8 @@ class Contact extends React.Component{
 }
 const mapDispatchToProps = (dispatch) => {
     return{
-        sendInquiries : (message) => dispatch(sendInquiries(message))
+        // sendInquiries : (message) => dispatch(sendInquiries(message)),
+        sendFeedback : (variables) =>dispatch(sendFeedback(variables))
     }
 }
 
