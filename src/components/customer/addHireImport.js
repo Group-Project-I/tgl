@@ -7,6 +7,9 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Link} from "react-router-dom";
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+
 
 class AddHireImport extends Component {
     state = {
@@ -29,6 +32,21 @@ class AddHireImport extends Component {
         remarks: '',
         loading: 1,
         redir : 0,
+        showPrice: false
+    }
+
+    handleClosePrice = () => {
+        // e.preventDefault();
+        this.setState({
+            showPrice: false,
+        })
+    }
+
+    handleShowPrice = (e) => {
+        e.preventDefault()
+        this.setState({
+            showPrice: true
+        })
     }
 
 
@@ -110,151 +128,194 @@ class AddHireImport extends Component {
 
                 <div className="form2  fadeIn animated slow ">
 
-                <div className="row fadeIn animated fast">
-                    <div className="bg col-12">
-                        <br/><br/>
-                        <Card border="primary">
-                            <Card.Body>
-                                <Card.Header color="blue"><h1 className="center fadeIn animated fast add_head">Add <span className="topic">Import</span></h1>
-                        <hr className="bg-dark mb-4"/>
-                                </Card.Header>
-                        <form onSubmit={this.handleSubmit} autoComplete='off'>
-                            <br/>
-                            <Card border="primary" className="text-center">
-                                <Card.Header color="blue"><h4>Container Type</h4></Card.Header>
-                                <Card.Body><br/>
-
-                            <div className="bg col-6">
-                                <select className="form-control select1" placeholder="Container Type" id="containerType" onChange={this.handleContainerType} required>
-                                    <option value="20">20ft</option>
-                                    <option value="40">40ft</option>
-                                </select>
-                            </div>
-                                </Card.Body>
-                            </Card>
-                            <br/>
-                            <Card border="primary" className="text-center">
-                                <Card.Header color="blue"><h4>Container Pickup Details</h4></Card.Header>
-                                <Card.Body><br/>
-                                    <h5>Pick up Date and Time</h5>
-                                    <div className="row" style={{paddingTop: '40px'}}>
-                                        <div className="input-field col-6">
-                                            <input placeholder="Pickup Date and Time" ref="pickup" onFocus={this.handleDate} type="text" id="pickupDatetime" onChange={this.handleChange} required />
-                                        </div>
-                                    </div>
-                                    <hr/><h5>Location</h5>
-                                    <div className="row" style={{paddingTop: '40px'}}>
-                                        <div className="input-field col-6 w-100">
-                                            <input placeholder="Address Line 1" type="text" id="containerPickupAddressLine1" onChange={this.handleChange} required />
-                                        </div>
-                                        <div className="input-field col-6">
-                                            <input placeholder="Address Line 2" type="text" id="containerPickupAddressLine2" onChange={this.handleChange} required />
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="input-field col-6">
-                                            <input placeholder="City" type="text" id="containerPickupCity" onChange={this.handleChange} required />
-                                        </div>
-                                    </div>
-                                </Card.Body>
-                            </Card>
-                            <br/>
-                            <Card border="primary" className="text-center">
-                                <Card.Header color="blue"><h4>Cargo Details</h4></Card.Header>
+                    <div className="row fadeIn animated fast">
+                        <div className="bg col-12">
+                            <br/><br/>
+                            <Card border="primary">
                                 <Card.Body>
-                                    <div className="row" style={{paddingTop: '40px'}}>
-                                        <div className="input-field col-6">
-                                            <input placeholder="Cargo Type(s)" type="text" id="cargoType" onChange={this.handleChange} required/>
-                                        </div>
-                                        <div className="input-field col-6">
-                                            <input placeholder="Net Weight" type="text" id="netWeight" onChange={this.handleChange} required />
-                                        </div>
-                                    </div>
-                                </Card.Body>
-                            </Card>
-                            <br/>
-                            <Card border="primary" className="text-center">
-                                <Card.Header color="blue"><h4>Unloading Details</h4></Card.Header>
-                                <Card.Body>
-                                    <hr/><h5>Unloading Port</h5>
-                                    <div className="row" style={{paddingTop: '50px'}}>
-                                        <div className="col-4"></div>
-                                        <select className="form-control col-4" placeholder="Unloading Port" id="unloadingPort" onChange={this.handleLoadingPort} required>
-                                            <option value="Colombo">Colombo</option>
-                                        </select>
-                                    </div>
-                                    <div className="row">
-                                        <div className="input-field col-6">
-                                            <input placeholder="Unloading Terminal" type="text" id="unloadingTerminal" onChange={this.handleChange} required />
-                                        </div>
-                                    </div>
-                                    <hr/><h5>Vessel Details</h5>
-                                    <div className="row" style={{paddingTop: '40px'}}>
-                                        <div className="input-field col-6">
-                                            <input placeholder="Vessel" type="text" id="vessel" onChange={this.handleChange} required />
-                                        </div>
-                                        <div className="input-field col-6">
-                                            <input placeholder="Vessel Arrival Date and Time" onFocus={this.handleDate} type="text" id="vesselArrivalDatetime" onChange={this.handleChange} required />
-                                        </div>
-                                    </div>
-                                </Card.Body>
-                            </Card>
-                            <br/>
-                            <Card border="primary" className="text-center">
-                                <Card.Header color="blue"><h4>Destination Address</h4></Card.Header>
-                                <Card.Body>
-                                    <div className="row" style={{paddingTop: '40px'}}>
-                                        <div className="input-field col-6">
-                                            <input placeholder="Address Line 1" type="text" id="destinationAddressLine1" onChange={this.handleChange} required />
-                                        </div>
-                                        <div className="input-field col-6">
-                                            <input placeholder="Address Line 2" type="text" id="destinationAddressLine2" onChange={this.handleChange} required />
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="input-field col-6">
-                                            <input placeholder="City" type="text" id="destinationCity" onChange={this.handleChange} required />
-                                        </div>
-                                    </div>
-                                </Card.Body>
-                            </Card>
+                                    <Card.Header color="blue"><h1 className="center fadeIn animated fast add_head">Add <span className="topic">Import</span></h1>
+                                        <hr className="bg-dark mb-4"/>
+                                    </Card.Header>
+                                    <form onSubmit={this.handleSubmit} autoComplete='off'>
+                                        <br/>
+                                        <Card border="primary" className="text-center">
+                                            <Card.Header color="blue"><h4>Container Type</h4></Card.Header>
+                                            <Card.Body><br/>
 
-                            <br/><Card border="primary" className="text-center">
-                            <Card.Header color="blue"><h4>Customer Details</h4></Card.Header>
-                            <Card.Body>
-                            <div className="row">
-                                <div className="input-field col-6">
-                                    {/*<input placeholder="Customer Name" type="hidden" value="Tharinda Dilshan" id="customerName" onChange={this.handleChange} required />*/}
-                                    <input placeholder="Customer Name" type="text" id="customerName" onChange={this.handleChange} required />
-                                    {/*<select className="form-control" id="customerId" onFocus={this.getCustomer} onChange={this.handleCustomer}>*/}
-                                    {/*    {this.state.availableCustomers ?  this.state.availableCustomers.map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName}</option>)}) : null}*/}
+                                                <div className="bg col-6">
+                                                    <select className="form-control select1" placeholder="Container Type" id="containerType" onChange={this.handleContainerType} required>
+                                                        <option value="20">20ft</option>
+                                                        <option value="40">40ft</option>
+                                                    </select>
+                                                </div>
+                                            </Card.Body>
+                                        </Card>
+                                        <br/>
+                                        <Card border="primary" className="text-center">
+                                            <Card.Header color="blue"><h4>Container Pickup Details</h4></Card.Header>
+                                            <Card.Body><br/>
+                                                <h5>Pick up Date and Time</h5>
+                                                <div className="row" style={{paddingTop: '40px'}}>
+                                                    <div className="input-field col-6">
+                                                        <input placeholder="Pickup Date and Time" ref="pickup" onFocus={this.handleDate} type="text" id="pickupDatetime" onChange={this.handleChange} required />
+                                                    </div>
+                                                </div>
+                                                <hr/><h5>Location</h5>
+                                                <div className="row" style={{paddingTop: '40px'}}>
+                                                    <div className="input-field col-6 w-100">
+                                                        <input placeholder="Address Line 1" type="text" id="containerPickupAddressLine1" onChange={this.handleChange} required />
+                                                    </div>
+                                                    <div className="input-field col-6">
+                                                        <input placeholder="Address Line 2" type="text" id="containerPickupAddressLine2" onChange={this.handleChange} required />
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="input-field col-6">
+                                                        <input placeholder="City" type="text" id="containerPickupCity" onChange={this.handleChange} required />
+                                                    </div>
+                                                </div>
+                                            </Card.Body>
+                                        </Card>
+                                        <br/>
+                                        <Card border="primary" className="text-center">
+                                            <Card.Header color="blue"><h4>Cargo Details</h4></Card.Header>
+                                            <Card.Body>
+                                                <div className="row" style={{paddingTop: '40px'}}>
+                                                    <div className="input-field col-6">
+                                                        <input placeholder="Cargo Type(s)" type="text" id="cargoType" onChange={this.handleChange} required/>
+                                                    </div>
+                                                    <div className="input-field col-6">
+                                                        <input placeholder="Net Weight" type="text" id="netWeight" onChange={this.handleChange} required />
+                                                    </div>
+                                                </div>
+                                            </Card.Body>
+                                        </Card>
+                                        <br/>
+                                        <Card border="primary" className="text-center">
+                                            <Card.Header color="blue"><h4>Unloading Details</h4></Card.Header>
+                                            <Card.Body>
+                                                <hr/><h5>Unloading Port</h5>
+                                                <div className="row" style={{paddingTop: '50px'}}>
+                                                    <div className="col-4"></div>
+                                                    <select className="form-control col-4" placeholder="Unloading Port" id="unloadingPort" onChange={this.handleLoadingPort} required>
+                                                        <option value="Colombo">Colombo</option>
+                                                    </select>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="input-field col-6">
+                                                        <input placeholder="Unloading Terminal" type="text" id="unloadingTerminal" onChange={this.handleChange} required />
+                                                    </div>
+                                                </div>
+                                                <hr/><h5>Vessel Details</h5>
+                                                <div className="row" style={{paddingTop: '40px'}}>
+                                                    <div className="input-field col-6">
+                                                        <input placeholder="Vessel" type="text" id="vessel" onChange={this.handleChange} required />
+                                                    </div>
+                                                    <div className="input-field col-6">
+                                                        <input placeholder="Vessel Arrival Date and Time" onFocus={this.handleDate} type="text" id="vesselArrivalDatetime" onChange={this.handleChange} required />
+                                                    </div>
+                                                </div>
+                                            </Card.Body>
+                                        </Card>
+                                        <br/>
+                                        <Card border="primary" className="text-center">
+                                            <Card.Header color="blue"><h4>Destination Address</h4></Card.Header>
+                                            <Card.Body>
+                                                <div className="row" style={{paddingTop: '40px'}}>
+                                                    <div className="input-field col-6">
+                                                        <input placeholder="Address Line 1" type="text" id="destinationAddressLine1" onChange={this.handleChange} required />
+                                                    </div>
+                                                    <div className="input-field col-6">
+                                                        <input placeholder="Address Line 2" type="text" id="destinationAddressLine2" onChange={this.handleChange} required />
+                                                    </div>
+                                                </div>
+                                                <div className="row">
+                                                    <div className="input-field col-6">
+                                                        <input placeholder="City" type="text" id="destinationCity" onChange={this.handleChange} required />
+                                                    </div>
+                                                </div>
 
-                                    {/*</select>*/}
-                                </div>
-                            </div>
-                            </Card.Body>
-                        </Card>
-                            <br/>
+                                                {/*start price*/}
 
-                            <Card border="primary" className="text-center">
-                                <Card.Header color="blue"><h4>Remarks</h4></Card.Header>
-                                <Card.Body>
-                                    <div className="input-field row col-12">
-                                        <textarea placeholder="Mention any Additional Information(Perishable goods, Reefer temperature, Number and kind of packages etc.)" style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange}/>
-                                    </div>
+                                                <Button color="primary" onClick={this.handleShowPrice} style={{ marginBottom: '1rem' }}>Get Estimated Hire Cost <i
+                                                    className="fas fa-cog fa-spin"></i></Button>
+                                                <Modal show={this.state.showPrice} onHide={this.handleClosePrice} size="md" backdrop={true} aria-labelledby="contained-modal-title-vcenter" centered style={{overflow:'unset'}}>
+                                                    <Modal.Header closeButton>
+                                                        <Modal.Title className="center"><h2 >Cost Estimation</h2></Modal.Title>
+                                                    </Modal.Header>
+                                                    <Modal.Body>
+                                                        <Card border="primary" className="text-center">
+                                                            <Card.Body>
+                                                                {/*<div className= { cityEdited != 'Updated Successfully' ? "red-text" : "green-text"}>*/}
+                                                                {/*    {this.state.updated ? cityEdited : null}*/}
+                                                                {/*</div>*/}
+                                                                <form >
+                                                                    <div className="input-field row">
+                                                                        <h5 className='blue-text'>Container Type </h5>
+                                                                        <input type="text" id="containerType" value={this.state.containerType + " ft"} required />
+                                                                    </div>
+                                                                    <div className="input-field row">
+                                                                        <h5 className='blue-text'>Destination City</h5>
+                                                                        <input type="text" id="destinationCity" value={this.state.destinationCity} required />
+                                                                    </div>
+                                                                    <div className="input-field row">
+                                                                        <h5 className='red-text'>Estimated Cost for Hire</h5>
+                                                                        {/*{this.state.containerType === "20" ?*/}
+                                                                        {/*    <input type="text" id="import20ft"*/}
+                                                                        {/*           value={this.props.pricingList.filter(item => item.id === this.state.destinationCity).map(a => a.import20ft)[0]}*/}
+                                                                        {/*           required/>:*/}
+                                                                        {/*    <input type="text" id="import40ft"*/}
+                                                                        {/*           value={this.props.pricingList.filter(item => item.id === this.state.destinationCity).map(a => a.import40ft)[0]}*/}
+                                                                        {/*           required/>*/}
+                                                                        {/*}*/}
+                                                                    </div>
+                                                                </form>
+                                                            </Card.Body>
+                                                        </Card>
+                                                    </Modal.Body>
+                                                </Modal>
+
+                                                {/*end price*/}
+
+                                            </Card.Body>
+                                        </Card>
+
+                                        <br/><Card border="primary" className="text-center">
+                                        <Card.Header color="blue"><h4>Customer Details</h4></Card.Header>
+                                        <Card.Body>
+                                            <div className="row">
+                                                <div className="input-field col-6">
+                                                    {/*<input placeholder="Customer Name" type="hidden" value="Tharinda Dilshan" id="customerName" onChange={this.handleChange} required />*/}
+                                                    <input placeholder="Customer Name" type="text" id="customerName" onChange={this.handleChange} required />
+                                                    {/*<select className="form-control" id="customerId" onFocus={this.getCustomer} onChange={this.handleCustomer}>*/}
+                                                    {/*    {this.state.availableCustomers ?  this.state.availableCustomers.map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName}</option>)}) : null}*/}
+
+                                                    {/*</select>*/}
+                                                </div>
+                                            </div>
+                                        </Card.Body>
+                                    </Card>
+                                        <br/>
+
+                                        <Card border="primary" className="text-center">
+                                            <Card.Header color="blue"><h4>Remarks</h4></Card.Header>
+                                            <Card.Body>
+                                                <div className="input-field row col-12">
+                                                    <textarea placeholder="Mention any Additional Information(Perishable goods, Reefer temperature, Number and kind of packages etc.)" style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange}/>
+                                                </div>
+                                            </Card.Body>
+                                        </Card>
+                                        <input type="hidden" id="hireType" value="import"/><br/><br/>
+                                        <div className="input-field center">
+                                            <button className="btn blue lighten-1 z-depth-5 btn1">Add</button>
+                                            <Link to='/'><button className="btn red lighten-1 z-depth-5 btn1">Cancel</button></Link>
+                                        </div>
+                                        <br/>
+                                    </form>
                                 </Card.Body>
                             </Card>
-                            <input type="hidden" id="hireType" value="import"/><br/><br/>
-                            <div className="input-field center">
-                                <button className="btn blue lighten-1 z-depth-5 btn1">Add</button>
-                                <Link to='/'><button className="btn red lighten-1 z-depth-5 btn1">Cancel</button></Link>
-                            </div>
-                            <br/>
-                        </form>
-                            </Card.Body>
-                        </Card>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         )
@@ -263,8 +324,8 @@ class AddHireImport extends Component {
 const mapStateToProps = (state) => {
     return{
         customer: state.firestore.ordered.customers,
-        hires: state.firestore.ordered.hires
-
+        hires: state.firestore.ordered.hires,
+        pricingList: state.firestore.ordered.pricing
     }
 }
 
@@ -278,7 +339,8 @@ export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
         {collection: 'hires'},
-        {collection: 'customers'}
+        {collection: 'customers'},
+        {collection: 'pricing'},
+
     ])
 )(AddHireImport);
-
