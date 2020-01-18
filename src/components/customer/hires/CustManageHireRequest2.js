@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-import moment from 'moment'
 import {Redirect} from 'react-router-dom'
 import {declineHireRequests} from '../../../store/actions/customerHireActions'
 import {Link} from "react-router-dom";
@@ -41,7 +40,7 @@ class ManageHireRequest2 extends Component {
 
     componentWillReceiveProps(nextProps) {
 
-        if(this.props.hire){
+        if(this.props.hires){
             this.setState({
                 ...nextProps.hire[0],
                 loading: 0,

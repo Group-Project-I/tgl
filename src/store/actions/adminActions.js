@@ -101,7 +101,7 @@ export const editUser = (customerId, data, collec) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
         if(collec === 'customers'){
-            var oldName = firestore.collection('customers').doc(customerId).get().then((doc) => {
+            firestore.collection('customers').doc(customerId).get().then((doc) => {
                 return firestore.collection(collec).doc(customerId).update({
                     ...data
                 }).then(() => {

@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import moment from 'moment'
 import { ReactTabulator } from 'react-tabulator'
 
@@ -17,6 +16,7 @@ const DisabledCustomers = ({customers, history}) => {
 
     var data = []
 
+    // eslint-disable-next-line
     {customers && customers.map(customer =>{
         data.push({
             id: customer.id, 

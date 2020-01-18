@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 import Card from 'react-bootstrap/Card'
 
 const AdminDashboard = (props) => {
+    // eslint-disable-next-line
     const {auth} = props
     if (!localStorage.getItem('userId')) return <Redirect to='/signin' />
 
