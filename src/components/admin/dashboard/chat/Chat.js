@@ -100,7 +100,7 @@ class Chat extends React.Component {
                                 return(
                                     <div className="chat_list" id={chat.id} onClick={() => this.chatClick(chat)} onMouseDown = {() => this.chatClick(chat)} onMouseUp = {() => this.chatClick(chat)}>
                                     <div className="chat_people">
-                                        <div className="chat_img"> <img className="chatImg" src="https://ptetutorials.com/images/user-profile.png" alt="sunil" /> </div>
+                                        <div className="chat_img"><img className="chatImg" src="https://ptetutorials.com/images/user-profile.png" alt="sunil" /> </div>
                                         <div className="chat_ib">
                                         <h5>{chat.userName}<span className="chat_date">{moment(chat.messages[chat.messages.length - 1].time.toDate()).format('MMM Do YYYY')}</span>{chat.read === 'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2' ? <MdLens style={{paddingLeft: '3px', color:'green'}}></MdLens> : null}</h5>
                                         <p>{chat.messages[chat.messages.length - 1].message}</p>
