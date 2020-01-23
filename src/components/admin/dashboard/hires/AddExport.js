@@ -297,11 +297,11 @@ class AddExport extends Component {
                                         <h5 className='blue-text' style={{paddingRight: '5px'}}>Estimated Cost: </h5> Rs.{this.state.cost} 
                                     </div>  
                                     <hr/>
-                                    Note that the estimated cost may subject to change. Contact the administrator for inquiries.
+                                    Note that the estimated cost may subject to change.
                                 </div>
                                 :
                                 <div className="row">
-                                    No cost estimation available for the provided destinaiton address. Please contact the administrator for inquiries.
+                                    No cost estimation available for the provided destinaiton address.
                                 </div>  
                             }
                         </Modal.Body>
