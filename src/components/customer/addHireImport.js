@@ -32,21 +32,38 @@ class AddHireImport extends Component {
         remarks: '',
         loading: 1,
         redir : 0,
-        showPrice: false
+
     }
 
     handleClosePrice = () => {
         // e.preventDefault();
         this.setState({
-            showPrice: false,
+            show: false,
         })
     }
 
     handleShowPrice = (e) => {
         e.preventDefault()
-        this.setState({
-            showPrice: true
-        })
+        if(this.props.pricing){
+            var city = this.props.pricing.filter(item => item.id === this.state.destinationCity.toUpperCase())
+            if(city.length && this.state.containerType === '20'){
+                this.setState({
+                    show: true,
+                    cost: city[0].import20ft
+                })
+            }else if(city.length && this.state.containerType === '40'){
+                this.setState({
+                    show: true,
+                    cost: city[0].import40ft
+                })
+            }else{
+                this.setState({
+                    show: true,
+                    cost: null
+                })
+            }
+
+        }
     }
 
 
@@ -237,9 +254,11 @@ class AddHireImport extends Component {
 
                                                 {/*start price*/}
 
-                                                <Button color="primary" onClick={this.handleShowPrice} style={{ marginBottom: '1rem' }}>Get Estimated Hire Cost <i
+                                                <Button color="primary" className={this.state.destinationCity ? "btn " : "invisible"}  id="btnLong" onClick={this.handleShowPrice} style={{ marginBottom: '1rem' }}>Get Estimated Hire Cost <i
                                                     className="fas fa-cog fa-spin"></i></Button>
-                                                <Modal show={this.state.showPrice} onHide={this.handleClosePrice} size="md" backdrop={true} aria-labelledby="contained-modal-title-vcenter" centered style={{overflow:'unset'}}>
+
+
+                                                <Modal show={this.state.show} onHide={this.handleClosePrice} size="md" backdrop={false} aria-labelledby="contained-modal-title-vcenter" centered style={{overflow:'unset'}}>
                                                     <Modal.Header closeButton>
                                                         <Modal.Title className="center"><h2 >Cost Estimation</h2></Modal.Title>
                                                     </Modal.Header>
@@ -251,23 +270,27 @@ class AddHireImport extends Component {
                                                                 {/*</div>*/}
                                                                 <form >
                                                                     <div className="input-field row">
-                                                                        <h5 className='blue-text'>Container Type </h5>
+                                                                        <h6 className='blue-text'>Container Type </h6>
                                                                         <input type="text" id="containerType" value={this.state.containerType + " ft"} required />
                                                                     </div>
                                                                     <div className="input-field row">
-                                                                        <h5 className='blue-text'>Destination City</h5>
+                                                                        <h6 className='blue-text'>Destination City</h6>
                                                                         <input type="text" id="destinationCity" value={this.state.destinationCity} required />
                                                                     </div>
                                                                     <div className="input-field row">
-                                                                        <h5 className='red-text'>Estimated Cost for Hire</h5>
-                                                                        {/*{this.state.containerType === "20" ?*/}
-                                                                        {/*    <input type="text" id="import20ft"*/}
-                                                                        {/*           value={this.props.pricingList.filter(item => item.id === this.state.destinationCity).map(a => a.import20ft)[0]}*/}
-                                                                        {/*           required/>:*/}
-                                                                        {/*    <input type="text" id="import40ft"*/}
-                                                                        {/*           value={this.props.pricingList.filter(item => item.id === this.state.destinationCity).map(a => a.import40ft)[0]}*/}
-                                                                        {/*           required/>*/}
-                                                                        {/*}*/}
+                                                                        <h6 className='blue-text'>Estimated Cost for Hire</h6>
+                                                                        {this.state.cost ?
+                                                                            <div>
+                                                                            <input type="text" id="cost"
+                                                                                   value={"RS. " + this.state.cost}
+                                                                                   required/>
+                                                                                <hr/>
+                                                                                <b className="red-text">Note that the estimated cost may subject to change. Contact the administrator for inquiries.</b>
+                                                                            </div>:
+                                                                            <div>
+                                                                                No cost estimation available for the provided destinaiton address. Please contact the administrator for inquiries.
+                                                                            </div>
+                                                                        }
                                                                     </div>
                                                                 </form>
                                                             </Card.Body>
@@ -325,7 +348,7 @@ const mapStateToProps = (state) => {
     return{
         customer: state.firestore.ordered.customers,
         hires: state.firestore.ordered.hires,
-        pricingList: state.firestore.ordered.pricing
+        pricing: state.firestore.ordered.pricing
     }
 }
 
