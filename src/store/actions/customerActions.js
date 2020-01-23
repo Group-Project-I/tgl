@@ -102,8 +102,12 @@ export const addNotifications=(notification,dataType,data)=>{
     firestore.collection('notifications').add({
       ...notification,
       from:'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
-      type:'hire accepted',
-      data:"Hire Accepted",
+      to:auth.uid,
+      data:
+    ( dataType =='hire accepted'?"Hire Accepted"
+    :dataType =='hire decclined'?"Sorry your Hire has been canceled "
+    :dataType =='hire completed' ? "Hire completed" :null)
+      ,
       link:'/User/UserManageTools',
       createdAt:new Date()}).then(() => {
           dispatch({type: 'Hire_Accept_Notication_Added'});

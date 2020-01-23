@@ -36,8 +36,8 @@ const SignedOutLinks = () => {
                 </Nav>
                 </Navbar.Collapse>
                 
-//             </div>
-//         </Navbar>
+             </div>
+        </Navbar>
         
         
     )

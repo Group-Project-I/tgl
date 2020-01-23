@@ -134,7 +134,7 @@ class Chat extends React.Component {
                                     
                                 )
                             })}
-                        </div>
+                        </div> 
                         <form onSubmit={this.handleSubmit}>
                             <div className="type_msg">
                                 <div className="input_msg_write">

@@ -82,6 +82,7 @@ export const addExportHire = (exportHire) => {
 export const acceptHireRequest = (id, hireRequest) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
+        const cust=firestore.collection('hires').doc(id).customerId
         firestore.collection('hires').doc(id).update({
             driverName: hireRequest.driverName,
             driverId: hireRequest.driverId,
@@ -94,17 +95,18 @@ export const acceptHireRequest = (id, hireRequest) => {
         }).catch((err) => {
             dispatch({type: 'ERROR_UPDATING_HIRE_REQUEST', err})
         })
-        // firestore.collection('notifications').add({
-        //     to:auth.uid,
-        //     from:'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
-        //     type:'hire accepted',
-        //     data:"Hire Accepted",
-        //     link:'/User/UserManageTools',
-        //     createdAt:new Date()}).then(() => {
-        //         dispatch({type: 'Hire_Accept_Notication_Added'});
-        //     }).catch((err) => {
-        //         dispatch({type: 'Notificaton_Add_ERROR', err});
-        //     })
+        firestore.collection('notifications').add({
+            to:'OrA27JIucfUxewmLheSRc7dMx5s1',
+            from:'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
+            type:'hire accepted',
+            data:"Hire Accepted",
+            link:'/User/UserManageTools',
+            createdAt:new Date()}).then(() => {
+                console.log("doc added")
+                dispatch({type: 'Notication_Added'});
+            }).catch((err) => {
+                dispatch({type: 'Notificaton_Add_ERROR', err});
+            })
 
     }
 }
@@ -112,6 +114,7 @@ export const acceptHireRequest = (id, hireRequest) => {
 export const declineHireRequest = (id, hireRequest) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
+        const cust=firestore.collection('hires').doc(id).customerId
         firestore.collection('hires').doc(id).update({
             hireStatus: 'declined',
             driverName: '',
@@ -124,12 +127,25 @@ export const declineHireRequest = (id, hireRequest) => {
         }).catch((err) => {
             dispatch({type: 'ERROR_DECLINING_HIRE_REQUEST', err})
         })
+        firestore.collection('notifications').add({
+            to:'OrA27JIucfUxewmLheSRc7dMx5s1',
+            from:'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
+            type:'hire declined',
+            data:"Hire Declined",
+            link:'/User/UserManageTools',
+            createdAt:new Date()}).then(() => {
+                console.log("doc added")
+                dispatch({type: "Notication_Added"});
+            }).catch((err) => {
+                dispatch({type: 'Notificaton_Add_ERROR', err});
+            })
     }
 }
 
 export const completeHire = (id) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
+        // const cust=firestore.collection('hires').doc(id).customerId
         firestore.collection('hires').doc(id).update({
             hireStatus: 'completed',
             completedDatetime: new Date()
@@ -138,6 +154,18 @@ export const completeHire = (id) => {
         }).catch((err) => {
             dispatch({type: 'ERROR_RECORDING_HIRE_COMPLETION', err})
         })
+        firestore.collection('notifications').add({
+            to:'OrA27JIucfUxewmLheSRc7dMx5s1',
+            from:'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
+            type:'hire completed',
+            data:"Hire Completed",
+            link:'/User/UserManageTools',
+            createdAt:new Date()}).then(() => {
+                console.log("doc added")
+                dispatch({type: "Notication_Added"});
+            }).catch((err) => {
+                dispatch({type: 'Notificaton_Add_ERROR', err});
+            })
     }
 }
 

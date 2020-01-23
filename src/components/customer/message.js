@@ -120,6 +120,7 @@ console.log(this.state)
                 {...this.props}
                 size="md"
                 aria-labelledby="contained-modal-title-vcenter"
+                position='bottom left'
                         >
               <Modal.Header  >
                 <h2>MESSAGES</h2>
@@ -156,15 +157,15 @@ console.log(this.state)
                  
               </Modal.Body>
               <Modal.Footer  style={{position:'relative'}}>
-              <form onSubmit={this.handleSubmit}>
-                <div className="type_msg">
+              <form onSubmit={this.handleSubmit} style={{float:'left'}}>
+                <div className="type_msg" >
                     <div className="input_msg_write">
                     <input type="text" onChange={this.handleChange} id="newMessage" className="write_msg" placeholder="Type a message" />
                     <button className="msg_send_btn" type="button" onClick={this.handleSubmit}><i className="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </form>
-            <Button variant='light' onClick={this.props.onHide} style={{float:'right'}}>Close</Button>
+            {/* <Button variant='light' onClick={this.props.onHide} style={{float:'right'}}>Close</Button> */}
 
               </Modal.Footer>
           </Modal> 

@@ -38,7 +38,12 @@ const adminHireReducer = (state = initState, action) => {
         case 'ERROR_RECORDING_HIRE_COMPLETION':
             console.log('error recording hire completion')
             return state;
+        case 'Notication_Added':
+            console.log('Notification added')
+        case 'Notificaton_Add_ERROR':
+            console.log('Error adding notification', action.err)
         default:
+
             return state
     }
     

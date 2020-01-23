@@ -62,8 +62,8 @@ import {recoverPassword} from '../../../store/actions/customerActions'
             </div>
            
             {/* <button className='btn d-flex justify-content-center' style={{float:'left'}} type ='submit'>SEND </button> */}
-          <Button variant='info' type='submit'  style={{float:'left'}}>SEND</Button>
-          <Button variant='light' onClick={this.props.onHide} style={{float:'right'}}>Close</Button>
+          <Button variant='info' type='submit'  style={{margin:'auto'}}>SEND</Button>
+          {/* <Button variant='light' onClick={this.props.onHide} style={{float:'right'}}>Close</Button> */}
         
           </form>
           </Modal.Body>
