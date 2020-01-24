@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Badge} from 'react-bootstrap'
-import "react-tabs/style/react-tabs.css";
+import "react-tabs/style/react-tabs.css"
+import ImageUpload from './imageUpload'
 
 class Profile extends Component {
 
@@ -18,17 +19,18 @@ class Profile extends Component {
 
     render() {     
         const load = this.state.loading === 0 ? (
-            <div className="row jumbotron " style={{opacity:'0.7',width:'1450px',margin:'0 auto'}} >
-                <div className="col-3">
-                    <img src={require('../../img/profile.jpg')} class="mx-auto img-fluid img-circle d-block left" alt="avatar" />
+            <div className="row  " style={{width:'1500px',margin:'0 auto'}} >
+                <div className="col-4">
+                    <img src={require('../../img/user.png')} class="mx-auto img-fluid img-circle d-block left" alt="avatar"  style={{borderRadius:'50%'}}/>
                     
+                    {/* <ImageUpload/> */}
                     <label class="custom-file">
                         <h6 class="mt-2 left">Upload new photo</h6>
                         <input type="file" id="file" class="custom-file-input" />
-                        <span class="custom-file-control">Choose file</span>
+                        <button class="custom-file-control  btn blue lighten-1 z-depth-0" >Choose file</button>
                     </label>
                 </div>
-                <div className="col-9">
+                <div className="col-8 " style={{ }}>
                     <h1>{this.props.customer.firstName + " " + this.props.customer.lastName}</h1>
                     <br/><br/>
                     <h6><b className="blue-text">Mobile: </b> {this.props.customer.mobile}</h6>

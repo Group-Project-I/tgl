@@ -8,6 +8,7 @@ import {compose} from 'redux'
 import {readNotification} from '../../store/actions/adminActions'
 import { MdNotifications, MdNotificationsActive, MdBeenhere, MdEventAvailable, MdEdit, MdPersonAdd} from "react-icons/md";
 
+import { GoIssueReopened } from "react-icons/go";
   
 
 export class SignedInLinks extends React.Component{
@@ -20,7 +21,8 @@ export class SignedInLinks extends React.Component{
       }
     render(){
         const {auth} = this.props
-        const notifications = this.props.notifications.filter(item => item.to=== auth.uid).sort((a, b) => new Date((b.createdAt.seconds + b.createdAt.nanoseconds/1E9)*1000) - new Date((a.createdAt.seconds + a.createdAt.nanoseconds/1E9)*1000))
+        const notifications = this.props.notifications.filter(item => item.to=== auth.uid)
+        // .sort((a, b) => new Date((b.createdAt.seconds + b.createdAt.nanoseconds/1E9)*1000) - new Date((a.createdAt.seconds + a.createdAt.nanoseconds/1E9)*1000))
 
         const load = this.state.loading === 0 ? (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom" style={{ minWidth: 700, position: 'fixed' }}>
@@ -31,20 +33,19 @@ export class SignedInLinks extends React.Component{
             <div className="container-fluid" >
                 
             <NavLink to='/'style={{ minWidth: 350 }} ><h3>Trans Global Logistics</h3></NavLink>
-            <Nav className="justify-content-end mr-auto" style={{ width: "90%" }}>
+            <Nav className="justify-content-end mr-auto" style={{ width: "85%" }}>
                 <NavDropdown title='Hires' id="basic-nav-dropdown">
                     <NavDropdown.Item><NavLink to='/User/addHire'style={{textDecoration: 'none',color:'black'}} >Add Hire</NavLink></NavDropdown.Item>
                     <NavDropdown.Item><NavLink to='/User/UserManageTools' style={{textDecoration: 'none' ,color:'black'}}>Manage Hire</NavLink></NavDropdown.Item>
                 </NavDropdown>
                     
-                <Nav.Link as={NavLink} to='/' style={{textDecoration: 'none',color:'#C0C0C0'}}>Home</Nav.Link>
-                <Nav.Link as={NavLink} to='/about' style={{textDecoration: 'none',color:'#C0C0C0'}}>About</Nav.Link>
-                <Nav.Link as={NavLink} to='/services' style={{textDecoration: 'none',color:'#C0C0C0'}}>Services</Nav.Link>
-                <Nav.Link as={NavLink} to='/contact' style={{textDecoration: 'none',color:'#C0C0C0'}}>Contact</Nav.Link>
+                <Nav.Link as={NavLink} to='/' style={{textDecoration: 'none',color:'white'}}>Home</Nav.Link>
+                <Nav.Link as={NavLink} to='/about' style={{textDecoration: 'none',color:'white'}}>About</Nav.Link>
+                <Nav.Link as={NavLink} to='/services' style={{textDecoration: 'none',color:'white'}}>Services</Nav.Link>
+                <Nav.Link as={NavLink} to='/contact' style={{textDecoration: 'none',color:'white'}}>Contact</Nav.Link>
                 
                 <NavDropdown style={{paddingTop: '5px'}} title={<i class="fas fa-user-circle"></i>} id="basic-nav-dropdown">
                     <NavDropdown.Item><NavLink to={'/User/profile/' + auth.uid} style={{textDecoration: 'none',color:'black'}}>Profile</NavLink></NavDropdown.Item>
-                    <NavDropdown.Item><NavLink to='/User/messages' style={{textDecoration: 'none',color:'black'}}>Messages</NavLink></NavDropdown.Item>
                     <NavDropdown.Item><NavLink to={'/'}><Button onClick={this.props.signOut}>Logout</Button></NavLink></NavDropdown.Item>
                 </NavDropdown>
 
@@ -55,16 +56,20 @@ export class SignedInLinks extends React.Component{
                 return(
                 <div>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item style={{ border:'2px solid black', padding:'3.75px 0px'}}>
+                  <NavDropdown.Item style={{ margin:0, padding:'0px 0px'}}>
                     {notification.type === 'hire accepted' ?
-                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'orange'}}>
+                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'orange',backgroundColor:'#FFFACD'}}>
                         <h6><MdEventAvailable size={28}/> {notification.data}</h6>
                         {new Date((notification.createdAt.seconds + notification.createdAt.nanoseconds/1E9)*1000).toString().substr(0,24)}
                       </Nav.Link> : ( notification.type === 'hire declined' ?
-                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'red'}}>
+                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'red',backgroundColor:'#ffe6f0'}}>
+                        <h6><GoIssueReopened size={28} /> {notification.data}</h6>
+                        {new Date((notification.createdAt.seconds + notification.createdAt.nanoseconds/1E9)*1000).toString().substr(0,24)}
+                      </Nav.Link> :(notification.type === 'hire completed' ?
+                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'green',backgroundColor:'#9ACD32'}}>
                         <h6><MdBeenhere size={28} /> {notification.data}</h6>
                         {new Date((notification.createdAt.seconds + notification.createdAt.nanoseconds/1E9)*1000).toString().substr(0,24)}
-                      </Nav.Link> : null)
+                      </Nav.Link> : null))
                     }
                   </NavDropdown.Item>  
                 </div>

@@ -2,12 +2,15 @@ import React, {Component} from 'react'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
+import {Button} from 'react-bootstrap'
 import {signIn} from '../../store/actions/authActions'
-
+import ForgetPassword from '../customer/authRecovery/forgetPassword'
 class SignIn extends Component {
     state = {
         email: '',
-        password: ''
+        password: '',
+        addModelShow:false
+
     }
 
     handleChange = (e) => {
@@ -24,6 +27,7 @@ class SignIn extends Component {
 
     render() {
         const {authError, user} = this.props
+        let addModelClose =()=>this.setState({addModelShow:false})
 
         if (user.userType === 'admin'){
             localStorage.setItem('userId', 'admin')
@@ -57,9 +61,11 @@ class SignIn extends Component {
                                 </form>
                                 
                             </div>
-                            <div className="d-flex justify-content-center links" style={{paddingTop: '20px'}}>
-                                    <NavLink to='/forgetPassword'><p>Forgot password?</p></NavLink>
-                                </div>
+                            <div className="d-flex justify-content-center links">
+                                {/* <NavLink to='/forgetPassword' onClick={()=>this.setState({addModelShow:true})} ><p>Forget password</p></NavLink> */}
+                                <button className={'btn btn-outline-secondary'} onClick={()=> this.setState({addModelShow:true}) }><p>Forget password</p></button>   
+                                <ForgetPassword   show={this.state.addModelShow}  onHide={addModelClose}/>
+                            </div>
                             <div className="card-footer">
                                 <div className="d-flex justify-content-center links">
                                     Don't have an account?<p><NavLink to='/signup' className="text-blue">Sign Up</NavLink></p><br/>
