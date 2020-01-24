@@ -9,6 +9,7 @@ import {declineHireRequest} from '../../../../store/actions/adminHireActions'
 import { Squares } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
 import Card from 'react-bootstrap/Card'
+import Modal from 'react-bootstrap/Modal'
 
 class ManageHireRequest extends Component {
     state = {
@@ -108,9 +109,93 @@ class ManageHireRequest extends Component {
                 ...nextProps,
                 loading: 0,
             });
-            this.availableDrivers()
+            // this.availableDrivers()
+        } 
+    }
+
+    handleShowDriver = (e) => {
+        e.preventDefault()
+        if(this.state.driverId && this.props.hires){
+            var hireList = this.props.hires.filter(item => item.driverId === this.state.driverId && (item.hireStatus !== 'completed' || item.hireStatus !== 'declined'))
+            var dayBefore = hireList.filter(item => item.pickupDatetime.toString().split('T')[0] === moment(this.props.hire[0].pickupDatetime).add(-1,'days').format().toString().split('T')[0])
+            var dayAfter = hireList.filter(item => item.pickupDatetime.toString().split('T')[0] === moment(this.props.hire[0].pickupDatetime).add(1,'days').format().toString().split('T')[0])
+
+            if(dayAfter.length && dayBefore.length){
+                this.setState({
+                    driverDayBefore: dayBefore[0],
+                    driverDayAfter: dayAfter[0],
+                    show: true
+                })
+            }
+            else if(dayAfter.length && !dayBefore.length){
+                this.setState({
+                    driverDayBefore: null,
+                    driverDayAfter: dayAfter[0],
+                    show: true
+                })
+            }
+            else if(!dayAfter.length && dayBefore.length){
+                this.setState({
+                    driverDayBefore: dayBefore[0],
+                    driverDayAfter: null,
+                    show: true
+                })
+            }
+            else{
+                this.setState({
+                    driverDayBefore: null,
+                    driverDayAfter: null,
+                    show: true
+                })
+            }
         }
         
+    }
+
+    handleShowVehicle = (e) => {
+        e.preventDefault()
+        if(this.state.vehicleId && this.props.hires){
+            var hireList = this.props.hires.filter(item => item.vehicleId === this.state.vehicleId && (item.hireStatus !== 'completed' || item.hireStatus !== 'declined'))
+            var dayBefore = hireList.filter(item => item.pickupDatetime.toString().split('T')[0] === moment(this.props.hire[0].pickupDatetime).add(-1,'days').format().toString().split('T')[0])
+            var dayAfter = hireList.filter(item => item.pickupDatetime.toString().split('T')[0] === moment(this.props.hire[0].pickupDatetime).add(1,'days').format().toString().split('T')[0])
+
+            if(dayAfter.length && dayBefore.length){
+                this.setState({
+                    vehiclerDayBefore: dayBefore[0],
+                    vehicleDayAfter: dayAfter[0],
+                    showV: true
+                })
+            }
+            else if(dayAfter.length && !dayBefore.length){
+                this.setState({
+                    vehicleDayBefore: null,
+                    vehicleDayAfter: dayAfter[0],
+                    showV: true
+                })
+            }
+            else if(!dayAfter.length && dayBefore.length){
+                this.setState({
+                    vehicleDayBefore: dayBefore[0],
+                    vehicleDayAfter: null,
+                    showV: true
+                })
+            }
+            else{
+                this.setState({
+                    vehicleDayBefore: null,
+                    vehicleDayAfter: null,
+                    showV: true
+                })
+            }
+        }
+        
+    }
+
+    handleClose = () => {
+        this.setState({
+          show: false,
+          showV: false
+        })
     }
 
     render() {
@@ -139,7 +224,7 @@ class ManageHireRequest extends Component {
                                 <Card.Header color="blue"><h5>Container Pickup Details</h5></Card.Header>
                                 <Card.Body>
                                 <h6>Location</h6>
-                                <div className="row" style={{padding: '20px'}}>
+                                <div className="row" style={{paddingTop: '40px'}}>
                                     <div className="col-6">
                                         <h6 className="left"><b className='blue-text'>Address Line 1: </b> {this.props.hire[0].containerPickupAddressLine1}</h6>
                                     </div>
@@ -153,7 +238,7 @@ class ManageHireRequest extends Component {
                                     </div>
                                 </div> 
                                 <hr/>
-                                <div className="row">
+                                <div className="row" style={{paddingTop: '40px'}}>
                                     <div className="col-6">
                                         <h6 className="left"><b className='blue-text'>Pickup Date: </b> {moment(this.props.hire[0].pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
                                     </div>
@@ -166,7 +251,7 @@ class ManageHireRequest extends Component {
                                     <Card border="primary" className="text-center">
                                         <Card.Header color="blue"><h5>Cargo Details</h5></Card.Header>
                                         <Card.Body>
-                                        <div className="row" style={{padding: '20px'}}>
+                                        <div className="row" style={{paddingTop: '40px'}}>
                                             <div className="col-6">
                                                 <h6 className="left"><b className='blue-text'>Cargo Type: </b> {this.props.hire[0].cargoType}</h6>
                                             </div>
@@ -180,7 +265,7 @@ class ManageHireRequest extends Component {
                                     <Card border="primary" className="text-center">
                                         <Card.Header color="blue"><h5>Unloading Details</h5></Card.Header>
                                         <Card.Body>
-                                        <div className="row" style={{padding: '20px'}}>
+                                        <div className="row" style={{paddingTop: '40px'}}>
                                             <div className="col-6">
                                                 <h6 className="left"><b className='blue-text'>Unloading Port: </b> {this.props.hire[0].unloadingPort}</h6>
                                             </div>
@@ -189,7 +274,7 @@ class ManageHireRequest extends Component {
                                             </div>
                                         </div>
                                         <hr/><h6>Vessel Details</h6>
-                                        <div className="row">
+                                        <div className="row" style={{paddingTop: '40px'}}>
                                             <div className="col-6">
                                                 <h6 className="left"><b className='blue-text'>Vessel: </b> {this.props.hire[0].vessel}</h6>
                                             </div>
@@ -203,7 +288,7 @@ class ManageHireRequest extends Component {
                                     <Card border="primary" className="text-center">
                                         <Card.Header>Destination Address</Card.Header>
                                         <Card.Body>
-                                        <div className="row" style={{padding: '20px'}}>
+                                        <div className="row" style={{paddingTop: '40px'}}>
                                             <div className="col-6">
                                                 <h6 className="left"><b className='blue-text'>Address Line 1: </b> {this.props.hire[0].destinationAddressLine1}</h6>
                                             </div>
@@ -239,7 +324,7 @@ class ManageHireRequest extends Component {
                                             </div>
                                         </div>
                                         <hr/>
-                                        <div className="row" style={{padding: '20px'}}>
+                                        <div className="row" style={{paddingTop: '40px'}}>
                                             <div className="col-6">
                                                 <h6 className="left"><b className='blue-text'>Cargo Type(s): </b> {this.props.hire[0].cargoType}</h6>
                                             </div>
@@ -252,7 +337,7 @@ class ManageHireRequest extends Component {
                                     <Card border="primary" className="text-center">
                                         <Card.Header color="blue"><h5>Loading Details</h5></Card.Header>
                                         <Card.Body>
-                                        <div className="row" style={{padding: '20px'}}>
+                                        <div className="row" style={{paddingTop: '40px'}}>
                                             <div className="col-6">
                                                 <h6 className="left"><b className='blue-text'>Loading Port: </b> {this.props.hire[0].loadingPort}</h6>
                                             </div>
@@ -276,7 +361,7 @@ class ManageHireRequest extends Component {
                             <Card border="primary" className="text-center">
                                 <Card.Header color="blue"><h5>Customer</h5></Card.Header>
                                 <Card.Body>
-                                <div className="row" style={{padding: '20px'}}>
+                                <div className="row" style={{paddingTop: '40px'}}>
                                     <div className="col-3">
                                         <h6 className="left"><b className='blue-text'>Name: </b> {this.props.hire[0].customerName}</h6>
                                     </div>
@@ -299,33 +384,139 @@ class ManageHireRequest extends Component {
                                 <Card border="primary" className="text-center">
                                     <Card.Header color="blue"><h5>Assign Driver</h5></Card.Header>
                                     <Card.Body>
-                                    <div className="row" style={{padding: '20px'}} >
+                                    <div className="row" style={{paddingTop: '40px'}} >
                                         <div className="input-field col-6">
-                                            <select className="form-control" id="driverId" onChange={this.handleDriver} onBlur={this.handleDriver}>
+                                            <select className="form-control" id="driverId" onFocus={this.availableDrivers} onChange={this.handleDriver} onBlur={this.handleDriver} onInput={this.handleDriver}>
                                                 {this.state.freeDrivers ? this.state.freeDrivers.map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName + " - " + x.mobile}</option>)}) : null}
                                             </select>
+                                        </div>
+                                        <div className="input-field col-6 center">
+                                            <button className="btn orange lighten-1 z-depth-5 btnLong" id="btnLong" onClick={this.handleShowDriver} >Check Activity</button>
                                         </div>
                                     </div>
                                     </Card.Body>
                                 </Card>
+                                <Modal show={this.state.show} onHide={this.handleClose} size="md" backdrop={false} aria-labelledby="contained-modal-title-vcenter" centered style={{overflow:'unset'}}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title> <div className="center">Driver Activity</div> </Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    {this.state.driverDayBefore ? 
+                                        <div>
+                                            <div className="row">
+                                                <h5 className='blue-text' style={{paddingRight: '5px'}}>{moment(this.props.hire[0].pickupDatetime).add(-1,'days').format('MMMM Do YYYY')} </h5>
+                                            </div>  
+                                            <div>
+                                                <h6>Hire Type: {this.state.driverDayBefore.hireType.toUpperCase()}</h6>
+                                                <h6>Pickup: {moment(this.state.driverDayBefore.pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                                                <h6>Location: {this.state.driverDayBefore.hireType === 'import' ? this.state.driverDayBefore.destinationCity : this.state.driverDayBefore.cargoLocationCity}</h6>
+                                            </div>
+                                        </div>
+                                        :
+                                        <div>
+                                            <div className="row">
+                                                <h5 className='blue-text' style={{paddingRight: '5px'}}>{moment(this.props.hire[0].pickupDatetime).add(-1,'days').format('MMMM Do YYYY')} </h5>
+                                            </div>  
+                                            <div>
+                                                <h6>No assigned hires for this date</h6>
+                                            </div>
+                                        </div>  
+                                    }
+                                    <hr/>
+                                    {this.state.driverDayAfter ? 
+                                        <div>
+                                            <div className="row">
+                                                <h5 className='blue-text' style={{paddingRight: '5px'}}>{moment(this.props.hire[0].pickupDatetime).add(1,'days').format('MMMM Do YYYY')} </h5>
+                                            </div>  
+                                            <div>
+                                                <h6>Hire Type: {this.state.driverDayAfter.hireType.toUpperCase()}</h6>
+                                                <h6>Pickup: {moment(this.state.driverDayAfter.pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                                                <h6>Location: {this.state.driverDayAfter.hireType === 'import' ? this.state.driverDayAfter.destinationCity : this.state.driverDayAfter.cargoLocationCity}</h6>
+                                            </div>
+                                        </div>
+                                        :
+                                        <div>
+                                            <div className="row">
+                                                <h5 className='blue-text' style={{paddingRight: '5px'}}>{moment(this.props.hire[0].pickupDatetime).add(1,'days').format('MMMM Do YYYY')} </h5>
+                                            </div>  
+                                            <div>
+                                                <h6>No assigned hires for this date</h6>
+                                            </div>
+                                        </div> 
+                                    }
+                                </Modal.Body>
+                                </Modal>
                                 <br/>
                                 <Card border="primary" className="text-center">
                                     <Card.Header color="blue"><h5>Assign Vehicle</h5></Card.Header>
                                     <Card.Body>
-                                    <div className="row" style={{padding: '20px'}}>
+                                    <div className="row" style={{paddingTop: '40px'}}>
                                         <div className="input-field col-6">
-                                            <select className="form-control" id="vehicleId" onFocus={this.availableVehicles} onChange={this.handleVehicle} onBlur={this.handleVehicle}>
+                                            <select className="form-control" id="vehicleId" onFocus={this.availableVehicles} onChange={this.handleVehicle} onBlur={this.handleVehicle} required>
                                                 {this.state.freeVehicles ? this.state.freeVehicles.map((x, i) => {return (<option value={x.id + "_" + x.vehicleNo} key={i}>{x.vehicleNo + " - " + x.trailerNo}</option>)}) : null}
                                             </select>
+                                        </div>
+                                        <div className="input-field col-6 center">
+                                            <button className="btn orange lighten-1 z-depth-5 btnLong" onClick={this.handleShowVehicle} >Check Activity</button>
                                         </div>
                                     </div>
                                     </Card.Body>
                                 </Card>
+                                <Modal show={this.state.showV} onHide={this.handleClose} size="md" backdrop={false} aria-labelledby="contained-modal-title-vcenter" centered style={{overflow:'unset'}}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title> <div className="center">Vehicle Activity</div> </Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    {this.state.vehicleDayBefore ? 
+                                        <div>
+                                            <div className="row">
+                                                <h5 className='blue-text' style={{paddingRight: '5px'}}>{moment(this.props.hire[0].pickupDatetime).add(-1,'days').format('MMMM Do YYYY')} </h5>
+                                            </div>  
+                                            <div>
+                                                <h6>Hire Type: {this.state.vehicleDayBefore.hireType.toUpperCase()}</h6>
+                                                <h6>Pickup: {moment(this.state.vehicleDayBefore.pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                                                <h6>Location: {this.state.vehicleDayBefore.hireType === 'import' ? this.state.vehicleDayBefore.destinationCity : this.state.vehicleDayBefore.cargoLocationCity}</h6>
+                                            </div>
+                                        </div>
+                                        :
+                                        <div>
+                                            <div className="row">
+                                                <h5 className='blue-text' style={{paddingRight: '5px'}}>{moment(this.props.hire[0].pickupDatetime).add(-1,'days').format('MMMM Do YYYY')} </h5>
+                                            </div>  
+                                            <div>
+                                                <h6>No assigned hires for this date</h6>
+                                            </div>
+                                        </div>  
+                                    }
+                                    <hr/>
+                                    {this.state.vehicleDayAfter ? 
+                                        <div>
+                                            <div className="row">
+                                                <h5 className='blue-text' style={{paddingRight: '5px'}}>{moment(this.props.hire[0].pickupDatetime).add(1,'days').format('MMMM Do YYYY')} </h5>
+                                            </div>  
+                                            <div>
+                                                <h6>Hire Type: {this.state.vehicleDayAfter.hireType.toUpperCase()}</h6>
+                                                <h6>Pickup: {moment(this.state.vehicleDayAfter.pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                                                <h6>Location: {this.state.vehicleDayAfter.hireType === 'import' ? this.state.vehicleDayAfter.destinationCity : this.state.vehicleDayAfter.cargoLocationCity}</h6>
+                                            </div>
+                                        </div>
+                                        :
+                                        <div>
+                                            <div className="row">
+                                                <h5 className='blue-text' style={{paddingRight: '5px'}}>{moment(this.props.hire[0].pickupDatetime).add(1,'days').format('MMMM Do YYYY')} </h5>
+                                            </div>  
+                                            <div>
+                                                <h6>No assigned hires for this date</h6>
+                                            </div>
+                                        </div> 
+                                    }
+                                </Modal.Body>
+                                </Modal>
                                 <br/>
                                 <Card border="primary" className="text-center">
                                     <Card.Header color="blue"><h5>Remarks</h5></Card.Header>
                                     <Card.Body>
-                                    <div className="input-field row col-12" style={{padding: '20px'}}>
+                                    <div className="input-field row col-12" style={{paddingTop: '40px'}}>
                                         <textarea placeholder="Remarks" value={this.state.hire[0].remarks} style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange}/>
                                     </div>
                                     </Card.Body>

@@ -33,7 +33,7 @@ export class SignedInLinks extends React.Component{
             <div className="container-fluid" >
                 
             <NavLink to='/'style={{ minWidth: 350 }} ><h3>Trans Global Logistics</h3></NavLink>
-            <Nav className="justify-content-end mr-auto" style={{ width: "90%" }}>
+            <Nav className="justify-content-end mr-auto" style={{ width: "85%" }}>
                 <NavDropdown title='Hires' id="basic-nav-dropdown">
                     <NavDropdown.Item><NavLink to='/User/addHire'style={{textDecoration: 'none',color:'black'}} >Add Hire</NavLink></NavDropdown.Item>
                     <NavDropdown.Item><NavLink to='/User/UserManageTools' style={{textDecoration: 'none' ,color:'black'}}>Manage Hire</NavLink></NavDropdown.Item>
@@ -48,6 +48,7 @@ export class SignedInLinks extends React.Component{
                     <NavDropdown.Item><NavLink to={'/User/profile/' + auth.uid} style={{textDecoration: 'none',color:'black'}}>Profile</NavLink></NavDropdown.Item>
                     <NavDropdown.Item><NavLink to={'/'}><Button onClick={this.props.signOut}>Logout</Button></NavLink></NavDropdown.Item>
                 </NavDropdown>
+
                 {/* <Nav.Link><NavLink to='#' style={{textDecoration: 'none' ,paddingTop:'20px',color:'#C0C0C0'}}><i class="fas fa-bell"></i></NavLink></Nav.Link> */}
                 
                 <NavDropdown title={notifications.length === 0 ? <MdNotifications size={28}/> : <MdNotificationsActive size={28}/>} id="basic-nav-dropdown" disabled={!notifications.length}>
@@ -75,6 +76,7 @@ export class SignedInLinks extends React.Component{
                 )
               })}
             </NavDropdown>
+
             </Nav>
             </div> 
            

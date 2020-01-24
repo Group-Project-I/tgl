@@ -5,6 +5,8 @@ import {addExportHires} from '../../store/actions/customerHireActions'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 class AddHireExport extends Component {
     state = {
@@ -27,6 +29,37 @@ class AddHireExport extends Component {
         remarks: '',
         loading: 1,
         redir: 0
+    }
+
+    handleClosePrice = () => {
+        // e.preventDefault();
+        this.setState({
+            show: false,
+        })
+    }
+
+    handleShowPrice = (e) => {
+        e.preventDefault()
+        if(this.props.pricing){
+            var city = this.props.pricing.filter(item => item.id === this.state.cargoLocationCity.toUpperCase())
+            if(city.length && this.state.containerType === '20'){
+                this.setState({
+                    show: true,
+                    cost: city[0].export20ft
+                })
+            }else if(city.length && this.state.containerType === '40'){
+                this.setState({
+                    show: true,
+                    cost: city[0].export40ft
+                })
+            }else{
+                this.setState({
+                    show: true,
+                    cost: null
+                })
+            }
+
+        }
     }
 
     handleChange = (e) => {
@@ -114,6 +147,9 @@ class AddHireExport extends Component {
                                     <input placeholder="City" type="text" id="containerPickupCity" onChange={this.handleChange} required />
                                 </div>
                             </div>
+
+
+
                         </Card.Body>
                     </Card>
                     <br/>
@@ -141,6 +177,56 @@ class AddHireExport extends Component {
                                 <input placeholder="City" type="text" id="cargoLocationCity" onChange={this.handleChange} required />
                             </div>
                         </div>
+
+                        {/*start price*/}
+
+                        <Button color="primary" className={this.state.cargoLocationCity ? "btn " : "invisible"}  id="btnLong" onClick={this.handleShowPrice} style={{ marginBottom: '1rem' }}>Get Estimated Hire Cost <i
+                            className="fas fa-cog fa-spin"></i></Button>
+
+
+                        <Modal show={this.state.show} onHide={this.handleClosePrice} size="md" backdrop={false} aria-labelledby="contained-modal-title-vcenter" centered style={{overflow:'unset'}}>
+                            <Modal.Header closeButton>
+                                <Modal.Title className="center"><h2 >Cost Estimation</h2></Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Card border="primary" className="text-center">
+                                    <Card.Body>
+                                        {/*<div className= { cityEdited != 'Updated Successfully' ? "red-text" : "green-text"}>*/}
+                                        {/*    {this.state.updated ? cityEdited : null}*/}
+                                        {/*</div>*/}
+                                        <form >
+                                            <div className="input-field row">
+                                                <h6 className='blue-text'>Container Type </h6>
+                                                <input type="text" id="containerType" value={this.state.containerType + " ft"} required />
+                                            </div>
+                                            <div className="input-field row">
+                                                <h6 className='blue-text'>Cargo Location City</h6>
+                                                <input type="text" id="cargoLocationCity" value={this.state.cargoLocationCity} required />
+                                            </div>
+                                            <div className="input-field row">
+                                                <h6 className='blue-text'>Estimated Cost for Hire</h6>
+                                                {this.state.cost ?
+                                                    <div>
+                                                        <input type="text" id="cost"
+                                                               value={"RS. " + this.state.cost}
+                                                               required/>
+                                                        <hr/>
+                                                        <b className="red-text">Note that the estimated cost may subject to change. Contact the administrator for inquiries.</b>
+                                                    </div>:
+                                                    <div>
+                                                        No cost estimation available for the provided cargo Location address. Please contact the administrator for inquiries.
+                                                    </div>
+                                                }
+                                            </div>
+                                        </form>
+                                    </Card.Body>
+                                </Card>
+                            </Modal.Body>
+                        </Modal>
+
+                        {/*end price*/}
+
+
                         <hr/>
                         <div className="row" style={{paddingTop: '40px'}}>
                             <div className="input-field col-6">
@@ -226,7 +312,8 @@ class AddHireExport extends Component {
 const mapStateToProps = (state) => {
     return{
 
-        hires: state.firestore.ordered.hires
+        hires: state.firestore.ordered.hires,
+        pricing: state.firestore.ordered.pricing
     }
 }
 
@@ -239,6 +326,7 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
-        {collection: 'hires'}
+        {collection: 'hires'},
+        {collection: 'pricing'}
     ])
 )(AddHireExport);

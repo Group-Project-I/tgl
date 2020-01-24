@@ -6,7 +6,6 @@ class EditCustomer extends Component {
 
     state = {
         id: '',
-        email: '',
         password: '',
         firstName: '',
         lastName: '',
@@ -77,11 +76,6 @@ class EditCustomer extends Component {
                             <div className="input-field col-5 row ">
                                 <h6 className='blue-text'>NIC</h6>
                                 <input placeholder="NIC No" type="text" id="nic" value={this.state.nic}  onChange={this.handleChange} required />
-                            </div>
-                            <div className='col-2'></div>
-                            <div className="input-field col-5 row">
-                                <h6 className='blue-text'>Email</h6>
-                                <input placeholder="Email" type="email" id="email" value={this.state.email}  onChange={this.handleChange} required />
                             </div>
                         </div><br/>
                         <div className="input-field center">

@@ -34,7 +34,8 @@ class ManageDeclinedHires extends Component {
 
         if(this.props.drivers && this.props.hires){
             this.setState({
-                ...nextProps, loading: 0, remarks: this.props.hire[0].remarks
+                ...nextProps, loading: 0,
+                // remarks: this.props.hire[0].remarks
             });
         }
 

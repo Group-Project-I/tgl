@@ -54,7 +54,7 @@ class SignIn extends Component {
                                     <div className="input-field">
                                         <input placeholder="Password" type="password" id="password" onChange={this.handleChange} required />
                                     </div>
-                                    <div className="input-field ">
+                                    <div className="input-field center">
                                         <button className="btn blue lighten-1 z-depth-0">Login</button>
                                     </div>
                                     

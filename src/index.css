@@ -91,7 +91,7 @@ code {
 }
 
 .topic{
-    color: red;
+    color: rgb(18, 160, 255);
 }
 .topic1{
   color: #0056b3;
@@ -117,6 +117,9 @@ code {
 .btn1{
   margin-right: 10px;
   width: 95px;
+}
+.btnLong{
+  width: 150px
 }
 .image3{
   background-image: url("../src/img/addhire5.jpg");
@@ -478,7 +481,7 @@ align-content: center;
 }
 
 .signin{
-height: 370px;
+height: 400px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
@@ -486,7 +489,7 @@ background-color: rgba(0,0,0,0.5) !important;
 }
 
 .signup{
-  height: 850px;
+  height: 800px;
   margin-top: auto;
   margin-bottom: auto;
   width: 400px;
