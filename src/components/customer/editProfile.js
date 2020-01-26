@@ -52,11 +52,12 @@ class EditCustomer extends Component {
                     </div>
                     <form onSubmit={this.handleSubmit}>
                         <div className="row">
+                            <br/>
                             <div className="input-field col-5 row">
                                 <h6 className='blue-text'>First name</h6>
                                 <input placeholder="First Name" type="text" id="firstName" value={this.state.firstName}  onChange={this.handleChange} required />
                             </div>
-                            <div className='col-2'></div>
+                            
                             <div className="input-field col-5 row">
                                 <h6 className='blue-text'>Last name</h6>
                                 <input placeholder="Last Name" type="text" id="lastName" value={this.state.lastName}  onChange={this.handleChange} required />

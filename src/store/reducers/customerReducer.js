@@ -61,7 +61,7 @@ const customerReducer =(state = initState ,action) => {
                 return state;
         case 'FAILED TO DELETE NOTIFICATION':
                 console.log('Error deleting notification')
-                return state;        
+                return state; 
         default:
             return state
     }

@@ -37,7 +37,6 @@ import DisabledUsers from './components/admin/dashboard/DisabledUsers'
 import CustomerAddHire from './components/customer/customerAddHire'
 import Profile from './components/customer/profileOld'
 import EditProfile from './components/customer/editProfile'
-import ResetPassword from './components/customer/authRecovery/resetPassword'
 import ChangePassword from './components/customer/authRecovery/changePassword'
 import ResetEmail from './components/customer/authRecovery/resetEmail'
 import Message from './components/customer/message'
@@ -103,7 +102,6 @@ function App(props) {
 
               <Route path='/User/addHire' component={CustomerAddHire}/>
               <Route path='/User/Home' component={Homepage}/>
-              <Route path='/User/resetPassword' component={ResetPassword}/>
               <Route path='/User/changePassword' component={ChangePassword}/>
               <Route path ='/User/messages' component={UserChat}/>
               <Route exact path='/User/profile' component={Profile}/>

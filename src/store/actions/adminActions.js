@@ -211,6 +211,7 @@ export const sendMessage = (message, senderId, receiverId) => {
         const firestore = getFirestore();
         firestore.collection('chats').doc(receiverId).update({
             read: receiverId,
+            finalTime: new Date(),
             messages: firebase.firestore.FieldValue.arrayUnion({
                 message: message,
                 sender: senderId,

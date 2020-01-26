@@ -91,7 +91,7 @@ code {
 }
 
 .topic{
-    color: red;
+    color: rgb(18, 160, 255);
 }
 .topic1{
   color: #0056b3;
@@ -1196,6 +1196,12 @@ margin-left: 4px;
 .msg_history {
   height: 516px;
   overflow-y: auto;
+  overflow-anchor: none;
+}
+
+.msg_anchor{
+  overflow-anchor: auto;
+  height: 1px;
 }
 
 Nav.Link :hover {

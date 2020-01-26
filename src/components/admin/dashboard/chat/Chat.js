@@ -9,10 +9,6 @@ import {MdLens} from 'react-icons/md'
 
 class Chat extends React.Component {
 
-    // constructor(props) {
-    //     super(props);
-    // }
-
     state = {
         chatData: '',
         newMessage: ''
@@ -23,11 +19,6 @@ class Chat extends React.Component {
         element.scrollTop = element.scrollHeight;
         // console.log("scroll")
     }
-
-    // scrollToBottom = () => {
-    //     this.messagesEnd.scrollIntoView({ behavior: "smooth" });
-    //     console.log("scroll")
-    // }
 
     chatClick = (chat) => {
         this.setState({
@@ -66,19 +57,20 @@ class Chat extends React.Component {
 
             this.setState({
                 messages: msgs,
-                loading: 0
+                loading: 0,
             })
         }
       }
 
     render() {
-
         const {chats} = this.props
-        // var chatData =this.state.messages
+        // if(chattie){
+        //     var chats = this.props.chats.sort((a,b) => {return new Date(a.finalTime).getTime() - new Date(b.finalTime).getTime()}).reverse()
+        // }
 
         return(
             <div id="content" className="container-fluid" role="main">
-                <h3 className=" text-center" style={{paddingTop:"150px"}}>Messaging</h3>
+                <h3 className=" text-center" style={{paddingTop:"130px"}}>Messages</h3>
                 <div className="messaging">
                     <div className="inbox_msg">
                         <div className="inbox_people">
@@ -100,7 +92,7 @@ class Chat extends React.Component {
                                 return(
                                     <div className="chat_list" id={chat.id} onClick={() => this.chatClick(chat)} onMouseDown = {() => this.chatClick(chat)} onMouseUp = {() => this.chatClick(chat)}>
                                     <div className="chat_people">
-                                        <div className="chat_img"> <img className="chatImg" src="https://ptetutorials.com/images/user-profile.png" alt="sunil" /> </div>
+                                        <div className="chat_img"><img className="chatImg" src="https://ptetutorials.com/images/user-profile.png" alt="sunil" /> </div>
                                         <div className="chat_ib">
                                         <h5>{chat.userName}<span className="chat_date">{moment(chat.messages[chat.messages.length - 1].time.toDate()).format('MMM Do YYYY')}</span>{chat.read === 'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2' ? <MdLens style={{paddingLeft: '3px', color:'green'}}></MdLens> : null}</h5>
                                         <p>{chat.messages[chat.messages.length - 1].message}</p>
@@ -134,7 +126,8 @@ class Chat extends React.Component {
                                     
                                 )
                             })}
-                        </div>
+                            <div id="msg_anchor"></div>
+                        </div> 
                         <form onSubmit={this.handleSubmit}>
                             <div className="type_msg">
                                 <div className="input_msg_write">
@@ -170,6 +163,10 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect([
-        {collection: 'chats'}
+        {collection: 'chats',
+        orderBy: [
+            ['finalTime', 'desc']
+        ]   
+        }
     ])
 )(Chat);
