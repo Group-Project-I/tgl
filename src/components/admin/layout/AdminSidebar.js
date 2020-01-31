@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { FaUsers, FaBuffer, FaTruck, FaUserCog, FaPlusSquare, FaUserSlash} from "react-icons/fa";
+import { FaUsers, FaBuffer, FaTruck, FaUserCog, FaPlusSquare, FaUserSlash, FaPrint} from "react-icons/fa";
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
@@ -52,6 +52,7 @@ class Sidebar extends Component {
         </div>
         <div className="list-group list-group-flush" style={{paddingTop: "50px"}}>
           <ul className="align-self-center">
+            <NavLink to='/admin/reports' onClick={this.changePath.bind(this,'reports')} className="text-decoration-none"><li className={this.state.urlPath === 'reports' ? "list-group-item list-group-item-hover list-group-item-action " : "list-group-item list-group-item-action "}><FaPrint/> Reports</li></NavLink>
             <NavLink to='/admin/disabled' onClick={this.changePath.bind(this,'disabled')} className="text-decoration-none"><li className={this.state.urlPath === 'disabled' ? "list-group-item list-group-item-hover list-group-item-action " : "list-group-item list-group-item-action "}><FaUserSlash/> Disabled</li></NavLink>
           </ul>
         </div>
