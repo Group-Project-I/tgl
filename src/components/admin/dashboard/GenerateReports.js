@@ -36,14 +36,19 @@ class GenerateReports extends Component {
         
     }
 
+    handleDate = (e) => {
+        e.preventDefault();
+        e.target.type = 'datetime-local'
+    }
+
     componentWillReceiveProps(nextProps) {
         
-        if(this.props.customers && this.props.drivers){
+        if(this.props.customers && this.props.drivers && this.props.vehicles){
             this.setState({
                 loading: 0,
-                customers: this.props.customers.map((x,y) => {return {name:x.firstName, value:x.id, type:'customer'}}),
-                drivers: this.props.drivers,
-                vehicles: this.props.vehicles
+                customers: this.props.customers.map((x,y) => {return {name:x.firstName + ' ' + x.lastName, value:x.id, type:'customer'}}),
+                drivers: this.props.drivers.map((x,y) => {return {name:x.firstName + ' ' + x.lastName, value:x.id, type:'driver'}}),
+                vehicles: this.props.vehicles.map((x,y) => {return {name:x.vehicleNo, value:x.id, type:'vehicle'}})
             });
         }
         
@@ -54,10 +59,9 @@ class GenerateReports extends Component {
             return <Redirect to='/admin/hires' />
         }
 
-        const options = [
-            // {name: 'Swedish', value: 'sv'},
-            // {name: 'English', value: 'en'},
-            // this.state.customers ? this.state.customers.map((x,i) => {return {name: x.firstName + " " + x.lastName, value: x.id}}) : null
+        const hireType = [
+            {name: 'Import', value: 'import'},
+            {name: 'Export', value: 'export'},
         ];
         return (
             this.state.loading === 1 ? (
@@ -70,49 +74,44 @@ class GenerateReports extends Component {
                     <Card.Header><h4>Generate Report</h4></Card.Header>
                     <Card.Body>
                         <div className="row" style={{paddingTop: "20px"}}>
-                            <span className="col-3 center">Customer</span>
-                            <span className="col-3 center">Driver</span>
-                            <span className="col-3 center">Vehicle</span>
-                            <span className="col-3 center">Hire Type</span>
+                            <span className="col-3 center"><h6>Customer</h6></span>
+                            <span className="col-3 center"><h6>Driver</h6></span>
+                            <span className="col-3 center"><h6>Vehicle</h6></span>
+                            <span className="col-3 center"><h6>Hire Type</h6></span>
                         </div>
                         <div className="row">
                             <div className="col-3">
-                                <SelectSearch search='true' onChange={this.handleChange} options={this.state.customers ? this.state.customers : null} value="All" id="customer" placeholder="Select Customer" />
+                                <SelectSearch search='true' onChange={this.handleChange} options={this.state.customers ? this.state.customers : null} value="All" id="customer" placeholder="All" />
                             </div>
                             <div className="col-3">
-                                <select className="form-control" id='driver'>
-                                    <option value='All'>All</option>
-                                </select>
+                                <SelectSearch search='true' onChange={this.handleChange} options={this.state.drivers ? this.state.drivers : null} value="All" id="driver" placeholder="All" />
                             </div>
                             <div className="col-3">
-                                <select className="form-control" id='vehicle'>
-                                    <option value='All'>All</option>
-                                </select>
+                                <SelectSearch search='true' onChange={this.handleChange} options={this.state.vehicles ? this.state.vehicles : null} value="All" id="vehicle" placeholder="All" />
                             </div>
                             <div className="col-3">
-                                <select className="form-control" id='hireType'>
-                                    <option value='All'>All</option>
-                                </select>
+                                <SelectSearch search='true' onChange={this.handleChange} options={hireType} value="All" id="hireType" placeholder="All" />
                             </div>
                         </div>
                         <div className="row" style={{paddingTop: "20px"}}>
                             <span className="col-2"></span>
-                            <span className="col-4 center">From</span>
-                            <span className="col-4 center">To</span>
+                            <span className="col-4 center"><h6>From</h6></span>
+                            <span className="col-4 center"><h6>To</h6></span>
                         </div>
                         <div className="row">
                             <div className="col-2">
                             </div>
                             <div className="col-4">
-                                <select id='from'>
-                                    <option value='All'>All</option>
-                                </select>
+                                <input placeholder="Select Date" onFocus={this.handleDate} ref="pickup" type="text" id="fromDate"  onChange={this.handleChange} required />    
                             </div>
                             <div className="col-4">
-                                <select id='to'>
-                                    <option value='All'>All</option>
-                                </select>
+                                <input placeholder="Select Date" onFocus={this.handleDate} ref="pickup" type="text" id="toDate"  onChange={this.handleChange} required />    
                             </div>
+                        </div>
+                        <div className="row" style={{paddingTop: "20px"}}>
+                            <div className="col-5"></div>
+                            <button className="col-2 btn blue lighten-1 z-depth-5 btnLong">Generate</button>
+                            
                         </div>
                     </Card.Body>
                 </Card>
