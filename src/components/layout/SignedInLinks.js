@@ -30,10 +30,10 @@ export class SignedInLinks extends React.Component{
 {/* //    return( */}
         
         {/* <Navbar bg="dark" variant="dark" style={{ minWidth: 700, position: 'fixed' }}> */}
-            <div className="container-fluid" >
+            <div className="container" >
                 
             <NavLink to='/'style={{ minWidth: 350 }} ><h3>Trans Global Logistics</h3></NavLink>
-            <Nav className="justify-content-end mr-auto" style={{ width: "85%" }}>
+            <Nav className="justify-content-end mr-auto" style={{ width: "90%" }}>
                 <NavDropdown title='Hires' id="basic-nav-dropdown">
                     <NavDropdown.Item><NavLink to='/User/addHire'style={{textDecoration: 'none',color:'black'}} >Add Hire</NavLink></NavDropdown.Item>
                     <NavDropdown.Item><NavLink to='/User/UserManageTools' style={{textDecoration: 'none' ,color:'black'}}>Manage Hire</NavLink></NavDropdown.Item>

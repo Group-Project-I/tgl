@@ -14,6 +14,8 @@ import image from '../../img/index4.jpg'
 import { Button} from 'react-bootstrap'
 import {TiMessages} from "react-icons/ti"
 import {FiArrowDownCircle} from "react-icons/fi"
+import {Chat} from 'react-chat-popup'
+import UserChat from '../customer/chats/userChat'
 import Particles from 'react-particles-js';
 
 
@@ -29,6 +31,10 @@ class UserProfile extends Component {
         loading: 1,
         addModelShow:false
     }
+    handleNewUserMessage = (newMessage) => {
+        console.log(`New message incomig! ${newMessage}`);
+        // Now send the message throught the backend API
+      }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
         
@@ -67,7 +73,11 @@ class UserProfile extends Component {
                     <Message     show={this.state.addModelShow} 
                         onHide={addModelClose}/>
                     </div>
-
+            <UserChat/>
+     {/* react-chat-popup */}
+                {/* <Chat
+                handleNewUserMessage={this.handleNewUserMessage}
+                /> */}
                 </div>
                 
              
