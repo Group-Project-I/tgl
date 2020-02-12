@@ -51,13 +51,13 @@ class EditCustomer extends Component {
                         <h4>{this.state.updated ? "Updated Successfully" : null}</h4>
                     </div>
                     <form onSubmit={this.handleSubmit}>
-                        <div className="row">
-                            <br/>
-                            <div className="input-field col-5 row">
+                      
+                        <div className="row" style={{margin:'0'}}>
+                        <div className="input-field col-5 row">
                                 <h6 className='blue-text'>First name</h6>
                                 <input placeholder="First Name" type="text" id="firstName" value={this.state.firstName}  onChange={this.handleChange} required />
                             </div>
-                            
+                            <div className='col-2'></div>
                             <div className="input-field col-5 row">
                                 <h6 className='blue-text'>Last name</h6>
                                 <input placeholder="Last Name" type="text" id="lastName" value={this.state.lastName}  onChange={this.handleChange} required />
@@ -80,10 +80,7 @@ class EditCustomer extends Component {
                                 <input placeholder="NIC No" type="text" id="nic" value={this.state.nic}  onChange={this.handleChange} required />
                             </div>
                             <div className='col-2'></div>
-                            <div className="input-field col-5 row">
-                                <h6 className='blue-text'>Email</h6>
-                                <input placeholder="Email" type="email" id="email" value={this.state.email}  onChange={this.handleChange} required />
-                            </div>
+                            
                         </div><br/>
                         <div className="input-field center">
                             <button className="btn blue lighten-1 z-depth-0">Update</button>
