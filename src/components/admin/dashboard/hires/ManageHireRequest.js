@@ -517,7 +517,7 @@ class ManageHireRequest extends Component {
                                     <Card.Header color="blue"><h5>Remarks</h5></Card.Header>
                                     <Card.Body>
                                     <div className="input-field row col-12" style={{paddingTop: '40px'}}>
-                                        <textarea placeholder="Remarks" value={this.state.hire[0].remarks} style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange}/>
+                                        <textarea placeholder="Mention any Additional Information(Perishable goods, Reefer temperature, Number and kind of packages etc.)" value={this.state.hire[0].remarks} style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange}/>
                                     </div>
                                     </Card.Body>
                                 </Card>
