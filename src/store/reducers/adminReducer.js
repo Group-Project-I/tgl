@@ -64,6 +64,16 @@ const adminReducer = (state = initState, action) => {
                 ...state,
                 cityEdited: action.err.message
             }
+        case 'PRICING_DELETED':
+            console.log('Pricing deleted successfully')
+            return{
+                ...state,
+            }
+        case 'ERROR_DELETING_PRICING':
+            console.log('Error deleting pricing')
+            return {
+                ...state,
+            }
         default:
             return state
     }
