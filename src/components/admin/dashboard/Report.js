@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import ReactToPrint from 'react-to-print'
 import moment from 'moment'
+import {MdPrint} from "react-icons/md";
 
 class Report extends Component {
 
@@ -19,10 +20,10 @@ class Report extends Component {
                 {this.props.hires ? 
                 <div>
                     <ReactToPrint 
-                        trigger={() => <a href="#">Print</a>}
+                        trigger={() => <a href="#"><MdPrint size={28}/></a>}
                         content={() => this.componentRef}
                     />
-                    <table className="table" ref={el => (this.componentRef = el)}>
+                    <table className="table" ref={el => (this.componentRef = el)} style={{paddingTop:'20px'}}>
                         <thead className="thead-dark">
                         <tr>
                             <th className="center-align">Type</th>
@@ -46,7 +47,7 @@ class Report extends Component {
                                         <td className="center-align">{moment(hire.pickupDatetime).format('MMMM Do YYYY, h:mm a')}</td>
                                         <td className="center-align">{hire.cargoType}</td>
                                         <td className="center-align">{hire.hireType === "export" ? hire.cargoLocationCity : "N/A"}</td>
-                                        <td className="center-align">{hire.hireType === "import" ? hire.destination : "N/A"}</td>
+                                        <td className="center-align">{hire.hireType === "import" ? hire.destinationCity : "N/A"}</td>
                                         <td className="center-align">{hire.customerName}</td>
                                         <td className="center-align">{hire.driverName}</td>
                                         <td className="center-align">{hire.vehicleNo}</td>
@@ -58,8 +59,7 @@ class Report extends Component {
                     </table> 
                 </div> : null
 
-                }
-                
+                }   
             </div>
         )
     }

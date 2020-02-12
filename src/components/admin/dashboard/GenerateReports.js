@@ -22,11 +22,13 @@ class GenerateReports extends Component {
         driverId: '',
         vehicleId: '',
         hireTypeId:'',
-        loading: 1
+        hires: '',
+        loading: 1,
+        valid: 0
     }
 
     handleChange = (e) => {
-        console.log(e.type)
+        // console.log(e.type)
         this.setState({
             [e.type + 'Id']: e.value,
             [e.type]: e.name
@@ -41,10 +43,17 @@ class GenerateReports extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state)
+        const dateTo = moment(this.state.To,'MMMM Do YYYY')
+        const dateFrom = moment(this.state.From,'MMMM Do YYYY')
         if(this.props.hires){
+            const hireList = this.props.hires.filter(item => item.hireStatus === 'completed' && moment(item.completedDatetime.toDate(),'MMMM Do YYYY').isAfter(dateFrom) && moment(item.completedDatetime.toDate(),'MMMM Do YYYY').isBefore(dateTo))
+            const filteredHires = hireList.filter(item => this.state.customerId ?  item.customerId === this.state.customerId : 1 && 
+                                                    this.state.driverId ? item.driverId === this.state.driverId : 1 && 
+                                                    this.state.vehicleId ? item.vehicleId === this.state.vehicleId : 1 && 
+                                                    this.state.hireTypeId ? item.hireType === this.state.hireTypeId : 1)
             this.setState({
-                hires: this.props.hires
+                hires: filteredHires,
+                valid: 1
             })
         }
     }
@@ -129,8 +138,11 @@ class GenerateReports extends Component {
                         </form>
                     </Card.Body>
                 </Card>
-                <div>
-                    <Report hires={this.state.hires}></Report>
+                <div style={{paddingTop:'20px'}}>
+                    <Report hires={this.state.hires.length ? this.state.hires : null}></Report>
+                    {!this.state.hires.length && this.state.valid === 1 ? 
+                        <h6 className="center">No Records Available</h6> : null
+                    }
                 </div>
             </div>
         )
@@ -149,14 +161,8 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        // addImportHire: (importHire) => dispatch(addImportHire(importHire))
-    }
-}
-
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
+    connect(mapStateToProps),
     firestoreConnect([
         {collection: 'customers'},
         {collection: 'drivers'},
