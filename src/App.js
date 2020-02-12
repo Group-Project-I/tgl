@@ -32,6 +32,7 @@ import ManageCustomer from './components/admin/dashboard/customers/ManageCustome
 import ManageDriver from './components/admin/dashboard/drivers/ManageDriver'
 import ManageVehicle from './components/admin/dashboard/vehicles/ManageVehicle'
 import DisabledUsers from './components/admin/dashboard/DisabledUsers'
+import GenerateReports from './components/admin/dashboard/GenerateReports'
 
 //customer
 import CustomerAddHire from './components/customer/customerAddHire'
@@ -50,6 +51,8 @@ import Chat from './components/admin/dashboard/chat/Chat'
 import UserProfile from './components/customer/userProfile'
 import UserChat from './components/customer/chats/userChat'
 
+import AdminNavbar from './components/admin/layout/AdminNavbar'
+
 function App(props) {
   
   const {type, auth} = props;
@@ -60,6 +63,7 @@ function App(props) {
 
   const link = type.userType === "admin" ? null : <Footer/>
   const sidebar = localStorage.getItem('userId') === 'admin' ? <AdminSidebar/> : null
+  const nav = localStorage.getItem('userId') === 'admin' ? <AdminNavbar/> : <Navbar/>
 
   return (
     <BrowserRouter>
@@ -67,7 +71,8 @@ function App(props) {
         <div className={localStorage.getItem('userId') === 'admin' ? "d-flex" : "wrapper"} id={type.userType === 'admin' ? "wrapper" : null}>
           {sidebar}
           <div id={localStorage.getItem('userId') === 'admin' ? "page-content-wrapper" : null} className={type.userType === 'admin' ? "" : null}> 
-            <Navbar></Navbar>
+            {/* <Navbar></Navbar> */}
+            {nav}
             <Switch>
               <Route exact path='/' component={Homepage} />
               <Route path='/about' component={About}  />
@@ -99,6 +104,7 @@ function App(props) {
               <Route path='/admin/disabled' component={DisabledUsers}/>
               <Route path='/admin/hireCharges' component={PricingTable} />
               <Route path="/admin/chat" component={Chat} />
+              <Route path='/admin/reports' component={GenerateReports} />
 
               <Route path='/User/addHire' component={CustomerAddHire}/>
               <Route path='/User/Home' component={Homepage}/>
