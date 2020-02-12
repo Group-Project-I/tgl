@@ -9,6 +9,8 @@ import {Link} from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import DatePicker from "react-datepicker/es";
+import "react-datepicker/dist/react-datepicker.css"
 
 
 class AddHireImport extends Component {
@@ -41,6 +43,16 @@ class AddHireImport extends Component {
             show: false,
         })
     }
+    // handleCity = (e) => {
+    //     e.preventDefault()
+    //     if(this.props.pricing) {
+    //        // var city1 = this.props.pricing.filter(item => item.id === this.state.destinationCity.toUpperCase())
+    //         this.setState({
+    //             show: true,
+    //
+    //         })
+    //     }
+    // }
 
     handleShowPrice = (e) => {
         e.preventDefault()
@@ -174,7 +186,10 @@ class AddHireImport extends Component {
                                                 <h5>Pick up Date and Time</h5>
                                                 <div className="row" style={{paddingTop: '40px'}}>
                                                     <div className="input-field col-6">
+
+
                                                         <input placeholder="Pickup Date and Time" ref="pickup" onFocus={this.handleDate} type="text" id="pickupDatetime" onChange={this.handleChange} required />
+
                                                     </div>
                                                 </div>
                                                 <hr/><h5>Location</h5>
@@ -248,7 +263,7 @@ class AddHireImport extends Component {
                                                 </div>
                                                 <div className="row">
                                                     <div className="input-field col-6">
-                                                        <input placeholder="City" type="text" id="destinationCity" onChange={this.handleChange} required />
+                                                        <input placeholder="City" type="text" id="destinationCity"  onChange={this.handleChange} required />
                                                     </div>
                                                 </div>
 
