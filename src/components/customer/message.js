@@ -108,14 +108,6 @@ console.log(this.state)
         return(
             // <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.2' ,margin:'0',padding:'0', height:'1000px'}}>
       <div>  
-           {/* <Popup trigger={<button> MSG</button>} position="right bottom">
-            <div>Popup content here !!
-                {
-                    this.chats
-                }
-            </div>
-            </Popup> */}
-            
             <Modal 
                 {...this.props}
                 size="md"

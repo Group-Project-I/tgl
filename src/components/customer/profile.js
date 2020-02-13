@@ -3,6 +3,11 @@ import {Badge} from 'react-bootstrap'
 import "react-tabs/style/react-tabs.css"
 import ImageUpload from './imageUpload'
 import {storage} from '../../config/fbConfig'
+import { Button, Card, Accordion, Row, Col} from 'react-bootstrap'
+import {FiArrowDownCircle} from "react-icons/fi"
+import {MdCall,MdEmail,MdInsertDriveFile} from "react-icons/md"
+
+
 
 class Profile extends Component {
     constructor(props){
@@ -61,31 +66,32 @@ class Profile extends Component {
     }
     render() {     
         const load = this.state.loading === 0 ? (
-            <div className="row container  " >
-                <div className="col-4">
-                    
-                    
-                    <img src={this.state.url || require('../../img/profile.png')} class="mx-auto img-fluid img-circle d-block " alt="avatar"  style={{borderRadius:'50%'}}/>
-                    
-                    {/* <ImageUpload/> */}
+            <div className=" container  " >
+                <div className="row">
+                
+                <img src={this.state.url || require('../../img/profile.png')} class="mx-auto img-fluid img-circle d-block " alt="avatar"  style={{borderRadius:'50%',width:'250px'}}/>
+                <br/><vr/><br/>
                     <label class="custom-file">
-                        <h6 class="mt-2 ">Upload new photo</h6>
-                        <input type="file" id="file" name='image' onChange={this.handlechange} />
-                        <button class="custom-file-control  btn blue lighten-1 z-depth-0" onClick={this.handleupdate}>Upload</button>
+                    <input type="file" id="file" name='image' onChange={this.handlechange} />
+                    <button class="custom-file-control  btn blue lighten-1 z-depth-0" onClick={this.handleupdate}>Upload</button>
                     </label><br/>
                     {
                         this.state.showProgressBar ? <progress value={this.state.progress} max='100'/>:null
                     }
+                    
                 </div>
-                <div className="col-8 " style={{ }}>
-                    <h1>{this.props.customer.firstName + " " + this.props.customer.lastName}</h1>
-                    <br/><br/>
-                    <h5><b className="blue-text">Mobile: </b> {this.props.customer.mobile}</h5>
-                    <h5><b className="blue-text">Email: </b> {this.props.customer.email}</h5>
-                    <h5><b className="blue-text">NIC: </b> {this.props.customer.nic}</h5>
-                    {this.props.customer.disabled === false ? <Badge pill variant="success" className="left">Active</Badge> : <Badge pill variant="danger" className="left">Disabled</Badge> }
+                <div className='row' >
+
+                <strong><h1 className="blue-text">{this.props.customer.firstName + " " + this.props.customer.lastName}</h1></strong>
+                <br/><br/>
+                <h5><b className="blue-text"><MdCall/>  </b> {this.props.customer.mobile}</h5><br/><br/>
+                <br/><h5><b className="blue-text"><MdEmail/>  </b> {this.props.customer.email}</h5><br/><br/>
+                <br/><h5><b className="blue-text"><MdInsertDriveFile/>  </b> {this.props.customer.nic}</h5><br/>
+                <br/>{this.props.customer.disabled === false ? <Badge pill variant="success" className="left">Active</Badge> : <Badge pill variant="danger" className="left">Disabled</Badge> }
+
                 </div>
-            </div>
+
+               </div>
         ): <div><br/><br/><br/>Loading</div>
         
         return <div>{load}</div>

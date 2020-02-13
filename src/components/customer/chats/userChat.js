@@ -23,20 +23,29 @@ export class UserChat extends React.Component{
             chatData: '',
             newMessage: '',
             adminId:'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
-            addModelShow:false
+            addModelShow:false,
+            messages:''
           }   
     
 
     }
     componentDidMount() {
         addResponseMessage("Welcome to Trans Global Logistics!");
+        // addResponseMessage(this.state.messages)
+        // var x =this.state.messages
+        // var response
+        // x.forEach(function(obj){
+        //     response = obj.message
+        //     addResponseMessage(response)
+
+        // })
       }
     handleNewUserMessage = (newMessage) => {
         console.log(`New message incomig! ${newMessage}`);
         // Now send the message throught the backend API
         // if(this.state.chatId){
             this.props.sendMessage(newMessage, this.props.auth.uid, this.state.adminId)
-            // addResponseMessage(response);
+            addResponseMessage('should finish this tonight');
         // }
     
       }
@@ -82,13 +91,7 @@ console.log(this.state)
 
     //         // <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.2' ,margin:'0',padding:'0', height:'1000px'}}>
     //   <div>  
-    //        {/* <Popup trigger={<button> MSG</button>} position="right bottom">
-    //         <div>Popup content shere !!
-    //             {
-    //                 this.chats
-    //             }
-    //         </div>
-    //         </Popup> */}
+
             
     //         <Modal 
     //             {...this.props}
