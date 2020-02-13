@@ -13,7 +13,7 @@ import { async } from '@firebase/util'
 import {Redirect} from 'react-router-dom'
 import firebase, { firestore } from 'firebase/app';
 import 'firebase/firestore';
-import Popup from "reactjs-popup";
+// import Popup from "reactjs-popup";
 import {MdLens} from 'react-icons/md'
 
 export class Message extends React.Component{

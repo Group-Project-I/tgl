@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Redirect} from 'react-router-dom'
+import {Redirect, NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {addExportHire} from '../../../../store/actions/adminHireActions'
 import {firestoreConnect} from 'react-redux-firebase'
@@ -8,6 +8,7 @@ import {compose} from 'redux'
 import { Squares } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
 import Modal from 'react-bootstrap/Modal'
+import moment from 'moment'
 
 class AddExport extends Component {
     state = {
@@ -43,6 +44,8 @@ class AddExport extends Component {
         this.setState({
             [e.target.id]: e.target.value
         })
+        var tag = e.target.id+"Tag"
+        document.getElementById(tag).style.display = "block"
     }
 
     handleSubmit = (e) => {
@@ -56,6 +59,8 @@ class AddExport extends Component {
     handleDate = (e) => {
         e.preventDefault();
         e.target.type = 'datetime-local'
+        var tag = e.target.id+"Tag"
+        document.getElementById(tag).style.display = "block"
     }
 
     handleContainerType = (e) => {
@@ -168,7 +173,7 @@ class AddExport extends Component {
         
     }
 
-    handleShow = (e) => {
+    handleShowEstimate = (e) => {
         e.preventDefault()
         if(this.props.pricing){
             var city = this.props.pricing.filter(item => item.id === this.state.cargoLocationCity.toUpperCase())
@@ -193,13 +198,93 @@ class AddExport extends Component {
         
     }
 
+    handleShowDriver = (e) => {
+        e.preventDefault()
+        if(this.state.driverId && this.props.hires && this.state.pickupDatetime){
+            var hireList = this.props.hires.filter(item => item.driverId === this.state.driverId && (item.hireStatus !== 'completed' || item.hireStatus !== 'declined'))
+            var dayBefore = hireList.filter(item => item.pickupDatetime.toString().split('T')[0] === moment(this.state.pickupDatetime).add(-1,'days').format().toString().split('T')[0])
+            var dayAfter = hireList.filter(item => item.pickupDatetime.toString().split('T')[0] === moment(this.state.pickupDatetime).add(1,'days').format().toString().split('T')[0])
+
+            if(dayAfter.length && dayBefore.length){
+                this.setState({
+                    driverDayBefore: dayBefore[0],
+                    driverDayAfter: dayAfter[0],
+                    showD: true
+                })
+            }
+            else if(dayAfter.length && !dayBefore.length){
+                this.setState({
+                    driverDayBefore: null,
+                    driverDayAfter: dayAfter[0],
+                    showD: true
+                })
+            }
+            else if(!dayAfter.length && dayBefore.length){
+                this.setState({
+                    driverDayBefore: dayBefore[0],
+                    driverDayAfter: null,
+                    showD: true
+                })
+            }
+            else{
+                this.setState({
+                    driverDayBefore: null,
+                    driverDayAfter: null,
+                    showD: true
+                })
+            }
+        }
+        
+    }
+
+    handleShowVehicle = (e) => {
+        e.preventDefault()
+        if(this.state.vehicleId && this.props.hires){
+            var hireList = this.props.hires.filter(item => item.vehicleId === this.state.vehicleId && (item.hireStatus !== 'completed' || item.hireStatus !== 'declined'))
+            var dayBefore = hireList.filter(item => item.pickupDatetime.toString().split('T')[0] === moment(this.state.pickupDatetime).add(-1,'days').format().toString().split('T')[0])
+            var dayAfter = hireList.filter(item => item.pickupDatetime.toString().split('T')[0] === moment(this.state.pickupDatetime).add(1,'days').format().toString().split('T')[0])
+
+            if(dayAfter.length && dayBefore.length){
+                this.setState({
+                    vehiclerDayBefore: dayBefore[0],
+                    vehicleDayAfter: dayAfter[0],
+                    showV: true
+                })
+            }
+            else if(dayAfter.length && !dayBefore.length){
+                this.setState({
+                    vehicleDayBefore: null,
+                    vehicleDayAfter: dayAfter[0],
+                    showV: true
+                })
+            }
+            else if(!dayAfter.length && dayBefore.length){
+                this.setState({
+                    vehicleDayBefore: dayBefore[0],
+                    vehicleDayAfter: null,
+                    showV: true
+                })
+            }
+            else{
+                this.setState({
+                    vehicleDayBefore: null,
+                    vehicleDayAfter: null,
+                    showV: true
+                })
+            }
+        }
+        
+    }
+
+
     handleClose = () => {
         // e.preventDefault();
         this.setState({
           show: false,
+          showD: false,
+          showV: false
         })
     }
-
     render() {
         if(this.state.redir === 1){
             return <Redirect to='/admin/hires' />
@@ -226,14 +311,17 @@ class AddExport extends Component {
                             <Card.Body>
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
+                                    <p id="containerPickupAddressLine1Tag" style={{display:'none',fontFamily:'Times New Roman'}}>Address Line 1</p>
                                     <input placeholder="Address Line 1" type="text" id="containerPickupAddressLine1" onChange={this.handleChange} required />
                                 </div>
                                 <div className="input-field col-6">
+                                <p id="containerPickupAddressLine2Tag" style={{display:'none',fontFamily:'Times New Roman'}}>Address Line 2</p>
                                     <input placeholder="Address Line 2" type="text" id="containerPickupAddressLine2" onChange={this.handleChange} required />
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field col-6">
+                                    <p id="containerPickupCityTag" style={{display:'none',fontFamily:'Times New Roman'}}>City</p>
                                     <input placeholder="City" type="text" id="containerPickupCity" onChange={this.handleChange} required />
                                 </div>
                             </div>
@@ -247,34 +335,40 @@ class AddExport extends Component {
                             <h5>Pick up Date and Time</h5>
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
+                                    <p id="pickupDatetimeTag" style={{display:'none',fontFamily:'Times New Roman'}}>Cargo Pickup Date and Time(01/25/2001 01:00:PM)</p>
                                     <input placeholder="Cargo Pickup Date and Time" onFocus={this.handleDate} ref="pickup" type="text" id="pickupDatetime"  onChange={this.handleChange} required />    
                                 </div>
                             </div>
                             <hr/><h5>Location</h5> 
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
+                                    <p id="cargoLocationAddressLine1Tag" style={{display:'none',fontFamily:'Times New Roman'}}>Address Line 1</p>
                                     <input placeholder="Address Line 1" type="text" id="cargoLocationAddressLine1" onChange={this.handleChange} required />
                                 </div>
                                 <div className="input-field col-6">
+                                    <p id="cargoLocationAddressLine2Tag" style={{display:'none',fontFamily:'Times New Roman'}}>Address Line 2</p>
                                     <input placeholder="Address Line 2" type="text" id="cargoLocationAddressLine2" onChange={this.handleChange} required />
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field col-6">
+                                    <p id="cargoLocationCityTag" style={{display:'none',fontFamily:'Times New Roman'}}>City</p>
                                     <input placeholder="City" type="text" id="cargoLocationCity" onChange={this.handleChange} required />
                                 </div>
                             </div>
                             <div>
                             <div className="input-field center">
-                                <button className={this.state.cargoLocationCity ? "btn orange lighten-1 z-depth-5 btnLong" : "invisible"}  id="btnLong" onClick={this.handleShow} >Show Estimate</button>
+                                <button className={this.state.cargoLocationCity ? "btn orange lighten-1 z-depth-5 btnLong" : "invisible"}  onClick={this.handleShowEstimate} >Show Estimate</button>
                             </div>
                             </div>
                             <hr/>
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
+                                    <p id="cargoTypeTag" style={{display:'none',fontFamily:'Times New Roman'}}>Cargo Type(s)</p>
                                     <input placeholder="Cargo Type(s)" type="text" id="cargoType" onChange={this.handleChange} required/>
                                 </div>
                                 <div className="input-field col-6">
+                                    <p id="netWeightTag" style={{display:'none',fontFamily:'Times New Roman'}}>Net Weight</p>
                                     <input placeholder="Net Weight" type="text" id="netWeight" onChange={this.handleChange} required/>
                                 </div>
                             </div>
@@ -286,7 +380,7 @@ class AddExport extends Component {
                         </Modal.Header>
                         <Modal.Body>
                             <div className='row'>
-                                <h5 className='blue-text' style={{paddingRight: '5px'}}>Destination: </h5> {this.state.destinationCity}
+                                <h5 className='blue-text' style={{paddingRight: '5px'}}>Cargo Location: </h5> {this.state.cargoLocationCity}
                             </div>
                             <div className="row">
                                 <h5 className='blue-text' style={{paddingRight: '5px'}}>Container Type: </h5> {this.state.containerType}ft 
@@ -320,22 +414,25 @@ class AddExport extends Component {
                             </div>
                             <div className="row">
                                 <div className="input-field col-6">
+                                    <p id="loadingTerminalTag" style={{display:'none',fontFamily:'Times New Roman'}}>Loading Terminal</p>
                                     <input placeholder="Loading Terminal" type="text" id="loadingTerminal" onChange={this.handleChange} required/>
                                 </div>
                             </div>
                             <hr/>
                             <div className="row" style={{paddingTop: '40px'}}> 
                                 <div className="input-field col-6">
+                                    <p id="loadingDatetimeTag" style={{display:'none',fontFamily:'Times New Roman'}}>Loading Date and Time(01/25/2000 10:00:AM)</p>
                                     <input placeholder="Loading Date and Time" onFocus={this.handleDate} type="text" id="loadingDatetime" onChange={this.handleChange} required />
                                 </div>
                                 <div className="input-field col-6">
+                                    <p id="vesselTag" style={{display:'none',fontFamily:'Times New Roman'}}>Vessel</p>
                                     <input placeholder="Vessel" type="text" id="vessel" onChange={this.handleChange} required/>
                                 </div>
                             </div>
                             </Card.Body>
                         </Card>
                         <br/>
-                        <Card border="primary" className="text-center" style={{ width: '40rem' }}>
+                        <Card border="primary" className="text-center">
                             <Card.Header><h4>Customer</h4></Card.Header>
                             <Card.Body>
                             <div className="row">
@@ -348,8 +445,8 @@ class AddExport extends Component {
                             </Card.Body>
                         </Card>
                         <br/>
-                        <Card border="primary" className="text-center" style={{ width: '40rem' }}>
-                            <Card.Header><h4>Driver</h4></Card.Header>
+                        <Card border="primary" className="text-center">
+                            <Card.Header><h4>Assign Driver</h4></Card.Header>
                             <Card.Body>
                             <div className="row">
                                 <div className="input-field col-6">
@@ -357,12 +454,65 @@ class AddExport extends Component {
                                         {this.state.freeDrivers ? this.state.freeDrivers.map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName + " - " + x.mobile}</option>)}) : null}
                                     </select>
                                 </div>
+                                <div className="input-field col-6 center">
+                                    <button className="btn orange lighten-1 z-depth-5 btnLong"  onClick={this.handleShowDriver} >Check Activity</button>
+                                </div>
                             </div>
                             </Card.Body>
                         </Card>
+                        <Modal show={this.state.showD} onHide={this.handleClose} size="md" backdrop={false} aria-labelledby="contained-modal-title-vcenter" centered style={{overflow:'unset'}}>
+                        <Modal.Header closeButton>
+                            <Modal.Title> <div className="center">Driver Activity</div> </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            {this.state.driverDayBefore ? 
+                                <div>
+                                    <div className="row">
+                                        <h5 className='blue-text' style={{paddingRight: '5px'}}>{moment(this.state.pickupDatetime).add(-1,'days').format('MMMM Do YYYY')} </h5>
+                                    </div>  
+                                    <div>
+                                        <h6>Hire Type: {this.state.driverDayBefore.hireType.toUpperCase()}</h6>
+                                        <h6>Pickup: {moment(this.state.driverDayBefore.pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                                        <h6>Location: {this.state.driverDayBefore.hireType === 'import' ? this.state.driverDayBefore.destinationCity : this.state.driverDayBefore.cargoLocationCity}</h6>
+                                    </div>
+                                </div>
+                                :
+                                <div>
+                                    <div className="row">
+                                        <h5 className='blue-text' style={{paddingRight: '5px'}}>{moment(this.state.pickupDatetime).add(-1,'days').format('MMMM Do YYYY')} </h5>
+                                    </div>  
+                                    <div>
+                                        <h6>No assigned hires for this date</h6>
+                                    </div>
+                                </div>  
+                            }
+                            <hr/>
+                            {this.state.driverDayAfter ? 
+                                <div>
+                                    <div className="row">
+                                        <h5 className='blue-text' style={{paddingRight: '5px'}}>{moment(this.state.pickupDatetime).add(1,'days').format('MMMM Do YYYY')} </h5>
+                                    </div>  
+                                    <div>
+                                        <h6>Hire Type: {this.state.driverDayAfter.hireType.toUpperCase()}</h6>
+                                        <h6>Pickup: {moment(this.state.driverDayAfter.pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                                        <h6>Location: {this.state.driverDayAfter.hireType === 'import' ? this.state.driverDayAfter.destinationCity : this.state.driverDayAfter.cargoLocationCity}</h6>
+                                    </div>
+                                </div>
+                                :
+                                <div>
+                                    <div className="row">
+                                        <h5 className='blue-text' style={{paddingRight: '5px'}}>{moment(this.state.pickupDatetime).add(1,'days').format('MMMM Do YYYY')} </h5>
+                                    </div>  
+                                    <div>
+                                        <h6>No assigned hires for this date</h6>
+                                    </div>
+                                </div> 
+                            }
+                        </Modal.Body>
+                        </Modal>
                         <br/>
-                        <Card border="primary" className="text-center" style={{ width: '40rem' }}>
-                            <Card.Header><h4>Vehicle</h4></Card.Header>
+                        <Card border="primary" className="text-center">
+                            <Card.Header><h4>Assign Vehicle</h4></Card.Header>
                             <Card.Body>
                             <div className="row">
                                 <div className="input-field col-6">
@@ -370,14 +520,68 @@ class AddExport extends Component {
                                         {this.state.freeVehicles ? this.state.freeVehicles.map((x, i) => {return (<option value={x.id + "_" + x.vehicleNo} key={i}>{x.vehicleNo + " - " + x.trailerNo}</option>)}) : null}
                                     </select>
                                 </div>
+                                <div className="input-field col-6 center">
+                                    <button className="btn orange lighten-1 z-depth-5 btnLong" onClick={this.handleShowVehicle} >Check Activity</button>
+                                </div>
                             </div>
                             </Card.Body>
                         </Card>
+                        <Modal show={this.state.showV} onHide={this.handleClose} size="md" backdrop={false} aria-labelledby="contained-modal-title-vcenter" centered style={{overflow:'unset'}}>
+                        <Modal.Header closeButton>
+                            <Modal.Title> <div className="center">Vehicle Activity</div> </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            {this.state.vehicleDayBefore ? 
+                                <div>
+                                    <div className="row">
+                                        <h5 className='blue-text' style={{paddingRight: '5px'}}>{moment(this.state.pickupDatetime).add(-1,'days').format('MMMM Do YYYY')} </h5>
+                                    </div>  
+                                    <div>
+                                        <h6>Hire Type: {this.state.vehicleDayBefore.hireType.toUpperCase()}</h6>
+                                        <h6>Pickup: {moment(this.state.vehicleDayBefore.pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                                        <h6>Location: {this.state.vehicleDayBefore.hireType === 'import' ? this.state.vehicleDayBefore.destinationCity : this.state.vehicleDayBefore.cargoLocationCity}</h6>
+                                    </div>
+                                </div>
+                                :
+                                <div>
+                                    <div className="row">
+                                        <h5 className='blue-text' style={{paddingRight: '5px'}}>{moment(this.state.pickupDatetime).add(-1,'days').format('MMMM Do YYYY')} </h5>
+                                    </div>  
+                                    <div>
+                                        <h6>No assigned hires for this date</h6>
+                                    </div>
+                                </div>  
+                            }
+                            <hr/>
+                            {this.state.vehicleDayAfter ? 
+                                <div>
+                                    <div className="row">
+                                        <h5 className='blue-text' style={{paddingRight: '5px'}}>{moment(this.state.pickupDatetime).add(1,'days').format('MMMM Do YYYY')} </h5>
+                                    </div>  
+                                    <div>
+                                        <h6>Hire Type: {this.state.vehicleDayAfter.hireType.toUpperCase()}</h6>
+                                        <h6>Pickup: {moment(this.state.vehicleDayAfter.pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                                        <h6>Location: {this.state.vehicleDayAfter.hireType === 'import' ? this.state.vehicleDayAfter.destinationCity : this.state.vehicleDayAfter.cargoLocationCity}</h6>
+                                    </div>
+                                </div>
+                                :
+                                <div>
+                                    <div className="row">
+                                        <h5 className='blue-text' style={{paddingRight: '5px'}}>{moment(this.state.pickupDatetime).add(1,'days').format('MMMM Do YYYY')} </h5>
+                                    </div>  
+                                    <div>
+                                        <h6>No assigned hires for this date</h6>
+                                    </div>
+                                </div> 
+                            }
+                        </Modal.Body>
+                        </Modal>
                         <br/>
                         <Card border="primary" className="text-center">
                             <Card.Header><h4>Remarks</h4></Card.Header>
                             <Card.Body>
                             <div className="input-field row col-12">
+                                <p id="remarksTag" style={{display:'none',fontFamily:'Times New Roman'}}>Mention any Additional Information(Perishable goods, Reefer temperature, Number and kind of packages etc.)</p>
                                 <textarea placeholder="Mention any Additional Information(Perishable goods, Reefer temperature, Number and kind of packages etc.)" style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange} />
                             </div>
                             </Card.Body>
@@ -385,7 +589,7 @@ class AddExport extends Component {
                         <input type="hidden" id="hireType" value="export"/><br/><br/>
                         <div className="input-field center">
                             <button className="btn blue lighten-1 z-depth-5 btn1">Add</button>
-                            <button className="btn red lighten-1 z-depth-5 btn1">Cancel</button>
+                            <NavLink to='/admin'><button className="btn red lighten-1 z-depth-5 btn1">Cancel</button></NavLink>
                         </div>
                     </form>
                 </Card.Body>
