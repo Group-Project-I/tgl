@@ -78,6 +78,7 @@ class Customers extends Component {
                     layout={"fitData"}
                     rowClick={rowClick}
                     options={{ pagination: 'local',paginationSize: 10}}
+                    invalidOptionWarnings={false}
                 />
             </div>
     )
