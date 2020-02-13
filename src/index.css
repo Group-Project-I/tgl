@@ -36,8 +36,8 @@ code {
 
 .hire_background{
   /*background-image:url("../src/img/bg1.jpg");*/
-  /*background-color: #9E9675;*/
-  background-color: #4c4c4c;
+  background-color: #9E9675;
+  /*background-color: #494f54;*/
   width: auto;
   height: auto;
   background-size: cover;
@@ -61,17 +61,6 @@ code {
 }
 
 .form1{
-
-  background-color: rgba(0,0,0,0.7) !important;
-  /*margin-left: 140px;*/
-  /*margin-right: 140px;*/
-  border-radius: 20px;
-
-
-
-}
-
-.form2{
   background-color: transparent;
   opacity: 0.5;
   margin-left: 5px;

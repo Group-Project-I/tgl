@@ -8,6 +8,8 @@ import {Link} from "react-router-dom";
 import {updateRequest} from "../../../store/actions/customerHireActions";
 import {Spinner} from "react-activity";
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 // function topFunction() {
 //     document.body.scrollTop = 0;
@@ -18,7 +20,6 @@ class ManageHireRequest2 extends Component {
 
     state = {
         containerType : '',
-        // pickupLocation: '',
         containerPickupAddressLine1: '',
         containerPickupAddressLine2: '',
         containerPickupCity: '',
@@ -38,22 +39,43 @@ class ManageHireRequest2 extends Component {
         redir: 0
     }
 
-    componentWillReceiveProps(nextProps) {
 
-        if(this.props.hires){
-            this.setState({
-                ...nextProps.hire[0],
-                loading: 0,
-                updated: !this.state.updated
-            });
-        }
-
-    }
 
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
         })
+    }
+
+    handleClosePrice = () => {
+        // e.preventDefault();
+        this.setState({
+            show: false,
+        })
+    }
+
+    handleShowPrice = (e) => {
+        e.preventDefault()
+        if(this.props.pricing){
+            var city = this.props.pricing.filter(item => item.id === this.state.cargoLocationCity.toUpperCase())
+            if(city.length && this.state.containerType === '20'){
+                this.setState({
+                    show: true,
+                    cost: city[0].export20ft
+                })
+            }else if(city.length && this.state.containerType === '40'){
+                this.setState({
+                    show: true,
+                    cost: city[0].export40ft
+                })
+            }else{
+                this.setState({
+                    show: true,
+                    cost: null
+                })
+            }
+
+        }
     }
     //
     handleSubmit = (e) => {
@@ -96,6 +118,17 @@ class ManageHireRequest2 extends Component {
         this.setState({
             redir : 1
         })
+    }
+    componentWillReceiveProps(nextProps) {
+
+        if(this.props.hires){
+            this.setState({
+                ...nextProps.hire[0],
+                loading: 0,
+                updated: !this.state.updated
+            });
+        }
+
     }
 
 
@@ -187,6 +220,55 @@ class ManageHireRequest2 extends Component {
                                         <h6 className="left container-fluid"><b className='blue-text left'>City </b> <input type="text" id="cargoLocationCity" value={this.state.cargoLocationCity} onChange={this.handleChange} required/></h6>
                                     </div>
                                 </div>
+                                {/*start price*/}
+
+                                <Button color="primary" className={this.state.cargoLocationCity ? "btn " : "invisible"}  id="btnLong" onClick={this.handleShowPrice} style={{ marginBottom: '1rem' }}>Get Estimated Hire Cost <i
+                                    className="fas fa-cog fa-spin"></i></Button>
+
+
+                                <Modal show={this.state.show} onHide={this.handleClosePrice} size="md" backdrop={false} aria-labelledby="contained-modal-title-vcenter" centered style={{overflow:'unset'}}>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title className="center"><h2 >Cost Estimation</h2></Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <Card border="primary" className="text-center">
+                                            <Card.Body>
+                                                {/*<div className= { cityEdited != 'Updated Successfully' ? "red-text" : "green-text"}>*/}
+                                                {/*    {this.state.updated ? cityEdited : null}*/}
+                                                {/*</div>*/}
+                                                <form >
+                                                    <div className="input-field row">
+                                                        <h6 className='blue-text'>Container Type </h6>
+
+                                                        <input type="text" id="containerType" value={this.state.containerType + " ft"} required />
+                                                    </div>
+                                                    <div className="input-field row">
+                                                        <h6 className='blue-text'>Cargo Location City</h6>
+
+                                                        <input type="text" id="cargoLocationCity" value={this.state.cargoLocationCity} required />
+                                                    </div>
+                                                    <div className="input-field row">
+                                                        <h6 className='blue-text'>Estimated Cost for Hire</h6>
+                                                        {this.state.cost ?
+                                                            <div>
+                                                                <input type="text" id="cost"
+                                                                       value={"RS. " + this.state.cost + " /="}
+                                                                       required/>
+                                                                <hr/>
+                                                                <b className="red-text">Note that the estimated cost may subject to change. Contact the administrator for inquiries.</b>
+                                                            </div>:
+                                                            <div>
+                                                                No cost estimation available for the provided cargo Location address. Please contact the administrator for inquiries.
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </form>
+                                            </Card.Body>
+                                        </Card>
+                                    </Modal.Body>
+                                </Modal>
+
+                                {/*end price*/}
                                 <div className="row">
                                     <div className="col-6">
                                         <h6 className="left container-fluid"><b className='blue-text left'>Cargo Type </b> <input type="text" id="cargoType" value={this.state.cargoType} onChange={this.handleChange} required/></h6>
@@ -298,7 +380,8 @@ const mapStateToProps = (state) => {
     return{
 
         customer: state.firestore.ordered.customers,
-        hires: state.firestore.ordered.hires
+        hires: state.firestore.ordered.hires,
+        pricing: state.firestore.ordered.pricing
     }
 }
 
@@ -315,7 +398,8 @@ export default compose(
     connect(mapStateToProps,mapDispatchToProps),
     firestoreConnect(props => [
         {collection: 'hires'},
-        {collection: 'customers'}
+        {collection: 'customers'},
+        {collection: 'pricing'}
     ])
 )(ManageHireRequest2);
 
