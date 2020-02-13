@@ -39,7 +39,7 @@ const Footer = () => {
                     <div className="col-md-4 col-lg-3 col-xl-3">
                         <h4>Contact</h4>
                         <hr className="bg-white mb-2 mt-0 d-inline-block mx-auto w-25"/>
-                        <p><i className="fa fa-home mr-3"></i> 66/22, Fortune Terrace, Pannipitiya</p>
+                        <p><i className="fa fa-home mr-3"></i> 66/22,Fortune Terrace,Pannipitiya</p>
                         <p><i className="fa fa-envelope mr-3"></i> tgl@yahoo.com</p>
                         <p><i className="fa fa-phone mr-3"></i> + 98 765 432 11</p>
                         <p><i className="fa fa-print mr-3"></i> + 98 765 432 10</p>

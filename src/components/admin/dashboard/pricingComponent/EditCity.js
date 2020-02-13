@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Card from 'react-bootstrap/Card'
-import {editCity} from '../../../../store/actions/adminActions'
+import {editCity, deleteCity} from '../../../../store/actions/adminActions'
 
 class EditCity extends Component {
     state = {
@@ -23,6 +23,11 @@ class EditCity extends Component {
         this.setState   ({
             updated: 1
         })
+    }
+
+    handleDelete = (e) => {
+        e.preventDefault()
+        this.props.deleteCity(this.state.id)
     }
 
     componentWillMount(){
@@ -60,8 +65,9 @@ class EditCity extends Component {
                             <input placeholder="Export 40ft" type="text" id="export40ft" value={this.state.export40ft} onChange={this.handleChange} required />
                         </div>
                         <br/>
-                        <div className="input-field">
-                            <button className="btn blue lighten-1 z-depth-5 btn1">EDIT</button>
+                        <div className="input-field center">
+                            <button type="submit" className="btn blue lighten-1 z-depth-5 btn1" onClick={this.handleSubmit}>EDIT</button>
+                            <button className="btn red lighten-1 z-depth-5 btn1" onClick={this.handleDelete}>DELETE</button>
                         </div>
                     </form>
                 </Card.Body>
@@ -78,7 +84,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        editCity: (details) => dispatch(editCity(details))
+        editCity: (details) => dispatch(editCity(details)),
+        deleteCity: (id) => dispatch(deleteCity(id))
     }
 }
 
