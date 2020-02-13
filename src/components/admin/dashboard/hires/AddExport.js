@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Redirect} from 'react-router-dom'
+import {Redirect, NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {addExportHire} from '../../../../store/actions/adminHireActions'
 import {firestoreConnect} from 'react-redux-firebase'
@@ -44,6 +44,8 @@ class AddExport extends Component {
         this.setState({
             [e.target.id]: e.target.value
         })
+        var tag = e.target.id+"Tag"
+        document.getElementById(tag).style.display = "block"
     }
 
     handleSubmit = (e) => {
@@ -57,6 +59,8 @@ class AddExport extends Component {
     handleDate = (e) => {
         e.preventDefault();
         e.target.type = 'datetime-local'
+        var tag = e.target.id+"Tag"
+        document.getElementById(tag).style.display = "block"
     }
 
     handleContainerType = (e) => {
@@ -307,14 +311,17 @@ class AddExport extends Component {
                             <Card.Body>
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
+                                    <p id="containerPickupAddressLine1Tag" style={{display:'none',fontFamily:'Times New Roman'}}>Address Line 1</p>
                                     <input placeholder="Address Line 1" type="text" id="containerPickupAddressLine1" onChange={this.handleChange} required />
                                 </div>
                                 <div className="input-field col-6">
+                                <p id="containerPickupAddressLine2Tag" style={{display:'none',fontFamily:'Times New Roman'}}>Address Line 2</p>
                                     <input placeholder="Address Line 2" type="text" id="containerPickupAddressLine2" onChange={this.handleChange} required />
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field col-6">
+                                    <p id="containerPickupCityTag" style={{display:'none',fontFamily:'Times New Roman'}}>City</p>
                                     <input placeholder="City" type="text" id="containerPickupCity" onChange={this.handleChange} required />
                                 </div>
                             </div>
@@ -328,20 +335,24 @@ class AddExport extends Component {
                             <h5>Pick up Date and Time</h5>
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
+                                    <p id="pickupDatetimeTag" style={{display:'none',fontFamily:'Times New Roman'}}>Cargo Pickup Date and Time(01/25/2001 01:00:PM)</p>
                                     <input placeholder="Cargo Pickup Date and Time" onFocus={this.handleDate} ref="pickup" type="text" id="pickupDatetime"  onChange={this.handleChange} required />    
                                 </div>
                             </div>
                             <hr/><h5>Location</h5> 
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
+                                    <p id="cargoLocationAddressLine1Tag" style={{display:'none',fontFamily:'Times New Roman'}}>Address Line 1</p>
                                     <input placeholder="Address Line 1" type="text" id="cargoLocationAddressLine1" onChange={this.handleChange} required />
                                 </div>
                                 <div className="input-field col-6">
+                                    <p id="cargoLocationAddressLine2Tag" style={{display:'none',fontFamily:'Times New Roman'}}>Address Line 2</p>
                                     <input placeholder="Address Line 2" type="text" id="cargoLocationAddressLine2" onChange={this.handleChange} required />
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field col-6">
+                                    <p id="cargoLocationCityTag" style={{display:'none',fontFamily:'Times New Roman'}}>City</p>
                                     <input placeholder="City" type="text" id="cargoLocationCity" onChange={this.handleChange} required />
                                 </div>
                             </div>
@@ -353,9 +364,11 @@ class AddExport extends Component {
                             <hr/>
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
+                                    <p id="cargoTypeTag" style={{display:'none',fontFamily:'Times New Roman'}}>Cargo Type(s)</p>
                                     <input placeholder="Cargo Type(s)" type="text" id="cargoType" onChange={this.handleChange} required/>
                                 </div>
                                 <div className="input-field col-6">
+                                    <p id="netWeightTag" style={{display:'none',fontFamily:'Times New Roman'}}>Net Weight</p>
                                     <input placeholder="Net Weight" type="text" id="netWeight" onChange={this.handleChange} required/>
                                 </div>
                             </div>
@@ -401,15 +414,18 @@ class AddExport extends Component {
                             </div>
                             <div className="row">
                                 <div className="input-field col-6">
+                                    <p id="loadingTerminalTag" style={{display:'none',fontFamily:'Times New Roman'}}>Loading Terminal</p>
                                     <input placeholder="Loading Terminal" type="text" id="loadingTerminal" onChange={this.handleChange} required/>
                                 </div>
                             </div>
                             <hr/>
                             <div className="row" style={{paddingTop: '40px'}}> 
                                 <div className="input-field col-6">
+                                    <p id="loadingDatetimeTag" style={{display:'none',fontFamily:'Times New Roman'}}>Loading Date and Time(01/25/2000 10:00:AM)</p>
                                     <input placeholder="Loading Date and Time" onFocus={this.handleDate} type="text" id="loadingDatetime" onChange={this.handleChange} required />
                                 </div>
                                 <div className="input-field col-6">
+                                    <p id="vesselTag" style={{display:'none',fontFamily:'Times New Roman'}}>Vessel</p>
                                     <input placeholder="Vessel" type="text" id="vessel" onChange={this.handleChange} required/>
                                 </div>
                             </div>
@@ -565,6 +581,7 @@ class AddExport extends Component {
                             <Card.Header><h4>Remarks</h4></Card.Header>
                             <Card.Body>
                             <div className="input-field row col-12">
+                                <p id="remarksTag" style={{display:'none',fontFamily:'Times New Roman'}}>Mention any Additional Information(Perishable goods, Reefer temperature, Number and kind of packages etc.)</p>
                                 <textarea placeholder="Mention any Additional Information(Perishable goods, Reefer temperature, Number and kind of packages etc.)" style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange} />
                             </div>
                             </Card.Body>
@@ -572,7 +589,7 @@ class AddExport extends Component {
                         <input type="hidden" id="hireType" value="export"/><br/><br/>
                         <div className="input-field center">
                             <button className="btn blue lighten-1 z-depth-5 btn1">Add</button>
-                            <button className="btn red lighten-1 z-depth-5 btn1">Cancel</button>
+                            <NavLink to='/admin'><button className="btn red lighten-1 z-depth-5 btn1">Cancel</button></NavLink>
                         </div>
                     </form>
                 </Card.Body>
