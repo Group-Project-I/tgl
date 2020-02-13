@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
+import 'firebase/storage'
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -8,7 +9,7 @@ var firebaseConfig = {
     authDomain: "trans-global-logistics-969a7.firebaseapp.com",
     databaseURL: "https://trans-global-logistics-969a7.firebaseio.com",
     projectId: "trans-global-logistics-969a7",
-    storageBucket: "react-drawer-1.appspot.com",
+    storageBucket: "trans-global-logistics-969a7.appspot.com",
     messagingSenderId: "10690174031",
     appId: "1:10690174031:web:89c7488d5d17566b76de3a"
   };
@@ -16,5 +17,6 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   // firebase.firestore().settings({ timestampsInSnapshots: true })
-
-  export default firebase
+const storage = firebase.storage();
+  
+export{storage,firebase as default}

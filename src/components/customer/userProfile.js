@@ -11,7 +11,7 @@ import ChangePassword from './authRecovery/changePassword'
 import {Redirect} from 'react-router-dom'
 import { Squares } from 'react-activity'
 import image from '../../img/index4.jpg'
-import { Button, Card} from 'react-bootstrap'
+import { Button, Card, Accordion, Row, Col} from 'react-bootstrap'
 import {TiMessages} from "react-icons/ti"
 import {FiArrowDownCircle} from "react-icons/fi"
 import {Chat} from 'react-chat-popup'
@@ -52,60 +52,102 @@ class UserProfile extends Component {
         if (!auth.uid) return <Redirect to='/signin' />
 
         const load = this.state.loading === 0 ? (
-        <div className="container-fluid"  >
+        <div className="container-fluid" 
+        style={{backgroundColor:'#bbe8ec' ,height:'100%', backgroundImage:"url("+image+")"}}
+         >
                 <br/><br/>
         {/* Display update  success message */}
                 <div className="green-text center">
                     <h4>{this.state.updated ? "Updated Successfully" : null}</h4>
                 </div>
-        {/* Display user detail  */}
-                <div className='row' style={{width:'2000px', height:'400px',backgroundColor:'#2e6262' ,
-                // backgroundImage:"url("+image+")"
-                }}>
-                <div className='container-fluid jumbotron' style={{display:'block',marginLeft:'auto ',marginRight:'auto',padding:'35px',opacity:'0.8'}}>
-                <Profile customer={this.props.customer[0]} id={this.props.id}></Profile>
-                </div>
-                </div>
-        {/* Show profile setting */}
-                <div className='row' style={{backgroundColor:'#2e6262 ',height:'50px',margin:'0',padding:'0'}}>
-                    <button class="btn btn-info left" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    <FiArrowDownCircle/> OPTIONS
-                    </button>
                 <UserChat/>
-                </div>
-            
-         <Card  style={{width:'60%',margin:'0 auto'}}>
-            <div class="collapse" id="collapseExample">
-            <div >
-            <div className=''style={{margin:'20px '}} >
-                <Tabs className="center">
-                    <TabList className="left">
-                    <Tab>Edit Profile</Tab>
-                    <Tab>Change  Email</Tab>
-                    <Tab>Change Password</Tab>
-                    </TabList>
-                 <br/>
-                  <TabPanel>
-         {/* Edit profile preview */}
-                    <EditProfile customer={this.props.customer[0]} id={this.props.id}></EditProfile>
-                    </TabPanel>
-                    <TabPanel>
-         {/* Change user Email */}
-                    <div className='row container-fluid'>
-                    <div className='col'><ResetEmial/></div>
-                    </div>
-                    </TabPanel>
-                    <TabPanel>
+        {/* Display user detail  */}
+        <br/><br/><br/>
+           {/* <Card>
+               <Row>
+                   <Col>                     
+                   <img src={require('../../img/user.png')} class="mx-auto img-fluid img-circle d-block " alt="avatar"  style={{borderRadius:'50%'}}/>
+                   <label class="custom-file">
+                        <h6 class="">Upload new photo</h6>
+                        <input type="file" id="file" class="custom-file-input" />
+                        <button class="custom-file-control  btn blue lighten-1 z-depth-0" >Choose file</button>
+                    </label>
+                   </Col>
+                   <Col>
+                   <Profile customer={this.props.customer[0]} id={this.props.id}></Profile>
+                   </Col>
+                   <Col>
+                   <div className='row'>
+     {/* Edit profile preview */}
+               
+               
          {/* Change user Password  */}
-                        <div className='row container-fluid'>
-                        <div className='col'><ChangePassword/></div>
-                       </div>
-                    </TabPanel>
-                </Tabs>
-            </div>  
-              </div>
-              </div>
-              </Card>
+           
+         {/* Change user Email */}
+                  
+                {/* </div>
+                   </Col>
+               </Row> */}
+           {/* </Card> */} 
+
+                <div className='col' style={{width:'2000px', height:'500px' }}>
+                <div className='' style={{display:'block',margin:'0 auto ',paddingTop:'35px',opacity:'0.8'}}> */}
+                <Profile customer={this.props.customer[0]} id={this.props.id}></Profile>
+                </div> 
+                 </div>
+                       
+               
+                 <div className='conatainer row'>      
+
+                
+     {/* Show profile settings */}
+                <div className='col'>
+     {/* Edit profile preview */}
+                <Accordion >
+                    <Card  >
+                        <Accordion.Toggle as={Card.Header} eventKey="0" style={{backgroundColor:' #1f618d '}}>
+                        EDIT PROFILE  <FiArrowDownCircle/> 
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="0" >
+                        <Card.Body>
+                        <EditProfile customer={this.props.customer[0]} id={this.props.id}></EditProfile>
+                        </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                </Accordion>
+                </div>
+                <div className='col'>
+         {/* Change user Password  */}
+                <Accordion >
+                    <Card >
+                        <Accordion.Toggle as={Card.Header} eventKey="0" style={{backgroundColor:' #1f618d '}}>
+                        CHANGE PASSWORD  <FiArrowDownCircle/> 
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="0">
+                        <Card.Body>
+                        <ChangePassword/>
+                        </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                </Accordion>
+                </div>
+                <div className='col'>
+         {/* Change user Email */}
+                  <Accordion>
+                    <Card >
+                        <Accordion.Toggle as={Card.Header} eventKey="0" style={{backgroundColor:' #1f618d '}}>
+                        CHANGE EMAIL  <FiArrowDownCircle/> 
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="0">
+                        <Card.Body>
+                        <ResetEmial/>
+                        </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                </Accordion>
+                </div>
+                </div> 
+              
          </div>       
         ) : <div className="text-center" style={{paddingTop:"500px"}}><Squares color="#007bff" size={32} speed={1} animating={true} /></div>
         return <div>{load}</div>

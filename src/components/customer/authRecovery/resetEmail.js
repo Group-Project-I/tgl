@@ -46,14 +46,10 @@ class ResetEmail extends React.Component{
         
         <div className={'user-card text-center' }  >
             <div className='cust-heading' >
-              <hr/>
-              <div style={{padding:'0 20px '}}>
-              <h1 style={{float:'left'}}> EMAIL RECOVERY</h1> 
-              </div>
-              <hr/><br/><br/>
+            
               <div className= { authUpdateError != 'Email Updated Successfully' ? "red-text" : "green-text"}>
                 {this.state.updated ? authUpdateError : null}
-              </div><br/>
+              </div>
             <div className='row main-section'>
               
               <div className='col sub-section content' >
