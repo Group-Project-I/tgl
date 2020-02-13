@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Redirect} from 'react-router-dom'
+import {Redirect, NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {addImportHire} from '../../../../store/actions/adminHireActions'
 import {firestoreConnect} from 'react-redux-firebase'
@@ -44,6 +44,9 @@ class AddImport extends Component {
         this.setState({
             [e.target.id]: e.target.value
         })
+        var tag = e.target.id+"Tag"
+        document.getElementById(tag).style.display = "block"
+
     }
 
     handleSubmit = (e) => {
@@ -58,6 +61,8 @@ class AddImport extends Component {
     handleDate = (e) => {
         e.preventDefault();
         e.target.type = 'datetime-local'
+        var tag = e.target.id+"Tag"
+        document.getElementById(tag).style.display = "block"
     }
 
     handleContainerType = (e) => {
@@ -310,20 +315,24 @@ class AddImport extends Component {
                             <h5>Pick up Date and Time</h5>
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
+                                    <p id="pickupDatetimeTag" style={{display:'none',fontFamily:'Times New Roman'}}>Container Pickup Date and Time(01/25/2001 10:00:AM)</p>
                                     <input placeholder="Pickup Date and Time" ref="pickup" onFocus={this.handleDate} type="text" id="pickupDatetime" onChange={this.handleChange} required />
                                 </div>
                             </div>
                             <hr/><h5>Location</h5>
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
+                                    <p id="containerPickupAddressLine1Tag" style={{display:'none',fontFamily:'Times New Roman'}}>Address Line 1</p>
                                     <input placeholder="Address Line 1" type="text" id="containerPickupAddressLine1" onChange={this.handleChange} required />
                                 </div>
                                 <div className="input-field col-6">
+                                    <p id="containerPickupAddressLine2Tag" style={{display:'none',fontFamily:'Times New Roman'}}>Address Line 2</p>
                                     <input placeholder="Address Line 2" type="text" id="containerPickupAddressLine2" onChange={this.handleChange} required />
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field col-6">
+                                    <p id="containerPickupCityTag" style={{display:'none',fontFamily:'Times New Roman'}}>City</p>
                                     <input placeholder="City" type="text" id="containerPickupCity" onChange={this.handleChange} required />
                                 </div>
                             </div>
@@ -335,9 +344,11 @@ class AddImport extends Component {
                             <Card.Body>
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
+                                    <p id="cargoTypeTag" style={{display:'none',fontFamily:'Times New Roman'}}>Cargo Type(s)</p>
                                     <input placeholder="Cargo Type(s)" type="text" id="cargoType" onChange={this.handleChange} required/>
                                 </div>
                                 <div className="input-field col-6">
+                                    <p id="netWeightTag" style={{display:'none',fontFamily:'Times New Roman'}}>Net Weight</p>
                                     <input placeholder="Net Weight" type="text" id="netWeight" onChange={this.handleChange} required />
                                 </div>
                             </div>
@@ -357,15 +368,18 @@ class AddImport extends Component {
                             </div>
                             <div className="row">
                                 <div className="input-field col-6">
+                                    <p id="unloadingTerminalTag" style={{display:'none',fontFamily:'Times New Roman'}}>Unloading Terminal</p>
                                     <input placeholder="Unloading Terminal" type="text" id="unloadingTerminal" onChange={this.handleChange} required />
                                 </div>
                             </div>
                             <hr/><h5>Vessel Details</h5>
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
+                                    <p id="vesselTag" style={{display:'none',fontFamily:'Times New Roman'}}>Vessel</p>
                                     <input placeholder="Vessel" type="text" id="vessel" onChange={this.handleChange} required />
                                 </div>
                                 <div className="input-field col-6">
+                                    <p id="vesselArrivalDatetimeTag" style={{display:'none',fontFamily:'Times New Roman'}}>Vessel Arrival Date and Time(01/25/2001 10:00:AM)</p>
                                     <input placeholder="Vessel Arrival Date and Time" onFocus={this.handleDate} type="text" id="vesselArrivalDatetime" onChange={this.handleChange} required />
                                 </div>
                             </div>
@@ -376,14 +390,17 @@ class AddImport extends Component {
                             <Card.Body>
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
+                                    <p id="destinationAddressLine1Tag" style={{display:'none',fontFamily:'Times New Roman'}}>Address Line 1</p>
                                     <input placeholder="Address Line 1" type="text" id="destinationAddressLine1" onChange={this.handleChange} required />
                                 </div>
                                 <div className="input-field col-6">
+                                    <p id="destinationAddressLine2Tag" style={{display:'none',fontFamily:'Times New Roman'}}>Address Line 2</p>
                                     <input placeholder="Address Line 2" type="text" id="destinationAddressLine2" onChange={this.handleChange} required />
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field col-6">
+                                    <p id="destinationCityTag" style={{display:'none',fontFamily:'Times New Roman'}}>City</p>
                                     <input placeholder="City" type="text" id="destinationCity" onChange={this.handleChange} required />
                                 </div>
                             </div>
@@ -572,6 +589,7 @@ class AddImport extends Component {
                             <Card.Header color="blue"><h4>Remarks</h4></Card.Header>
                             <Card.Body>
                             <div className="input-field row col-12">
+                                <p id="remarksTag" style={{display:'none',fontFamily:'Times New Roman'}}>Mention any Additional Information(Perishable goods, Reefer temperature, Number and kind of packages etc.)</p>
                                 <textarea placeholder="Mention any Additional Information(Perishable goods, Reefer temperature, Number and kind of packages etc.)" style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange}/>
                             </div>
                             </Card.Body>
@@ -579,7 +597,7 @@ class AddImport extends Component {
                         <br/><br/>
                         <div className="input-field center">
                             <button className="btn blue lighten-1 z-depth-5 btn1" type="submit">Add</button>
-                            <button className="btn red lighten-1 z-depth-5 btn1">Cancel</button>
+                            <NavLink to='/admin'><button className="btn red lighten-1 z-depth-5 btn1">Cancel</button></NavLink>
                         </div>
                     </form>
                 </Card.Body>

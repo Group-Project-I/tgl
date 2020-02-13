@@ -21,11 +21,6 @@ class CustomerProfile extends Component {
             <div className="row">
                 <div className="col-3">
                     <img src={require('../../../../img/profile.jpg')} class="mx-auto img-fluid img-circle d-block left" alt="avatar" />
-                    <h6 class="mt-2 left">Upload a different photo</h6>
-                    <label class="custom-file">
-                        <input type="file" id="file" class="custom-file-input" />
-                        <span class="custom-file-control">Choose file</span>
-                    </label>
                 </div>
                 <div className="col-9">
                     <h1>{this.props.customer.firstName + " " + this.props.customer.lastName}</h1>

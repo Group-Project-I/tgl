@@ -1418,7 +1418,13 @@ Nav.Link :hover {
           font-size: 12px;
       }
 
+.navNotif a {
+  padding-right: 0px;
+}
 
+.navNotif .dropdown-toggle::after{
+  content: none;
+}
       
 
 

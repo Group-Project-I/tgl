@@ -206,6 +206,17 @@ export const editCity = (details) => {
     }
 }
 
+export const deleteCity = (id) => {
+    return(dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        firestore.collection('pricing').doc(id).delete().then(() => {
+            dispatch({type: 'PRICING_DELETED'});
+        }).catch((err) => {
+            dispatch({type: 'ERROR_DELETING_PRICING', err});
+        })
+    }
+}
+
 export const sendMessage = (message, senderId, receiverId) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();

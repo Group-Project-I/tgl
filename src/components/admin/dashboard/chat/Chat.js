@@ -17,9 +17,10 @@ class Chat extends React.Component {
     updateScroll = () => {
         var element = document.getElementById('myElement');
         element.scrollTop = element.scrollHeight;
-        // console.log("scroll")
     }
 
+    // Loads the chat data of a user when the chat is selected from the list 
+    // State is updated with messages of the selected chat 
     chatClick = (chat) => {
         this.setState({
             chatId: chat.id,
@@ -30,15 +31,18 @@ class Chat extends React.Component {
         })
         document.getElementById(chat.id).className = "chat_list active_chat"
 
+        // If a message is unread it is updated after the message is clicked
         this.props.readMessage(chat.id)
     }
 
+    // State is updated when a new message is entered
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
         })
     }
 
+    // Database is updated when the message is sent. message and user IDs are passed to the function
     handleSubmit = (e) => {
         e.preventDefault();
         document.getElementById('newMessage').value = ""
@@ -47,6 +51,7 @@ class Chat extends React.Component {
         }
     }
 
+    // When the state is updated new properties are passed to update the chat thread of a user
     componentWillReceiveProps(nextProps) {
         if (nextProps.chats !== this.props.chats) {
             var x = nextProps.chats.filter(item => item.id === this.state.chatId)
@@ -64,9 +69,6 @@ class Chat extends React.Component {
 
     render() {
         const {chats} = this.props
-        // if(chattie){
-        //     var chats = this.props.chats.sort((a,b) => {return new Date(a.finalTime).getTime() - new Date(b.finalTime).getTime()}).reverse()
-        // }
 
         return(
             <div id="content" className="container-fluid" role="main">
@@ -87,6 +89,7 @@ class Chat extends React.Component {
                             </div>
                             </div>
                         </div>
+                        {/* Lists the chat list on the left hand side of the component */}
                         <div className="inbox_chat">
                             {chats && chats.map(chat =>{
                                 return(
@@ -103,7 +106,7 @@ class Chat extends React.Component {
                             })}
                         </div>
                         </div>
-
+                        {/* Once a chat is selected the chat thread is displayed on the right side of the component */}
                         <div className="mesgs" id="myElement">
                         <div className="msg_history" id="myElement">
                             {this.state.messages && this.state.messages.map(message => {
@@ -146,6 +149,7 @@ class Chat extends React.Component {
 
 }
 
+// Add the auth and chats collections to props
 const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
@@ -153,6 +157,7 @@ const mapStateToProps = (state) => {
     }
 }
 
+// Functions to send and mark messages as read on the database
 const mapDispatchToProps = (dispatch) => {
     return{
         sendMessage: (message, senderId, receiverId) => dispatch(sendMessage(message, senderId, receiverId)),
@@ -162,6 +167,7 @@ const mapDispatchToProps = (dispatch) => {
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
+    // Component is connected to the chats collection to receive real time updates. chats are ordered in the desc order of messages
     firestoreConnect([
         {collection: 'chats',
         orderBy: [
