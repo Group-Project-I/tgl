@@ -7,9 +7,9 @@ import {compose} from 'redux'
 import moment from 'moment'
 import {Link} from "react-router-dom";
 import Particles from 'react-particles-js';
-import { Squares } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
 import Card from "react-bootstrap/Card";
+import {Spinner} from "react-activity";
 
 class ManageCompletedHires extends Component {
 
@@ -568,7 +568,7 @@ class ManageCompletedHires extends Component {
 
         return (
             this.state.loading === 1 ? (
-                    <div className="text-center" style={{paddingTop:"500px"}}><Squares color="#007bff" size={32} speed={1} animating={true} /></div>
+                    <div className="text-center" style={{paddingTop:"500px"}}><Spinner color="#007bff" size={32} speed={1} animating={true} /></div>
                 ) :
                 <div className="completehire">
                     <br/><br/><br/><br/>
