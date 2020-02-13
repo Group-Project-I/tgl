@@ -43,10 +43,10 @@ class GenerateReports extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const dateTo = moment(this.state.To,'MMMM Do YYYY')
-        const dateFrom = moment(this.state.From,'MMMM Do YYYY')
+        const dateTo = moment(this.state.To)
+        const dateFrom = moment(this.state.From)
         if(this.props.hires){
-            const hireList = this.props.hires.filter(item => item.hireStatus === 'completed' && moment(item.completedDatetime.toDate(),'MMMM Do YYYY').isAfter(dateFrom) && moment(item.completedDatetime.toDate(),'MMMM Do YYYY').isBefore(dateTo))
+            const hireList = this.props.hires.filter(item => item.hireStatus === 'completed' && moment(item.completedDatetime.toDate()).isBetween(dateFrom,dateTo))
             const filteredHires = hireList.filter(item => this.state.customerId ?  item.customerId === this.state.customerId : 1 && 
                                                     this.state.driverId ? item.driverId === this.state.driverId : 1 && 
                                                     this.state.vehicleId ? item.vehicleId === this.state.vehicleId : 1 && 
@@ -87,7 +87,7 @@ class GenerateReports extends Component {
         ];
         return (
             this.state.loading === 1 ? (
-                <div style={{paddingTop:"300px"}}>
+                <div style={{paddingTop:"400px",paddingLeft:"800px"}}>
                     <Squares color="#007bff" size={32} speed={1} animating={true} />
                 </div>
             ) :

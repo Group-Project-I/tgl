@@ -68,7 +68,7 @@ export class AdminNavbar extends Component{
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <Nav className="justify-content-end mr-auto" style={{ width: "85%" }}>
             <Nav.Link as={NavLink} to='/admin/addhire' style={{textDecoration: 'none'}}>+Add Hire</Nav.Link>
-            <Nav.Link as={NavLink} style={{paddingRight:'0px'}} to={'/admin/chat/' + this.props.auth.uid}><FaEnvelope size={28}/></Nav.Link>
+            <Nav.Link as={NavLink} style={{paddingRight:'4px'}} to={'/admin/chat/' + this.props.auth.uid}><FaEnvelope size={28}/></Nav.Link>
             <Badge badgeContent={count} primary badgeId="notifications-1" />
             <NavDropdown className="navNotif" title={notifications.length === 0 ? <MdNotifications size={28}/> : <MdNotifications size={28}/>} id="basic-nav-dropdown" disabled={!notifications.length}>
               {notifications && notifications.map(notification => {

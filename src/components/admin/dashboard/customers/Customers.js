@@ -79,36 +79,7 @@ class Customers extends Component {
                     rowClick={rowClick}
                     options={{ pagination: 'local',paginationSize: 10}}
                 />
-                {/* <table class="table">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Mobile</th>
-                        <th>NIC</th>
-                        <th>User Since</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {customers && customers.map(customer => {
-                        return(
-                            <tr key={customer.id}>
-                                <td>{customer.firstName + ' ' + customer.lastName}</td>
-                                <td>{customer.email}</td>
-                                <td>{customer.mobile}</td>
-                                <td>{customer.nic}</td>
-                                <td>{moment(customer.createdAt.toDate()).format("MMM Do YYYY")}</td>
-                                <td>
-                                    <Link to={'/admin/customers/' + customer.id}><button type="button" data-toggle="modal" data-id="" class="edit-details btn btn-primary" data-target="#edit">View</button></Link>
-                                </td>
-                            </tr>
-                        )
-                    })}
-                    </tbody>
-                </table> */}
             </div>
-        // </div>
     )
         }
 }
