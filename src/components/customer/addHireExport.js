@@ -113,8 +113,8 @@ class AddHireExport extends Component {
                             <br/><br/>
                             <Card border="primary">
                                 <Card.Body>
-                                    <Card.Header color="blue"><h1 className="center fadeIn animated slow add_head">Add <span className="topic">Export</span></h1>
-                            <hr className="bg-dark mb-4"/>
+                                    <Card.Header color="blue"><h1 className="center fadeIn animated slow add_head">Add <span className="topic1">Export</span></h1>
+                            {/*<hr className="bg-dark mb-4"/>*/}
                                     </Card.Header>
                 <form onSubmit={this.handleSubmit} autoComplete='off'>
                     <br/>

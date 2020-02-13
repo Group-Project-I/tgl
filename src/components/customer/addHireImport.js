@@ -11,7 +11,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import DatePicker from "react-datepicker/es";
 import "react-datepicker/dist/react-datepicker.css"
-
+// import ParticlesContainer from "./ParticlesContainer";
 
 class AddHireImport extends Component {
     state = {
@@ -81,7 +81,9 @@ class AddHireImport extends Component {
 
 
     handleChange = (e) => {
+
         this.setState({
+
             [e.target.id]: e.target.value
         })
     }
@@ -89,9 +91,11 @@ class AddHireImport extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+
         this.props.addImportHires(this.state);
         this.setState({
             redir : 1
+
         })
     }
 
@@ -123,6 +127,9 @@ class AddHireImport extends Component {
     handleDate = (e) => {
         e.preventDefault();
         e.target.type = 'datetime-local'
+        // this.setState({
+        //     pickupDatetime: e.target.value
+        // });
     }
 
 
@@ -154,7 +161,6 @@ class AddHireImport extends Component {
         return (
 
             <div className="form wrapper form1 delay-1s">
-
                 <div className="form2  fadeIn animated slow ">
 
                     <div className="row fadeIn animated fast">
@@ -162,9 +168,10 @@ class AddHireImport extends Component {
                             <br/><br/>
                             <Card border="primary">
                                 <Card.Body>
-                                    <Card.Header color="blue"><h1 className="center fadeIn animated fast add_head">Add <span className="topic">Import</span></h1>
-                                        <hr className="bg-dark mb-4"/>
-                                    </Card.Header>
+                                    <h1 className="center fadeIn animated fast add_head">Add <span className="topic1">Import</span></h1>
+                                        {/*<hr className="bg-dark mb-5 w-25"/>*/}
+                                <br/>
+
                                     <form onSubmit={this.handleSubmit} autoComplete='off'>
                                         <br/>
                                         <Card border="primary" className="text-center">
@@ -187,9 +194,8 @@ class AddHireImport extends Component {
                                                 <div className="row" style={{paddingTop: '40px'}}>
                                                     <div className="input-field col-6">
 
-
                                                         <input placeholder="Pickup Date and Time" ref="pickup" onFocus={this.handleDate} type="text" id="pickupDatetime" onChange={this.handleChange} required />
-
+                                                        {/*<DatePicker placeholderText="Pickup Date and Time" id="pickupDatetime"  minDate={new Date()} showTimeSelect onChange={this.handleChangePickUp}/>*/}
                                                     </div>
                                                 </div>
                                                 <hr/><h5>Location</h5>
@@ -355,6 +361,7 @@ class AddHireImport extends Component {
                         </div>
                     </div>
                 </div>
+
             </div>
         )
     }

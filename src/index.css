@@ -35,7 +35,9 @@ code {
 }
 
 .hire_background{
-  background-image:url("../src/img/bg1.jpg");
+  /*background-image:url("../src/img/bg1.jpg");*/
+  /*background-color: #9E9675;*/
+  background-color: #4c4c4c;
   width: auto;
   height: auto;
   background-size: cover;
@@ -60,7 +62,7 @@ code {
 
 .form1{
 
-  background-color: rgba(255,255,255,0.5) !important;
+  background-color: rgba(0,0,0,0.7) !important;
   /*margin-left: 140px;*/
   /*margin-right: 140px;*/
   border-radius: 20px;
@@ -84,7 +86,7 @@ code {
 
 .tool{
   background-color: rgba(255,255,255,0.5) !important;
-
+  border-radius: 20px;
   margin-left: 10px;
   margin-right: 10px;
 
@@ -94,7 +96,7 @@ code {
     color: rgb(18, 160, 255);
 }
 .topic1{
-  color: #0056b3;
+  color: red;
 }
 ::placeholder{
   color: gray !important;
@@ -103,6 +105,7 @@ code {
 
 .add_head {
   font-family: "Biting My Nails";
+  font-size: 50px;
 }
 
 .particles {
@@ -149,7 +152,21 @@ code {
   padding-bottom: 10px;
   margin-left: 10px;
   margin-right: 10px;
+  font-size: 15px;
+
+
+
+}
+.tablist1{
+  /*background-color: rgba(0,255,255,0.4) !important;*/
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   color: white;
+  background-color: #343a40;
+  font-size: 15px;
+  border-radius: 10px;
 
 
 
@@ -157,8 +174,8 @@ code {
 
 .image1{
 
-
-  background-image: url("../src/img/index2.jpg");
+  background-color: #4c4c4c;
+  /*background-image: url("../src/img/index2.jpg");*/
   /*background-repeat: no-repeat;*/
 background-size: cover;
   padding-bottom: 250px;
@@ -175,7 +192,8 @@ background-size: cover;
 }
 
 .managehire_form1{
-  background-image: url("../src/img/joao-marcelo-martins-hFoPRRwjVgg-unsplash.jpg");
+  /*background-image: url("../src/img/joao-marcelo-martins-hFoPRRwjVgg-unsplash.jpg");*/
+  background-color: #4c4c4c;
   background-repeat: no-repeat;
   padding-left: 300px;
   padding-right: 300px;
@@ -185,7 +203,8 @@ background-size: cover;
 
 }
 .managehire_form2{
-  background-image: url("../src/img/taryn-kaahanui-pwP-EXdIQQY-unsplash.jpg");
+  /*background-image: url("../src/img/taryn-kaahanui-pwP-EXdIQQY-unsplash.jpg");*/
+  background-color: #4c4c4c;
   background-repeat: no-repeat;
   /*padding-left: 300px;*/
   /*padding-right: 300px;*/
