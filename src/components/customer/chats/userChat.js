@@ -45,7 +45,7 @@ export class UserChat extends React.Component{
         // Now send the message throught the backend API
         // if(this.state.chatId){
             this.props.sendMessage(newMessage, this.props.auth.uid, this.state.adminId)
-            addResponseMessage('should finish this tonight');
+            // addResponseMessage('should finish this tonight');
         // }
     
       }

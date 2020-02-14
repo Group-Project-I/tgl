@@ -4,11 +4,12 @@ import "react-tabs/style/react-tabs.css"
 import {connect} from 'react-redux'
 import ImageUpload from './imageUpload'
 import {storage} from '../../config/fbConfig'
-import {addProfileImage} from '../../store/actions/customerActions'
+import {showimage} from '../../store/actions/customerActions'
 import { Button, Card, Accordion, Row, Col} from 'react-bootstrap'
 import {FiArrowDownCircle} from "react-icons/fi"
 import {MdCall,MdEmail,MdInsertDriveFile} from "react-icons/md"
-
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 
 class Profile extends Component {
@@ -26,16 +27,34 @@ class Profile extends Component {
         this.handleupdate = this.handleupdate.bind(this)
 
     }
-   
+    showimage() {
+        const {auth} = this.props
+        var storageRef = firebase.storage().ref();
+        var spaceRef = storageRef.child(auth.uid);
+        storageRef.child(auth.uid).getDownloadURL().then(function(url) {
+            // var test = url;
+            // alert(url);
+            // document.querySelector('img').src = test;
+            var img = document.getElementById('myimg');
+            img.src = url;
+             
+        }).catch(function(error) {
+        });
+  }
 
     componentWillMount() {
         const {auth} = this.props
-
+        var test = showimage()
         if(this.props.customer){
             this.setState({
-                loading: 0
+                loading: 0,
+                profileImage:test
             });
+        console.log(test)
+        console.log('test')
         }
+        
+        
         
 
     }
@@ -67,27 +86,28 @@ class Profile extends Component {
                 console.log(url)
                 this.setState({url})
                  //save file to the db
-                addProfileImage(url)
+                // addProfileImage(url)
             })
         })
         this.setState({
             showProgressBar:true
         })
     }
+    
     render() {     
         const load = this.state.loading === 0 ? (
             <div className=" container  " >
                 <div className="row">
                 
-                <img src={this.state.url || require('../../img/profile.png')} class="mx-auto img-fluid img-circle d-block " alt="avatar"  style={{borderRadius:'50%',width:'250px'}}/>
+                <img id='myImg' src={this.state.url || require('../../img/profile.png')} class="mx-auto img-fluid img-circle d-block " alt="avatar"  style={{borderRadius:'50%',width:'250px'}}/>
                 <br/><br/><br/><br/>
                     <label class="custom-file"><br/>
                     <input type="file" id="file" name='image' onChange={this.handlechange}  class="custom-file-control  btn btn-info"/><br/>
                     <button class="custom-file-control  btn blue lighten-1 z-depth-0" onClick={this.handleupdate}>Upload</button>
                     </label><br/>
-                    {/* {
+                    {
                         this.state.showProgressBar ? <progress value={this.state.progress} max='100'/>:null
-                    } */}
+                    }
                     
                 </div>
                 <br/><br/><br/>
@@ -115,7 +135,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return{
-        addProfileImage: (url) => dispatch(addProfileImage(url))  
+        showimage: (user) => dispatch(showimage(user))  
 
     }
 }

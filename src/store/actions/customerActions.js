@@ -118,6 +118,19 @@ export const addNotifications=(notification,dataType,data)=>{
       })
   }
 }
+export const showimage=(user)=> {
+  return(dispatch,getState,{getFirebase,getFirestore}) => {
+  var storage=firebase.storage()
+  var storageRef = firebase.storage().ref();
+  var spaceRef = storageRef.child('images/user');
+  storageRef.child('images/user').getDownloadURL().then(function(url) {
+      var test = url;
+      alert(url);
+      document.querySelector('img').src = test;
+  }).catch(function(error) {
+  })
+}
+}
  export const addProfileImage=(imageUrl)=>{
   return(dispatch,getState,{getFirebase,getFirestore}) => {
     const state= getState()
