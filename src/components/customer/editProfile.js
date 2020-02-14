@@ -1,14 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { Card} from 'react-bootstrap'
-import {firestoreConnect} from 'react-redux-firebase'
-import {compose} from 'redux'
 import {editUser} from '../../store/actions/adminActions'
-import { Link } from 'react-router-dom'
-import image from '../../img/importreq.jpg'
+import { Alert } from 'react-bootstrap'
 
-
-class EditProfile extends Component {
+class EditCustomer extends Component {
 
     state = {
         id: '',
@@ -21,14 +16,6 @@ class EditProfile extends Component {
         loading: 1,
         updated: 1
 
-    }
-    componentWillReceiveProps(nextProps) {
-        
-        if(this.props.customer){
-            this.setState({
-                ...nextProps.customer[0],loading: 0,updated: !this.state.updated
-            });
-        }
     }
 
     handleChange = (e) => {
@@ -46,33 +33,28 @@ class EditProfile extends Component {
         e.preventDefault();
         this.props.editUser(this.props.id, this.state, 'customers')
         this.setState({
-            updated: 0
+            updated: 1
         })
+    }
+    componentWillMount(){
+        if(this.props.customer){
+            this.setState({
+                ...this.props.customer,loading: 0,updated: !this.state.updated
+            });
+        }
     }
 
     render() {
-        
         const load = this.state.loading === 0 ? (
-            <div style={{  backgroundColor: "#dee7e7", margin:'0',padding:'0' ,marginBottom:'0', height: '1000px'}}>
-            <div className="container " style={{ backgroundColor:'white'}}  >
-                <br/><br/><br/><br/>
-                <div >
-                    <div className='cust-heading'>
-                    <hr/>
-                <h1 style={{float:'left'}}>EDIT PROFILE</h1> 
-                <Link to='/User/profile'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/> 
-                 <hr/>
-                    </div>
-                
-                <div className='row' >
-                   
-                    <div className='col'>
+            <div className="container">
+                    {/* <h2 className="center" style={{paddingTop: '50px'}}>Edit Customer</h2><br/><br/> */}
                     <div className="green-text center">
-                        <h4>{this.state.updated ? "Updated Successfully" : null}</h4>
+                        <h4>{this.state.updated ? <Alert variant="success">Updated Successfully</Alert> : null}</h4>
                     </div>
                     <form onSubmit={this.handleSubmit}>
-                        <div className="row main-section">
-                            <div className="input-field col-5 row">
+                      
+                        <div className="row" style={{margin:'0'}}>
+                        <div className="input-field col-5 row">
                                 <h6 className='blue-text'>First name</h6>
                                 <input placeholder="First Name" type="text" id="firstName" value={this.state.firstName}  onChange={this.handleChange} required />
                             </div>
@@ -99,37 +81,19 @@ class EditProfile extends Component {
                                 <input placeholder="NIC No" type="text" id="nic" value={this.state.nic}  onChange={this.handleChange} required />
                             </div>
                             <div className='col-2'></div>
-                            <div className="input-field col-5 row">
-                                <h6 className='blue-text'>Email</h6>
-                                <input placeholder="Email" type="email" id="email" value={this.state.email}  onChange={this.handleChange} required />
-                            </div>
+                            
                         </div><br/>
                         <div className="input-field center">
                             <button className="btn blue lighten-1 z-depth-0">Update</button>
-                            <Link to='/User/profile'><button className="btn silver lighten-1 z-depth-0">Cancel</button></Link>
                         </div>
                     </form>
                 </div>
-            </div>
-            </div>
-         </div>
-              
-                </div>  
+                
         ) : <div><br/><br/><br/>Loading</div>
         return <div>{load}</div>
-      
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    
-    let id = ownProps.match.params.id;
-    return{
-        id: id,
-        customer: state.firestore.ordered.customers,
-    }
-    
-}
 
 const mapDispatchToProps = (dispatch) => {
     return{
@@ -137,10 +101,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default compose(
-    connect(mapStateToProps,mapDispatchToProps),
-    firestoreConnect(props => [{
-        collection: 'customers',
-        doc: props.id
-    }])
-)(EditProfile)
+export default connect(null, mapDispatchToProps)(EditCustomer)

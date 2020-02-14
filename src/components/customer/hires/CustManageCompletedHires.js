@@ -7,6 +7,9 @@ import {compose} from 'redux'
 import moment from 'moment'
 import {Link} from "react-router-dom";
 import Particles from 'react-particles-js';
+import 'react-activity/dist/react-activity.css';
+import Card from "react-bootstrap/Card";
+import {Spinner} from "react-activity";
 
 class ManageCompletedHires extends Component {
 
@@ -67,8 +70,24 @@ class ManageCompletedHires extends Component {
                 borderLeftWidth: 0,
                 borderTopWidth: 0
             },
-
-
+            tableCol2Header: {
+                width: "20%",
+                borderStyle: "solid",
+                borderColor: '#bfbfbf',
+                borderBottomColor: '#000',
+                borderWidth: 1,
+                borderLeftWidth: 0,
+                borderTopWidth: 0
+            },
+            tableCol3Header: {
+                width: "15%",
+                borderStyle: "solid",
+                borderColor: '#bfbfbf',
+                borderBottomColor: '#000',
+                borderWidth: 1,
+                borderLeftWidth: 0,
+                borderTopWidth: 0
+            },
             tableCol: {
                 width: "20%",
                 borderStyle: "solid",
@@ -79,6 +98,22 @@ class ManageCompletedHires extends Component {
             },
             tableCol1: {
                 width: "30%",
+                borderStyle: "solid",
+                borderColor: '#bfbfbf',
+                borderWidth: 1,
+                borderLeftWidth: 0,
+                borderTopWidth: 0
+            },
+            tableCol2: {
+                width: "20%",
+                borderStyle: "solid",
+                borderColor: '#bfbfbf',
+                borderWidth: 1,
+                borderLeftWidth: 0,
+                borderTopWidth: 0
+            },
+            tableCol3: {
+                width: "15%",
                 borderStyle: "solid",
                 borderColor: '#bfbfbf',
                 borderWidth: 1,
@@ -100,12 +135,18 @@ class ManageCompletedHires extends Component {
             heading: {
                 textAlign: "center",
                 paddingTop: "20px",
-                paddingBottom: "40px"
+
             },
             subHeading:{
                 textAlign: "left",
                 paddingVertical: "30px",
-                fontSize: "12"
+                fontSize: "14",
+                fontWeight: "bold",
+            },
+            heading2:{
+                textAlign: "center",
+                paddingTop: "4px",
+                paddingBottom: "40px"
             }
         });
 
@@ -113,7 +154,10 @@ class ManageCompletedHires extends Component {
             <Document>
                 <Page style={styles.body}>
                     <View>
-                        <Text style={styles.heading}>Trans Global Logistics - Import</Text>
+                        <Text style={styles.heading}>Trans Global Logistics</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.heading2}>Import Report</Text>
                     </View>
                     <View style={styles.table}>
                         <View style={styles.tableRow}>
@@ -152,17 +196,17 @@ class ManageCompletedHires extends Component {
                         </View>
                     </View>
                     <View>
-                        <Text style={styles.subHeading}>--- Container Details ---</Text>
+                        <Text style={styles.subHeading}>Container Details</Text>
                     </View>
                     <View style={styles.table}>
                         <View style={styles.tableRow}>
                             <View style={styles.tableColHeader}>
                                 <Text style={styles.tableCellHeader}>Container Type</Text>
                             </View>
-                            <View style={styles.tableColHeader}>
+                            <View style={styles.tableCol1Header}>
                                 <Text style={styles.tableCellHeader}>Pickup Date</Text>
                             </View>
-                            <View style={styles.tableColHeader}>
+                            <View style={styles.tableCol1Header}>
                                 <Text style={styles.tableCellHeader}>Container Location</Text>
                             </View>
                         </View>
@@ -170,16 +214,16 @@ class ManageCompletedHires extends Component {
                             <View style={styles.tableCol}>
                                 <Text style={styles.tableCell}>{this.props.hire[0].containerType + "ft"}</Text>
                             </View>
-                            <View style={styles.tableCol}>
+                            <View style={styles.tableCol1}>
                                 <Text style={styles.tableCell}>{moment(this.props.hire[0].pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</Text>
                             </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{this.props.hire[0].pickupLocation}</Text>
+                            <View style={styles.tableCol1}>
+                                <Text style={styles.tableCell}>{this.props.hire[0].containerPickupAddressLine1 + ',' + this.props.hire[0].containerPickupAddressLine2 + ',' + this.props.hire[0].containerPickupCity}</Text>
                             </View>
                         </View>
                     </View>
                     <View>
-                        <Text style={styles.subHeading}>--- Cargo Details ---</Text>
+                        <Text style={styles.subHeading}>Cargo Details</Text>
                     </View>
                     <View style={styles.table}>
                         <View style={styles.tableRow}>
@@ -187,16 +231,7 @@ class ManageCompletedHires extends Component {
                                 <Text style={styles.tableCellHeader}>Cargo Type</Text>
                             </View>
                             <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Cargo Weight</Text>
-                            </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Vessel Arrival Date</Text>
-                            </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Unloading Port</Text>
-                            </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Destination</Text>
+                                <Text style={styles.tableCellHeader}>Net Weight</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -204,21 +239,51 @@ class ManageCompletedHires extends Component {
                                 <Text style={styles.tableCell}>{this.props.hire[0].cargoType}</Text>
                             </View>
                             <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{this.props.hire[0].weight}</Text>
+                                <Text style={styles.tableCell}>{this.props.hire[0].netWeight}</Text>
+                            </View>
+                        </View>
+                    </View>
+                    <View>
+                        <Text style={styles.subHeading}>Unloading Details</Text>
+                    </View>
+                    <View style={styles.table}>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCol3Header}>
+                                <Text style={styles.tableCellHeader}>Unloading Port</Text>
+                            </View>
+                            <View style={styles.tableCol3Header}>
+                                <Text style={styles.tableCellHeader}>Terminal</Text>
+                            </View>
+                            <View style={styles.tableColHeader}>
+                                <Text style={styles.tableCellHeader}>Vessel</Text>
+                            </View>
+                            <View style={styles.tableColHeader}>
+                                <Text style={styles.tableCellHeader}>Vessel Arrival Date</Text>
+                            </View>
+                            <View style={styles.tableCol1Header}>
+                                <Text style={styles.tableCellHeader}>Destination</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCol3}>
+                                <Text style={styles.tableCell}>{this.props.hire[0].unloadingPort}</Text>
+                            </View>
+                            <View style={styles.tableCol3}>
+                                <Text style={styles.tableCell}>{this.props.hire[0].unloadingTerminal}</Text>
+                            </View>
+                            <View style={styles.tableCol}>
+                                <Text style={styles.tableCell}>{this.props.hire[0].vessel}</Text>
                             </View>
                             <View style={styles.tableCol}>
                                 <Text style={styles.tableCell}>{moment(this.props.hire[0].vesselArrivalDatetime).format('MMMM Do YYYY, h:mm:ss a')}</Text>
                             </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{this.props.hire[0].unloadingPort}</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{this.props.hire[0].destination}</Text>
+                            <View style={styles.tableCol1}>
+                                <Text style={styles.tableCell}>{this.props.hire[0].destinationAddressLine1 + ',' + this.props.hire[0].destinationAddressLine2 + ',' + this.props.hire[0].destinationCity}</Text>
                             </View>
                         </View>
                     </View>
                     {/*<View>*/}
-                    {/*    <Text style={styles.subHeading}>--- Customer Details ---</Text>*/}
+                    {/*    <Text style={styles.subHeading}>Customer Details</Text>*/}
                     {/*</View>*/}
                     {/*<View style={styles.table}>*/}
                     {/*    <View style={styles.tableRow}>*/}
@@ -251,7 +316,7 @@ class ManageCompletedHires extends Component {
                     {/*    </View>*/}
                     {/*</View>*/}
                     <View>
-                        <Text style={styles.subHeading}>--- Driver Details ---</Text>
+                        <Text style={styles.subHeading}>Driver Details</Text>
                     </View>
                     <View style={styles.table}>
                         <View style={styles.tableRow}>
@@ -296,7 +361,10 @@ class ManageCompletedHires extends Component {
             <Document>
                 <Page style={styles.body}>
                     <View>
-                        <Text style={styles.heading}>Trans Global Logistics - Export</Text>
+                        <Text style={styles.heading}>Trans Global Logistics</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.heading2}>Export Report</Text>
                     </View>
                     <View style={styles.table}>
                         <View style={styles.tableRow}>
@@ -335,17 +403,14 @@ class ManageCompletedHires extends Component {
                         </View>
                     </View>
                     <View>
-                        <Text style={styles.subHeading}>--- Container Details ---</Text>
+                        <Text style={styles.subHeading}>Container Details</Text>
                     </View>
                     <View style={styles.table}>
                         <View style={styles.tableRow}>
                             <View style={styles.tableColHeader}>
                                 <Text style={styles.tableCellHeader}>Container Type</Text>
                             </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Pickup Date</Text>
-                            </View>
-                            <View style={styles.tableColHeader}>
+                            <View style={styles.tableCol1Header}>
                                 <Text style={styles.tableCellHeader}>Pickup Location</Text>
                             </View>
                         </View>
@@ -353,16 +418,13 @@ class ManageCompletedHires extends Component {
                             <View style={styles.tableCol}>
                                 <Text style={styles.tableCell}>{this.props.hire[0].containerType + "ft"}</Text>
                             </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{moment(this.props.hire[0].pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{this.props.hire[0].pickupLocation}</Text>
+                            <View style={styles.tableCol1}>
+                                <Text style={styles.tableCell}>{this.props.hire[0].containerPickupAddressLine1 + ',' + this.props.hire[0].containerPickupAddressLine2 + ',' + this.props.hire[0].containerPickupCity}</Text>
                             </View>
                         </View>
                     </View>
                     <View>
-                        <Text style={styles.subHeading}>--- Cargo Details ---</Text>
+                        <Text style={styles.subHeading}>Cargo Details</Text>
                     </View>
                     <View style={styles.table}>
                         <View style={styles.tableRow}>
@@ -373,10 +435,10 @@ class ManageCompletedHires extends Component {
                                 <Text style={styles.tableCellHeader}>Cargo Weight</Text>
                             </View>
                             <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Loading Date</Text>
+                                <Text style={styles.tableCellHeader}>Pickup Date</Text>
                             </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Loading Port</Text>
+                            <View style={styles.tableCol1Header}>
+                                <Text style={styles.tableCellHeader}>Location</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
@@ -384,18 +446,51 @@ class ManageCompletedHires extends Component {
                                 <Text style={styles.tableCell}>{this.props.hire[0].cargoType}</Text>
                             </View>
                             <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{this.props.hire[0].weight}</Text>
+                                <Text style={styles.tableCell}>{this.props.hire[0].netWeight}</Text>
                             </View>
                             <View style={styles.tableCol}>
+                                <Text style={styles.tableCell}>{moment(this.props.hire[0].pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</Text>
+                            </View>
+                            <View style={styles.tableCol1}>
+                                <Text style={styles.tableCell}>{this.props.hire[0].cargoLocationAddressLine1 + ',' + this.props.hire[0].cargoLocationAddressLine2 + ',' + this.props.hire[0].cargoLocationCity}</Text>
+                            </View>
+                        </View>
+                    </View>
+                    <View>
+                        <Text style={styles.subHeading}>Loading Details</Text>
+                    </View>
+                    <View style={styles.table}>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableColHeader}>
+                                <Text style={styles.tableCellHeader}>Loading Port</Text>
+                            </View>
+                            <View style={styles.tableColHeader}>
+                                <Text style={styles.tableCellHeader}>Loading Terminal</Text>
+                            </View>
+                            <View style={styles.tableCol1Header}>
+                                <Text style={styles.tableCellHeader}>Loading Date</Text>
+                            </View>
+                            <View style={styles.tableColHeader}>
+                                <Text style={styles.tableCellHeader}>Vessel</Text>
+                            </View>
+                        </View>
+                        <View style={styles.tableRow}>
+                            <View style={styles.tableCol}>
+                                <Text style={styles.tableCell}>{this.props.hire[0].loadingPort}</Text>
+                            </View>
+                            <View style={styles.tableCol}>
+                                <Text style={styles.tableCell}>{this.props.hire[0].loadingTerminal}</Text>
+                            </View>
+                            <View style={styles.tableCol1}>
                                 <Text style={styles.tableCell}>{moment(this.props.hire[0].loadingDatetime).format('MMMM Do YYYY, h:mm:ss a')}</Text>
                             </View>
                             <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{this.props.hire[0].loadingPort}</Text>
+                                <Text style={styles.tableCell}>{this.props.hire[0].vessel}</Text>
                             </View>
                         </View>
                     </View>
                     {/*<View>*/}
-                    {/*    <Text style={styles.subHeading}>--- Customer Details ---</Text>*/}
+                    {/*    <Text style={styles.subHeading}>Customer Details</Text>*/}
                     {/*</View>*/}
                     {/*<View style={styles.table}>*/}
                     {/*    <View style={styles.tableRow}>*/}
@@ -428,7 +523,7 @@ class ManageCompletedHires extends Component {
                     {/*    </View>*/}
                     {/*</View>*/}
                     <View>
-                        <Text style={styles.subHeading}>--- Driver Details ---</Text>
+                        <Text style={styles.subHeading}>Driver Details</Text>
                     </View>
                     <View style={styles.table}>
                         <View style={styles.tableRow}>
@@ -473,10 +568,150 @@ class ManageCompletedHires extends Component {
 
         return (
             this.state.loading === 1 ? (
-                    <div className="center "><br/><br/><br/><br/><h1>Loading</h1></div>
+                    <div className="text-center" style={{paddingTop:"500px"}}><Spinner color="#007bff" size={32} speed={1} animating={true} /></div>
                 ) :
                 <div className="completehire">
                     <br/><br/><br/><br/>
+                    <Card border="primary" className="text-center">
+                        <Card.Header color="blue"><h4>Hire Status</h4></Card.Header>
+                        <Card.Body>
+                            <br/><br/>
+                    {this.props.hire[0].hireType === "import" ?
+                        <div style={{margin: 'auto'}}>
+                            <div id="progress-bar">
+                                <div className="bar"></div>
+
+                                <div className="circle-holder">
+                                    <div className="circle done">
+                                        <i className="fas fa-shipping-fast"></i>
+                                        <span className="status">Truck Dispatched</span>
+                                    </div>
+
+                                    <div className="circle">
+                                        <i className="fas fa-warehouse"></i>
+                                        <span className="status">At Pickup location</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i className="fas fa-truck-loading"></i>
+                                        <span className="status">Cargo loaded</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i id="result-icon"
+                                           className=" ml-19 fas fa-truck-moving"></i>
+                                        <span id="result-text"
+                                              className="status ml-0">In Transit</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i id="result-icon" className="fas fa-map-marker-alt"></i>
+                                        <span id="result-text"
+                                              className="status ml-0">Destination Reached</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i id="result-icon" className=" ml-19 fas fa-ship"></i>
+                                        <span id="result-text"
+                                              className="status ml-0">Hire Completed</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/><br/><br/><br/>
+                            {/*<div*/}
+                            {/*    style={{marginLeft:'auto',marginRight:'auto', marginTop:'100px', width: '600px', textAlign: 'center'}}*/}
+                            {/*>*/}
+                            {/*    <div>*/}
+                            {/*        <input type="radio" name="shipment" value="0"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Kabul</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="1"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Sevk</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="2"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Dağıtım</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="3"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Ziyaret</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="4"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Teslim</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="5"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">İade</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="6"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Hasar</label>*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
+                        </div> :
+                        <div style={{margin: 'auto'}}>
+                            <div id="progress-bar">
+                                <div className="bar"></div>
+
+                                <div className="circle-holder">
+                                    <div className="circle done">
+                                        <i className="fas fa-shipping-fast"></i>
+                                        <span className="status">Truck Dispatched</span>
+                                    </div>
+
+                                    <div className="circle">
+                                        <i className="fas fa-warehouse"></i>
+                                        <span className="status">At Container Pickup location</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i id="result-icon" className=" ml-19 fas fa-truck-moving"></i>
+                                        <span id="result-text"
+                                              className="status ml-0">In Transit</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i className="fas fa-truck-loading"></i>
+                                        <span className="status">Cargo loaded</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i id="result-icon" className=" ml-19 fas fa-truck-moving"></i>
+                                        <span id="result-text"
+                                              className="status ml-0">In Transit</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i id="result-icon" className="fas fa-map-marker-alt"></i>
+                                        <span id="result-text"
+                                              className="status ml-0">Loading Port Reached</span>
+                                    </div>
+                                    <div className="circle">
+                                        <i id="result-icon" className=" ml-19 fas fa-ship"></i>
+                                        <span id="result-text"
+                                              className="status ml-0">Hire Completed</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/><br/><br/><br/>
+                            {/*<div*/}
+                            {/*    style={{marginLeft:'auto',marginRight:'auto', marginTop:'100px', width: '600px', textAlign: 'center'}}*/}
+                            {/*>*/}
+                            {/*    <div>*/}
+                            {/*        <input type="radio" name="shipment" value="0"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Kabul</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="1"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Sevk</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="2"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Dağıtım</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="3"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Ziyaret</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="4"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Teslim</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="5"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">İade</label>*/}
+
+                            {/*        <input type="radio" name="shipment" value="6"/>*/}
+                            {/*        <label htmlFor="shipmentChoice">Hasar</label>*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
+                        </div>
+                    }
+                        </Card.Body>
+                    </Card>
                     <div className="input-field center">
 
                         <Link to="/User/UserManageTools"><button className="btn orange lighten-1 z-depth-5 btn1">Back</button></Link>
@@ -486,9 +721,6 @@ class ManageCompletedHires extends Component {
                         <PDFViewer style={{width:"100%", height:"100%"}}>{MyDocument}</PDFViewer>
                     </NewWindow>
                 </div>
-
-
-
         )
     }
 }

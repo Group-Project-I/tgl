@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'; 
 import ReactDOM from 'react-dom';
 import './index.css';
-import './style.css';
+import './style.css'; 
 import './animate.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -12,11 +12,11 @@ import {createStore, applyMiddleware, compose} from 'redux'
 import rootReducer from './store/reducers/rootReducer'
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
-
+// eslint-disable-next-line
 import fbConfig from './config/fbConfig'
 
 import { createFirestoreInstance, getFirestore, reduxFirestore } from 'redux-firestore';
-import { ReactReduxFirebaseProvider, getFirebase,reactReduxFirebase } from 'react-redux-firebase'; 
+import { ReactReduxFirebaseProvider, getFirebase } from 'react-redux-firebase'; 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 

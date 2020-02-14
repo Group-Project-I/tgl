@@ -4,28 +4,99 @@ import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {signUp} from '../../store/actions/authActions'
 
-class SignUp extends Component {
-    state = {
-        email: '',
-        password: '',
-        firstName: '',
-        lastName: '',
-        mobile: '',
-        dob: '',
-        nic: ''
+const validEmailRegex = 
+        RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
 
+const validateForm = (errors) => {
+    let valid = true;
+    Object.values(errors).forEach(
+//  if we have an error string set valid to false
+        (val) => val.length > 0 && (valid = false)
+    );
+    return valid;
     }
+          
+class SignUp extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+            email: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            mobile: '',
+            dob: '',
+            nic: '',
+            errors:{
+                email: '',
+                nic: '',
+                mobile: '',
+                password:''  
+        }
+    }
+}   
+    handleChange = (event) => {
+        event.preventDefault();
+        // this.setState({
+        //     [event.target.id]: event.target.value
+        // })
 
-    handleChange = (e) => {
-        this.setState({
-            [e.target.id]: e.target.value
+        const { name, value } = event.target
+        let errors = this.state.errors
+        
+        switch (name) {
+            case 'email': 
+            errors.email = 
+                validEmailRegex.test(value)
+                ? ''
+                : 'Email is not valid!';
+            break;
+            case 'password': 
+            errors.password = 
+                value.length < 6
+                ? 'Password must be 8 characters long!'
+                : ''
+            break;
+            case 'nic': 
+    // check for new format nic
+                errors.nic = 
+                value.length <10 
+                ? 'NIC is too short !'
+                : value.length === 10 && value[9] !== 'v'
+                    ? 'Invalid type for NIC'
+                    :value.length >12
+                        ?'NIC is too long !'
+                        :''
+                
+            break;
+            case 'mobile': 
+            errors.mobile = 
+                value.length < 10
+                ? 'Too short for Mobile No:!'
+                : ''
+            break;
+            default:
+            break;
+        }
+
+        this.setState({errors, [name]: value}, ()=> {
+            console.log(errors)
+            this.setState({errors, [name]: value})
+
         })
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
+    handleSubmit = (event) => {
+        event.preventDefault();
         // console.log(this.state);
-        this.props.signUp(this.state)
+        if(validateForm(this.state.errors)) {
+            
+            console.info('Valid Form')
+          }else{
+            console.error('Invalid Form')
+          }
+        // this.props.signUp(this.state)
+
     }
 
     handleDate = (e) => {
@@ -35,6 +106,8 @@ class SignUp extends Component {
 
     render() {
         const {auth, authError} = this.props
+        const {errors} = this.state
+
         if (auth.uid) return <Redirect to='/signin' />
         return (
             <div className="loginBody">
@@ -51,35 +124,45 @@ class SignUp extends Component {
                             <div className="card-body">
                                 <form onSubmit={this.handleSubmit} >
                                     <div className="input-field">
-                                        <input placeholder="First Name" type="text" id="firstName" onChange={this.handleChange} required />
+                                        <input placeholder="First Name" name='firstName' type="text" id="firstName" onChange={this.handleChange} required />
                                     </div>
                                     <div className="input-field">
-                                        <input placeholder="Last Name" type="text" id="lastName" onChange={this.handleChange} required />
+                                        <input placeholder="Last Name" name='lastName' type="text" id="lastName" onChange={this.handleChange} required />
                                     </div>
                                     <div className="input-field">
-                                        <input placeholder="Mobile" type="text" id="mobile" onChange={this.handleChange} required />
+                                    
+                                        <input placeholder="Mobile" name='mobile' type="text" id="mobile" onChange={this.handleChange} required  noValidate/>
+                                    {errors.mobile.length > 0 && 
+                                    <span className='error red-text center'>{errors.mobile}</span>
+                                    }
                                     </div>
                                     <div className="input-field">
-                                        <input placeholder="NIC No" type="text" id="nic" onChange={this.handleChange} required />
+                                        <input placeholder="NIC No" name='nic' type="text" id="nic" onChange={this.handleChange} required noValidate/>
+                                    {errors.nic.length > 0 && 
+                                    <span className='error red-text center' >{errors.nic}</span>
+                                    }
                                     </div>
                                     <div className="input-field">
-                                        <input placeholder="Date of Birth" onFocus={this.handleDate} type="text" id="dob" onChange={this.handleChange} required />
+                                        <input placeholder="Date of Birth" name='dob' onFocus={this.handleDate} type="text" id="dob" onChange={this.handleChange} required noValidate/>
                                     </div>
                                     <div className="input-field">
-                                        <input placeholder="Email" type="email" id="email" onChange={this.handleChange} required />
+                                    <input placeholder="Email" type="email" name='email' id="email" onChange={this.handleChange} required noValidate/>
+                                    {errors.email.length > 0 && 
+                                    <span className='error red-text center'>{errors.email}</span>
+                                    }
                                     </div>
                                     <div className="input-field">
-                                        <input placeholder="Password" type="password" id="password" onChange={this.handleChange} required />
+                                        <input placeholder="Password" type="password" name='password' id="password" onChange={this.handleChange} required noValidate/>
                                     </div>
                                     <div className="input-field">
-                                        <input placeholder="Confirm Password" type="password" id="confPassword" onChange={this.handleChange} required />
+                                        <input placeholder="Confirm Password" type="password" name='confPassword' id="confPassword" onChange={this.handleChange} required noValidate/>
                                     </div>
-                                    <div className="input-field">
+                                    <div className="input-field center">
                                         <button className="btn blue lighten-1 z-depth-0">Register</button>
                                     </div>
                                 </form>
                             </div>
-                            <div className="card-footer">
+                            <div className="card-footer center">
                                 <div className="d-flex justify-content-center links">
                                     Already have an account?<p><NavLink to='/signin' className="text-blue">Sign In</NavLink></p>
                                 </div>

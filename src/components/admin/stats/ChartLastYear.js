@@ -75,8 +75,8 @@ class ChartLastYear extends Component {
       }
     }
 
-    const importHires = this.props.hires.filter(item => item.hireType === "import" && (item.hireStatus === "completed") && new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000).getFullYear() == new Date().getFullYear() - 1)
-    const exportHires = this.props.hires.filter(item => item.hireType === "export" && (item.hireStatus === "completed") && new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000).getFullYear() == new Date().getFullYear() - 1)
+    const importHires = this.props.hires.filter(item => item.hireType === "import" && (item.hireStatus === "completed") && new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000).getFullYear() === new Date().getFullYear() - 1)
+    const exportHires = this.props.hires.filter(item => item.hireType === "export" && (item.hireStatus === "completed") && new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000).getFullYear() === new Date().getFullYear() - 1)
 
     var group_imports_to_months = importHires.reduce(function (obj, item) {
       obj[(new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000)).getMonth()] = obj[(new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000)).getMonth()] || []; 

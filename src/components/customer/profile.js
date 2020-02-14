@@ -1,116 +1,101 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import {Button, Card} from 'react-bootstrap'
-import {connect} from 'react-redux'
-import {firestoreConnect} from 'react-redux-firebase'
-import {compose} from 'redux'
-import image from '../../img/bgImg1.jpg'
+import React, {Component} from 'react'
+import {Badge} from 'react-bootstrap'
+import "react-tabs/style/react-tabs.css"
+import ImageUpload from './imageUpload'
+import {storage} from '../../config/fbConfig'
+import { Button, Card, Accordion, Row, Col} from 'react-bootstrap'
+import {FiArrowDownCircle} from "react-icons/fi"
+import {MdCall,MdEmail,MdInsertDriveFile} from "react-icons/md"
 
-// const imgStyle={
-//     borderRadius:'50%',
-//     height:'100px',
-//     width:'100px',
-// }
-// const rowStyle={
-//     margin:'0',
-//     paddingBottom:'0',
-//     backgroundColor:'red'
-// }
-// const hStyle = {
-//     fontSize: '64px',
-//     margin:'40px',
-//     textDecoration:'none',
-//     color:'black'
-// }
 
-class Profile extends React.Component {
-   render(){
-       const {auth,customers} = this.props
-      
-    return(
-        <div style={{backgroundImage:"url("+image+")" ,backgroundRepeat:'no' ,Opacity:'0.2' ,margin:'0',padding:'0', height:'1000px'}}>
-        {/* // <div style={{  backgroundColor: "#dee7e7", margin:'0',padding:'0' ,marginBottom:'0'}}> */}
-        {/* <div className='hire_background'> */}
-        <div className='container'  >
-            <br/><br/><br/><br/>
-            <Card className={'user-card'} style={{backgroundColor:' #dde6e6',opacity:'1'}} >
-            <div className='cust-heading' >
-                <hr/>
-                <div>
-                <h1 style={{float:'left'}}>MY ACCOUNT</h1>  
-                <Link to='/'><button className='btn'  style={{float:'right'}}>BACK</button></Link><br/><br/>
-                </div>
-                <hr/>
-            </div>
-           
-           <div className='row main-section'>
-          
-                 <div className='col-md-4 col-sm-12' style={{paddingLeft:'40px'}}>
-                    <Card style={{ width: '18rem'}}>
-                        <Card.Img variant="top"  className='center' src={require('../../img/user.png')} 
-                        style={{
-                            opacity:'0.5' ,width:'15rem',paddingTop:'1rem', display: 'block',  marginLeft: 'auto' , marginRight: 'auto'
-                            }} />
-                        <Card.Body>
-                            <Card.Title><b>Edit Profile </b> </Card.Title>
-                            <Card.Text>
-                            Edit your profile and change subscription settings
-                            </Card.Text>
-                            <Link to={'/User/profile/' + auth.uid}><Button className='btn btn-info' variant="primary" style={{ width: '15rem'}}>Edit</Button></Link>
-                        </Card.Body>
-                    </Card>
-                </div>
 
-                <div className="col-md-4  col-sm-12"  >
-                    <Card style={{ width: '18rem'}}>
-                        <Card.Img variant="top"  className='center' src={require('../../img/mail.jpg')} 
-                        style={{
-                            opacity:'0.5' ,width:'15rem',paddingTop:'1rem', display: 'block',  marginLeft: 'auto' , marginRight: 'auto'
-                            }} />
-                        <Card.Body>
-                            <Card.Title><b>Email Recovery </b> </Card.Title>
-                            <Card.Text>
-                            Change your email preferences chvjnhjbvcbdsyefsKAUSG
-                            <br/>
-                            </Card.Text> 
-                            <Link to={'/resetEmail'}><Button className='btn btn-info' variant="primary" style={{ width: '15rem'}}>RECOVER</Button></Link>
-                        </Card.Body>
-                    </Card>
-                </div>
+class Profile extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+            loading: 1,
+            image:null,
+            url:'',
+            progress:0,
+            showProgressBar:false
+        }
+        this.handlechange = this.handlechange.bind(this)
+        this.handleupdate = this.handleupdate.bind(this)
 
-                <div className="col-md-4  col-sm-12" >
-                    <Card style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src={require('../../img/msg.jpg')} style={{opacity:'0.5',paddingTop:'1rem'}} />
-                        <Card.Body>
-                            <Card.Title><b>View messages</b></Card.Title>
-                            <Card.Text>
-                            Get any advice or opinion just by sending a message.
-                            </Card.Text>
-                            <Link to='/User/messages'><Button className='btn btn-info' variant="primary" style={{ width: '15rem'}}>View</Button></Link>
-                        </Card.Body>
-                    </Card>  
+    }
+   
+
+    componentWillMount() {
+        if(this.props.customer){
+            this.setState({
+                loading: 0
+            });
+        }
+    }
+
+    handlechange (e) {
+        if(e.target.files[0]){
+            const image= e.target.files[0];
+            this.setState(() => ({image}))
+        }
+    }
+    handleupdate () {
+       const {image} =this.state
+        const uploadTask=storage.ref(`images/${image.name}`)
+        .put(image)
+        uploadTask.on('state_changed',
+        (snapshot)=>{
+            // progress functon
+            const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes)*100)
+            this.setState({progress})
+        }
+        ,(error=>{
+            // error function
+            console.log(error)
+
+        }),()=>{
+            // complete function
+            storage.ref('images').child(image.name).getDownloadURL().then(url=>{
+                console.log(url)
+                this.setState({url})
+            })
+        })
+        this.setState({
+            showProgressBar:true
+        })
+    }
+    render() {     
+        const load = this.state.loading === 0 ? (
+            <div className=" container  " >
+                <div className="row">
                 
-                </div>  
-            </div>
-            <hr/>
-            </Card>
-            
-        </div> 
-        </div>
-        )
+                <img src={this.state.url || require('../../img/profile.png')} class="mx-auto img-fluid img-circle d-block " alt="avatar"  style={{borderRadius:'50%',width:'250px'}}/>
+                <br/><vr/><br/>
+                    <label class="custom-file">
+                    <input type="file" id="file" name='image' onChange={this.handlechange}  class="custom-file-control  btn blue lighten-1 z-depth-0"/>
+                    <button class="custom-file-control  btn blue lighten-1 z-depth-0" onClick={this.handleupdate}>Upload</button>
+                    </label><br/>
+                    {
+                        this.state.showProgressBar ? <progress value={this.state.progress} max='100'/>:null
+                    }
+                    
+                </div>
+                <div className='row' >
+
+                <strong><h1 className="blue-text">{this.props.customer.firstName + " " + this.props.customer.lastName}</h1></strong>
+                <br/><br/>
+                <h5><b className="blue-text"><MdCall/>  </b> {this.props.customer.mobile}</h5><br/><br/>
+                <br/><h5><b className="blue-text"><MdEmail/>  </b> {this.props.customer.email}</h5><br/><br/>
+                <br/><h5><b className="blue-text"><MdInsertDriveFile/>  </b> {this.props.customer.nic}</h5><br/>
+                <br/>{this.props.customer.disabled === false ? <Badge pill variant="success" className="left">Active</Badge> : <Badge pill variant="danger" className="left">Disabled</Badge> }
+
+                </div>
+
+               </div>
+        ): <div><br/><br/><br/>Loading</div>
+        
+        return <div>{load}</div>
     }
 }
 
-const mapStateToProps=(state)=>{
-    console.log(state);
-    return{
-        auth: state.firebase.auth,
-        customers: state.firestore.ordered.customers
-    }
-}
-export default compose(
-    connect(mapStateToProps),
-    firestoreConnect([
-        {collection: 'customers'}
-    ])
-)(Profile)
+export default Profile

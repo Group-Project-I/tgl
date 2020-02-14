@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-// import {NavLink} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 // import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {addCustomer} from '../../../../store/actions/adminActions'
@@ -31,6 +31,7 @@ class AddCustomer extends Component {
         e.preventDefault();
         // console.log(this.state);
         this.props.addCustomer(this.state)
+        // this.setState(state => ({ collapse: !state.collapse }));
     }
 
     render() {
@@ -75,7 +76,6 @@ class AddCustomer extends Component {
                         <input type="hidden" id="userType" value="customer"/>
                         <div className="input-field center">
                             <button className="btn blue lighten-1 z-depth-5 btn1">Register</button>
-                            <button className="btn red lighten-1 z-depth-5 btn1">Cancel</button>
                         </div>
                     </form>
                 </div>

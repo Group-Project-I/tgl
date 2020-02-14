@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
 import { Collapse, Button, CardBody, Card } from 'reactstrap';
-import {Badge} from 'react-bootstrap'
 import AddDriver from './AddDriver'
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-import {Redirect, Link} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import moment  from 'moment'
 import { ReactTabulator } from 'react-tabulator'
 
@@ -23,7 +22,7 @@ class Drivers extends Component {
       }
 
     render () {
-        const {auth,type, drivers} = this.props
+        const {auth, drivers} = this.props
         if (!auth.uid) return <Redirect to='/signin' />
 
         global.moment = require("moment");
@@ -38,7 +37,7 @@ class Drivers extends Component {
         ];
 
         var data = []
-
+        // eslint-disable-next-line
         {drivers && drivers.map(driver =>{
             data.push({
                 id: driver.id, 

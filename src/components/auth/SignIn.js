@@ -2,12 +2,15 @@ import React, {Component} from 'react'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
+import {Button} from 'react-bootstrap'
 import {signIn} from '../../store/actions/authActions'
+import ForgetPassword from '../customer/authRecovery/forgetPassword'
 
 class SignIn extends Component {
     state = {
         email: '',
-        password: ''
+        password: '',
+        addModelShow:false
     }
 
     handleChange = (e) => {
@@ -23,7 +26,8 @@ class SignIn extends Component {
     }
 
     render() {
-        const {authError, user, auth} = this.props
+        const {authError, user} = this.props
+        let addModelClose =()=>this.setState({addModelShow:false})
 
         if (user.userType === 'admin'){
             localStorage.setItem('userId', 'admin')
@@ -50,16 +54,21 @@ class SignIn extends Component {
                                     <div className="input-field">
                                         <input placeholder="Password" type="password" id="password" onChange={this.handleChange} required />
                                     </div>
-                                    <div className="input-field ">
+                                    <div className="input-field center">
                                         <button className="btn blue lighten-1 z-depth-0">Login</button>
                                     </div>
                                     
                                 </form>
                                 
                             </div>
-                            <div className="d-flex justify-content-center links">
-                                    <NavLink to='/forgetPassword'><p>Forget password</p></NavLink>
-                                </div>
+                            <div className="d-flex justify-content-center links ">
+                                {/* <NavLink to='/forgetPassword' onClick={()=>this.setState({addModelShow:true})} ><p>Forget password</p></NavLink> */}
+                                <div  >
+                                <button className={'btn btn-outline-secondary'} onClick={()=> this.setState({addModelShow:true}) }><p>Forget password</p></button>   
+                                <ForgetPassword   show={this.state.addModelShow}  onHide={addModelClose}/>
+                                    </div>
+                                
+                            </div>
                             <div className="card-footer">
                                 <div className="d-flex justify-content-center links">
                                     Don't have an account?<p><NavLink to='/signup' className="text-blue">Sign Up</NavLink></p><br/>

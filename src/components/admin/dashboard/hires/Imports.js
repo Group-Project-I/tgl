@@ -1,6 +1,4 @@
 import React from 'react'
-import {Badge} from 'react-bootstrap'
-import {Redirect, Link} from 'react-router-dom'
 import moment from 'moment'
 import { ReactTabulator } from 'react-tabulator'
 
@@ -26,6 +24,7 @@ const Imports = ({importHires, history}) => {
 
     var data = []
 
+    // eslint-disable-next-line
     {importHires && importHires.map(imp =>{
         data.push({
             id: imp.id, 
@@ -33,7 +32,7 @@ const Imports = ({importHires, history}) => {
             pickupDatetime: moment(imp.pickupDatetime).format('MMM Do YYYY, h:mm a'), 
             cargoType: imp.cargoType, 
             vesselArrivalDatetime: moment(imp.vesselArrivalDatetime).format('MMM Do YYYY, h:mm a'), 
-            destination: imp.destination, 
+            destination: imp.destinationCity, 
             driverName: imp.driverName,
             customerName: imp.customerName,
             vehicleNo: imp.vehicleNo,

@@ -4,7 +4,7 @@ import AddCustomer from './AddCustomer'
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-import {Redirect, Link} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import moment from 'moment'
 import { ReactTabulator } from 'react-tabulator'
 
@@ -22,7 +22,7 @@ class Customers extends Component {
       }
 
     render () {
-        const {auth, customers} = this.props
+        const {customers} = this.props
         if (!localStorage.getItem('userId')) return <Redirect to='/signin' />
 
         global.moment = require("moment");
@@ -38,7 +38,7 @@ class Customers extends Component {
         // console.log('boom',this.state)
 
         var data = []
-
+        // eslint-disable-next-line
         {customers && customers.map(customer =>{
             data.push({
                 id: customer.id, 
@@ -78,37 +78,9 @@ class Customers extends Component {
                     layout={"fitData"}
                     rowClick={rowClick}
                     options={{ pagination: 'local',paginationSize: 10}}
+                    invalidOptionWarnings={false}
                 />
-                {/* <table class="table">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Mobile</th>
-                        <th>NIC</th>
-                        <th>User Since</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {customers && customers.map(customer => {
-                        return(
-                            <tr key={customer.id}>
-                                <td>{customer.firstName + ' ' + customer.lastName}</td>
-                                <td>{customer.email}</td>
-                                <td>{customer.mobile}</td>
-                                <td>{customer.nic}</td>
-                                <td>{moment(customer.createdAt.toDate()).format("MMM Do YYYY")}</td>
-                                <td>
-                                    <Link to={'/admin/customers/' + customer.id}><button type="button" data-toggle="modal" data-id="" class="edit-details btn btn-primary" data-target="#edit">View</button></Link>
-                                </td>
-                            </tr>
-                        )
-                    })}
-                    </tbody>
-                </table> */}
             </div>
-        // </div>
     )
         }
 }

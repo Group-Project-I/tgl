@@ -20,6 +20,7 @@ const ImportRequests = ({importHireRequests, history}) => {
 
     var data = []
 
+    // eslint-disable-next-line
     {importHireRequests && importHireRequests.map(imp =>{
         data.push({
             id: imp.id, 
@@ -27,7 +28,7 @@ const ImportRequests = ({importHireRequests, history}) => {
             pickupDatetime: moment(imp.pickupDatetime).format('MMM Do YYYY, h:mm a'), 
             cargoType: imp.cargoType, 
             vesselArrivalDatetime: moment(imp.vesselArrivalDatetime).format('MMM Do YYYY, h:mm a'), 
-            destination: imp.destination, 
+            destination: imp.destinationCity, 
             customerName: imp.customerName,
         })
     }       
@@ -47,6 +48,7 @@ const ImportRequests = ({importHireRequests, history}) => {
                 layout={"fitData"}
                 rowClick={rowClick}
                 options={{ pagination: 'local',paginationSize: 10}}
+                invalidOptionWarnings={false}
             />
             {/* <table className="table">
                 <thead className="thead-dark">

@@ -11,7 +11,7 @@ import {Redirect, withRouter} from 'react-router-dom'
 
 class HireRequests extends Component {
     static defaultProps = { // <-- DEFAULT PROPS
-        hires: []
+        hire: []
     }
 
     render() {
@@ -57,3 +57,4 @@ export default compose(
         {collection: 'hires'}
     ])
 )(withRouter(HireRequests))
+

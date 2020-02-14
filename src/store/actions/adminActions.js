@@ -50,7 +50,7 @@ export const addCustomer = (newCustomer) => {
             dispatch({type: 'CUSTOMER_ADDED'})
             
         }).catch(err => {
-            dispatch({type: 'FAILED_TO_ADD_CUSTOMER', err})
+            dispatch({type:'FAILED_TO_ADD_CUSTOMER', err})
         })
     }
 }
@@ -100,13 +100,34 @@ export const editUser = (customerId, data, collec) => {
 
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
-        firestore.collection(collec).doc(customerId).update({
-            ...data
-        }).then(() => {
-            dispatch({type: 'DOCUMENT_UPDATED'});
-        }).catch((err) => {
-            dispatch({type: 'ERROR_UPDATING_DOCUMENT', err});
-        })
+        if(collec === 'customers'){
+            firestore.collection('customers').doc(customerId).get().then((doc) => {
+                return firestore.collection(collec).doc(customerId).update({
+                    ...data
+                }).then(() => {
+                    let data = {
+                        to: 'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
+                        from: customerId,
+                        data: doc.data().firstName + ' ' + doc.data().lastName + ' updated user information',
+                        link: '/admin/customers/' + customerId,
+                        type: 'details updated',
+                        createdAt: new Date()
+                    }
+                    if(collec === 'customers'){
+                        return firestore.collection('notifications').add(data)
+                    }    
+                })
+            })
+        }else{
+            firestore.collection(collec).doc(customerId).update({
+                ...data
+            }).then(() => {
+                dispatch({type: 'DOCUMENT_UPDATED'});
+            }).catch((err) => {
+                dispatch({type: 'ERROR_UPDATING_DOCUMENT', err});
+            })
+        }
+        
     }
 }
 
@@ -153,3 +174,70 @@ export const readNotification = (id) => {
         })
     }
 }
+
+export const addCity = (details) => {
+    return(dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        let data = {
+            id: details.id,
+            import20ft: details.import20ft,
+            import40ft: details.import40ft,
+            export20ft: details.export20ft,
+            export40ft: details.export40ft
+        }
+        firestore.collection('pricing').doc(details.id).set(data).then(() => {
+            dispatch({type: 'CITY_ADDED_SUCCESSFULLY'})
+        }).catch(err => {
+            dispatch({type: 'FAILED_TO_ADD_CITY', err})
+        })
+    }
+}
+
+export const editCity = (details) => {
+    return(dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        firestore.collection('pricing').doc(details.id).update({
+            ...details
+        }).then(() => {
+            dispatch({type: 'PRICING_UPDATED'});
+        }).catch((err) => {
+            dispatch({type: 'ERROR_UPDATING_PRICING', err});
+        })
+    }
+}
+
+export const deleteCity = (id) => {
+    return(dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        firestore.collection('pricing').doc(id).delete().then(() => {
+            dispatch({type: 'PRICING_DELETED'});
+        }).catch((err) => {
+            dispatch({type: 'ERROR_DELETING_PRICING', err});
+        })
+    }
+}
+
+export const sendMessage = (message, senderId, receiverId) => {
+    return(dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        firestore.collection('chats').doc(receiverId).update({
+            read: receiverId,
+            finalTime: new Date(),
+            messages: firebase.firestore.FieldValue.arrayUnion({
+                message: message,
+                sender: senderId,
+                time: new Date()
+            })
+        })
+    }
+}
+
+export const readMessage = (messageId) => {
+    return(dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        firestore.collection('chats').doc(messageId).update({
+            read: ""
+        })
+    }
+}
+

@@ -1,6 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import moment from 'moment'
 import { ReactTabulator } from 'react-tabulator'
 
 const DisabledVehicles = ({vehicles, history}) => {
@@ -17,6 +15,7 @@ const DisabledVehicles = ({vehicles, history}) => {
 
     var data = []
 
+    // eslint-disable-next-line
     {vehicles && vehicles.map(vehicle =>{
         data.push({
             id: vehicle.id, 

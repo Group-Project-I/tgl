@@ -47,7 +47,7 @@ class ManageTools extends Component {
 
 
                     <Tabs className="center">
-                        <TabList className="tablist fadeInLeft animated fast">
+                        <TabList className="tablist1 fadeInLeft animated fast">
                             <Tab>COMPLETED</Tab>
                             <Tab>REQUESTED</Tab>
                             <Tab>ONGOING</Tab>
@@ -107,7 +107,7 @@ const mapStateToProps = (state, ownProps) => {
     return{
         auth: state.firebase.auth,
         id: id,
-        hire: state.firestore.ordered.hires,
+        hires: state.firestore.ordered.hires,
     }
 
 }
