@@ -10,6 +10,10 @@ import moment from 'moment'
 import SelectSearch from 'react-select-search'
 import Report from './Report'
 
+// Generate reports based on the filtering criteria passed by the system administrator 
+// If no parameter is passed all matching documents are retrieved from the hires list 
+// To and from dates are required fields to be filtered 
+
 class GenerateReports extends Component {
     state = {
         customer: 'All',
@@ -41,6 +45,7 @@ class GenerateReports extends Component {
         })
     }
 
+    // At submit hires are filterd according to the passed parameters
     handleSubmit = (e) => {
         e.preventDefault();
         const dateTo = moment(this.state.To)

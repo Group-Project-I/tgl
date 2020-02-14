@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {disableOrEnableUser} from '../../../store/actions/adminActions'
 import Switch from "react-switch";
 
+// Disable customers,drivers and vehicles from the system
+// A switch button is used to enable/disable users
 class DisableAccount extends Component {
 
     state = {

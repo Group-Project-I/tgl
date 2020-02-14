@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import Card from 'react-bootstrap/Card'
 import {changeEmail} from '../../../../store/actions/authActions'
 
+// Change email of the admin account using firebase auth 
+
 class ChangeAdminEmail extends Component {
     state = {
         newEmail: '',

@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import Card from 'react-bootstrap/Card'
 import {updatePassword} from '../../../../store/actions/authActions'
 
+// Change password of the admin account using firebase auth
+
 class ChangeAdminPassword extends Component {
     state = {
         newPassword: '',

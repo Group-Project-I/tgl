@@ -10,6 +10,8 @@ import {compose} from 'redux'
 import { Squares } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
 
+// Display customers,drivers and vehicles that are disabled from the system
+
 class ManageCustomer extends Component {
     static defaultProps = { 
         hires: []       
@@ -30,8 +32,6 @@ class ManageCustomer extends Component {
     }
 
     render() {
-        // const {auth} = this.props
-        // if (!auth.uid) return <Redirect to='/signin' />
 
         const customers = this.props.customers
         const drivers = this.props.drivers

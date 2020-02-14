@@ -6,6 +6,9 @@ import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import Card from 'react-bootstrap/Card'
 
+// Admin dashboard component 
+// Stat cards and charts are connected in this component
+
 const AdminDashboard = (props) => {
     // eslint-disable-next-line
     const {auth} = props

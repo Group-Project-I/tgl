@@ -62,9 +62,9 @@ class UserProfile extends Component {
         <UserChat/>
         {/* Display user detail  */}
         <br/><br/><br/>
-        <div className='container'>
+        <div className='container' style={{minHeight:'850px'}}>
         
-            <div className='row'>
+            <div className='row' style={{marginBottom:'0px'}}>
                 <div className='col-md-4'style={{padding:'30px'}}>
                 <Profile customer={this.props.customer[0]} id={this.props.id}></Profile>
                 </div>
