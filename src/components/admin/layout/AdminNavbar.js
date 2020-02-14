@@ -140,6 +140,7 @@ const mapStateToProps = (state) => {
     notifications: state.firestore.ordered.notifications,
     chat: state.firestore.ordered.chats
   }
+  
 }
 
 const mapDispatchToProps = (dispatch) => {

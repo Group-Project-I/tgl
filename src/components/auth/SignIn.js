@@ -5,12 +5,12 @@ import {Redirect} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
 import {signIn} from '../../store/actions/authActions'
 import ForgetPassword from '../customer/authRecovery/forgetPassword'
+
 class SignIn extends Component {
     state = {
         email: '',
         password: '',
         addModelShow:false
-
     }
 
     handleChange = (e) => {
@@ -61,10 +61,13 @@ class SignIn extends Component {
                                 </form>
                                 
                             </div>
-                            <div className="d-flex justify-content-center links">
+                            <div className="d-flex justify-content-center links ">
                                 {/* <NavLink to='/forgetPassword' onClick={()=>this.setState({addModelShow:true})} ><p>Forget password</p></NavLink> */}
+                                <div  >
                                 <button className={'btn btn-outline-secondary'} onClick={()=> this.setState({addModelShow:true}) }><p>Forget password</p></button>   
                                 <ForgetPassword   show={this.state.addModelShow}  onHide={addModelClose}/>
+                                    </div>
+                                
                             </div>
                             <div className="card-footer">
                                 <div className="d-flex justify-content-center links">

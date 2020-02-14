@@ -167,7 +167,7 @@ class AddHireImport extends Component {
         }
         return (
 
-            <div className="container-fluid delay-1s">
+            <div className="container-fluid delay-1s" >
                 <div className="form1  fadeIn animated slow ">
 
                     <div className="row fadeIn animated fast">
