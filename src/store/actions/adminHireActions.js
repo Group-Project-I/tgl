@@ -86,6 +86,7 @@ export const acceptHireRequest = (id, hireRequest) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
         const cust=firestore.collection('hires').doc(id).customerId
+
         firestore.collection('hires').doc(id).update({
             driverName: hireRequest.driverName,
             driverId: hireRequest.driverId,
@@ -99,7 +100,7 @@ export const acceptHireRequest = (id, hireRequest) => {
             dispatch({type: 'ERROR_UPDATING_HIRE_REQUEST', err})
         })
         firestore.collection('notifications').add({
-            to:'OrA27JIucfUxewmLheSRc7dMx5s1',
+            to:cust,
             from:'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
             type:'hire accepted',
             data:"Hire Accepted",

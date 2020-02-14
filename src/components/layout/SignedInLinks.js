@@ -44,23 +44,23 @@ export class SignedInLinks extends React.Component{
                     <NavDropdown.Item><NavLink to={'/'}><Button onClick={this.props.signOut}>Logout</Button></NavLink></NavDropdown.Item>
                 </NavDropdown>
                 
-                <NavDropdown title={notifications.length === 0 ? <MdNotifications size={28}/> : <MdNotificationsActive size={28}/>} id="basic-nav-dropdown" disabled={!notifications.length}>
+                <NavDropdown title={notifications.length === 0 ? <MdNotifications size={28}/> : <MdNotificationsActive size={28}/>} id="basic-nav-dropdown" disabled={!notifications.length} style={{width:'150px'}}>
               {notifications && notifications.map(notification => {
                 return(
                 <div>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item style={{ margin:0, padding:'0px 0px'}}>
+                  <NavDropdown.Item style={{ margin:0, padding:'0px 0px',width:'350px',height:'100px'}}>
                     {notification.type === 'hire accepted' ?
-                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'orange',backgroundColor:'#FFFACD',width:'100'}}>
-                        <h6><MdEventAvailable size={40} /> {notification.data}</h6>
+                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'orange',backgroundColor:'#FFFACD',width:'100',height:'100px'}}>
+                        <h6><MdEventAvailable size={28} /> <b>{notification.data}</b></h6>
                         {new Date((notification.createdAt.seconds + notification.createdAt.nanoseconds/1E9)*1000).toString().substr(0,24)}
                       </Nav.Link> : ( notification.type === 'hire declined' ?
-                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'red',backgroundColor:'#ffe6f0',width:'80'}}>
-                        <h6><GoIssueReopened size={28} /> {notification.data}</h6>
+                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'red',backgroundColor:'#ffe6f0',height:'100px'}}>
+                        <h6><GoIssueReopened size={28} /> <b>{notification.data}</b></h6>
                         {new Date((notification.createdAt.seconds + notification.createdAt.nanoseconds/1E9)*1000).toString().substr(0,24)}
                       </Nav.Link> :(notification.type === 'hire completed' ?
-                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'green',backgroundColor:'#9ACD32',width:'80'}}>
-                        <h6><MdBeenhere size={28} /> {notification.data}</h6>
+                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'green',backgroundColor:'#9ACD32',height:'100px'}}>
+                        <h6><MdBeenhere size={28} /> <b>{notification.data}</b></h6>
                         {new Date((notification.createdAt.seconds + notification.createdAt.nanoseconds/1E9)*1000).toString().substr(0,24)}
                       </Nav.Link> : null))
                     }

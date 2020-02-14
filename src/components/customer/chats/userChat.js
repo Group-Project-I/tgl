@@ -65,11 +65,11 @@ export class UserChat extends React.Component{
                 <Chat
                 handleNewUserMessage={this.handleNewUserMessage}
                 />
-                        {this.state.messages && this.state.messages.map(message => {
-                            message.sender === auth.uid 
-                                ?addUserMessage(message.message)
-                                :addResponseMessage(message.message)
-                            })}
+                {this.state.messages && this.state.messages.map(message => {
+                    message.sender === auth.uid 
+                        ?addUserMessage(message.message)
+                        :addResponseMessage(message.message)
+               })}
            </div>
          )}
 }
