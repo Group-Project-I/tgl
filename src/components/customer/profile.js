@@ -36,6 +36,7 @@ class Profile extends Component {
             // alert(url);
             // document.querySelector('img').src = test;
             var img = document.getElementById('myimg');
+
             img.src = url;
              
         }).catch(function(error) {
@@ -53,7 +54,8 @@ class Profile extends Component {
         console.log(test)
         console.log('test')
         }
-        
+        console.log(this.props)
+   
         
         
 
