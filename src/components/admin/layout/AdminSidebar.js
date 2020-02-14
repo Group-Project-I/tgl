@@ -62,7 +62,7 @@ class Sidebar extends Component {
         <div className="list-group list-group-flush">
           <ul className="align-self-center">
             <NavLink to='/admin/customers' className="text-decoration-none"><li id="customers" className="list-group-item list-group-item-action " ><FaUsers/> Customers</li></NavLink>
-            <NavLink to='/admin/hires' className="text-decoration-none"><li id="hires" className="list-group-item list-group-item-action "><FaBuffer/> Hires</li></NavLink>
+            <NavLink to='/admin/hires' className="text-decoration-none"><li id="hires" onClick={this.handleClick} className="list-group-item list-group-item-action "><FaBuffer/> Hires</li></NavLink>
             <NavLink to='/admin/drivers' className="text-decoration-none"><li id="drivers" className="list-group-item list-group-item-action "><FaUserCog/> Drivers</li></NavLink>
             <NavLink to='/admin/vehicles' className="text-decoration-none"><li id="vehicles" className="list-group-item list-group-item-action "><FaTruck/> Vehicles</li></NavLink>
           </ul>
