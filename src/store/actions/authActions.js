@@ -44,6 +44,8 @@ export const signUp = (newUser) => {
             return docRef.set({
                 userType: 'customer',
                 disabled: false,
+                profilePic:'',
+                
             }).then(() => {
                 return firestore.collection('customers').doc(docRef.id).set({
                     firstName: newUser.firstName,
