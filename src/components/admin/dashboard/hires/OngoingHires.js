@@ -9,6 +9,7 @@ import {compose} from 'redux'
 import {Redirect} from 'react-router-dom'
 
 
+// Connects ongoing imports and exports 
 class OngoingHires extends Component {
     static defaultProps = { // <-- DEFAULT PROPS
         hires: []       
@@ -18,6 +19,7 @@ class OngoingHires extends Component {
         const {auth} = this.props
         if (!auth.uid) return <Redirect to='/signin' />
 
+        // FIlter ongoing imports and exports
         const ongoingImportHires = this.props.hires.filter(item => item.hireType === "import" && item.hireStatus === 'ongoing')
         const ongoingExportHires = this.props.hires.filter(item => item.hireType === "export" && item.hireStatus === 'ongoing')
         

@@ -10,6 +10,8 @@ import { Squares } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
 import Card from 'react-bootstrap/Card'
 
+// Pending hire page 
+// Admin can update driver and vehice if needed or can delete the hire
 class ManagePendingHires extends Component {
     state = {
         loading: 1,

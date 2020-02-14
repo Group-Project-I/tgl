@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-// import {NavLink} from 'react-router-dom'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import "react-tabs/style/react-tabs.css";
 import Exports from './Exports'
@@ -10,8 +9,9 @@ import {compose} from 'redux'
 import {Redirect} from 'react-router-dom'
 
 
+// Filters imports and exports and displays in a tab view with sorting and filtering 
 class Hires extends Component {
-    static defaultProps = { // <-- DEFAULT PROPS
+    static defaultProps = { 
         hires: []       
     }
 

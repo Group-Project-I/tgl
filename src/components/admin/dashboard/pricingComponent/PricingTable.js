@@ -9,11 +9,8 @@ import Modal from 'react-bootstrap/Modal'
 import AddCity from './AddCity'
 import EditCity from './EditCity'
 
+// Lists all the prices for cities with sorting and filtering
 class PricingTable extends Component {
-    // constructor(props) {
-    //     super(props);
-    // }
-
     state = {
         showAdd: false,
         showEdit: false

@@ -9,8 +9,9 @@ import {compose} from 'redux'
 import {Redirect} from 'react-router-dom'
 
 
+// Filter import and export hire requests and displays them in a tab view with sorting and filtering
 class HireRequests extends Component {
-    static defaultProps = { // <-- DEFAULT PROPS
+    static defaultProps = {
         hires: []       
     }
 

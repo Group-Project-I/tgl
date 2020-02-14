@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Badge} from 'react-bootstrap'
 import "react-tabs/style/react-tabs.css";
 
+// Shows details of the vehicle along with a picture
 class VehicleProfile extends Component {
 
     state = {

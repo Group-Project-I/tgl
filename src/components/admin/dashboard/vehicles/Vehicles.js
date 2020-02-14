@@ -8,6 +8,7 @@ import {Redirect} from 'react-router-dom'
 import 'react-tabulator/lib/styles.css';
 import { ReactTabulator } from 'react-tabulator'
 
+// Lists all the available vehicles with searching and filtering
 class Vehicles extends Component {
 
     constructor(props) {
@@ -38,7 +39,7 @@ class Vehicles extends Component {
         ];
 
         var data = []
-
+        /* eslint-disable-next-line */
         // eslint-disable-next-line
         {vehicles && vehicles.map(vehicle =>{
             data.push({
@@ -78,43 +79,12 @@ class Vehicles extends Component {
                         rowClick={rowClick}
                         options={{ pagination: 'local',paginationSize: 10}}
                     />
-                    {/* <table className="table">
-                        <thead className="thead-dark">
-                        <tr>
-                            <th>Vehicle No</th>
-                            <th>Make</th>
-                            <th>Model</th>
-                            <th>Trailer No</th>
-                            <th>Purchased Date</th>
-                            <th>Engine Number</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {vehicles && vehicles.map(vehicle =>{
-                            return(
-                                <tr key={vehicle.id}>
-                                    <td>{vehicle.vehicleNo}</td>
-                                    <td>{vehicle.make}</td>
-                                    <td>{vehicle.model}</td> 
-                                    <td>{vehicle.trailerNo}</td>
-                                    <td>{vehicle.purchasedDate}</td>
-                                    <td>{vehicle.engineNo}</td>
-                                    <td>
-                                        <Link to={'/admin/vehicles/' + vehicle.id}><button type="button" data-toggle="modal" data-id="" className="edit-details btn btn-primary" data-target="#edit">View</button></Link>
-                                    </td>
-                                </tr> 
-                            )
-                        })}
-                        </tbody>
-                    </table> */}
                 </div>
     )
         }
 }
 
 const mapStateToProps = (state) => {
-    // console.log(state)
     return {
         auth: state.firebase.auth,
         vehicles: state.firestore.ordered.vehicles

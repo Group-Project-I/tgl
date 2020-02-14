@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-// import {NavLink, Route} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {addVehicle} from '../../../../store/actions/adminActions'
 
+// Form to add vehicles to the system
 class AddVehicle extends Component {
     state = {
         vehicleNo: '',
@@ -28,7 +28,6 @@ class AddVehicle extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(this.state);
         this.props.addVehicle(this.state)
     }
 

@@ -16,7 +16,7 @@ import { Badge } from 'react-md'
 
 export class AdminNavbar extends Component{
 
-  static defaultProps = { // <-- DEFAULT PROPS
+  static defaultProps = { 
     notifications: []       
   }
 
@@ -37,7 +37,6 @@ export class AdminNavbar extends Component{
   }
 
   handleClose = () => {
-    // e.preventDefault();
     this.setState({
       show: false,
     })
@@ -150,6 +149,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
+// Connects to notifications and chats collections for real time updates
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([

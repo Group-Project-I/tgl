@@ -11,6 +11,8 @@ import 'react-activity/dist/react-activity.css';
 import Card from 'react-bootstrap/Card'
 import Modal from 'react-bootstrap/Modal'
 
+// DIsplays a hire request where the admin can assign a vehcle and a driver to the hire 
+// Can also decline a request
 class ManageHireRequest extends Component {
     state = {
         driverId: '',
@@ -37,6 +39,7 @@ class ManageHireRequest extends Component {
         })     
     }
 
+    // Decline hire request
     declineHire = (e) => {
         e.preventDefault();
         this.props.declineHireRequest(this.props.hire[0].id, this.state)
@@ -45,6 +48,7 @@ class ManageHireRequest extends Component {
         })
     }
 
+    // List of available driver on the pickup date of the hire
     availableDrivers = (e) => {
         const dateTime = this.props.hire[0].pickupDatetime
         const ListH = this.props.hires.filter(item => item.driverId !== "" && item.hireStatus !== "completed")
@@ -63,6 +67,7 @@ class ManageHireRequest extends Component {
         }
     }
 
+    // Set state with driver name and id 
     handleDriver = (e) => {
         if(e.target.value){
             const y = e.target.value.split('_')
@@ -73,6 +78,7 @@ class ManageHireRequest extends Component {
         }
     }
 
+    // List of available vehicles in the pickup date of the hire
     availableVehicles = (e) => {    
         const dateTime = this.props.hire[0].pickupDatetime   
         const ListH = this.props.hires.filter(item => item.vehicleId !== "" && item.hireStatus !== "completed") 
@@ -92,6 +98,7 @@ class ManageHireRequest extends Component {
         }
     }
 
+    // Update state with vehicle number and id
     handleVehicle = (e) => {
         if(e.target.value){
             const x = e.target.value.split('_')
@@ -113,6 +120,7 @@ class ManageHireRequest extends Component {
         } 
     }
 
+    // Displays hires assigned to the driver the day before and day after
     handleShowDriver = (e) => {
         e.preventDefault()
         if(this.state.driverId && this.props.hires){
@@ -152,6 +160,7 @@ class ManageHireRequest extends Component {
         
     }
 
+    // // Displays hires assigned to the vehicle the day before and day after
     handleShowVehicle = (e) => {
         e.preventDefault()
         if(this.state.vehicleId && this.props.hires){

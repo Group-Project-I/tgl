@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {addDriver} from '../../../../store/actions/adminActions'
 
+// Form to add new driver to the system 
 class AddDriver extends Component {
     state = {
         email: '',

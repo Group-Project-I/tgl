@@ -6,6 +6,7 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import Badge from 'react-bootstrap/Badge'
 
+// Admin Sidebar component
 class Sidebar extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +16,8 @@ class Sidebar extends Component {
     };
   }
 
+  // Function to manage list hover on click 
+  // Removes hover from all list items
   handleRoute = (e) => {
     var arr = ['customers','drivers','hires','vehicles','hirerequests','ongoinghires','addhire','reports','disabled']
 
@@ -23,6 +26,7 @@ class Sidebar extends Component {
     }
   }
 
+  // Adds hover to the selected item
   handleClick = (e) => {
     var arr = ['customers','drivers','hires','vehicles','hirerequests','ongoinghires','addhire','reports','disabled']
 
@@ -32,6 +36,7 @@ class Sidebar extends Component {
     document.getElementById(e.target.id).className = "list-group-item list-group-item-hover list-group-item-action"
   }
 
+  // Gets the current URL path and adds hover to the list item the path is in 
   componentDidUpdate(){
   
     var arr = ['customers','drivers','hires','vehicles','hirerequests','ongoinghires','addhire','reports','disabled']
@@ -41,7 +46,6 @@ class Sidebar extends Component {
     }
     
     if(this.props.path.length && arr.includes(this.props.path)){
-      // console.log(this.props.path,"hmmm")
       document.getElementById(this.props.path).className = "list-group-item list-group-item-hover list-group-item-action"
     }
     
@@ -51,6 +55,7 @@ class Sidebar extends Component {
     let hireRequests
     let ongoingHires
 
+    // Gets the count of ongoing hires and hire requests
     if(this.props.hires){
       hireRequests = this.props.hires.filter(item => item.hireStatus === "request").length
       ongoingHires = this.props.hires.filter(item => item.hireStatus ==="ongoing").length
@@ -88,12 +93,12 @@ class Sidebar extends Component {
 
 const mapStateToProps = (state) => {
   return {
-      // auth: state.firebase.auth,
       hires: state.firestore.ordered.hires,
       path: state.path
   }
 }
 
+// Connect to hires collection for real time updates
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([

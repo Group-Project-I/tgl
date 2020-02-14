@@ -10,6 +10,10 @@ import 'react-activity/dist/react-activity.css';
 import Modal from 'react-bootstrap/Modal'
 import moment from 'moment'
 
+// Form to add an export hire
+// Driver can add exports on behalf of customers 
+// List of customers will be available to select from
+
 class AddExport extends Component {
     state = {
         containerType: '20',
@@ -40,6 +44,7 @@ class AddExport extends Component {
         redir: 0
     }
 
+    // Update state and display label for input field on click
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
@@ -56,6 +61,7 @@ class AddExport extends Component {
         })
     }
 
+    // Update field to type date on click 
     handleDate = (e) => {
         e.preventDefault();
         e.target.type = 'datetime-local'
@@ -63,6 +69,7 @@ class AddExport extends Component {
         document.getElementById(tag).style.display = "block"
     }
 
+    // Update state of the container type
     handleContainerType = (e) => {
         if(e.target.value){
             this.setState({
@@ -71,6 +78,7 @@ class AddExport extends Component {
         }
     }
 
+    // Update state of the loading port
     handleLoadingPort = (e) => {
         if(e.target.value){
             this.setState({
@@ -79,6 +87,7 @@ class AddExport extends Component {
         }
     }
 
+    // Adds the customer name and id to the state
     handleCustomer = (e) => {
         if(e.target.value){
             const x = e.target.value.split('_')
@@ -89,6 +98,7 @@ class AddExport extends Component {
         }
     }
 
+    // Gets the list of customers
     getCustomers = (e) => {
         if(this.props.customers){
             const availableCustomers = this.props.customers.sort((a,b) => { return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()}).reverse()
@@ -98,6 +108,8 @@ class AddExport extends Component {
         }
     }
 
+    // Filters the list of available drivers
+    // A driver is available if there are no hires assigned for the driver in the pickup date of the hire
     availableDrivers = (e) => {
 
         const dateTime = this.refs.pickup.value
@@ -121,6 +133,7 @@ class AddExport extends Component {
         }
     }
 
+    // Updates state with driver name and id
     handleDriver = (e) => {
         if(e.target.value){
             const y = e.target.value.split('_')
@@ -131,6 +144,8 @@ class AddExport extends Component {
         }
     }
 
+    // Filters the list of available vehicles
+    // A vehicle is available if there are no hires assigned for the vehicle in the pickup date of the hire
     availableVehicles = (e) => {
         const dateTime = this.refs.pickup.value
         
@@ -153,6 +168,7 @@ class AddExport extends Component {
         }
     }
 
+    // Update state with vehicle number and id
     handleVehicle = (e) => {
         if(e.target.value){
             const x = e.target.value.split('_')
@@ -173,6 +189,7 @@ class AddExport extends Component {
         
     }
 
+    // Show estimate popup
     handleShowEstimate = (e) => {
         e.preventDefault()
         if(this.props.pricing){
@@ -198,6 +215,7 @@ class AddExport extends Component {
         
     }
 
+    // Show driver assignments on the day before and after popup
     handleShowDriver = (e) => {
         e.preventDefault()
         if(this.state.driverId && this.props.hires && this.state.pickupDatetime){
@@ -237,6 +255,7 @@ class AddExport extends Component {
         
     }
 
+    // Show vehicle assignments on the day before and after popup
     handleShowVehicle = (e) => {
         e.preventDefault()
         if(this.state.vehicleId && this.props.hires){

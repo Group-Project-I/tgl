@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import Card from 'react-bootstrap/Card'
 import {editCity, deleteCity} from '../../../../store/actions/adminActions'
 
+// Edit hire charges for a given city
 class EditCity extends Component {
     state = {
         import20ft: '',

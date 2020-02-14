@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {editUser} from '../../../../store/actions/adminActions'
 
+// Form to edit vehicle details 
 class EditCustomer extends Component {
 
     state = {

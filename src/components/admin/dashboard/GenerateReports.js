@@ -32,7 +32,7 @@ class GenerateReports extends Component {
     }
 
     handleChange = (e) => {
-        // console.log(e.type)
+        console.log(e.value)
         this.setState({
             [e.type + 'Id']: e.value,
             [e.type]: e.name
@@ -52,10 +52,15 @@ class GenerateReports extends Component {
         const dateFrom = moment(this.state.From)
         if(this.props.hires){
             const hireList = this.props.hires.filter(item => item.hireStatus === 'completed' && moment(item.completedDatetime.toDate()).isBetween(dateFrom,dateTo))
-            const filteredHires = hireList.filter(item => this.state.customerId ?  item.customerId === this.state.customerId : 1 && 
-                                                    this.state.driverId ? item.driverId === this.state.driverId : 1 && 
-                                                    this.state.vehicleId ? item.vehicleId === this.state.vehicleId : 1 && 
-                                                    this.state.hireTypeId ? item.hireType === this.state.hireTypeId : 1)
+            // const filteredHires = hireList.filter(item => this.state.customerId ?  item.customerId === this.state.customerId : 1 && 
+            //                                         this.state.driverId ? item.driverId === this.state.driverId : 1 && 
+            //                                         this.state.vehicleId ? item.vehicleId === this.state.vehicleId : 1 && 
+            //                                         this.state.hireTypeId ? item.hireType === this.state.hireTypeId : 1)
+            const x = this.state.customerId ? hireList.filter(item => item.customerId === this.state.customerId) : hireList
+            const y = this.state.driverId ? x.filter(item => item.driverId === this.state.driverId) : x
+            const z = this.state.vehicleId ? y.filter(item => item.vehicleId === this.state.vehicleId) : y
+            const filteredHires = this.state.hireTypeId ? z.filter(item => item.hireType === this.state.hireTypeId) : z
+
             this.setState({
                 hires: filteredHires,
                 valid: 1
