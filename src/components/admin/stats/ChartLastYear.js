@@ -104,7 +104,7 @@ class ChartLastYear extends Component {
   }
 
   for(var j=0;j<exports.length;j++){
-    exportData[parseInt(exports[i][0])] = exports[i][1].length
+    exportData[parseInt(exports[j][0])] = exports[j][1].length
   }
 
   options.series[0].data = importData;
