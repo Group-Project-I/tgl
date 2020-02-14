@@ -49,7 +49,7 @@ class EditCustomer extends Component {
             <div className="container">
                     {/* <h2 className="center" style={{paddingTop: '50px'}}>Edit Customer</h2><br/><br/> */}
                     <div className="green-text center">
-                        <h4>{this.state.updated ? <Alert variant="success">Updated Successfully</Alert> : null}</h4>
+                        <h6>{this.state.updated ? <Alert variant="success">Updated Successfully</Alert> : null}</h6>
                     </div>
                     <form onSubmit={this.handleSubmit}>
                       

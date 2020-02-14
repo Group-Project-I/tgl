@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card } from 'react-bootstrap'
+import { Card, Alert } from 'react-bootstrap'
 import {connect } from 'react-redux'
 import {resetEmail} from '../../../store/actions/authActions'
 import image from '../../../img/bgImg7.jpg'
@@ -48,7 +48,7 @@ class ResetEmail extends React.Component{
             <div className='cust-heading' >
             
               <div className= { authUpdateError != 'Email Updated Successfully' ? "red-text" : "green-text"}>
-                {this.state.updated ? authUpdateError : null}
+                {this.state.updated ?<Alert varient='success'>Email Updated Successfully </Alert> : null}
               </div>
             <div className='row main-section'>
               
