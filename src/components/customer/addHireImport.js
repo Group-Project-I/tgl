@@ -9,7 +9,9 @@ import {Link} from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-
+import DatePicker from "react-datepicker/es";
+import "react-datepicker/dist/react-datepicker.css"
+import SelectSearch from 'react-select-search'
 
 class AddHireImport extends Component {
     state = {
@@ -41,6 +43,16 @@ class AddHireImport extends Component {
             show: false,
         })
     }
+    // handleCity = (e) => {
+    //     e.preventDefault()
+    //     if(this.props.pricing) {
+    //        // var city1 = this.props.pricing.filter(item => item.id === this.state.destinationCity.toUpperCase())
+    //         this.setState({
+    //             show: true,
+    //
+    //         })
+    //     }
+    // }
 
     handleShowPrice = (e) => {
         e.preventDefault()
@@ -69,17 +81,26 @@ class AddHireImport extends Component {
 
 
     handleChange = (e) => {
+
         this.setState({
+
             [e.target.id]: e.target.value
         })
+            var tag = e.target.id+"Tag"
+            document.getElementById(tag).style.display = "block"
+
+
+
     }
 
 
     handleSubmit = (e) => {
         e.preventDefault();
+
         this.props.addImportHires(this.state);
         this.setState({
             redir : 1
+
         })
     }
 
@@ -111,6 +132,11 @@ class AddHireImport extends Component {
     handleDate = (e) => {
         e.preventDefault();
         e.target.type = 'datetime-local'
+        // this.setState({
+        //     pickupDatetime: e.target.value
+        // });
+        var tag = e.target.id+"Tag"
+        document.getElementById(tag).style.display = "block"
     }
 
 
@@ -141,18 +167,18 @@ class AddHireImport extends Component {
         }
         return (
 
-            <div className="form wrapper form1 delay-1s">
-
-                <div className="form2  fadeIn animated slow ">
+            <div className="container-fluid delay-1s" >
+                <div className="form1  fadeIn animated slow ">
 
                     <div className="row fadeIn animated fast">
                         <div className="bg col-12">
                             <br/><br/>
                             <Card border="primary">
                                 <Card.Body>
-                                    <Card.Header color="blue"><h1 className="center fadeIn animated fast add_head">Add <span className="topic">Import</span></h1>
-                                        <hr className="bg-dark mb-4"/>
-                                    </Card.Header>
+                                    <h1 className="center fadeIn animated fast add_head">Add <span className="topic1">Import</span></h1>
+                                        {/*<hr className="bg-dark mb-5 w-25"/>*/}
+                                <br/>
+
                                     <form onSubmit={this.handleSubmit} autoComplete='off'>
                                         <br/>
                                         <Card border="primary" className="text-center">
@@ -174,20 +200,25 @@ class AddHireImport extends Component {
                                                 <h5>Pick up Date and Time</h5>
                                                 <div className="row" style={{paddingTop: '40px'}}>
                                                     <div className="input-field col-6">
+                                                        <p className="fadeIn animated slow" id="pickupDatetimeTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Container Pickup Date and Time(01/25/2001 10:00:AM)</p>
                                                         <input placeholder="Pickup Date and Time" ref="pickup" onFocus={this.handleDate} type="text" id="pickupDatetime" onChange={this.handleChange} required />
+                                                        {/*<DatePicker placeholderText="Pickup Date and Time" id="pickupDatetime"  minDate={new Date()} showTimeSelect onChange={this.handleChangePickUp}/>*/}
                                                     </div>
                                                 </div>
                                                 <hr/><h5>Location</h5>
                                                 <div className="row" style={{paddingTop: '40px'}}>
                                                     <div className="input-field col-6 w-100">
+                                                        <p className="fadeIn animated slow" id="containerPickupAddressLine1Tag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Address Line 1</p>
                                                         <input placeholder="Address Line 1" type="text" id="containerPickupAddressLine1" onChange={this.handleChange} required />
                                                     </div>
                                                     <div className="input-field col-6">
+                                                        <p className="fadeIn animated slow" id="containerPickupAddressLine2Tag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Address Line 2</p>
                                                         <input placeholder="Address Line 2" type="text" id="containerPickupAddressLine2" onChange={this.handleChange} required />
                                                     </div>
                                                 </div>
                                                 <div className="row">
                                                     <div className="input-field col-6">
+                                                        <p className="fadeIn animated slow" id="containerPickupCityTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>City</p>
                                                         <input placeholder="City" type="text" id="containerPickupCity" onChange={this.handleChange} required />
                                                     </div>
                                                 </div>
@@ -199,9 +230,11 @@ class AddHireImport extends Component {
                                             <Card.Body>
                                                 <div className="row" style={{paddingTop: '40px'}}>
                                                     <div className="input-field col-6">
+                                                        <p className="fadeIn animated slow" id="cargoTypeTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Cargo Type(s)</p>
                                                         <input placeholder="Cargo Type(s)" type="text" id="cargoType" onChange={this.handleChange} required/>
                                                     </div>
                                                     <div className="input-field col-6">
+                                                        <p className="fadeIn animated slow" id="netWeightTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Net Weight</p>
                                                         <input placeholder="Net Weight" type="text" id="netWeight" onChange={this.handleChange} required />
                                                     </div>
                                                 </div>
@@ -220,15 +253,18 @@ class AddHireImport extends Component {
                                                 </div>
                                                 <div className="row">
                                                     <div className="input-field col-6">
+                                                        <p className="fadeIn animated slow" id="unloadingTerminalTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Unloading Terminal</p>
                                                         <input placeholder="Unloading Terminal" type="text" id="unloadingTerminal" onChange={this.handleChange} required />
                                                     </div>
                                                 </div>
                                                 <hr/><h5>Vessel Details</h5>
                                                 <div className="row" style={{paddingTop: '40px'}}>
                                                     <div className="input-field col-6">
+                                                        <p className="fadeIn animated slow" id="vesselTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Vessel</p>
                                                         <input placeholder="Vessel" type="text" id="vessel" onChange={this.handleChange} required />
                                                     </div>
                                                     <div className="input-field col-6">
+                                                        <p className="fadeIn animated slow" id="vesselArrivalDatetimeTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Vessel Arrival Date and Time(01/25/2001 10:00:AM)</p>
                                                         <input placeholder="Vessel Arrival Date and Time" onFocus={this.handleDate} type="text" id="vesselArrivalDatetime" onChange={this.handleChange} required />
                                                     </div>
                                                 </div>
@@ -240,15 +276,18 @@ class AddHireImport extends Component {
                                             <Card.Body>
                                                 <div className="row" style={{paddingTop: '40px'}}>
                                                     <div className="input-field col-6">
+                                                        <p className="fadeIn animated slow" id="destinationAddressLine1Tag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Address Line 1</p>
                                                         <input placeholder="Address Line 1" type="text" id="destinationAddressLine1" onChange={this.handleChange} required />
                                                     </div>
                                                     <div className="input-field col-6">
+                                                        <p className="fadeIn animated slow" id="destinationAddressLine2Tag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Address Line 2</p>
                                                         <input placeholder="Address Line 2" type="text" id="destinationAddressLine2" onChange={this.handleChange} required />
                                                     </div>
                                                 </div>
                                                 <div className="row">
                                                     <div className="input-field col-6">
-                                                        <input placeholder="City" type="text" id="destinationCity" onChange={this.handleChange} required />
+                                                        <p className="fadeIn animated slow" id="destinationCityTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>City</p>
+                                                        <input placeholder="City" type="text" id="destinationCity"  onChange={this.handleChange} required />
                                                     </div>
                                                 </div>
 
@@ -282,7 +321,7 @@ class AddHireImport extends Component {
                                                                         {this.state.cost ?
                                                                             <div>
                                                                             <input type="text" id="cost"
-                                                                                   value={"RS. " + this.state.cost}
+                                                                                   value={"RS. " + this.state.cost + " /="}
                                                                                    required/>
                                                                                 <hr/>
                                                                                 <b className="red-text">Note that the estimated cost may subject to change. Contact the administrator for inquiries.</b>
@@ -309,6 +348,7 @@ class AddHireImport extends Component {
                                             <div className="row">
                                                 <div className="input-field col-6">
                                                     {/*<input placeholder="Customer Name" type="hidden" value="Tharinda Dilshan" id="customerName" onChange={this.handleChange} required />*/}
+                                                    <p className="fadeIn animated slow" id="customerNameTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Customer Name</p>
                                                     <input placeholder="Customer Name" type="text" id="customerName" onChange={this.handleChange} required />
                                                     {/*<select className="form-control" id="customerId" onFocus={this.getCustomer} onChange={this.handleCustomer}>*/}
                                                     {/*    {this.state.availableCustomers ?  this.state.availableCustomers.map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName}</option>)}) : null}*/}
@@ -324,6 +364,7 @@ class AddHireImport extends Component {
                                             <Card.Header color="blue"><h4>Remarks</h4></Card.Header>
                                             <Card.Body>
                                                 <div className="input-field row col-12">
+                                                    <p className="fadeIn animated slow" id="remarksTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Mention any Additional Information(Perishable goods, Reefer temperature, Number and kind of packages etc.)</p>
                                                     <textarea placeholder="Mention any Additional Information(Perishable goods, Reefer temperature, Number and kind of packages etc.)" style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange}/>
                                                 </div>
                                             </Card.Body>
@@ -340,6 +381,7 @@ class AddHireImport extends Component {
                         </div>
                     </div>
                 </div>
+
             </div>
         )
     }

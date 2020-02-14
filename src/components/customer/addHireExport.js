@@ -7,6 +7,7 @@ import {compose} from 'redux'
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import SelectSearch from 'react-select-search'
 
 class AddHireExport extends Component {
     state = {
@@ -66,6 +67,8 @@ class AddHireExport extends Component {
         this.setState({
             [e.target.id]: e.target.value
         })
+        var tag = e.target.id+"Tag"
+        document.getElementById(tag).style.display = "block"
     }
 
     handleSubmit = (e) => {
@@ -80,6 +83,8 @@ class AddHireExport extends Component {
     handleDate = (e) => {
         e.preventDefault();
         e.target.type = 'datetime-local'
+        var tag = e.target.id+"Tag"
+        document.getElementById(tag).style.display = "block"
     }
 
     handleContainerType = (e) => {
@@ -105,16 +110,16 @@ class AddHireExport extends Component {
         }
 
         return (
-            <div className="form wrapper form1 delay-1s ">
-                <div className="form2 fadeIn animated slow">
+            <div className="container-fluid delay-1s ">
+                <div className="form1 fadeIn animated slow">
 
                     <div className="row fadeIn animated slow">
-                        <div className="bg col-12">
+                        <div className="bg col-12" >
                             <br/><br/>
-                            <Card border="primary">
-                                <Card.Body>
-                                    <Card.Header color="blue"><h1 className="center fadeIn animated slow add_head">Add <span className="topic">Export</span></h1>
-                            <hr className="bg-dark mb-4"/>
+                            <Card border="primary lighten-1 z-depth-12" >
+                                <Card.Body color="blue">
+                                    <Card.Header color="blue"><h1 className="center fadeIn animated slow add_head">Add <span className="topic1">Export</span></h1>
+                            {/*<hr className="bg-dark mb-4"/>*/}
                                     </Card.Header>
                 <form onSubmit={this.handleSubmit} autoComplete='off'>
                     <br/>
@@ -136,14 +141,17 @@ class AddHireExport extends Component {
                         <Card.Body>
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
+                                    <p className="fadeIn animated slow" id="containerPickupAddressLine1Tag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Address Line 1</p>
                                     <input placeholder="Address Line 1" type="text" id="containerPickupAddressLine1" onChange={this.handleChange} required />
                                 </div>
                                 <div className="input-field col-6">
+                                    <p className="fadeIn animated slow" id="containerPickupAddressLine2Tag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Address Line 2</p>
                                     <input placeholder="Address Line 2" type="text" id="containerPickupAddressLine2" onChange={this.handleChange} required />
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field col-6">
+                                    <p className="fadeIn animated slow" id="containerPickupCityTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>City</p>
                                     <input placeholder="City" type="text" id="containerPickupCity" onChange={this.handleChange} required />
                                 </div>
                             </div>
@@ -160,20 +168,24 @@ class AddHireExport extends Component {
                         <h5>Pick up Date and Time</h5>
                         <div className="row" style={{paddingTop: '40px'}}>
                             <div className="input-field col-6">
+                                <p className="fadeIn animated slow" id="pickupDatetimeTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Cargo Pickup Date and Time(01/25/2001 01:00:PM)</p>
                                 <input placeholder="Cargo Pickup Date and Time" onFocus={this.handleDate} ref="pickup" type="text" id="pickupDatetime"  onChange={this.handleChange} required />
                             </div>
                         </div>
                         <hr/><h5>Location</h5>
                         <div className="row" style={{paddingTop: '40px'}}>
                             <div className="input-field col-6">
+                                <p className="fadeIn animated slow" id="cargoLocationAddressLine1Tag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Address Line 1</p>
                                 <input placeholder="Address Line 1" type="text" id="cargoLocationAddressLine1" onChange={this.handleChange} required />
                             </div>
                             <div className="input-field col-6">
+                                <p className="fadeIn animated slow" id="cargoLocationAddressLine2Tag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Address Line 2</p>
                                 <input placeholder="Address Line 2" type="text" id="cargoLocationAddressLine2" onChange={this.handleChange} required />
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col-6">
+                                <p className="fadeIn animated slow" id="cargoLocationCityTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>City</p>
                                 <input placeholder="City" type="text" id="cargoLocationCity" onChange={this.handleChange} required />
                             </div>
                         </div>
@@ -197,10 +209,12 @@ class AddHireExport extends Component {
                                         <form >
                                             <div className="input-field row">
                                                 <h6 className='blue-text'>Container Type </h6>
+
                                                 <input type="text" id="containerType" value={this.state.containerType + " ft"} required />
                                             </div>
                                             <div className="input-field row">
                                                 <h6 className='blue-text'>Cargo Location City</h6>
+
                                                 <input type="text" id="cargoLocationCity" value={this.state.cargoLocationCity} required />
                                             </div>
                                             <div className="input-field row">
@@ -208,7 +222,7 @@ class AddHireExport extends Component {
                                                 {this.state.cost ?
                                                     <div>
                                                         <input type="text" id="cost"
-                                                               value={"RS. " + this.state.cost}
+                                                               value={"RS. " + this.state.cost + " /="}
                                                                required/>
                                                         <hr/>
                                                         <b className="red-text">Note that the estimated cost may subject to change. Contact the administrator for inquiries.</b>
@@ -230,9 +244,11 @@ class AddHireExport extends Component {
                         <hr/>
                         <div className="row" style={{paddingTop: '40px'}}>
                             <div className="input-field col-6">
+                                <p className="fadeIn animated slow" id="cargoTypeTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Cargo Type(s)</p>
                                 <input placeholder="Cargo Type(s)" type="text" id="cargoType" onChange={this.handleChange} required/>
                             </div>
                             <div className="input-field col-6">
+                                <p className="fadeIn animated slow" id="netWeightTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Net Weight</p>
                                 <input placeholder="Net Weight" type="text" id="netWeight" onChange={this.handleChange} required/>
                             </div>
                         </div>
@@ -253,15 +269,18 @@ class AddHireExport extends Component {
                             </div>
                             <div className="row">
                                 <div className="input-field col-6">
+                                    <p className="fadeIn animated slow" id="loadingTerminalTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Loading Terminal</p>
                                     <input placeholder="Loading Terminal" type="text" id="loadingTerminal" onChange={this.handleChange} required/>
                                 </div>
                             </div>
                             <hr/><h5>Vessel Details</h5>
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
+                                    <p className="fadeIn animated slow" id="vesselTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Vessel</p>
                                     <input placeholder="Vessel" type="text" id="vessel" onChange={this.handleChange} required/>
                                 </div>
                                 <div className="input-field col-6">
+                                    <p className="fadeIn animated slow" id="loadingDatetimeTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Loading Date and Time(01/25/2000 10:00:AM)</p>
                                     <input placeholder="Loading Date and Time" onFocus={this.handleDate} type="text" id="loadingDatetime" onChange={this.handleChange} required />
                                 </div>
 
@@ -275,6 +294,7 @@ class AddHireExport extends Component {
                         <Card.Body>
                     <div className="row">
                         <div className="input-field col-6">
+                            <p className="fadeIn animated slow" id="customerNameTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Customer Name</p>
                             <input placeholder="Customer Name" type="text" id="customerName" onChange={this.handleChange} required />
                         </div>
                     </div>
@@ -286,6 +306,7 @@ class AddHireExport extends Component {
                         <Card.Header><h4>Remarks</h4></Card.Header>
                         <Card.Body>
                             <div className="input-field row col-12">
+                                <p className="fadeIn animated slow" id="remarksTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Mention any Additional Information(Perishable goods, Reefer temperature, Number and kind of packages etc.)</p>
                                 <textarea placeholder="Mention any Additional Information(Perishable goods, Reefer temperature, Number and kind of packages etc.)" style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange} />
                             </div>
                         </Card.Body>
