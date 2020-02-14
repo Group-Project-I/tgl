@@ -92,8 +92,8 @@ class ChartLastYear extends Component {
 
 
   var imports = Object.entries(group_imports_to_months).sort()
-  var exports = Object.entries(group_exports_to_months).sort()
-  
+  var Exports = Object.entries(group_exports_to_months).sort()
+  // console.log(Exports,'boom');
 
   // let monthData = new Array(12).fill(0)
   let importData = new Array(12).fill(0)
@@ -103,8 +103,8 @@ class ChartLastYear extends Component {
     importData[parseInt(imports[i][0])] = imports[i][1].length
   }
 
-  for(var j=0;j<exports.length;j++){
-    exportData[parseInt(exports[i][0])] = exports[i][1].length
+  for(var j=0;j<Exports.length;j++){
+    exportData[parseInt(Exports[j][0])] = Exports[j][1].length
   }
 
   options.series[0].data = importData;

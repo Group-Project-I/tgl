@@ -59,7 +59,6 @@ class SignIn extends Component {
                                     </div>
                                     
                                 </form>
-                                
                             </div>
                             <div className="d-flex justify-content-center links ">
                                 {/* <NavLink to='/forgetPassword' onClick={()=>this.setState({addModelShow:true})} ><p>Forget password</p></NavLink> */}
