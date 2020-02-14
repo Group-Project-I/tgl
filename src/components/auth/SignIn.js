@@ -65,7 +65,7 @@ class SignIn extends Component {
                                 {/* <NavLink to='/forgetPassword' onClick={()=>this.setState({addModelShow:true})} ><p>Forget password</p></NavLink> */}
                                 <div  >
                                 <button className={'btn btn-outline-secondary'} onClick={()=> this.setState({addModelShow:true}) }><p>Forget password</p></button>   
-                                <ForgetPassword   show={this.state.addModelShow}  onHide={addModelClose}/>
+                                <br/><ForgetPassword   show={this.state.addModelShow}  onHide={addModelClose}/>
                                     </div>
                                 
                             </div>

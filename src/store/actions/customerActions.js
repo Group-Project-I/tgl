@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { Alert } from 'react-bootstrap';
+import profile from '../../components/customer/profile';
  
 export const clean = () => ({
   type: 'CLEAN_UP',
@@ -117,6 +118,29 @@ export const addNotifications=(notification,dataType,data)=>{
       })
   }
 }
+ export const addProfileImage=(imageUrl)=>{
+  return(dispatch,getState,{getFirebase,getFirestore}) => {
+    const state= getState()
+    const auth= state.firebase.auth
+    const firestore = getFirestore()
+
+    firestore.collection('users').doc(auth.uid).update({
+      profilePic:imageUrl
+     
+      }).then(()=>{
+            dispatch({type: 'Profile_Image_Added'});
+    
+          })
+
+    // firestore.collection('users').add({
+    //   ...user,
+    //   profilePic:imageUrl
+    // }).then(()=>{
+    //     dispatch({type: 'Profile_Image_Added'});
+
+    //   })
+  }
+ }
 // export const readNotication=()=>{
 
 //   return(dispatch,getState,{getFirebase,getFirestore}) => {
