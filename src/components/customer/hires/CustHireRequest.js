@@ -57,3 +57,4 @@ export default compose(
         {collection: 'hires'}
     ])
 )(withRouter(HireRequests))
+

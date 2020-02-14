@@ -28,13 +28,7 @@ class ChangePassword extends Component {
         const {authUpdateError} = this.props
         return(
             <div border="primary" className="text-center user-card">
-            <div className='cust-heading' >
-                <hr/>
-                <div style={{padding:'0 20px '}}>
-                <h1 style={{float:'left'}}>RESET PASSWORD</h1> 
-                </div>
-                <hr/>
-            </div><br/><br/>
+           
                 <Card.Body>
                     <div className= { authUpdateError != 'Password Updated Successfully' ? "red-text" : "green-text"}>
                         {this.state.updated ? authUpdateError : null}
