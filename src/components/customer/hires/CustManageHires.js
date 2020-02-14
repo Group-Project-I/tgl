@@ -79,6 +79,6 @@ export default compose(
     connect(mapStateToProps),
     firestoreConnect(props => [{
         collection: 'hires',
-        doc: props.id
+        //doc: props.id
     }])
 )(ManageHires)

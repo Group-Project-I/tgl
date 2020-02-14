@@ -2,6 +2,7 @@ import authReducer from './authReducer'
 import adminHireReducer from './adminHireReducer'
 import adminReducer from './adminReducer'
 import customerReducer from './customerReducer'
+import pathReducer from './pathReducer'
 
 import {combineReducers} from 'redux'
 import { firebaseReducer } from 'react-redux-firebase'
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     customer:customerReducer,
     admin: adminReducer,
     firestore: firestoreReducer,
-    firebase: firebaseReducer
+    firebase: firebaseReducer,
+    path: pathReducer
 });
 
 export default rootReducer 

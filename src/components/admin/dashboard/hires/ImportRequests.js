@@ -48,6 +48,7 @@ const ImportRequests = ({importHireRequests, history}) => {
                 layout={"fitData"}
                 rowClick={rowClick}
                 options={{ pagination: 'local',paginationSize: 10}}
+                invalidOptionWarnings={false}
             />
             {/* <table className="table">
                 <thead className="thead-dark">

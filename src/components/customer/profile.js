@@ -72,7 +72,7 @@ class Profile extends Component {
                 <img src={this.state.url || require('../../img/profile.png')} class="mx-auto img-fluid img-circle d-block " alt="avatar"  style={{borderRadius:'50%',width:'250px'}}/>
                 <br/><vr/><br/>
                     <label class="custom-file">
-                    <input type="file" id="file" name='image' onChange={this.handlechange} />
+                    <input type="file" id="file" name='image' onChange={this.handlechange}  class="custom-file-control  btn blue lighten-1 z-depth-0"/>
                     <button class="custom-file-control  btn blue lighten-1 z-depth-0" onClick={this.handleupdate}>Upload</button>
                     </label><br/>
                     {
