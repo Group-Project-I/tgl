@@ -1,5 +1,5 @@
 
-
+// Sign in to the system with email and password
 export const signIn = (credentials) => {
     return (dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase();
@@ -15,6 +15,7 @@ export const signIn = (credentials) => {
     }
 }
 
+// Sign out from the system 
 export const signOut = () => {
     localStorage.removeItem('userId')
     return (dispatch, getState, {getFirebase}) => {
@@ -26,6 +27,10 @@ export const signOut = () => {
     }
 }
 
+// Register to the system
+// Only customers can register as an external party to the system 
+// User type is updated as customer in the users collection and customers collection is updated with user details
+// Notification is sent to the administrator at each user registration 
 export const signUp = (newUser) => {
     return (dispatch, getState, {getFirebase, getFirestore}) => {
         const firebase = getFirebase();
@@ -69,6 +74,7 @@ export const signUp = (newUser) => {
     }
 }
 
+// Change signin email 
 export const changeEmail = (currentPassword, newEmail) => {
     return(dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase()
@@ -89,6 +95,7 @@ export const changeEmail = (currentPassword, newEmail) => {
     }
 }
 
+// Change authentication password 
 export const updatePassword = (oldPassword, newPassword) => {
     return(dispatch, getState, {getFirebase}) => {
         const firebase = getFirebase()

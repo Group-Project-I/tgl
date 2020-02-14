@@ -14,16 +14,17 @@ export class StatCard extends Component {
     loading: 0
   }
 
-UNSAFE_componentWillReceiveProps(nextProps) {
-    
-    if(this.props.hires){
-        this.setState({
-            loading: 0
-        });
-    }
-}
+  UNSAFE_componentWillReceiveProps(nextProps) {
+      
+      if(this.props.hires){
+          this.setState({
+              loading: 0
+          });
+      }
+  }
 
   render() {
+    // Generate the counts of the ongoing hires,imports and exports to show on the stat card
     const ongoingHires = this.props.hires.filter(item => item.hireStatus === 'ongoing').length
     const completedImportHires = this.props.hires.filter(item => item.hireType === 'import' && item.hireStatus === 'completed' && new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000).getMonth() === new Date().getMonth() && new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000).getFullYear() === new Date().getFullYear()).length
     const completedExportHires = this.props.hires.filter(item => item.hireType === 'export' && item.hireStatus === 'completed' && new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000).getMonth() === new Date().getMonth() && new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000).getFullYear() === new Date().getFullYear()).length

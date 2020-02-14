@@ -79,6 +79,7 @@ export const sendInquiries =( message)=>{
     }
 
 }
+// Unregistered customer can send emails by filling the contact form
 export const sendFeedback=(variables)=>{
   return( dispatch,getState,{getFirebase,getFirestore}) =>{
 
@@ -106,7 +107,7 @@ export const addNotifications=(notification,dataType,data)=>{
       to:auth.uid,
       data:
     ( dataType =='hire accepted'?"Hire Accepted"
-    :dataType =='hire decclined'?"Sorry your Hire has been canceled "
+    :dataType =='hire decclined'?"Sorry your Hire has been cancelled "
     :dataType =='hire completed' ? "Hire completed" :null)
       ,
       link:'/User/UserManageTools',

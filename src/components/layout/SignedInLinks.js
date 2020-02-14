@@ -10,7 +10,7 @@ import { MdNotifications, MdNotificationsActive, MdBeenhere, MdEventAvailable, M
 
 import { GoIssueReopened } from "react-icons/go";
   
-
+// Links visible for the signed in user 
 export class SignedInLinks extends React.Component{
     static defaultProps = { // <-- DEFAULT PROPS
         notifications: []       
@@ -22,14 +22,9 @@ export class SignedInLinks extends React.Component{
     render(){
         const {auth} = this.props
         const notifications = this.props.notifications.filter(item => item.to=== auth.uid)
-        // .sort((a, b) => new Date((b.createdAt.seconds + b.createdAt.nanoseconds/1E9)*1000) - new Date((a.createdAt.seconds + a.createdAt.nanoseconds/1E9)*1000))
-
         const load = this.state.loading === 0 ? (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom" style={{ minWidth: 700, position: 'fixed' }}>
-        
-{/* //    return( */}
-        
-        {/* <Navbar bg="dark" variant="dark" style={{ minWidth: 700, position: 'fixed' }}> */}
+      
             <div className="container" >
                 
             <NavLink to='/'style={{ minWidth: 350 }} ><h3>Trans Global Logistics</h3></NavLink>
@@ -48,8 +43,6 @@ export class SignedInLinks extends React.Component{
                     <NavDropdown.Item><NavLink to={'/User/profile/' + auth.uid} style={{textDecoration: 'none',color:'black'}}>Profile</NavLink></NavDropdown.Item>
                     <NavDropdown.Item><NavLink to={'/'}><Button onClick={this.props.signOut}>Logout</Button></NavLink></NavDropdown.Item>
                 </NavDropdown>
-
-                {/* <Nav.Link><NavLink to='#' style={{textDecoration: 'none' ,paddingTop:'20px',color:'#C0C0C0'}}><i class="fas fa-bell"></i></NavLink></Nav.Link> */}
                 
                 <NavDropdown title={notifications.length === 0 ? <MdNotifications size={28}/> : <MdNotificationsActive size={28}/>} id="basic-nav-dropdown" disabled={!notifications.length}>
               {notifications && notifications.map(notification => {
@@ -89,7 +82,6 @@ export class SignedInLinks extends React.Component{
     
 }
 const mapStateToProps=(state)=>{
-    //console.log(state);
     return{
         auth: state.firebase.auth,
         customers: state.firestore.ordered.customers,
@@ -101,7 +93,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         signOut: () => dispatch(signOut()),
         readNotification: (id) => dispatch(readNotification(id))
-
     }
 }
 

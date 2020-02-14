@@ -61,22 +61,20 @@ class SignIn extends Component {
                                 </form>
                             </div>
                             <div className="d-flex justify-content-center links ">
-                                {/* <NavLink to='/forgetPassword' onClick={()=>this.setState({addModelShow:true})} ><p>Forget password</p></NavLink> */}
                                 <button className={'btn btn-outline-secondary'} onClick={()=> this.setState({addModelShow:true}) }><p>Forgot password</p></button>   
                                 <ForgetPassword   show={this.state.addModelShow}  onHide={addModelClose}/>
-                                    </div>
-                                
                             </div>
-                            <div className="card-footer">
+                            <div style={{paddingTop:'10px'}}>
                                 <div className="d-flex justify-content-center links">
                                     Don't have an account?<p><NavLink to='/signup' className="text-blue">Sign Up</NavLink></p><br/>
                                 </div>
                                 
                             </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
-            </div>
         )
     }
 }

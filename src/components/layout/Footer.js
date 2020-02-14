@@ -21,10 +21,10 @@ const Footer = () => {
                     <div className="col-md-2 col-lg-2 col-xl-2 mx-auto">
                         <h4>Services</h4>
                         <hr className="bg-white mb-2 mt-0 d-inline-block mx-auto w-25"/>
-                        <p><a href="/" className="text-white">Imports</a></p>
-                        <p><a href="/" className="text-white">Exports</a></p>
-                        <p><a href="/" className="text-white">Project Cargo</a></p>
-                        <p><a href="/" className="text-white">Consultation</a></p>
+                        <p><NavLink to='/signin' className="text-white">Imports</NavLink></p>
+                        <p><NavLink to='/signin' className="text-white">Exports</NavLink></p>
+                        <p><NavLink to='/signin' className="text-white">Project Cargo</NavLink></p>
+                        <p><NavLink to='/signin' className="text-white">Consultation</NavLink></p>
                     </div>
 
                     <div className="col-md-3 col-lg-2 col-xl-2 mx-auto">
