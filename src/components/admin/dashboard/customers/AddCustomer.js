@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import {NavLink} from 'react-router-dom'
-// import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {addCustomer} from '../../../../store/actions/adminActions'
 
+// Register customer to the system 
+// Admin can register customers
 class AddCustomer extends Component {
     state = {
         email: '',
@@ -13,7 +13,6 @@ class AddCustomer extends Component {
         mobile: '',
         dob: '',
         nic: ''
-
     }
 
     handleChange = (e) => {
@@ -29,9 +28,7 @@ class AddCustomer extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(this.state);
         this.props.addCustomer(this.state)
-        // this.setState(state => ({ collapse: !state.collapse }));
     }
 
     render() {

@@ -62,6 +62,9 @@ const customerReducer =(state = initState ,action) => {
         case 'FAILED TO DELETE NOTIFICATION':
                 console.log('Error deleting notification')
                 return state; 
+        case 'Profile_Image_Added':
+                console.log('profile pic added',action.message)
+                return state
         default:
             return state
     }

@@ -4,7 +4,7 @@ import SignedOutLinks from './SignedOutLinks'
 import AdminNavbar from '../admin/layout/AdminNavbar'
 import {connect} from 'react-redux'
 
-
+// Navbar is selected based on the user type of the user logged in 
 const Navbar = (props) => {
 
     const {auth, type,profile} = props
@@ -17,6 +17,7 @@ const Navbar = (props) => {
     )
 }
 
+// Gets the user type from firebase authentication
 const mapStateToProps = (state) => {
     return{
         auth: state.firebase.auth,

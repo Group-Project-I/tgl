@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { Alert } from 'react-bootstrap';
+import profile from '../../components/customer/profile';
  
 export const clean = () => ({
   type: 'CLEAN_UP',
@@ -79,6 +80,7 @@ export const sendInquiries =( message)=>{
     }
 
 }
+// Unregistered customer can send emails by filling the contact form
 export const sendFeedback=(variables)=>{
   return( dispatch,getState,{getFirebase,getFirestore}) =>{
 
@@ -106,7 +108,7 @@ export const addNotifications=(notification,dataType,data)=>{
       to:auth.uid,
       data:
     ( dataType =='hire accepted'?"Hire Accepted"
-    :dataType =='hire decclined'?"Sorry your Hire has been canceled "
+    :dataType =='hire decclined'?"Sorry your Hire has been cancelled "
     :dataType =='hire completed' ? "Hire completed" :null)
       ,
       link:'/User/UserManageTools',
@@ -117,6 +119,42 @@ export const addNotifications=(notification,dataType,data)=>{
       })
   }
 }
+export const showimage=(user)=> {
+  return(dispatch,getState,{getFirebase,getFirestore}) => {
+  var storage=firebase.storage()
+  var storageRef = firebase.storage().ref();
+  var spaceRef = storageRef.child('images/user');
+  storageRef.child('images/user').getDownloadURL().then(function(url) {
+      var test = url;
+      alert(url);
+      document.querySelector('img').src = test;
+  }).catch(function(error) {
+  })
+}
+}
+ export const addProfileImage=(imageUrl)=>{
+  return(dispatch,getState,{getFirebase,getFirestore}) => {
+    const state= getState()
+    const auth= state.firebase.auth
+    const firestore = getFirestore()
+
+    firestore.collection('users').doc(auth.uid).update({
+      profilePic:imageUrl
+     
+      }).then(()=>{
+            dispatch({type: 'Profile_Image_Added'});
+    
+          })
+
+    // firestore.collection('users').add({
+    //   ...user,
+    //   profilePic:imageUrl
+    // }).then(()=>{
+    //     dispatch({type: 'Profile_Image_Added'});
+
+    //   })
+  }
+ }
 // export const readNotication=()=>{
 
 //   return(dispatch,getState,{getFirebase,getFirestore}) => {

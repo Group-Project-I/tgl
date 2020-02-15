@@ -3,6 +3,7 @@ import ReactToPrint from 'react-to-print'
 import moment from 'moment'
 import {MdPrint} from "react-icons/md";
 
+// Structure of the report to be generated 
 class Report extends Component {
 
     componentWillReceiveProps(nextProps) {    
@@ -19,6 +20,7 @@ class Report extends Component {
             <div>
                 {this.props.hires ? 
                 <div>
+                    {/* Create a print icon to print the content of the generated report */}
                     <ReactToPrint 
                         trigger={() => <a href="#"><MdPrint size={28}/></a>}
                         content={() => this.componentRef}

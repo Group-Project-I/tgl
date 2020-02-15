@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Badge} from 'react-bootstrap'
 import "react-tabs/style/react-tabs.css";
 
+// Driver profile component 
 class DriverProfile extends Component {
 
     state = {

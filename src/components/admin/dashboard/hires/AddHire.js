@@ -6,6 +6,7 @@ import AddImport from './AddImport'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 
+// Component that joins import and export hire addition 
 class AddHire extends Component {
     
     render() {

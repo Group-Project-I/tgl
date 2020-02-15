@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {addDriver} from '../../../../store/actions/adminActions'
 
+// Form to add new driver to the system 
 class AddDriver extends Component {
     state = {
         email: '',
@@ -79,7 +80,6 @@ class AddDriver extends Component {
                         <input type="hidden" id="userType" value="driver"/>
                         <div className="input-field center">
                             <button className="btn blue lighten-1 z-depth-5 btn1">Register</button>
-                            <button className="btn red lighten-1 z-depth-5 btn1">Cancel</button>
                         </div>
                     </form>
                 </div>

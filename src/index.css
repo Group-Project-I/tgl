@@ -36,7 +36,7 @@ code {
 
 .hire_background{
   /*background-image:url("../src/img/bg1.jpg");*/
-  background-color: #9E9675;
+  background-color: #cde7e9 ;
   /*background-color: #494f54;*/
   width: auto;
   height: auto;
@@ -489,7 +489,7 @@ align-content: center;
 }
 
 .signin{
-height: 400px;
+height: 410px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;

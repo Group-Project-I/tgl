@@ -1,6 +1,6 @@
-// import { FirebaseStorage } from "@firebase/storage-types";
 import { auth } from "firebase";
 
+// Add import hire from admin account
 export const addImportHire = (importHire) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
@@ -39,6 +39,7 @@ export const addImportHire = (importHire) => {
     }
 };
 
+// Add export hire from admin account
 export const addExportHire = (exportHire) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const state= getState()
@@ -79,10 +80,13 @@ export const addExportHire = (exportHire) => {
     }
 };
 
+// Hire request is accepted by the administrator by assigning a driver 
+// Hire status is changed from request to driverPending 
 export const acceptHireRequest = (id, hireRequest) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
         const cust=firestore.collection('hires').doc(id).customerId
+
         firestore.collection('hires').doc(id).update({
             driverName: hireRequest.driverName,
             driverId: hireRequest.driverId,
@@ -96,7 +100,7 @@ export const acceptHireRequest = (id, hireRequest) => {
             dispatch({type: 'ERROR_UPDATING_HIRE_REQUEST', err})
         })
         firestore.collection('notifications').add({
-            to:'OrA27JIucfUxewmLheSRc7dMx5s1',
+            to:cust,
             from:'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
             type:'hire accepted',
             data:"Hire Accepted",
@@ -111,6 +115,7 @@ export const acceptHireRequest = (id, hireRequest) => {
     }
 }
 
+// Hire stauts is changed to declined when admin declines a hire request
 export const declineHireRequest = (id, hireRequest) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
@@ -142,10 +147,13 @@ export const declineHireRequest = (id, hireRequest) => {
     }
 }
 
+
+// When the hire is completed the hire status is updated to completed by the administrator 
+// Notification is sent to the customer once a hire is completed
 export const completeHire = (id) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
-        // const cust=firestore.collection('hires').doc(id).customerId
+
         firestore.collection('hires').doc(id).update({
             hireStatus: 'completed',
             completedDatetime: new Date()

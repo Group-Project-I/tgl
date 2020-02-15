@@ -75,9 +75,11 @@ class ChartLastYear extends Component {
       }
     }
 
+    // Generate number of hires completed in each month of the year before the current year
     const importHires = this.props.hires.filter(item => item.hireType === "import" && (item.hireStatus === "completed") && new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000).getFullYear() === new Date().getFullYear() - 1)
     const exportHires = this.props.hires.filter(item => item.hireType === "export" && (item.hireStatus === "completed") && new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000).getFullYear() === new Date().getFullYear() - 1)
 
+    // Import hires are reduced based on each month of the year before
     var group_imports_to_months = importHires.reduce(function (obj, item) {
       obj[(new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000)).getMonth()] = obj[(new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000)).getMonth()] || []; 
       obj[(new Date((item.completedDatetime.seconds + item.completedDatetime.nanoseconds/1E9)*1000)).getMonth()].push(item.id);
@@ -92,10 +94,8 @@ class ChartLastYear extends Component {
 
 
   var imports = Object.entries(group_imports_to_months).sort()
-  var exports = Object.entries(group_exports_to_months).sort()
-  
+  var Exports = Object.entries(group_exports_to_months).sort()
 
-  // let monthData = new Array(12).fill(0)
   let importData = new Array(12).fill(0)
   let exportData = new Array(12).fill(0)
 
@@ -103,8 +103,10 @@ class ChartLastYear extends Component {
     importData[parseInt(imports[i][0])] = imports[i][1].length
   }
 
-  for(var j=0;j<exports.length;j++){
-    exportData[parseInt(exports[j][0])] = exports[j][1].length
+
+  for(var j=0;j<Exports.length;j++){
+    exportData[parseInt(Exports[j][0])] = Exports[j][1].length
+
   }
 
   options.series[0].data = importData;

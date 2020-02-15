@@ -9,6 +9,8 @@ import { Squares } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
 import Card from 'react-bootstrap/Card'
 
+// Ongoing hire page, A hire which is currently in progress
+// Admin can mark the hire as completed once it is completed 
 class ManageOngoingHire extends Component {
     state = {
         loading: 1,

@@ -16,7 +16,7 @@ import { Badge } from 'react-md'
 
 export class AdminNavbar extends Component{
 
-  static defaultProps = { // <-- DEFAULT PROPS
+  static defaultProps = { 
     notifications: []       
   }
 
@@ -37,7 +37,6 @@ export class AdminNavbar extends Component{
   }
 
   handleClose = () => {
-    // e.preventDefault();
     this.setState({
       show: false,
     })
@@ -50,9 +49,9 @@ export class AdminNavbar extends Component{
     })
   }
 
+  // Admin Navbar, counts of notifications and messages are updated through the component 
   render(){
     const notifications = this.props.notifications.filter(item => item.to === 'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2').sort((a, b) => new Date((b.createdAt.seconds + b.createdAt.nanoseconds/1E9)*1000) - new Date((a.createdAt.seconds + a.createdAt.nanoseconds/1E9)*1000))
-    // const messages = this.props.chats.length
     var count = 0;
     if(this.props.chat){
       count = this.props.chat.filter(item => item.read === 'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2').length
@@ -75,7 +74,7 @@ export class AdminNavbar extends Component{
                 return(
                 <div>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item style={{ border:'2px solid black', padding:'3.75px 0px'}}>
+                  <NavDropdown.Item style={{ border:'2px solid black', padding:'3.75px 0px', width:'330px'}}>
                     {notification.type === 'hire completed' ?
                       <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'green'}}>
                         <h6><MdEventAvailable size={28}/> {notification.data}</h6>
@@ -150,6 +149,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
+// Connects to notifications and chats collections for real time updates
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([

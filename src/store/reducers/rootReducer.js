@@ -8,6 +8,7 @@ import {combineReducers} from 'redux'
 import { firebaseReducer } from 'react-redux-firebase'
 import { firestoreReducer } from 'redux-firestore'
 
+// Combined reducer to manage state of the application
 const rootReducer = combineReducers({
     auth: authReducer,
     hire: adminHireReducer,

@@ -31,7 +31,8 @@ class SignUp extends Component {
                 email: '',
                 nic: '',
                 mobile: '',
-                password:''  
+                password:'' ,
+                confPassword:'' 
         }
     }
 }   
@@ -54,11 +55,18 @@ class SignUp extends Component {
             case 'password': 
             errors.password = 
                 value.length < 6
-                ? 'Password must be 8 characters long!'
+                ? 'Password must be 6 characters long!'
                 : ''
             break;
+            case 'confPassword':
+                errors.confPassword=
+                value.length<6
+                ? 'Password must be 6 characters long!'
+                : value != errors.password
+                    ?'Password you entered does not match '
+                    :''
+                
             case 'nic': 
-    // check for new format nic
                 errors.nic = 
                 value.length <10 
                 ? 'NIC is too short !'
@@ -67,7 +75,6 @@ class SignUp extends Component {
                     :value.length >12
                         ?'NIC is too long !'
                         :''
-                
             break;
             case 'mobile': 
             errors.mobile = 
@@ -131,15 +138,15 @@ class SignUp extends Component {
                                     </div>
                                     <div className="input-field">
                                     
-                                        <input placeholder="Mobile" name='mobile' type="text" id="mobile" onChange={this.handleChange} required  noValidate/>
+                                    <input placeholder="Mobile" name='mobile' type="text" id="mobile" onChange={this.handleChange} required  noValidate/>
                                     {errors.mobile.length > 0 && 
-                                    <span className='error red-text center'>{errors.mobile}</span>
+                                    <small><span className='error red-text center'>{errors.mobile}</span></small>
                                     }
                                     </div>
                                     <div className="input-field">
                                         <input placeholder="NIC No" name='nic' type="text" id="nic" onChange={this.handleChange} required noValidate/>
                                     {errors.nic.length > 0 && 
-                                    <span className='error red-text center' >{errors.nic}</span>
+                                    <small><span className='error red-text center' >{errors.nic}</span></small>
                                     }
                                     </div>
                                     <div className="input-field">
@@ -148,14 +155,20 @@ class SignUp extends Component {
                                     <div className="input-field">
                                     <input placeholder="Email" type="email" name='email' id="email" onChange={this.handleChange} required noValidate/>
                                     {errors.email.length > 0 && 
-                                    <span className='error red-text center'>{errors.email}</span>
+                                    <small><span className='error red-text center'>{errors.email}</span></small>
                                     }
                                     </div>
                                     <div className="input-field">
-                                        <input placeholder="Password" type="password" name='password' id="password" onChange={this.handleChange} required noValidate/>
+                                    <input placeholder="Password" type="password" name='password' id="password" onChange={this.handleChange} required noValidate/>
+                                    {errors.password.length > 0 && 
+                                    <small><span className='error red-text center'>{errors.password}</span></small>
+                                    }
                                     </div>
                                     <div className="input-field">
                                         <input placeholder="Confirm Password" type="password" name='confPassword' id="confPassword" onChange={this.handleChange} required noValidate/>
+                                    {errors.password.length > 0 && 
+                                    <small><span className='error red-text center'>{errors.confpassword}</span></small>
+                                    }
                                     </div>
                                     <div className="input-field center">
                                         <button className="btn blue lighten-1 z-depth-0">Register</button>
@@ -164,7 +177,7 @@ class SignUp extends Component {
                             </div>
                             <div className="card-footer center">
                                 <div className="d-flex justify-content-center links">
-                                    Already have an account?<p><NavLink to='/signin' className="text-blue">Sign In</NavLink></p>
+                                   <br/> Already have an account?<p><NavLink to='/signin' className="text-blue">Sign In</NavLink></p>
                                 </div>
                             </div>
                         </div>

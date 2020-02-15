@@ -13,7 +13,7 @@ import {Redirect} from 'react-router-dom'
 import { Squares } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
 
-
+// Connects components related to customer together
 class ManageCustomer extends Component {
     static defaultProps = { 
         hires: []       
@@ -36,6 +36,7 @@ class ManageCustomer extends Component {
         const {auth} = this.props
         if (!auth.uid) return <Redirect to='/signin' />
 
+        // Filter imports and exports made by the selected customer
         const importHires = this.props.hires.filter(item => item.hireType === "import" && item.customerId === this.props.id)
         const exportHires = this.props.hires.filter(item => item.hireType === "export" && item.customerId === this.props.id)
         

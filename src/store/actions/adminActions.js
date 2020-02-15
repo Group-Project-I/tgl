@@ -1,6 +1,7 @@
  import firebase from 'firebase/app';
 import 'firebase/firestore';
 
+// Register vehicle to the firestore database
 export const addVehicle = (vehicle) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
@@ -16,6 +17,8 @@ export const addVehicle = (vehicle) => {
     }
 };
 
+// Register customer to the system
+// A secondary auth account will be created when the administrator is adding a customer
 export const addCustomer = (newCustomer) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
@@ -55,6 +58,8 @@ export const addCustomer = (newCustomer) => {
     }
 }
 
+// Register driver to the system 
+// A secondary account is created to add drivers to firebase authentication system 
 export const addDriver = (newDriver) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
@@ -96,6 +101,10 @@ export const addDriver = (newDriver) => {
     }
 }
 
+
+// Edit User details 
+// Collection name is passed as a parameter to reuse the function with customers, drivers and vehicles 
+// Notification is created when customer details are edited 
 export const editUser = (customerId, data, collec) => {
 
     return(dispatch, getState, {getFirebase, getFirestore}) => {
@@ -131,6 +140,9 @@ export const editUser = (customerId, data, collec) => {
     }
 }
 
+// Admin can disable customers or drivers from the system
+// diabled field is used to make users enable or disable 
+// No user details are deleted 
 export const disableOrEnableUser = (userId, collec, token) => {
 
     return(dispatch, getState, {getFirebase, getFirestore}) => {
@@ -149,6 +161,7 @@ export const disableOrEnableUser = (userId, collec, token) => {
     }
 }
 
+// Admin can disable vehicleds from the database
 export const disableOrEnableVehicle = (id, token) => {
 
     return(dispatch, getState, {getFirebase, getFirestore}) => {
@@ -163,6 +176,7 @@ export const disableOrEnableVehicle = (id, token) => {
     }
 }
 
+// Notifications are deleted from the system once read
 export const readNotification = (id) => {
 
     return(dispatch, getState, {getFirebase, getFirestore}) => {
@@ -175,6 +189,7 @@ export const readNotification = (id) => {
     }
 }
 
+// Add city to the pricing component
 export const addCity = (details) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
@@ -193,6 +208,7 @@ export const addCity = (details) => {
     }
 }
 
+// Edit city details in pricing component
 export const editCity = (details) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
@@ -206,6 +222,8 @@ export const editCity = (details) => {
     }
 }
 
+
+// Delete city from pricing component
 export const deleteCity = (id) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
@@ -217,6 +235,7 @@ export const deleteCity = (id) => {
     }
 }
 
+// Send message from admin to customer 
 export const sendMessage = (message, senderId, receiverId) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
@@ -232,6 +251,7 @@ export const sendMessage = (message, senderId, receiverId) => {
     }
 }
 
+// Read status is updated once the message is read by the administrator 
 export const readMessage = (messageId) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();

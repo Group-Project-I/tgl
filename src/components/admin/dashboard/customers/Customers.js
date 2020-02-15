@@ -8,7 +8,7 @@ import {Redirect} from 'react-router-dom'
 import moment from 'moment'
 import { ReactTabulator } from 'react-tabulator'
 
-
+// List of customers registered in the system with filtering and sorting
 class Customers extends Component {
     constructor(props) {
         super(props);

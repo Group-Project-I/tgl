@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {disableOrEnableVehicle} from '../../../../store/actions/adminActions'
 import Switch from "react-switch";
 
+// Toggle button to diable vehicles
+// Once disabled the vehicle will not be shown on the system 
 class DisableVehicle extends Component {
 
     state = {

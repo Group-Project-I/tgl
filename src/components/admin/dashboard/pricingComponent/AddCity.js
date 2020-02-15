@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import Card from 'react-bootstrap/Card'
 import {addCity} from '../../../../store/actions/adminActions'
 
+// Add city to the pricing component
+// A new city will be added to pricing collection with relevant hire charges
 class AddCity extends Component {
     state = {
         id: '',

@@ -10,7 +10,7 @@ import { MdNotifications, MdNotificationsActive, MdBeenhere, MdEventAvailable, M
 
 import { GoIssueReopened } from "react-icons/go";
   
-
+// Links visible for the signed in user 
 export class SignedInLinks extends React.Component{
     static defaultProps = { // <-- DEFAULT PROPS
         notifications: []       
@@ -22,14 +22,9 @@ export class SignedInLinks extends React.Component{
     render(){
         const {auth} = this.props
         const notifications = this.props.notifications.filter(item => item.to=== auth.uid)
-        // .sort((a, b) => new Date((b.createdAt.seconds + b.createdAt.nanoseconds/1E9)*1000) - new Date((a.createdAt.seconds + a.createdAt.nanoseconds/1E9)*1000))
-
         const load = this.state.loading === 0 ? (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom" style={{ minWidth: 700, position: 'fixed' }}>
-        
-{/* //    return( */}
-        
-        {/* <Navbar bg="dark" variant="dark" style={{ minWidth: 700, position: 'fixed' }}> */}
+      
             <div className="container" >
                 
             <NavLink to='/'style={{ minWidth: 350 }} ><h3>Trans Global Logistics</h3></NavLink>
@@ -48,26 +43,24 @@ export class SignedInLinks extends React.Component{
                     <NavDropdown.Item><NavLink to={'/User/profile/' + auth.uid} style={{textDecoration: 'none',color:'black'}}>Profile</NavLink></NavDropdown.Item>
                     <NavDropdown.Item><NavLink to={'/'}><Button onClick={this.props.signOut}>Logout</Button></NavLink></NavDropdown.Item>
                 </NavDropdown>
-
-                {/* <Nav.Link><NavLink to='#' style={{textDecoration: 'none' ,paddingTop:'20px',color:'#C0C0C0'}}><i class="fas fa-bell"></i></NavLink></Nav.Link> */}
                 
-                <NavDropdown title={notifications.length === 0 ? <MdNotifications size={28}/> : <MdNotificationsActive size={28}/>} id="basic-nav-dropdown" disabled={!notifications.length}>
+                <NavDropdown title={notifications.length === 0 ? <MdNotifications size={28}/> : <MdNotificationsActive size={28}/>} id="basic-nav-dropdown" disabled={!notifications.length} style={{width:'150px'}}>
               {notifications && notifications.map(notification => {
                 return(
                 <div>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item style={{ margin:0, padding:'0px 0px'}}>
+                  <NavDropdown.Item style={{ margin:0, padding:'0px 0px',width:'350px',height:'100px'}}>
                     {notification.type === 'hire accepted' ?
-                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'orange',backgroundColor:'#FFFACD',width:'100'}}>
-                        <h6><MdEventAvailable size={40} /> {notification.data}</h6>
+                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'orange',backgroundColor:'#FFFACD',width:'100',height:'100px'}}>
+                        <h6><MdEventAvailable size={28} /> <b>{notification.data}</b></h6>
                         {new Date((notification.createdAt.seconds + notification.createdAt.nanoseconds/1E9)*1000).toString().substr(0,24)}
                       </Nav.Link> : ( notification.type === 'hire declined' ?
-                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'red',backgroundColor:'#ffe6f0',width:'80'}}>
-                        <h6><GoIssueReopened size={28} /> {notification.data}</h6>
+                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'red',backgroundColor:'#ffe6f0',height:'100px'}}>
+                        <h6><GoIssueReopened size={28} /> <b>{notification.data}</b></h6>
                         {new Date((notification.createdAt.seconds + notification.createdAt.nanoseconds/1E9)*1000).toString().substr(0,24)}
                       </Nav.Link> :(notification.type === 'hire completed' ?
-                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'green',backgroundColor:'#9ACD32',width:'80'}}>
-                        <h6><MdBeenhere size={28} /> {notification.data}</h6>
+                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'green',backgroundColor:'#9ACD32',height:'100px'}}>
+                        <h6><MdBeenhere size={28} /> <b>{notification.data}</b></h6>
                         {new Date((notification.createdAt.seconds + notification.createdAt.nanoseconds/1E9)*1000).toString().substr(0,24)}
                       </Nav.Link> : null))
                     }
@@ -89,7 +82,6 @@ export class SignedInLinks extends React.Component{
     
 }
 const mapStateToProps=(state)=>{
-    //console.log(state);
     return{
         auth: state.firebase.auth,
         customers: state.firestore.ordered.customers,
@@ -101,7 +93,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         signOut: () => dispatch(signOut()),
         readNotification: (id) => dispatch(readNotification(id))
-
     }
 }
 

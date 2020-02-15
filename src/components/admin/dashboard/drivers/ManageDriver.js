@@ -13,7 +13,7 @@ import {Redirect} from 'react-router-dom'
 import { Squares } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
 
-
+// Connects all conmponenet relevant to a given driver
 class ManageDriver extends Component {
     static defaultProps = { 
         hires: []       

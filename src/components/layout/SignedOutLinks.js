@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import {Navbar, Nav} from 'react-bootstrap'
 import { FaAlignJustify } from "react-icons/fa";
 
+// Signed out links for unregistered customers
 const SignedOutLinks = () => {
     return(
         <Navbar bg="dark" expand="lg" variant="dark" style={{ position: 'fixed' }}>

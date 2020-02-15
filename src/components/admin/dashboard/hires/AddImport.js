@@ -10,6 +10,8 @@ import 'react-activity/dist/react-activity.css'
 import Modal from 'react-bootstrap/Modal'
 import moment from 'moment'
 
+// Add import request to the system on behalf of a customer
+// Can select a customer, driver and vehicle
 class AddImport extends Component {
     state = {
         containerType: '20',
@@ -49,6 +51,7 @@ class AddImport extends Component {
 
     }
 
+    // Function to add import request to the database
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.addImportHire(this.state) 
@@ -58,6 +61,7 @@ class AddImport extends Component {
         
     }
 
+    // Change element type to date on click
     handleDate = (e) => {
         e.preventDefault();
         e.target.type = 'datetime-local'
@@ -65,6 +69,7 @@ class AddImport extends Component {
         document.getElementById(tag).style.display = "block"
     }
 
+    // Set state with selected container type
     handleContainerType = (e) => {
         if(e.target.value){
             this.setState({
@@ -73,6 +78,7 @@ class AddImport extends Component {
         }
     }
 
+    // Set state with selected unloading port
     handleUnloadingPort = (e) => {
         if(e.target.value){
             this.setState({
@@ -81,6 +87,7 @@ class AddImport extends Component {
         }
     }
 
+    // Set state with selected customer's name and id
     handleCustomer = (e) => {
         if(e.target.value){
             const x = e.target.value.split('_')
@@ -91,6 +98,7 @@ class AddImport extends Component {
         }
     }
 
+    // Gets the list of customers 
     getCustomers = (e) => {
         if(this.props.customers){
             const availableCustomers = this.props.customers.sort((a,b) => { return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()}).reverse()
@@ -100,6 +108,7 @@ class AddImport extends Component {
         }
     }
 
+    // Get list of available drivers on the pickup date entered
     availableDrivers = (e) => {
         const dateTime = this.refs.pickup.value
 
@@ -122,6 +131,7 @@ class AddImport extends Component {
         }
     }
 
+    // Set state with name and id of selected driver
     handleDriver = (e) => {
         if(e.target.value){
             const y = e.target.value.split('_')
@@ -132,6 +142,7 @@ class AddImport extends Component {
         }
     }
 
+    // Get list of available vehicles on the pickup date entered
     availableVehicles = (e) => {
         const dateTime = this.refs.pickup.value
         
@@ -154,6 +165,7 @@ class AddImport extends Component {
         }
     }
 
+    // Set state with number and id of the selected vehicle
     handleVehicle = (e) => {
         if(e.target.value){
             const x = e.target.value.split('_')
@@ -174,6 +186,7 @@ class AddImport extends Component {
         
     }
 
+    // popup to show cost estimate for the hire
     handleShowEstimate = (e) => {
         e.preventDefault()
         if(this.props.pricing){
@@ -199,6 +212,7 @@ class AddImport extends Component {
         
     }
 
+    // Popup to display activity of the driver the day before and the day after
     handleShowDriver = (e) => {
         e.preventDefault()
         if(this.state.driverId && this.props.hires && this.state.pickupDatetime){
@@ -238,6 +252,7 @@ class AddImport extends Component {
         
     }
 
+    // Popup to display activity of the vehicle the day before and the day after
     handleShowVehicle = (e) => {
         e.preventDefault()
         if(this.state.vehicleId && this.props.hires){

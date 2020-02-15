@@ -8,9 +8,11 @@ import moment from 'moment'
 import { Squares } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
 
+// Generates a pdf view of a completed hire 
+// Uses react/pdf
 class ManageCompletedHires extends Component {
 
-    static defaultProps = { // <-- DEFAULT PROPS
+    static defaultProps = {
         customer: []       
     }
 
