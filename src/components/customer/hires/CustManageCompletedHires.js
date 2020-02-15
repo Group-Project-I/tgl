@@ -11,7 +11,7 @@ import 'react-activity/dist/react-activity.css';
 import Card from "react-bootstrap/Card";
 import {Spinner} from "react-activity";
 
-class ManageCompletedHires extends Component {
+class ManageCompletedHire extends Component {
 
     static defaultProps = { // <-- DEFAULT PROPS
         customer: []
@@ -740,4 +740,4 @@ export default compose(
         { collection: 'drivers', doc: props.hire[0].driverId },
         { collection: 'vehicles', doc: props.hire[0].vehicleId }
     ])
-)(ManageCompletedHires)
+)(ManageCompletedHire)

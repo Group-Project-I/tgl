@@ -8,6 +8,7 @@ import ManageHireRequests1 from './CustManageHireRequest1'
 import ManageHireRequests2 from './CustManageHireRequest2'
 import ManageDeclinedHire from './CustManageDeclinedHires';
 import ManageOngoingHires from './CustManageOngoingHire';
+import ManageCompletedHireDetails from "./CustManageCompletedHireDetails";
 
 
 class ManageHires extends Component {
@@ -50,7 +51,7 @@ class ManageHires extends Component {
                 <div id="content"  role="main">
                     <ManageOngoingHires hire={this.props.hires.filter(item => item.id === this.props.id)}></ManageOngoingHires>
                 </div>
-            ) : (
+            ) :  (
                 <div id="content"  role="main">
                     <ManageDeclinedHire hire={this.props.hires.filter(item => item.id === this.props.id)}></ManageDeclinedHire>
                 </div>
