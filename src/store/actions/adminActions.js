@@ -1,4 +1,4 @@
-import firebase from 'firebase/app';
+ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 // Register vehicle to the firestore database
