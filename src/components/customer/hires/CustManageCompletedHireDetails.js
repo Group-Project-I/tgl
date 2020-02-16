@@ -7,18 +7,27 @@ import {Link, Redirect} from 'react-router-dom'
 import {Spinner} from "react-activity";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { Timeline, TimelineItem }  from 'vertical-timeline-component-for-react';
+import ReactToPrint from 'react-to-print'
+import {MdPrint} from "react-icons/md";
 import ManageCompletedHire from "./CustManageCompletedHires";
 
 class ManageCompletedHireDetails extends Component {
     state = {
         loading: 1,
         freeDrivers: '',
-        redir: 0
+        redir: 0,
+        pdf: false
     }
 
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
+        })
+    }
+    handlePdf = (e) => {
+        this.setState({
+            pdf: true
         })
     }
 
@@ -47,7 +56,9 @@ class ManageCompletedHireDetails extends Component {
         if(this.state.redir === 1){
             return <Redirect to='/User/UserManageTools' />
         }
-        let path = '/User/UserManageTools/pdf/' + this.props.hire[0].id;
+        if(this.state.pdf){
+            return <ManageCompletedHire hire={this.props.hire}></ManageCompletedHire>
+        }
 
         return (
             this.state.loading === 1 ? (
@@ -57,9 +68,15 @@ class ManageCompletedHireDetails extends Component {
                     <br/><br/><br/><br/><br/><br/><br/><br/>
 
                     <div className="container www fadeIn animated slow delay-1s">
-                            <Link to={path}><Button>+ View PDF</Button></Link><br/>
-                        <Card border="primary">
+
+
+                        <Card border="primary" ref={el => (this.componentRef = el)}>
                             <Card.Body>
+                                <ReactToPrint
+                                    trigger={() => <a href="#"><MdPrint size={28}/></a>}
+                                    content={() => this.componentRef}
+                                />
+                                <button onClick={this.handlePdf} className="btn blue lighten-1 z-depth-0" style={{marginLeft:'20px'}}>View PDF</button><br/>
                                 <h1 className="center add_head"><span className="topic1">Completed</span> <span className="topic">Hire</span><hr className="bg-dark mb-4 w-25"/></h1><br/><br/>
                                 <Card border="primary" className="text-center">
                                     <Card.Body>
@@ -316,140 +333,22 @@ class ManageCompletedHireDetails extends Component {
                                             </div>
                                         </div>
                                         <br/><br/>
-                                        {this.props.hire[0].hireType === "import" ?
-                                            <div style={{margin: 'auto'}}>
-                                                <div id="progress-bar">
-                                                    <div className="bar"></div>
+                                        <Timeline lineColor={'#ddd'} style={{alignItems:"center"}}>
 
-                                                    <div className="circle-holder">
-                                                        <div className="circle done">
-                                                            <i className="fas fa-shipping-fast"></i>
-                                                            <span className="status">Truck Dispatched</span>
-                                                        </div>
+                                            {this.props.hire[0].timeline && Object.values(this.props.hire[0].timeline).sort((a,b) => a.id - b.id).map(item => {
+                                                return(
+                                                    <TimelineItem
+                                                        key={item.id}
+                                                        dateText={item.set ? moment(item.at.toDate()).format('MMM Do YYYY, h:mm a') : null}
+                                                        dateInnerStyle={item.set ? { background: '#61b8ff', color: '#000' } : { background: '#e86971', color: '#000' }}
+                                                        style={item.set ? { color: '#0aa61f' } : { color: '#e86971' }}
+                                                    >
+                                                        <h3>{item.title}</h3>
+                                                    </TimelineItem>
+                                                )
+                                            })}
 
-                                                        <div className="circle">
-                                                            <i className="fas fa-warehouse"></i>
-                                                            <span className="status">At Pickup location</span>
-                                                        </div>
-                                                        <div className="circle">
-                                                            <i className="fas fa-truck-loading"></i>
-                                                            <span className="status">Cargo loaded</span>
-                                                        </div>
-                                                        <div className="circle">
-                                                            <i id="result-icon"
-                                                               className=" ml-19 fas fa-truck-moving"></i>
-                                                            <span id="result-text"
-                                                                  className="status ml-0">In Transit</span>
-                                                        </div>
-                                                        <div className="circle">
-                                                            <i id="result-icon" className="fas fa-map-marker-alt"></i>
-                                                            <span id="result-text"
-                                                                  className="status ml-0">Destination Reached</span>
-                                                        </div>
-                                                        <div className="circle">
-                                                            <i id="result-icon" className=" ml-19 fas fa-ship"></i>
-                                                            <span id="result-text"
-                                                                  className="status ml-0">Hire Completed</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <br/><br/><br/><br/>
-                                                {/*<div*/}
-                                                {/*    style={{marginLeft:'auto',marginRight:'auto', marginTop:'100px', width: '600px', textAlign: 'center'}}*/}
-                                                {/*>*/}
-                                                {/*    <div>*/}
-                                                {/*        <input type="radio" name="shipment" value="0"/>*/}
-                                                {/*        <label htmlFor="shipmentChoice">Kabul</label>*/}
-
-                                                {/*        <input type="radio" name="shipment" value="1"/>*/}
-                                                {/*        <label htmlFor="shipmentChoice">Sevk</label>*/}
-
-                                                {/*        <input type="radio" name="shipment" value="2"/>*/}
-                                                {/*        <label htmlFor="shipmentChoice">Dağıtım</label>*/}
-
-                                                {/*        <input type="radio" name="shipment" value="3"/>*/}
-                                                {/*        <label htmlFor="shipmentChoice">Ziyaret</label>*/}
-
-                                                {/*        <input type="radio" name="shipment" value="4"/>*/}
-                                                {/*        <label htmlFor="shipmentChoice">Teslim</label>*/}
-
-                                                {/*        <input type="radio" name="shipment" value="5"/>*/}
-                                                {/*        <label htmlFor="shipmentChoice">İade</label>*/}
-
-                                                {/*        <input type="radio" name="shipment" value="6"/>*/}
-                                                {/*        <label htmlFor="shipmentChoice">Hasar</label>*/}
-                                                {/*    </div>*/}
-                                                {/*</div>*/}
-                                            </div> :
-                                            <div style={{margin: 'auto'}}>
-                                                <div id="progress-bar">
-                                                    <div className="bar"></div>
-
-                                                    <div className="circle-holder">
-                                                        <div className="circle done">
-                                                            <i className="fas fa-shipping-fast"></i>
-                                                            <span className="status">Truck Dispatched</span>
-                                                        </div>
-
-                                                        <div className="circle">
-                                                            <i className="fas fa-warehouse"></i>
-                                                            <span className="status">At Container Pickup location</span>
-                                                        </div>
-                                                        <div className="circle">
-                                                            <i id="result-icon" className=" ml-19 fas fa-truck-moving"></i>
-                                                            <span id="result-text"
-                                                                  className="status ml-0">In Transit</span>
-                                                        </div>
-                                                        <div className="circle">
-                                                            <i className="fas fa-truck-loading"></i>
-                                                            <span className="status">Cargo loaded</span>
-                                                        </div>
-                                                        <div className="circle">
-                                                            <i id="result-icon" className=" ml-19 fas fa-truck-moving"></i>
-                                                            <span id="result-text"
-                                                                  className="status ml-0">In Transit</span>
-                                                        </div>
-                                                        <div className="circle">
-                                                            <i id="result-icon" className="fas fa-map-marker-alt"></i>
-                                                            <span id="result-text"
-                                                                  className="status ml-0">Loading Port Reached</span>
-                                                        </div>
-                                                        <div className="circle">
-                                                            <i id="result-icon" className=" ml-19 fas fa-ship"></i>
-                                                            <span id="result-text"
-                                                                  className="status ml-0">Hire Completed</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <br/><br/><br/><br/>
-                                                {/*<div*/}
-                                                {/*    style={{marginLeft:'auto',marginRight:'auto', marginTop:'100px', width: '600px', textAlign: 'center'}}*/}
-                                                {/*>*/}
-                                                {/*    <div>*/}
-                                                {/*        <input type="radio" name="shipment" value="0"/>*/}
-                                                {/*        <label htmlFor="shipmentChoice">Kabul</label>*/}
-
-                                                {/*        <input type="radio" name="shipment" value="1"/>*/}
-                                                {/*        <label htmlFor="shipmentChoice">Sevk</label>*/}
-
-                                                {/*        <input type="radio" name="shipment" value="2"/>*/}
-                                                {/*        <label htmlFor="shipmentChoice">Dağıtım</label>*/}
-
-                                                {/*        <input type="radio" name="shipment" value="3"/>*/}
-                                                {/*        <label htmlFor="shipmentChoice">Ziyaret</label>*/}
-
-                                                {/*        <input type="radio" name="shipment" value="4"/>*/}
-                                                {/*        <label htmlFor="shipmentChoice">Teslim</label>*/}
-
-                                                {/*        <input type="radio" name="shipment" value="5"/>*/}
-                                                {/*        <label htmlFor="shipmentChoice">İade</label>*/}
-
-                                                {/*        <input type="radio" name="shipment" value="6"/>*/}
-                                                {/*        <label htmlFor="shipmentChoice">Hasar</label>*/}
-                                                {/*    </div>*/}
-                                                {/*</div>*/}
-                                            </div>
-                                        }
+                                        </Timeline>
                                     </Card.Body>
                                 </Card>
                                 <br/><br/>

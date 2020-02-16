@@ -3,7 +3,6 @@ import "react-tabs/style/react-tabs.css";
 import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
-import ManageCompletedHire from './CustManageCompletedHires'
 import ManageHireRequests1 from './CustManageHireRequest1'
 import ManageHireRequests2 from './CustManageHireRequest2'
 import ManageDeclinedHire from './CustManageDeclinedHires';
@@ -36,7 +35,7 @@ class ManageHires extends Component {
         const load = this.state.load === 0 ? (
             this.props.hires.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "completed"?  (
                 <div>
-                    <ManageCompletedHire hire={this.props.hires.filter(item => item.id === this.props.id)}></ManageCompletedHire>
+                    <ManageCompletedHireDetails hire={this.props.hires.filter(item => item.id === this.props.id)}></ManageCompletedHireDetails>
                 </div>
 
             ) : this.props.hires.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "request" && this.props.hires.filter(item => item.id === this.props.id ).map(a => a.hireType)[0] === "import"? (
