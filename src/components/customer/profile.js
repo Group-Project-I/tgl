@@ -32,42 +32,36 @@ class Profile extends Component {
 
     }
 
-    // UNSAFE_componentWillReceiveProps(){
-    componentWillMount(props) {
-    const {users} = this.props
-    // var user=users.filter(item=>item.id === this.props.auth.uid) 
-    // this.setState({
-    //     profileImage:user.profilePic
-       
-    // })
-      if(this.props.customer){
+    UNSAFE_componentWillReceiveProps(nextProps) {
+    //get image url from db and set the state
+            var x = nextProps.users.filter(item => item.id === this.props.auth.uid)
+            var user
+            x.forEach(function(obj){
+                user = obj.profilePic
+            })
+            // console.log(this.state)
             this.setState({
-                loading: 0,
-            });
+                url: user,
+                loading: 0
+            })
         }
-    //get image url from db
-        
-        console.log('user') 
-        // console.log(user)
-        console.log('profileImg')
-        console.log(this.state.profileImage)     
-    }
 
     handlechange (e) {
         if(e.target.files[0]){
             const image= e.target.files[0];
             this.setState(() => ({image}))
         }
-        
     }
+
     handleupdate () {
        const {image} =this.state
        const {auth} = this.props
        
        const firestore = getFirestore()
-        console.log('props')
-        console.log(this.props)
-     //upload the image 
+        // console.log('props')
+        // console.log(this.props)
+    
+    //upload the image 
         const uploadTask=storage.ref(`images/${auth.uid}`)
         .put(image)
         uploadTask.on('state_changed',
@@ -87,18 +81,14 @@ class Profile extends Component {
                 this.setState({url})
                 console.log(auth.uid)
             //save file to the db
-                // addProfileImage(auth.uid,url)
-                firestore.collection('users').doc(auth.uid).set({
-                    userType: 'customer',
-                    disabled: false,
-                   profilePic:url
-                    })
-            })
+                addProfileImage(url)
         })
+
         this.setState({
             showProgressBar:true
         })
-    }
+    })}
+
     
     render() {     
         const load = this.state.loading === 0 ? (
@@ -106,7 +96,7 @@ class Profile extends Component {
                 <div className="row">
                 
                 <img id='myImg' src={ 
-                 // this.props.customer.firstName ||
+                 this.state.url ||
                      require('../../img/profile.png')
                     } class="mx-auto img-fluid img-circle d-block " alt="avatar"  style={{borderRadius:'50%',width:'250px'}}/>
                 <br/><br/><br/><br/>
@@ -138,7 +128,10 @@ const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
         users:state.firestore.ordered.users
+       
     }
+    console.log('state :')
+    console.log(state)
 }
 const mapDispatchToProps = (dispatch) => {
     return{

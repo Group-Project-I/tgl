@@ -133,17 +133,19 @@ export const getProfileImage=(user)=> {
   // })
 }
 }
- export const addProfileImage=(userId,imageUrl)=>{
+ export const addProfileImage=(imageUrl)=>{
   return(dispatch,getState,{getFirebase,getFirestore}) => {
     const state= getState()
     const auth= state.firebase.auth
     const firestore = getFirestore()
 
  
-    return firestore.collection('users').doc(auth.uid).set({
+    return  firestore.collection('users').doc(auth.uid).set({
+      userType: 'customer',
+      disabled: false,
       profilePic:imageUrl
-      }).then(()=>{
-            dispatch({type: 'Profile_Image_Added'});
+     }).then(()=>{
+        dispatch({type: 'Profile_Image_Added'});
       }).catch((err) => {
         dispatch({type: 'Notificaton_Add_ERROR', err});
     })
