@@ -37,7 +37,7 @@ class AddExport extends Component {
         customerName: '',
         vehicleId: '',
         vehicleNo: '',
-        remarks: '',
+        remarks: 'None',
         loading: 1,
         freeDrivers: '',
         availableCustomers: '',

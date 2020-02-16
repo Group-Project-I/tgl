@@ -27,7 +27,7 @@ class AddHireExport extends Component {
         loadingDatetime: '',
         customerId: '',
         customerName: '',
-        remarks: '',
+        remarks: 'None',
         loading: 1,
         redir: 0
     }

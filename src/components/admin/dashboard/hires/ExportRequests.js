@@ -50,6 +50,9 @@ const ExportRequests = ({exportHireRequests, history}) => {
                 layout={"fitData"}
                 rowClick={rowClick}
                 options={{ pagination: 'local',paginationSize: 10}}
+                initialSort={[
+                    {column: "pickupDatetime", dir:"desc"}
+                ]}
             />
         </div>
     )

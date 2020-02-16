@@ -49,6 +49,9 @@ const ImportRequests = ({importHireRequests, history}) => {
                 rowClick={rowClick}
                 options={{ pagination: 'local',paginationSize: 10}}
                 invalidOptionWarnings={false}
+                initialSort={[
+                    {column: "pickupDatetime", dir:"desc"}
+                ]}
             />
         </div>
     )

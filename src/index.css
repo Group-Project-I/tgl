@@ -1415,7 +1415,9 @@ Nav.Link :hover {
   content: none;
 }
       
-
+.modal-content {
+  min-width: 600px;
+}
 
 
 
