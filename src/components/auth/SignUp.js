@@ -62,10 +62,10 @@ class SignUp extends Component {
                 errors.confPassword=
                 value.length<6
                 ? 'Password must be at least 6 characters long'
-                : value != errors.password
+                : value != this.state.password
                     ?'Password you entered does not match '
                     :''
-                
+            break;  
             case 'nic': 
                 errors.nic = 
                 value.length <10 
@@ -166,8 +166,8 @@ class SignUp extends Component {
                                     </div>
                                     <div className="input-field">
                                         <input placeholder="Confirm Password" type="password" name='confPassword' id="confPassword" onChange={this.handleChange} required noValidate/>
-                                    {errors.password.length > 0 && 
-                                    <small><span className='error red-text center'>{errors.confpassword}</span></small>
+                                    {errors.confPassword.length > 0 && 
+                                    <small><span className='error red-text center'>{errors.confPassword}</span></small>
                                     }
                                     </div>
                                     <div className="input-field center">
@@ -175,11 +175,11 @@ class SignUp extends Component {
                                     </div>
                                 </form>
                             </div>
-                            <div className="card-footer center">
+                            {/* <div className="card-footer center"> */}
                                 <div className="d-flex justify-content-center links">
-                                   <br/> Already have an account?<p><NavLink to='/signin' className="text-blue">Sign In</NavLink></p>
+                                   Already have an account?<p><NavLink to='/signin' className="text-blue">Sign In</NavLink></p>
                                 </div>
-                            </div>
+                            {/* </div> */}
                         </div>
                     </div>
                 </div>
