@@ -31,9 +31,7 @@ export class UserChat extends React.Component{
         console.log(`New message incomig! ${newMessage}`);
 // send the message throught the backend API
         this.props.sendMessage(newMessage, this.props.auth.uid, this.state.adminId)
-      
-    
-      }
+       }
    
     UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.chats !== this.props.chats) {

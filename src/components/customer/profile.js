@@ -4,12 +4,7 @@ import "react-tabs/style/react-tabs.css"
 import {connect} from 'react-redux'
 import {storage} from '../../config/fbConfig'
 import {addProfileImage} from '../../store/actions/customerActions'
-import {getProfileImage } from '../../store/actions/customerActions'
-import { Button, Card, Accordion, Row, Col} from 'react-bootstrap'
-import {FiArrowDownCircle} from "react-icons/fi"
 import {MdCall,MdEmail,MdInsertDriveFile} from "react-icons/md"
-import firebase from 'firebase/app';
-import 'firebase/firestore';
 import {getFirestore} from 'redux-firestore'
 import {firestoreConnect} from 'react-redux-firebase'  
 import {compose} from 'redux'
@@ -29,9 +24,8 @@ class Profile extends Component {
         }
         this.handlechange = this.handlechange.bind(this)
         this.handleupdate = this.handleupdate.bind(this)
-
     }
-
+ 
     UNSAFE_componentWillReceiveProps(nextProps) {
     //get image url from db and set the state
             var x = nextProps.users.filter(item => item.id === this.props.auth.uid)
@@ -62,7 +56,7 @@ class Profile extends Component {
         // console.log(this.props)
     
     //upload the image 
-        const uploadTask=storage.ref(`images/${auth.uid}`)
+        const uploadTask=storage.ref(`images/${image.name}`)
         .put(image)
         uploadTask.on('state_changed',
         (snapshot)=>{
@@ -78,16 +72,23 @@ class Profile extends Component {
             // complete function
             storage.ref('images').child(image.name).getDownloadURL().then(url=>{
                 console.log(url)
-                this.setState({url})
+                this.setState({
+                    url:url})
                 console.log(auth.uid)
             //save file to the db
-                addProfileImage(url)
+                // addProfileImage(url)
+                firestore.collection('users').doc(auth.uid).set({
+                    userType: 'customer',
+                    disabled: false,
+                   profilePic:url
+                    })
+            })
         })
 
         this.setState({
             showProgressBar:true
         })
-    })}
+    }
 
     
     render() {     
@@ -127,17 +128,12 @@ class Profile extends Component {
 const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
-        users:state.firestore.ordered.users
-       
+        users:state.firestore.ordered.users  
     }
-    console.log('state :')
-    console.log(state)
 }
 const mapDispatchToProps = (dispatch) => {
     return{
-        addProfileImage: (user) => dispatch(addProfileImage(user))  ,
-        getProfileImage: (user) => dispatch(getProfileImage(user))
-
+        addProfileImage: (user) => dispatch(addProfileImage(user)) 
     }
 }
 export default compose(
