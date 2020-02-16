@@ -7,6 +7,7 @@ import ManageCompletedHires from './ManageCompletedHires'
 import ManageHireRequest from './ManageHireRequest'
 import ManagePendingHires from './ManagePendingHires';
 import ManageOngoingHire from './ManageOngoingHire';
+import ViewCompletedHire from './ViewCompletedHire'
 
 // Componenet to manage hires based on their status 
 // request - new hire request
@@ -39,7 +40,8 @@ class ManageHire extends Component {
         const load = this.state.load === 0 ? (
             this.props.hire.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "completed" ?  (
                 <div>
-                    <ManageCompletedHires hire={this.props.hire.filter(item => item.id === this.props.id)}></ManageCompletedHires>
+                    {/* <ManageCompletedHires hire={this.props.hire.filter(item => item.id === this.props.id)}></ManageCompletedHires> */}
+                    <ViewCompletedHire hire={this.props.hire.filter(item => item.id === this.props.id)}></ViewCompletedHire>
                 </div>
                 
             ) : this.props.hire.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "request" ? (
