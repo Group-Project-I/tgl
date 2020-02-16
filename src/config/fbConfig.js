@@ -14,7 +14,7 @@ var firebaseConfig = {
     appId: "1:10690174031:web:89c7488d5d17566b76de3a"
   };
 
-  // Initialize Firebase
+  // Initialize Firebase 
   firebase.initializeApp(firebaseConfig);
   // firebase.firestore().settings({ timestampsInSnapshots: true })
 const storage = firebase.storage();
