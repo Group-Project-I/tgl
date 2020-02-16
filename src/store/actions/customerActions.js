@@ -111,7 +111,7 @@ export const addNotifications=(notification,dataType,data)=>{
     :dataType =='hire decclined'?"Sorry your Hire has been cancelled "
     :dataType =='hire completed' ? "Hire completed" :null)
       ,
-      link:'/User/UserManageTools',
+      link:'/User/UserManageTools',   
       createdAt:new Date()}).then(() => {
           dispatch({type: 'Hire_Accept_Notication_Added'});
       }).catch((err) => {
@@ -119,17 +119,18 @@ export const addNotifications=(notification,dataType,data)=>{
       })
   }
 }
-export const showimage=(user)=> {
+export const getProfileImage=(user)=> {
   return(dispatch,getState,{getFirebase,getFirestore}) => {
-  var storage=firebase.storage()
-  var storageRef = firebase.storage().ref();
-  var spaceRef = storageRef.child('images/user');
-  storageRef.child('images/user').getDownloadURL().then(function(url) {
-      var test = url;
-      alert(url);
-      document.querySelector('img').src = test;
-  }).catch(function(error) {
-  })
+    // firestore.collection('users').doc(user).update({
+    //     ...user,
+    //     profilePic:imageUrl
+    //   }).then(()=>{
+    //       dispatch({type: 'Profile_Image_Added'});
+  
+    //     })
+
+  // }).catch(function(error) {
+  // })
 }
 }
  export const addProfileImage=(imageUrl)=>{
@@ -138,21 +139,16 @@ export const showimage=(user)=> {
     const auth= state.firebase.auth
     const firestore = getFirestore()
 
-    firestore.collection('users').doc(auth.uid).update({
+ 
+    return  firestore.collection('users').doc(auth.uid).set({
+      userType: 'customer',
+      disabled: false,
       profilePic:imageUrl
-     
-      }).then(()=>{
-            dispatch({type: 'Profile_Image_Added'});
-    
-          })
-
-    // firestore.collection('users').add({
-    //   ...user,
-    //   profilePic:imageUrl
-    // }).then(()=>{
-    //     dispatch({type: 'Profile_Image_Added'});
-
-    //   })
+     }).then(()=>{
+        dispatch({type: 'Profile_Image_Added'});
+      }).catch((err) => {
+        dispatch({type: 'Notificaton_Add_ERROR', err});
+    })
   }
  }
 // export const readNotication=()=>{

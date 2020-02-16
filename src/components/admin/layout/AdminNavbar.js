@@ -74,7 +74,7 @@ export class AdminNavbar extends Component{
                 return(
                 <div>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item style={{ border:'2px solid black', padding:'3.75px 0px', width:'330px'}}>
+                  <NavDropdown.Item style={{ border:'2px solid black', padding:'3.75px 0px', width:'auto',minWidth:'330px',textOverflow:'ellipsis'}}>
                     {notification.type === 'hire completed' ?
                       <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'green'}}>
                         <h6><MdEventAvailable size={28}/> {notification.data}</h6>

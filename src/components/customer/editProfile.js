@@ -40,7 +40,7 @@ class EditCustomer extends Component {
         if(this.props.customer){
             this.setState({
                 ...this.props.customer,loading: 0,updated: !this.state.updated
-            });
+            })
         }
     }
 
