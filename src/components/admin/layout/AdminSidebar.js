@@ -33,7 +33,10 @@ class Sidebar extends Component {
     for (let index = 0; index < arr.length; index++) {
       document.getElementById(arr[index]).className = "list-group-item list-group-item-action"
     }
-    document.getElementById(e.target.id).className = "list-group-item list-group-item-hover list-group-item-action"
+    if(e.target.id != 'admin'){
+      document.getElementById(e.target.id).className = "list-group-item list-group-item-hover list-group-item-action"
+    }
+    
   }
 
   // Gets the current URL path and adds hover to the list item the path is in 

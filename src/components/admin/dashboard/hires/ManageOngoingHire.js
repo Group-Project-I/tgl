@@ -8,6 +8,7 @@ import {completeHire} from '../../../../store/actions/adminHireActions'
 import { Squares } from 'react-activity';
 import 'react-activity/dist/react-activity.css';
 import Card from 'react-bootstrap/Card'
+import { Timeline, TimelineItem }  from 'vertical-timeline-component-for-react';
 
 // Ongoing hire page, A hire which is currently in progress
 // Admin can mark the hire as completed once it is completed 
@@ -178,7 +179,7 @@ class ManageOngoingHire extends Component {
                                     <h6>Pick up Date and Time</h6>
                                     <div className="row" style={{paddingTop: '40px'}}>
                                         <div className="col-6">
-                                            <h6 className="left"><b className='blue-text'>Cargo Pickup Date: </b> {moment(this.props.hire[0].pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</h6>
+                                            <h6 className="left"><b className='blue-text'>Cargo Pickup Date: </b> {moment(this.props.hire[0].pickupDatetime).format('MMMM Do YYYY, h:mm a')}</h6>
                                         </div>
                                     </div>
                                     <br/>
@@ -298,18 +299,36 @@ class ManageOngoingHire extends Component {
                                 </Card.Body>
                             </Card>
                         </div>
-                        <div className="container">
+                        <div className="container" style={{alignItems: "center"}}>
+                            
                             <form onSubmit={this.handleSubmit} >
                                 <br/>
                                 <Card border="primary" className="text-center">
                                     <Card.Header color="blue"><h5>Hire Status</h5></Card.Header>
                                     <Card.Body>
-                                    
+                                    <Timeline lineColor={'#ddd'} style={{alignItems:"center"}}>
+
+                                        {this.props.hire[0].timeline && Object.values(this.props.hire[0].timeline).sort((a,b) => a.id - b.id).map(item => {
+                                            return(
+                                                    <TimelineItem
+                                                        key={item.id}
+                                                        dateText={item.set ? moment(item.at.toDate()).format('MMM Do YYYY, h:mm a') : null}
+                                                        dateInnerStyle={item.set ? { background: '#61b8ff', color: '#000' } : { background: '#e86971', color: '#000' }}
+                                                        style={item.set ? { color: '#0aa61f' } : { color: '#e86971' }}
+                                                    >
+                                                    <h3>{item.title}</h3>
+                                                </TimelineItem>
+                                            )
+                                        })}
+                                        
+                                    </Timeline>
+                                    <Card.Footer>
+                                    <div className="input-field center" style={{paddingTop: '20px'}}>
+                                        <button className="btn green lighten-1 z-depth-0" type="submit">Hire Completed</button>
+                                    </div>
+                                    </Card.Footer>
                                     </Card.Body>
                                 </Card>
-                                <div className="input-field center" style={{paddingTop: '20px'}}>
-                                    <button className="btn green lighten-1 z-depth-0" type="submit">Hire Completed</button>
-                                </div>
                             </form>
                         </div>
                     </Card.Body>

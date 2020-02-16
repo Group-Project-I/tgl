@@ -91,7 +91,11 @@ export class AdminNavbar extends Component{
                       <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'purple'}}>
                         <h6><MdPersonAdd size={28} /> {notification.data}</h6>
                         {new Date((notification.createdAt.seconds + notification.createdAt.nanoseconds/1E9)*1000).toString().substr(0,24)}
-                      </Nav.Link> : null)))
+                      </Nav.Link> : (notification.type === 'driver rejected' ?
+                      <Nav.Link onClick={ () => this.props.readNotification(notification.id) } as={NavLink} to={notification.link} style={{color: 'red'}}>
+                        <h6><MdPersonAdd size={28} /> {notification.data}</h6>
+                        {new Date((notification.createdAt.seconds + notification.createdAt.nanoseconds/1E9)*1000).toString().substr(0,24)}
+                      </Nav.Link> : null))))
                     }
                   </NavDropdown.Item>  
                 </div>
