@@ -10,8 +10,8 @@ import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Redirect} from 'react-router-dom'
-import { Squares } from 'react-activity';
-import 'react-activity/dist/react-activity.css';
+import { Squares } from 'react-activity'
+import 'react-activity/dist/react-activity.css'
 
 // Connects components on the vehicle page 
 
