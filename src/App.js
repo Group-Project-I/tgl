@@ -50,7 +50,6 @@ import ManageTools from './components/customer/hires/CustManageTools'
 import Chat from './components/admin/dashboard/chat/Chat'
 import UserProfile from './components/customer/userProfile'
 import UserChat from './components/customer/chats/userChat'
-//import ManageCompletedHire from "./components/customer/hires/CustManageCompletedHires";
 
 import AdminNavbar from './components/admin/layout/AdminNavbar'
 
@@ -120,7 +119,6 @@ function App(props) {
               <Route path='/User/UserOngoingHires ' component={OngoingHire }/>
               <Route exact path='/User/UserManageTools' component={ManageTools}/>
               <Route path='/User/UserManageTools/:id' component={ManageHires}/>
-              {/*<Route exact path='/User/UserManageTools/pdf/:id' component={ManageCompletedHire}/>*/}
               <Route path='/User/UserCompletedHires' component={CompletedHires}/>
               <Route path='/User/UserDeclinedHires' component={DeclinedHire}/>
 
