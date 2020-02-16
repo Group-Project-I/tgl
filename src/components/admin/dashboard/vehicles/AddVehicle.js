@@ -3,6 +3,17 @@ import {connect} from 'react-redux'
 import {addVehicle} from '../../../../store/actions/adminActions'
 
 // Form to add vehicles to the system
+const validEmailRegex = 
+        RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+
+const validateForm = (errors) => {
+    let valid = true;
+    Object.values(errors).forEach(
+//  if we have an error string set valid to false
+        (val) => val.length > 0 && (valid = false)
+    );
+    return valid;
+    }
 class AddVehicle extends Component {
     state = {
         vehicleNo: '',
@@ -16,22 +27,55 @@ class AddVehicle extends Component {
         engineNo: '',
         chassisNo: '',
         remarks: '',
-        visibility: '1'
+        visibility: '1',
+        errors:{
+            chassisNo:'',
+            vehicleNo:'' 
+    }
 
     }
 
     handleChange = (e) => {
+        const { name, value } = e.target
+        let errors = this.state.errors
+        
+        switch (name) {
+            case 'vehicleNo': 
+            errors.vehicleNo = 
+            value.length < 7
+                ? 'Too short !' 
+                : value[0] >='A' && value[0] <='Z'  
+                    ?''
+                    :'Vehicle No. is not valid!';
+            break;
+            case 'chassicNo': 
+            errors.chassicNo = 
+                value.length < 6
+                ? ''
+                : ''
+            break;
+            default:
+            break;
+        }
         this.setState({
             [e.target.id]: e.target.value
         })
+
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.addVehicle(this.state)
+        if(validateForm(this.state.errors)) {
+            
+            console.info('Valid Form')
+          }else{
+            console.error('Invalid Form')
+          }
     }
 
     render() {
+        const{errors}=this.state
         return (
                 <div className="container">
                     <br/>
@@ -39,7 +83,10 @@ class AddVehicle extends Component {
                     <form onSubmit={this.handleSubmit} >
                         <div className="row">
                             <div className="input-field col-6">
-                                <input placeholder="Vehicle No" type="text" id="vehicleNo" onChange={this.handleChange} required />
+                                <input placeholder="Vehicle No" type="text" id="vehicleNo" name='vehicleNo' onChange={this.handleChange} required noValidate />
+                                {errors.vehicleNo.length > 0 && 
+                                    <small><span className='error red-text center'>{errors.vehicleNo}</span></small>
+                                    }
                             </div>
                             <div className="input-field col-6">
                                 <input placeholder="Trailer No" type="text" id="trailerNo" onChange={this.handleChange} required />
@@ -57,7 +104,11 @@ class AddVehicle extends Component {
                             </div>
                         </div>
                         <div className="input-field row col-4">
-                            <input placeholder="Chassis No" type="text" id="chassisNo" onChange={this.handleChange} required/>
+                            <input placeholder="Chassis No" type="text" id="chassisNo"  name='chassisNo' onChange={this.handleChange} required noValidate/>
+                            {
+                            errors.chassisNo.length > 0 && 
+                                    <small><span className='error red-text center'>{errors.chassisNo}</span></small>
+                                    }
                         </div>
                         <div className="input-field row col-4">
                             <input placeholder="Initial Milage" type="text" id="initialMilage" onChange={this.handleChange} required />
@@ -72,7 +123,7 @@ class AddVehicle extends Component {
                             <div className="input-field col-4">
                                 <input placeholder="Insurer" type="text" id="insurer" onChange={this.handleChange} />
                             </div>
-                        </div>
+                        </div>    
                         <div className="input-field row col-6">
                             <textarea placeholder="Remarks" style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange}/>
                         </div>

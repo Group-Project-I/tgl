@@ -5,10 +5,8 @@ import {readMessage} from '../../../store/actions/adminActions'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import moment from 'moment'
-import 'simplebar'
-import 'simplebar/dist/simplebar.css'
-import firebase, { firestore } from 'firebase/app';
-import 'firebase/firestore';
+// import 'simplebar'
+// import 'simplebar/dist/simplebar.css'
 import {Chat,addResponseMessage,addUserMessage} from 'react-chat-popup'
 
 export class UserChat extends React.Component{
@@ -23,24 +21,17 @@ export class UserChat extends React.Component{
             messages:''
           }   
    }
-    // componentWillMount() {
-    //     addResponseMessage("Welcome to Trans Global Logistics!");
-    //     // addResponseMessage(this.state.messages)
-    //     // var x =this.state.messages
-    //     // var response
-    //     // x.forEach(function(obj){
-    //     //     response = obj.message
-    //     //     addResponseMessage(response)
-
-    //     // })
-       
-    //   }
+    componentDidMount() {
  
-    handleNewUserMessage = (newMessage) => {
+        addResponseMessage("Welcome to Trans Global Logistics!");
+      
+      }
+ 
+    handleNewUserMessage =(newMessage)=> {
         console.log(`New message incomig! ${newMessage}`);
-        // Now send the message throught the backend API
-            this.props.sendMessage(newMessage, this.props.auth.uid, this.state.adminId)
-        // }
+// send the message throught the backend API
+        this.props.sendMessage(newMessage, this.props.auth.uid, this.state.adminId)
+      
     
       }
    
@@ -51,7 +42,7 @@ export class UserChat extends React.Component{
         x.forEach(function(obj){
             msgs = obj.messages
         })
-        console.log(this.state)
+        // console.log(this.state)
         this.setState({
             messages: msgs,
             loading: 0
@@ -59,13 +50,14 @@ export class UserChat extends React.Component{
         }
     }
     render(){
-        const {auth,chats} =this.props
+        const {auth} =this.props
         return(
            <div>
                 <Chat
                 handleNewUserMessage={this.handleNewUserMessage}
+              
                 />
-                {this.state.messages && this.state.messages.map(message => {
+                  {this.state.messages && this.state.messages.map(message => {
                     message.sender === auth.uid 
                         ?addUserMessage(message.message)
                         :addResponseMessage(message.message)
