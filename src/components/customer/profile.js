@@ -96,10 +96,7 @@ class Profile extends Component {
             <div className=" container  " >
                 <div className="row">
                 
-                <img id='myImg' src={ 
-                 this.state.url ||
-                     require('../../img/profile.png')
-                    } class="mx-auto img-fluid img-circle d-block " alt="avatar"  style={{borderRadius:'50%',width:'250px'}}/>
+                <img id='myImg' src={this.state.url ||require('../../img/profile.png')} class="mx-auto img-fluid img-circle d-block " alt="avatar"  style={{borderRadius:'50%',width:'250px'}}/>
                 <br/><br/><br/><br/>
                     <label class="custom-file"><br/>
                     <input type="file" id="file" name='image' onChange={this.handlechange}  class="custom-file-control  btn btn-info"/><br/>

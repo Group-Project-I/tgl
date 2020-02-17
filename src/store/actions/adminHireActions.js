@@ -194,7 +194,7 @@ export const acceptHireRequest = (id, hireRequest) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
         const cust=firestore.collection('hires').doc(id).customerId
-
+        
         firestore.collection('hires').doc(id).update({
             driverName: hireRequest.driverName,
             driverId: hireRequest.driverId,
