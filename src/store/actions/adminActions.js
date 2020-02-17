@@ -36,7 +36,8 @@ export const addCustomer = (newCustomer) => {
             var docRef = firestore.collection('users').doc(resp.user.uid)
             // secondaryApp.auth().signOut();
             return docRef.set({
-                userType: 'customer'
+                userType: 'customer',
+                disabled: false,
             }).then(() => {
                 return firestore.collection('customers').doc(docRef.id).set({
                     firstName: newCustomer.firstName,
