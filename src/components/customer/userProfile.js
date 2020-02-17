@@ -51,9 +51,9 @@ class UserProfile extends Component {
         if (!auth.uid) return <Redirect to='/signin' />
 
      const load = this.state.loading === 0 ? (
-     <div style={{backgroundColor:' #cde7e9 '}}>
+     <div style={{backgroundColor:' #9fa1a1 '}}>
         <div className="container-fluid" 
-        style={{backgroundColor:'#cde7e9 ' ,height:'100%',backgroundImage:'{{+Image+}}'}}
+        style={{backgroundColor:'#9fa1a1 ' ,height:'100%',backgroundImage:'{{+Image+}}'}}
          >
         <br/><br/>
     {/* Display update  success message */}
