@@ -103,12 +103,11 @@ constructor(props){
                         <span class="custom-file-control">Choose file</span>
                     </label> */}
                 <div className=''>
-                <img id='myImg' src={this.state.url || require('../../../../img/truck.jpg')} class="mx-auto img-fluid img-circle d-block " alt="avatar"  style={{borderRadius:'50%',width:'250px'}}/>
-                <br/><br/><br/><br/>
-                    <label class="custom-file"><br/>
+                <img id='myImg' src={this.state.url || require('../../../../img/truck.jpg')} class="mx-auto img-fluid img-circle d-block " alt="avatar"  style={{width:'250px'}}/>
+              <label class="custom-file"><br/>
                     <input type="file" id="file" name='image' onChange={this.handlechange}  class="custom-file-control  btn btn-info"/><br/>
                     <button class="custom-file-control  btn blue lighten-1 z-depth-0" onClick={this.handleupdate}>Upload</button>
-                    </label><br/>
+                    </label><br/><br/><br/>
                     {
                         this.state.showProgressBar ? <progress value={this.state.progress} max='100'/>:null
                     }

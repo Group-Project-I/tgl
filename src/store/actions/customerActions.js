@@ -104,12 +104,14 @@ export const addNotifications=(notification,dataType,data)=>{
     const firestore = getFirestore()
     firestore.collection('notifications').add({
       ...notification,
+  // users will recieve notification only from admin  
       from:'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
       to:auth.uid,
       data:
     ( dataType =='hire accepted'?"Hire Accepted"
     :dataType =='hire decclined'?"Sorry your Hire has been cancelled "
-    :dataType =='hire completed' ? "Hire completed" :null)
+    :dataType =='hire completed' ? "Hire completed" 
+    :dataType== 'new message' ? "You have a New Message.Check your messages":null)
       ,
       link:'/User/UserManageTools',   
       createdAt:new Date()}).then(() => {
@@ -121,13 +123,13 @@ export const addNotifications=(notification,dataType,data)=>{
 }
 export const getProfileImage=(user)=> {
   return(dispatch,getState,{getFirebase,getFirestore}) => {
-    // firestore.collection('users').doc(user).update({
-    //     ...user,
-    //     profilePic:imageUrl
-    //   }).then(()=>{
-    //       dispatch({type: 'Profile_Image_Added'});
+  //   firestore.collection('users').doc(user).get({
+  //       ...user,
+  //       profilePic:imageUrl
+  //     }).then(()=>{
+  //         dispatch({type: 'Profile_Image_Added'});
   
-    //     })
+  //       })
 
   // }).catch(function(error) {
   // })

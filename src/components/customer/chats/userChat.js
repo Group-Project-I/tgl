@@ -7,7 +7,7 @@ import {compose} from 'redux'
 import moment from 'moment'
 // import 'simplebar'
 // import 'simplebar/dist/simplebar.css'
-import {Chat,addResponseMessage,addUserMessage} from 'react-chat-popup'
+import {Chat,addResponseMessage,addUserMessage,badge} from 'react-chat-popup'
 
 export class UserChat extends React.Component{
     
@@ -53,7 +53,7 @@ export class UserChat extends React.Component{
            <div>
                 <Chat
                 handleNewUserMessage={this.handleNewUserMessage}
-              
+                badge
                 />
                   {this.state.messages && this.state.messages.map(message => {
                     message.sender === auth.uid 
