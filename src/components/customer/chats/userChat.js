@@ -5,9 +5,10 @@ import {readMessage} from '../../../store/actions/adminActions'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import moment from 'moment'
+import {logo} from '../../../img/profile.png'
 // import 'simplebar'
 // import 'simplebar/dist/simplebar.css'
-import {Chat,addResponseMessage,addUserMessage,badge} from 'react-chat-popup'
+import {Chat,addResponseMessage,addUserMessage,badge,title} from 'react-chat-popup'
 
 export class UserChat extends React.Component{
     
@@ -23,7 +24,7 @@ export class UserChat extends React.Component{
    }
     componentDidMount() {
  
-        addResponseMessage("Welcome to Trans Global Logistics!");
+        // addResponseMessage("Welcome to Trans Global Logistics!");
       
       }
  
@@ -53,7 +54,10 @@ export class UserChat extends React.Component{
            <div>
                 <Chat
                 handleNewUserMessage={this.handleNewUserMessage}
-                badge
+                profileAvatar={logo}
+                badge={5}
+                title='Trans Global Logistics'
+                subtitle='Welcome'
                 />
                   {this.state.messages && this.state.messages.map(message => {
                     message.sender === auth.uid 
