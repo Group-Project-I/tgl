@@ -63,7 +63,7 @@ class Chat extends React.Component {
             this.setState({
                 messages: msgs,
                 loading: 0,
-                profilePics: this.props.users.map((x,y) => {return {id: x.id, pic:x.profilePic}})
+                // profilePics: this.props.users.map((x,y) => {return {id: x.id, pic:x.profilePic}})
             })
         }
       }
@@ -93,14 +93,14 @@ class Chat extends React.Component {
                         {/* Lists the chat list on the left hand side of the component */}
                         <div className="inbox_chat">
                             {chats && chats.map(chat =>{
-                                var data
-                                data = this.state.profilePics.filter(item => item.id === chat.id).forEach(function(obj){
-                                    data = obj.profilePic
-                                })
+                                // var data
+                                // data = Object.values(this.state.profilePics).filter(item => item.id === chat.id).forEach(function(obj){
+                                //     data = obj.profilePic
+                                // })
                                 return(
                                     <div className="chat_list" id={chat.id} onClick={() => this.chatClick(chat)} onMouseDown = {() => this.chatClick(chat)} onMouseUp = {() => this.chatClick(chat)}>
                                     <div className="chat_people">
-                                        <div className="chat_img"><img className="chatImg" src={data ? data :"https://ptetutorials.com/images/user-profile.png"} alt="sunil" /> </div>
+                                        <div className="chat_img"><img className="chatImg" src={"https://ptetutorials.com/images/user-profile.png"} alt="sunil" /> </div>
                                         <div className="chat_ib">
                                         <h5>{chat.userName}<span className="chat_date">{moment(chat.messages[chat.messages.length - 1].time.toDate()).format('MMM Do YYYY')}</span>{chat.read === 'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2' ? <MdLens style={{paddingLeft: '3px', color:'green'}}></MdLens> : null}</h5>
                                         <p>{chat.messages[chat.messages.length - 1].message}</p>
