@@ -36,7 +36,7 @@ export const addImportHire = (importHire) => {
                     id: 1,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/interstate-truck.png',
-                    title: 'Truck Dispatched'
+                    title: 'Truck Dispatched',
                 },
                 atCargoLocation: {
                     set:0,
@@ -194,7 +194,7 @@ export const acceptHireRequest = (id, hireRequest) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
         const cust=firestore.collection('hires').doc(id).customerId
-
+        
         firestore.collection('hires').doc(id).update({
             driverName: hireRequest.driverName,
             driverId: hireRequest.driverId,

@@ -38,8 +38,8 @@ class AddDriver extends Component {
     }
 
     handleChange = (e) => {
-        const{name,value} = e.target
-        const errors = this.state.errors
+        const {name,value} = e.target
+        let errors = this.state.errors
 
         switch(name){
             case 'email':
@@ -51,8 +51,8 @@ class AddDriver extends Component {
             case 'nic':
                 errors.nic=
                 value.length <10
-                ?'Too short for NIC'
-                :value.length ===10 && value[9] !== 'V'
+                ? 'Too short for NIC'
+                : value.length ===10 && value[9] !== 'v'
                     ?'Invalid type for NIC'
                     :value.length >12
                         ?'Too long for NIC'

@@ -48,28 +48,28 @@ class AddCustomer extends Component {
             errors.email = 
                 validEmailRegex.test(value)
                 ? ''
-                : 'Email is not valid!';
+                : 'Email is not valid';
             break;
             case 'password': 
             errors.password = 
                 value.length < 6
-                ? 'Password must be 6 characters long!'
+                ? 'Password must be 6 characters long'
                 : ''
             break;
             case 'nic': 
                 errors.nic = 
                 value.length <10 
-                ? 'NIC is too short !'
-                : value.length === 10 && value[9] !== 'V'
+                ? 'NIC is too short'
+                : value.length === 10 && value[9] !== 'v'
                     ? 'Invalid type for NIC'
                     :value.length >12
-                        ?'NIC is too long !'
+                        ?'NIC is too long'
                         :''
             break;
             case 'mobile': 
             errors.mobile = 
                 value.length < 10
-                ? 'Too short for Mobile No:!'
+                ? 'Too short for Mobile No.(Ex: 07xxxxxxxx)'
                 : ''
             break;
             default:
