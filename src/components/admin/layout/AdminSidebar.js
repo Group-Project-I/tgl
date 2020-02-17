@@ -33,7 +33,7 @@ class Sidebar extends Component {
     for (let index = 0; index < arr.length; index++) {
       document.getElementById(arr[index]).className = "list-group-item list-group-item-action"
     }
-    if(e.target.id != 'admin'){
+    if(arr.includes(e.target.id)){
       document.getElementById(e.target.id).className = "list-group-item list-group-item-hover list-group-item-action"
     }
     

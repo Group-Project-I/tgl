@@ -25,9 +25,14 @@ class ManageCustomer extends Component {
 
     UNSAFE_componentWillReceiveProps(nextProps) {
         
-        if(this.props.customer){
+        if(this.props.customer && this.props.user){
+            var data
+            this.props.user.filter(item => item.id === this.props.id).forEach(function(obj){
+                data = obj.profilePic
+            })
             this.setState({
-                loading: 0
+                loading: 0,
+                user: data
             });
         }
     }
@@ -43,8 +48,8 @@ class ManageCustomer extends Component {
         const load = this.state.loading === 0 ? (
             <div id="content" className="container-fluid" role="main">
                 <br/><br/><br/><br/>
-
-                <CustomerProfile customer={this.props.customer[0]} id={this.props.id}></CustomerProfile>
+                {console.log(this.state.user)}
+                <CustomerProfile customer={this.props.customer[0]} id={this.props.id} user={this.state.user ? this.state.user : 1}></CustomerProfile>
 
                 <Tabs className="center">
                     <TabList className="left">
@@ -86,7 +91,8 @@ const mapStateToProps = (state, ownProps) => {
         id: id,
         auth: state.firebase.auth,
         hires: state.firestore.ordered.hires,
-        customer: state.firestore.ordered.customers
+        customer: state.firestore.ordered.customers,
+        user: state.firestore.ordered.users
     }
 }
 
@@ -94,6 +100,7 @@ export default compose(
     connect(mapStateToProps),
     firestoreConnect(props => [
         {collection: 'hires'},
-        {collection: 'customers', doc: props.id}
+        {collection: 'customers', doc: props.id},
+        {collection: 'users'}
     ])
 )(ManageCustomer)

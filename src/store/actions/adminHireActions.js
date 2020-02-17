@@ -36,7 +36,7 @@ export const addImportHire = (importHire) => {
                     id: 1,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/interstate-truck.png',
-                    title: 'Truck Dispatched'
+                    title: 'Truck Dispatched',
                 },
                 atCargoLocation: {
                     set:0,

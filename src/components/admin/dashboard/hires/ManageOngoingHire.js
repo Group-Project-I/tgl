@@ -307,7 +307,7 @@ class ManageOngoingHire extends Component {
                                     <Card.Header color="blue"><h5>Hire Status</h5></Card.Header>
                                     <Card.Body>
                                     <Timeline lineColor={'#ddd'} style={{alignItems:"center"}}>
-
+                                        {console.log('boom',this.props.hire[0].timeline)}
                                         {this.props.hire[0].timeline && Object.values(this.props.hire[0].timeline).sort((a,b) => a.id - b.id).map(item => {
                                             return(
                                                     <TimelineItem
