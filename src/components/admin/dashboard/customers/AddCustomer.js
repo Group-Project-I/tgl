@@ -60,7 +60,7 @@ class AddCustomer extends Component {
                 errors.nic = 
                 value.length <10 
                 ? 'NIC is too short'
-                : value.length === 10 && value[9] !== 'v'
+                : value.length === 10 && value[9] !== 'V'
                     ? 'Invalid type for NIC'
                     :value.length >12
                         ?'NIC is too long'

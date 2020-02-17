@@ -27,56 +27,69 @@ export const addImportHire = (importHire) => {
             vehicleNo: importHire.vehicleNo,
             remarks: importHire.remarks,
             hireType: 'import',
-            hireStatus: 'driverPending',
+            hireStatus: 'completed',
             createAt: new Date(),
+            completedDatetime:new Date(2019,1,24,15,33,30),
             timeline: {
                 truckDispatched: {
-                    set:0,
+                    set:1,
                     val: 'truckDispatched',
                     id: 1,
-                    bg: '#f6f6f6',
+                    bg: 'green',
                     img: 'https://img.icons8.com/color/48/000000/interstate-truck.png',
                     title: 'Truck Dispatched',
+                    at:new Date(2019,1,24,10,33,30)
+
                 },
                 atCargoLocation: {
-                    set:0,
+                    set:1,
                     val: 'atCargoLocation',
                     id: 2,
-                    bg: '#f6f6f6',
+                    bg: 'green',
                     img: 'https://img.icons8.com/color/48/000000/cargo-ship.png',
-                    title: 'At Cargo Location'
+                    title: 'At Cargo Location',
+                    at:new Date(2019,1,24,11,33,30)
+
                 },
                 cargoLoaded: {
-                    set:0,
+                    set:1,
                     val: 'cargoLoaded',
                     id: 3,
-                    bg: '#f6f6f6',
+                    bg: 'green',
                     img: 'https://img.icons8.com/color/48/000000/container-truck.png',
-                    title: 'Cargo Loaded'
+                    title: 'Cargo Loaded',
+                    at:new Date(2019,1,24,12,33,30)
+
+
                 },
                 inTransit: {
-                    set:0,
+                    set:1,
                     val: 'inTransit',
                     id: 4,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/in-transit.png',
-                    title: 'In Transit'
+                    title: 'In Transit',
+                    at:new Date(2019,1,24,13,33,30)
+
                 },
                 destinationReached: {
-                    set:0,
+                    set:1,
                     val: 'destinationReached',
                     id: 5,
-                    bg: '#f6f6f6',
+                    bg: 'green',
                     img: 'https://img.icons8.com/color/48/000000/fork-lift.png',
-                    title: 'Destination Reached'
+                    title: 'Destination Reached',
+                    at:new Date(2019,1,24,14,33,30)
+
                 },
                 hireCompleted: {
-                    set:0,
+                    set:1,
                     val: 'hireCompleted',
                     id: 6,
-                    bg: '#f6f6f6',
+                    bg: 'green',
                     img: 'hhttps://img.icons8.com/color/48/000000/checked-truck.png',
-                    title: 'Hire Completed'
+                    title: 'Hire Completed',
+                    at:new Date(2019,1,24,15,33,30)
                 },
             }
         }).then(() => {
@@ -118,64 +131,80 @@ export const addExportHire = (exportHire) => {
             vehicleNo: exportHire.vehicleNo,
             remarks: exportHire.remarks,
             hireType: 'export',
-            hireStatus: 'driverPending',
+            hireStatus: 'completed',
             createAt: new Date(),
+            completedDatetime:new Date(2019,1,24,15,33,30),
+
             timeline: {
                 truckDispatched: {
-                    set:0,
+                    set:1,
                     val: 'truckDispatched',
                     id: 1,
-                    bg: '#f6f6f6',
+                    bg: 'green',
                     img: 'https://img.icons8.com/color/48/000000/interstate-truck.png',
-                    title: 'Truck Dispatched'
+                    title: 'Truck Dispatched',
+                    at:new Date(2019,1,24,9,33,30)
+
                 },
                 atContainerLocation: {
-                    set:0,
+                    set:1,
                     val: 'atContainerLocation',
                     id: 2,
-                    bg: '#f6f6f6',
+                    bg: 'green',
                     img: 'https://img.icons8.com/color/48/000000/shipping-container.png',
-                    title: 'At Container Location'
+                    title: 'At Container Location',
+                    at:new Date(2019,1,24,10,33,30)
+
                 },
                 inTransit: {
-                    set:0,
+                    set:1,
                     val: 'inTransit',
                     id: 3,
-                    bg: '#f6f6f6',
+                    bg: 'green',
                     img: 'https://img.icons8.com/color/48/000000/in-transit.png',
-                    title: 'In Transit'
+                    title: 'In Transit',
+                    at:new Date(2019,1,24,11,33,30)
+
                 },
                 cargoLoaded: {
-                    set:0,
+                    set:1,
                     val: 'cargoLoaded',
                     id: 4,
-                    bg: '#f6f6f6',
+                    bg: 'green',
                     img: 'https://img.icons8.com/color/48/000000/container-truck.png',
-                    title: 'Cargo Loaded'
+                    title: 'Cargo Loaded',
+                    at:new Date(2019,1,24,12,33,30)
+
                 },
                 inTransit2: {
-                    set:0,
+                    set:1,
                     val: 'inTransit2',
                     id: 5,
-                    bg: '#f6f6f6',
+                    bg: 'green',
                     img: 'https://img.icons8.com/color/48/000000/in-transit.png',
-                    title: 'In Transit'
+                    title: 'In Transit',
+                    at:new Date(2019,1,24,13,33,30)
+
                 },
                 portReached: {
-                    set:0,
+                    set:1,
                     val:'portReached',
                     id: 6,
-                    bg: '#f6f6f6',
+                    bg: 'green',
                     img: 'https://img.icons8.com/color/48/000000/cargo-ship.png',
-                    title: 'Port Reached'
+                    title: 'Port Reached',
+                    at:new Date(2019,1,24,14,33,30)
+
                 },
                 hireCompleted: {
-                    set:0,
+                    set:1,
                     val: 'hireCompleted',
                     id: 7,
-                    bg: '#f6f6f6',
+                    bg: 'green',
                     img: 'https://img.icons8.com/color/48/000000/checked-truck.png',
-                    title: 'Hire Completed'
+                    title: 'Hire Completed',
+                    at:new Date(2019,1,24,15,33,30)
+
                 },
             }
         }).then(() => {
