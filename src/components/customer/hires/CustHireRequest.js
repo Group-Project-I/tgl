@@ -8,7 +8,7 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Redirect, withRouter} from 'react-router-dom'
 
-
+// Filter import and export hire requests and displays them in a tab view with sorting and filtering
 class HireRequests extends Component {
     static defaultProps = { // <-- DEFAULT PROPS
         hire: []

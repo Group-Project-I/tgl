@@ -10,7 +10,7 @@ import DeclinedHire from './CustDeclinedHires';
 import OngoingHire from './CustOngoingHire';
 
 
-
+//Manage completed,requested,ongoing and declined hire details
 class ManageTools extends Component {
 
     static defaultProps = { // <-- DEFAULT PROPS
@@ -34,7 +34,6 @@ class ManageTools extends Component {
 
     render() {
         const {auth, id, hire} = this.props
-        // if (!auth.uid) return <Redirect to='/signin' />
 
 
         return (

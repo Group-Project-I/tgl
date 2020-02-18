@@ -9,7 +9,12 @@ import ManageDeclinedHire from './CustManageDeclinedHires';
 import ManageOngoingHires from './CustManageOngoingHire';
 import ManageCompletedHireDetails from "./CustManageCompletedHireDetails";
 
-
+// Component to manage hires based on their status
+// request - new hire request
+// driverPending - driver assigned but not yet accepted
+// ongoing - driver accepted and the hire is ongoing
+// completed - the hire is completed
+//declined - the hire is declined
 class ManageHires extends Component {
 
     static defaultProps = { // <-- DEFAULT PROPS

@@ -1,3 +1,5 @@
+// Add Import hire from the authenticated customer account
+
 export const addImportHires = (importHire) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
@@ -84,6 +86,7 @@ export const addImportHires = (importHire) => {
     }
 };
 
+// Add Export hire from the authenticated customer account
 export const addExportHires = (exportHire) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
@@ -177,6 +180,8 @@ export const addExportHires = (exportHire) => {
     }
 };
 
+//Customer can decline requested hires
+// Hire status is changed to declined when customer declines a hire request
 export const declineHireRequests = (id) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
@@ -190,6 +195,7 @@ export const declineHireRequests = (id) => {
     }
 };
 
+//Customer can update requested hires
 export const updateRequest = (id,data,hireRequest) => {
 
     return(dispatch, getState, {getFirebase, getFirestore}) => {
