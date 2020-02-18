@@ -115,7 +115,7 @@ export const addExportHires = (exportHire) => {
                     set:0,
                     val: 'truckDispatched',
                     id: 1,
-                    bg: '#f6f6f6',
+                    bg: 'green',
                     img: 'https://img.icons8.com/color/48/000000/interstate-truck.png',
                     title: 'Truck Dispatched'
                 },
@@ -123,7 +123,7 @@ export const addExportHires = (exportHire) => {
                     set:0,
                     val: 'atContainerLocation',
                     id: 2,
-                    bg: '#f6f6f6',
+                    bg: 'green',
                     img: 'https://img.icons8.com/color/48/000000/shipping-container.png',
                     title: 'At Container Location'
                 },
@@ -131,7 +131,7 @@ export const addExportHires = (exportHire) => {
                     set:0,
                     val: 'inTransit',
                     id: 3,
-                    bg: '#f6f6f6',
+                    bg: 'green',
                     img: 'https://img.icons8.com/color/48/000000/in-transit.png',
                     title: 'In Transit'
                 },
@@ -139,7 +139,7 @@ export const addExportHires = (exportHire) => {
                     set:0,
                     val: 'cargoLoaded',
                     id: 4,
-                    bg: '#f6f6f6',
+                    bg: 'green',
                     img: 'https://img.icons8.com/color/48/000000/container-truck.png',
                     title: 'Cargo Loaded'
                 },
