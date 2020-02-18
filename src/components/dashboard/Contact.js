@@ -28,6 +28,9 @@ class Contact extends React.Component{
             reply_to: this.state.email
         }
         this.props.sendFeedback(variables)
+        // this.setState({
+        //    [ e.target.value]:null
+        // })
     }
 
  
