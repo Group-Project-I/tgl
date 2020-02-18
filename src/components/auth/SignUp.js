@@ -27,10 +27,12 @@ class SignUp extends Component {
             mobile: '',
             dob: '',
             nic: '',
+            valid:'',
             errors:{
                 email: '',
                 nic: '',
                 mobile: '',
+                dob:'',
                 password:'' ,
                 confPassword:'',
                 dob: ''
@@ -87,6 +89,12 @@ class SignUp extends Component {
                 ? 'Invalid Mobile No.(Ex: 07xxxxxxxx)'
                 : ''
             break;
+            case 'dob':
+                errors.dob=
+                new Date(value) > Date.now()
+                ?'Invalid Date Of Birth.Check again'
+                :''
+            break
             default:
             break;
         }
@@ -102,8 +110,10 @@ class SignUp extends Component {
         event.preventDefault();
         // console.log(this.state);
         if(validateForm(this.state.errors)) {
-            
             console.info('Valid Form')
+            this.setState({
+                valid:'valid'
+            })
           }else{
             console.error('Invalid Form')
           }
@@ -122,6 +132,8 @@ class SignUp extends Component {
         const {errors} = this.state
 
         if (auth.uid) return <Redirect to='/signin' />
+        if(this.state.valid)return <Redirect to='/' />
+
         return (
             <div className="loginBody">
                 <div className="container">

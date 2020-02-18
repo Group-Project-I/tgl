@@ -5,9 +5,7 @@ import {readMessage} from '../../../store/actions/adminActions'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import moment from 'moment'
-// import 'simplebar'
-// import 'simplebar/dist/simplebar.css'
-import {Chat,addResponseMessage,addUserMessage,badge} from 'react-chat-popup'
+import {Chat,addResponseMessage,addUserMessage,badge,title} from 'react-chat-popup'
 
 export class UserChat extends React.Component{
     
@@ -23,11 +21,10 @@ export class UserChat extends React.Component{
           }   
    }
     componentDidMount() {
-        // addResponseMessage("Welcome to Trans Global Logistics!");  
-        console.log('messages-> props') 
-        console.log(this.props) 
-        console.log(this.props.customers.id) 
-    }
+ 
+        // addResponseMessage("Welcome to Trans Global Logistics!");
+      
+      }
  
     handleNewUserMessage =(newMessage)=> {
         console.log(`New message incomig! ${newMessage}`);
