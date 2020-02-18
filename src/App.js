@@ -57,10 +57,14 @@ function App(props) {
   
   const {type, auth} = props;
 
+  // If the user type is admin update the local storage => userId = admin
+  // This is used to render admin navbar and sidebar components
   if(type.userType === 'admin'){
     localStorage.setItem("userId", 'admin') 
   }
 
+  // Not rendering the footer if the user type is admin
+  // Admin sidebar and admin navbar is rendered if the user type is admin
   const link = type.userType === "admin" ? null : <Footer/>
   const sidebar = localStorage.getItem('userId') === 'admin' ? <AdminSidebar/> : null
   const nav = localStorage.getItem('userId') === 'admin' ? <AdminNavbar/> : <Navbar/>

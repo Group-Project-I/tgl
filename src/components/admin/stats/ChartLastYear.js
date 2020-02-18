@@ -6,12 +6,12 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 
 
+// Generate a chart based on hires completed in the previous year grouped by month
 class ChartLastYear extends Component {
   static defaultProps = {
       hires: []       
   }
 
-  
 
   render(){
     const options = {

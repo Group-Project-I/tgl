@@ -36,7 +36,7 @@ export const addImportHires = (importHire) => {
                     title: 'Truck Dispatched',
                 },
                 atCargoLocation: {
-                    set:1,
+                    set:0,
                     val: 'atCargoLocation',
                     id: 2,
                     bg: '#f66f6',
@@ -44,7 +44,7 @@ export const addImportHires = (importHire) => {
                     title: 'At Cargo Location',
                 },
                 cargoLoaded: {
-                    set:1,
+                    set:0,
                     val: 'cargoLoaded',
                     id: 3,
                     bg: '#f66f6',
@@ -52,7 +52,7 @@ export const addImportHires = (importHire) => {
                     title: 'Cargo Loaded',
                 },
                 inTransit: {
-                    set:1,
+                    set:0,
                     val: 'inTransit',
                     id: 4,
                     bg: '#f66f6',
@@ -60,7 +60,7 @@ export const addImportHires = (importHire) => {
                     title: 'In Transit',
                 },
                 destinationReached: {
-                    set:1,
+                    set:0,
                     val: 'destinationReached',
                     id: 5,
                     bg: '#f66f6',
@@ -68,7 +68,7 @@ export const addImportHires = (importHire) => {
                     title: 'Destination Reached',
                 },
                 hireCompleted: {
-                    set:1,
+                    set:0,
                     val: 'hireCompleted',
                     id: 6,
                     bg: '#f66f6',
@@ -115,7 +115,7 @@ export const addExportHires = (exportHire) => {
             createAt: new Date(),
             timeline:{
                 truckDispatched: {
-                    set:1,
+                    set:0,
                     val: 'truckDispatched',
                     id: 1,
                     bg: '#f66f6',
@@ -123,7 +123,7 @@ export const addExportHires = (exportHire) => {
                     title: 'Truck Dispatched',
                 },
                 atContainerLocation: {
-                    set:1,
+                    set:0,
                     val: 'atContainerLocation',
                     id: 2,
                     bg: '#f66f6',
@@ -131,7 +131,7 @@ export const addExportHires = (exportHire) => {
                     title: 'At Container Location',
                 },
                 inTransit: {
-                    set:1,
+                    set:0,
                     val: 'inTransit',
                     id: 3,
                     bg: '#f66f6',
@@ -139,7 +139,7 @@ export const addExportHires = (exportHire) => {
                     title: 'In Transit',
                 },
                 cargoLoaded: {
-                    set:1,
+                    set:0,
                     val: 'cargoLoaded',
                     id: 4,
                     bg: '#f66f6',
@@ -147,7 +147,7 @@ export const addExportHires = (exportHire) => {
                     title: 'Cargo Loaded',
                 },
                 inTransit2: {
-                    set:1,
+                    set:0,
                     val: 'inTransit2',
                     id: 5,
                     bg: '#f66f6',
@@ -155,7 +155,7 @@ export const addExportHires = (exportHire) => {
                     title: 'In Transit',
                 },
                 portReached: {
-                    set:1,
+                    set:0,
                     val:'portReached',
                     id: 6,
                     bg: '#f66f6',
@@ -163,7 +163,7 @@ export const addExportHires = (exportHire) => {
                     title: 'Port Reached',
                 },
                 hireCompleted: {
-                    set:1,
+                    set:0,
                     val: 'hireCompleted',
                     id: 7,
                     bg: '#f66f6',

@@ -31,7 +31,8 @@ class AddCustomer extends Component {
             email: '',
             nic: '',
             mobile: '',
-            password:''     
+            password:'',
+            dob:''     
     }
     }
 
@@ -53,25 +54,45 @@ class AddCustomer extends Component {
             case 'password': 
             errors.password = 
                 value.length < 6
-                ? 'Password must be 6 characters long'
+                ? 'Password must be at least 6 characters long'
                 : ''
             break;
+            case 'confPassword':
+                errors.confPassword=
+                value.length<6
+                ? 'Password must be at least 6 characters long'
+                : value != this.state.password
+                    ?'Password you entered does not match '
+                    :''
+            break;  
             case 'nic': 
                 errors.nic = 
                 value.length <10 
                 ? 'NIC is too short'
-                : value.length === 10 && value[9] !== 'V'
-                    ? 'Invalid type for NIC'
+                : value.length === 10 
+                    ?  value[9] === 'v' || value[9] ==='V'
+                        ? ''
+                        :'Invalid type for NIC'
                     :value.length >12
                         ?'NIC is too long'
                         :''
             break;
             case 'mobile': 
-            errors.mobile = 
-                value.length < 10
+            errors.mobile =
+            isNaN(value)
+            ?'Mobile should not contain any characters' 
+            : value.length < 10
                 ? 'Too short for Mobile No.(Ex: 07xxxxxxxx)'
-                : ''
+                : value.length>10
+                    ?'Too long for Mobile No.(Ex: 07xxxxxxxx)'
+                    :''
             break;
+            case 'dob':
+                errors.dob=
+                new Date(value) > Date.now()
+                ?'Invalid Date Of Birth.Check again'
+                :''
+            break
             default:
             break;
         }
@@ -126,7 +147,11 @@ class AddCustomer extends Component {
                            }
                             </div>
                             <div className="input-field col-6">
-                                <input placeholder="Date of Birth" onFocus={this.handleDate} type="text" id="dob" onChange={this.handleChange} required />
+                                <input placeholder="Date of Birth" onFocus={this.handleDate} type="text" id="dob" name='dob' onChange={this.handleChange} required noValidate />
+                                {
+                               errors.dob.length >0 &&
+                               <small><span className='error red-text center'>{errors.dob}</span></small>
+                           }
                             </div>
                         </div>
                         <div className="row">
