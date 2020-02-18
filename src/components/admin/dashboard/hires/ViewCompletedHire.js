@@ -29,7 +29,7 @@ class ViewCompletedHire extends Component {
 
     componentWillReceiveProps(nextProps) {
         
-        if(this.props.drivers && this.props.hires && this.props.vehicles){
+        if(this.props.drivers && this.props.hires){
             this.setState({
                 ...nextProps,
                 loading: 0,

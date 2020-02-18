@@ -27,7 +27,7 @@ export const addImportHire = (importHire) => {
             vehicleNo: importHire.vehicleNo,
             remarks: importHire.remarks,
             hireType: 'import',
-            hireStatus: 'driverPending',
+            hireStatus: 'request',
             createAt: new Date(),
             timeline: {
                 truckDispatched: {
@@ -44,7 +44,7 @@ export const addImportHire = (importHire) => {
                     id: 2,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/cargo-ship.png',
-                    title: 'At Cargo Location'
+                    title: 'At Cargo Location',
                 },
                 cargoLoaded: {
                     set:0,
@@ -52,7 +52,8 @@ export const addImportHire = (importHire) => {
                     id: 3,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/container-truck.png',
-                    title: 'Cargo Loaded'
+                    title: 'Cargo Loaded',
+
                 },
                 inTransit: {
                     set:0,
@@ -60,7 +61,7 @@ export const addImportHire = (importHire) => {
                     id: 4,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/in-transit.png',
-                    title: 'In Transit'
+                    title: 'In Transit',
                 },
                 destinationReached: {
                     set:0,
@@ -68,14 +69,14 @@ export const addImportHire = (importHire) => {
                     id: 5,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/fork-lift.png',
-                    title: 'Destination Reached'
+                    title: 'Destination Reached',
                 },
                 hireCompleted: {
                     set:0,
                     val: 'hireCompleted',
                     id: 6,
                     bg: '#f6f6f6',
-                    img: 'hhttps://img.icons8.com/color/48/000000/checked-truck.png',
+                    img: 'https://img.icons8.com/color/48/000000/checked-truck.png',
                     title: 'Hire Completed'
                 },
             }
@@ -118,7 +119,7 @@ export const addExportHire = (exportHire) => {
             vehicleNo: exportHire.vehicleNo,
             remarks: exportHire.remarks,
             hireType: 'export',
-            hireStatus: 'driverPending',
+            hireStatus: 'request',
             createAt: new Date(),
             timeline: {
                 truckDispatched: {
@@ -127,7 +128,7 @@ export const addExportHire = (exportHire) => {
                     id: 1,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/interstate-truck.png',
-                    title: 'Truck Dispatched'
+                    title: 'Truck Dispatched',
                 },
                 atContainerLocation: {
                     set:0,
@@ -135,7 +136,7 @@ export const addExportHire = (exportHire) => {
                     id: 2,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/shipping-container.png',
-                    title: 'At Container Location'
+                    title: 'At Container Location',
                 },
                 inTransit: {
                     set:0,
@@ -143,7 +144,7 @@ export const addExportHire = (exportHire) => {
                     id: 3,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/in-transit.png',
-                    title: 'In Transit'
+                    title: 'In Transit',
                 },
                 cargoLoaded: {
                     set:0,
@@ -151,7 +152,7 @@ export const addExportHire = (exportHire) => {
                     id: 4,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/container-truck.png',
-                    title: 'Cargo Loaded'
+                    title: 'Cargo Loaded',
                 },
                 inTransit2: {
                     set:0,
@@ -159,7 +160,7 @@ export const addExportHire = (exportHire) => {
                     id: 5,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/in-transit.png',
-                    title: 'In Transit'
+                    title: 'In Transit',
                 },
                 portReached: {
                     set:0,
@@ -167,7 +168,7 @@ export const addExportHire = (exportHire) => {
                     id: 6,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/cargo-ship.png',
-                    title: 'Port Reached'
+                    title: 'Port Reached',
                 },
                 hireCompleted: {
                     set:0,
@@ -175,7 +176,7 @@ export const addExportHire = (exportHire) => {
                     id: 7,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/checked-truck.png',
-                    title: 'Hire Completed'
+                    title: 'Hire Completed',
                 },
             }
         }).then(() => {
@@ -190,7 +191,7 @@ export const addExportHire = (exportHire) => {
 
 // Hire request is accepted by the administrator by assigning a driver 
 // Hire status is changed from request to driverPending 
-export const acceptHireRequest = (id, hireRequest) => {
+export const acceptHireRequest = (id, hireRequest, customerId) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
         const cust=firestore.collection('hires').doc(id).customerId
@@ -208,23 +209,23 @@ export const acceptHireRequest = (id, hireRequest) => {
             dispatch({type: 'ERROR_UPDATING_HIRE_REQUEST', err})
         })
         firestore.collection('notifications').add({
-            to:cust,
+            to: customerId,
             from:'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
             type:'hire accepted',
             data:"Hire Accepted",
             link:'/User/UserManageTools',
-            createdAt:new Date()}).then(() => {
+            createdAt:new Date()
+            }).then(() => {
                 console.log("doc added")
                 dispatch({type: 'Notication_Added'});
             }).catch((err) => {
                 dispatch({type: 'Notificaton_Add_ERROR', err});
             })
-
     }
 }
 
 // Hire stauts is changed to declined when admin declines a hire request
-export const declineHireRequest = (id, hireRequest) => {
+export const declineHireRequest = (id, hireRequest, customerId) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
         const cust=firestore.collection('hires').doc(id).customerId
@@ -241,14 +242,15 @@ export const declineHireRequest = (id, hireRequest) => {
             dispatch({type: 'ERROR_DECLINING_HIRE_REQUEST', err})
         })
         firestore.collection('notifications').add({
-            to:'OrA27JIucfUxewmLheSRc7dMx5s1',
+            to:customerId,
             from:'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
             type:'hire declined',
             data:"Hire Declined",
             link:'/User/UserManageTools',
-            createdAt:new Date()}).then(() => {
+            createdAt:new Date()
+            }).then(() => {
                 console.log("doc added")
-                dispatch({type: "Notication_Added"});
+                dispatch({type: 'Notication_Added'});
             }).catch((err) => {
                 dispatch({type: 'Notificaton_Add_ERROR', err});
             })
@@ -276,9 +278,10 @@ export const completeHire = (id) => {
             type:'hire completed',
             data:"Hire Completed",
             link:'/User/UserManageTools',
-            createdAt:new Date()}).then(() => {
+            createdAt:new Date()
+            }).then(() => {
                 console.log("doc added")
-                dispatch({type: "Notication_Added"});
+                dispatch({type: 'Notication_Added'});
             }).catch((err) => {
                 dispatch({type: 'Notificaton_Add_ERROR', err});
             })

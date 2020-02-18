@@ -36,7 +36,8 @@ export const addCustomer = (newCustomer) => {
             var docRef = firestore.collection('users').doc(resp.user.uid)
             // secondaryApp.auth().signOut();
             return docRef.set({
-                userType: 'customer'
+                userType: 'customer',
+                disabled: false,
             }).then(() => {
                 return firestore.collection('customers').doc(docRef.id).set({
                     firstName: newCustomer.firstName,
@@ -77,7 +78,8 @@ export const addDriver = (newDriver) => {
             var docRef = firestore.collection('users').doc(resp.user.uid)
             secondaryApp.auth().signOut();
             return docRef.set({
-                userType: 'driver'
+                userType: 'driver',
+                disabled: false
             }).then(() => {
                 return firestore.collection('drivers').doc(docRef.id).set({
                     firstName: newDriver.firstName,

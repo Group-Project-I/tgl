@@ -52,7 +52,7 @@ class AddDriver extends Component {
                 errors.nic=
                 value.length <10
                 ? 'Too short for NIC'
-                : value.length ===10 && value[9] !== 'v'
+                : value.length ===10 && value[9] !== 'V'
                     ?'Invalid type for NIC'
                     :value.length >12
                         ?'Too long for NIC'
