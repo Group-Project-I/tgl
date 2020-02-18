@@ -8,7 +8,7 @@ import {MdCall,MdEmail,MdInsertDriveFile} from "react-icons/md"
 import {getFirestore} from 'redux-firestore'
 import {firestoreConnect} from 'react-redux-firebase'  
 import {compose} from 'redux'
-
+ 
 
 
 class Profile extends Component {

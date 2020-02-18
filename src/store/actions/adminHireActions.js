@@ -27,7 +27,7 @@ export const addImportHire = (importHire) => {
             vehicleNo: importHire.vehicleNo,
             remarks: importHire.remarks,
             hireType: 'import',
-            hireStatus: 'driverPending',
+            hireStatus: 'request',
             createAt: new Date(),
             timeline: {
                 truckDispatched: {
@@ -44,7 +44,7 @@ export const addImportHire = (importHire) => {
                     id: 2,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/cargo-ship.png',
-                    title: 'At Cargo Location'
+                    title: 'At Cargo Location',
                 },
                 cargoLoaded: {
                     set:0,
@@ -52,7 +52,8 @@ export const addImportHire = (importHire) => {
                     id: 3,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/container-truck.png',
-                    title: 'Cargo Loaded'
+                    title: 'Cargo Loaded',
+
                 },
                 inTransit: {
                     set:0,
@@ -60,7 +61,7 @@ export const addImportHire = (importHire) => {
                     id: 4,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/in-transit.png',
-                    title: 'In Transit'
+                    title: 'In Transit',
                 },
                 destinationReached: {
                     set:0,
@@ -68,7 +69,7 @@ export const addImportHire = (importHire) => {
                     id: 5,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/fork-lift.png',
-                    title: 'Destination Reached'
+                    title: 'Destination Reached',
                 },
                 hireCompleted: {
                     set:0,
@@ -118,7 +119,7 @@ export const addExportHire = (exportHire) => {
             vehicleNo: exportHire.vehicleNo,
             remarks: exportHire.remarks,
             hireType: 'export',
-            hireStatus: 'driverPending',
+            hireStatus: 'request',
             createAt: new Date(),
             timeline: {
                 truckDispatched: {
@@ -127,15 +128,15 @@ export const addExportHire = (exportHire) => {
                     id: 1,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/interstate-truck.png',
-                    title: 'Truck Dispatched'
-                },
+                    title: 'Truck Dispatched',
+                }
                 atContainerLocation: {
                     set:0,
                     val: 'atContainerLocation',
                     id: 2,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/shipping-container.png',
-                    title: 'At Container Location'
+                    title: 'At Container Location',
                 },
                 inTransit: {
                     set:0,
@@ -143,7 +144,7 @@ export const addExportHire = (exportHire) => {
                     id: 3,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/in-transit.png',
-                    title: 'In Transit'
+                    title: 'In Transit',
                 },
                 cargoLoaded: {
                     set:0,
@@ -151,7 +152,7 @@ export const addExportHire = (exportHire) => {
                     id: 4,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/container-truck.png',
-                    title: 'Cargo Loaded'
+                    title: 'Cargo Loaded',
                 },
                 inTransit2: {
                     set:0,
@@ -159,7 +160,7 @@ export const addExportHire = (exportHire) => {
                     id: 5,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/in-transit.png',
-                    title: 'In Transit'
+                    title: 'In Transit',
                 },
                 portReached: {
                     set:0,
@@ -167,7 +168,7 @@ export const addExportHire = (exportHire) => {
                     id: 6,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/cargo-ship.png',
-                    title: 'Port Reached'
+                    title: 'Port Reached',
                 },
                 hireCompleted: {
                     set:0,
@@ -175,7 +176,7 @@ export const addExportHire = (exportHire) => {
                     id: 7,
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/checked-truck.png',
-                    title: 'Hire Completed'
+                    title: 'Hire Completed',
                 },
             }
         }).then(() => {
@@ -213,9 +214,8 @@ export const acceptHireRequest = (id, hireRequest, customerId) => {
             type:'hire accepted',
             data:"Hire Accepted",
             link:'/User/UserManageTools',
-            createdAt:new Date()
-        }).then(() => {
-                console.log("doc added")
+            c) => {
+               console.log("doc added")
                 dispatch({type: 'Notication_Added'});
             }).catch((err) => {
                 dispatch({type: 'Notificaton_Add_ERROR', err});
@@ -247,9 +247,8 @@ export const declineHireRequest = (id, hireRequest, customerId) => {
             type:'hire declined',
             data:"Hire Declined",
             link:'/User/UserManageTools',
-            createdAt:new Date()}).then(() => {
-                console.log("doc added")
-                dispatch({type: "Notication_Added"});
+            c              console.log("doc added")
+               dispatch({type: "Notication_Added"});
             }).catch((err) => {
                 dispatch({type: 'Notificaton_Add_ERROR', err});
             })
@@ -277,9 +276,8 @@ export const completeHire = (id) => {
             type:'hire completed',
             data:"Hire Completed",
             link:'/User/UserManageTools',
-            createdAt:new Date()}).then(() => {
-                console.log("doc added")
-                dispatch({type: "Notication_Added"});
+            c              console.log("doc added")
+               dispatch({type: "Notication_Added"});
             }).catch((err) => {
                 dispatch({type: 'Notificaton_Add_ERROR', err});
             })
