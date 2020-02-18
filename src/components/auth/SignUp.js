@@ -32,7 +32,8 @@ class SignUp extends Component {
                 nic: '',
                 mobile: '',
                 password:'' ,
-                confPassword:'' 
+                confPassword:'',
+                dob: ''
         }
     }
 }   
@@ -68,13 +69,17 @@ class SignUp extends Component {
             break;  
             case 'nic': 
                 errors.nic = 
-                value.length <10 
-                ? 'NIC is too short'
-                : value.length === 10 && value[9] !== 'v'
-                    ? 'Invalid type for NIC'
+                value.length <10 || (value.length <10 && isNaN(value))
+                ? 'Invalid NIC number'
+                : value.length === 10 && value[9] !== 'v' || isNaN(value[0] ) || isNaN(value[1] ) || isNaN(value[2] ) || isNaN(value[3] ) || isNaN(value[4] ) || isNaN(value[5] ) || isNaN(value[6] ) || isNaN(value[7] ) || isNaN(value[8] )
+                    ? 'Invalid NIC number'
                     :value.length >12
                         ?'NIC is too long'
                         :''
+                var i;
+                for(i = 0; i<value.length; i++){
+                    
+                }
             break;
             case 'mobile': 
             errors.mobile = 
@@ -87,7 +92,7 @@ class SignUp extends Component {
         }
 
         this.setState({errors, [name]: value}, ()=> {
-            console.log(errors)
+            // console.log(errors)
             this.setState({errors, [name]: value})
 
         })
@@ -109,6 +114,7 @@ class SignUp extends Component {
     handleDate = (e) => {
         e.preventDefault();
         e.target.type = 'date'
+        e.target.max = "2020-01-01"
     }
 
     render() {
@@ -150,8 +156,11 @@ class SignUp extends Component {
                                     }
                                     </div>
                                     <div className="input-field">
-                                        <input placeholder="Date of Birth" name='dob' onFocus={this.handleDate} type="text" id="dob" onChange={this.handleChange} required noValidate/>
+                                        <input placeholder="Date of Birth" name='dob' onFocus={this.handleDate} max={new Date()} type="text" id="dob" onChange={this.handleChange} required noValidate/>
                                     </div>
+                                    {errors.dob.length > 0 && 
+                                    <small><span className='error red-text center'>{errors.dob}</span></small>
+                                    }
                                     <div className="input-field">
                                     <input placeholder="Email" type="email" name='email' id="email" onChange={this.handleChange} required noValidate/>
                                     {errors.email.length > 0 && 
