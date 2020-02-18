@@ -129,7 +129,7 @@ export const addExportHire = (exportHire) => {
                     bg: '#f6f6f6',
                     img: 'https://img.icons8.com/color/48/000000/interstate-truck.png',
                     title: 'Truck Dispatched',
-                }
+                },
                 atContainerLocation: {
                     set:0,
                     val: 'atContainerLocation',
