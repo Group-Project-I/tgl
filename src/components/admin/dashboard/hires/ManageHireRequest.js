@@ -33,7 +33,7 @@ class ManageHireRequest extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.acceptHireRequest(this.props.hire[0].id, this.state) 
+        this.props.acceptHireRequest(this.props.hire[0].id, this.state, this.props.hire[0].customerId) 
         this.setState({
             redir : 1
         })     
@@ -42,7 +42,7 @@ class ManageHireRequest extends Component {
     // Decline hire request
     declineHire = (e) => {
         e.preventDefault();
-        this.props.declineHireRequest(this.props.hire[0].id, this.state)
+        this.props.declineHireRequest(this.props.hire[0].id, this.state, this.props.hire[0].customerId)
         this.setState({
             redir : 1
         })
@@ -533,7 +533,7 @@ class ManageHireRequest extends Component {
                                 <br/><br/>
                                 <div className="input-field center">
                                     <button className="btn blue lighten-1 z-depth-5 btn1" type="submit">Add</button>
-                                    <button className="btn red lighten-1 z-depth-5 btn1" onClick={this.declineHireRequest}>Cancel</button>
+                                    <button className="btn red lighten-1 z-depth-5 btn1" onClick={this.declineHire}>Decline</button>
                                 </div>
                             </form>
                         </div>
@@ -556,8 +556,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        acceptHireRequest: (id, hireRequest) => dispatch(acceptHireRequest(id, hireRequest)),
-        declineHireRequest: (id, hireRequest) => dispatch(declineHireRequest(id, hireRequest))
+        acceptHireRequest: (id, hireRequest, customerId) => dispatch(acceptHireRequest(id, hireRequest, customerId)),
+        declineHireRequest: (id, hireRequest, customerId) => dispatch(declineHireRequest(id, hireRequest, customerId))
     }
 }
 
