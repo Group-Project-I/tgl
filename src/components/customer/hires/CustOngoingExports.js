@@ -2,6 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import { ReactTabulator } from 'react-tabulator'
 
+// List of export ongoing hires with sorting and filtering
 const OngoingExports = ({ongoingExportHires, history}) => {
     if (!ongoingExportHires.length) return <div><br/><br/><h3>No Ongoing Exports</h3><br/></div>
 

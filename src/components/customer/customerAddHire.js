@@ -4,7 +4,7 @@ import AddHireImport from './addHireImport'
 import AddHireExports from './addHireExport'
 
 
-
+// Component that joins import and export hire addition
 class CustomerAddHire extends React.Component{
    
     render(){

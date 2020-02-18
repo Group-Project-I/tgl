@@ -2,6 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import { ReactTabulator } from 'react-tabulator'
 
+// List of export completed hires with sorting and filtering
 const CompletedExports = ({completedExportHires, history}) => {
     if (!completedExportHires.length) return <div><br/><br/><h3>No Completed Exports</h3><br/></div>
 
@@ -59,40 +60,6 @@ const CompletedExports = ({completedExportHires, history}) => {
                     {column: "pickupDatetime", dir:"desc"}
                 ]}
             />
-            {/* <table className="table">
-                    <thead className="thead-dark">
-                    <tr>
-                        <th>Type</th>
-                        <th>Pickup Date</th>
-                        <th>Cargo Type</th>
-                        <th>Loading Date</th>
-                        <th>Driver</th>
-                        <th>Customer</th>
-                        <th>Vehicle</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {ongoingExportHires && ongoingExportHires.map(exp =>{
-                            return (
-                                <tr key={exp.id}>
-                                <td className="center-align">{exp.containerType}</td>
-                                <td className="center-align">{moment(exp.pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</td>
-                                <td className="center-align">{exp.cargoType}</td>
-                                <td className="center-align">{moment(exp.loadingDatetime).format('MMMM Do YYYY, h:mm:ss a')}</td>
-                                <td className="center-align">{exp.driverName}</td>
-                                <td className="center-align">{exp.customerName}</td>
-                                <td className="center-align">{exp.vehicleId}</td>
-                                <td className="center-align"><Badge variant="warning" className="black-text">Ongoing</Badge></td>
-                                <td className="center-align">
-                                    <Link to={'/admin/hires/' + exp.id}><button type="button" data-toggle="modal" data-id="" className="edit-details btn btn-primary" >View</button></Link>
-                                </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table> */}
         </div>
     )
 }
