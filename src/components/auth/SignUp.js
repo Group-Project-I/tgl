@@ -83,8 +83,8 @@ class SignUp extends Component {
             break;
             case 'mobile': 
             errors.mobile = 
-                value.length < 10
-                ? 'Too short for Mobile No.(Ex: 07xxxxxxxx)'
+                value.length < 10 || isNaN(value) || value[0] != 0 || value[1] != 7
+                ? 'Invalid Mobile No.(Ex: 07xxxxxxxx)'
                 : ''
             break;
             default:

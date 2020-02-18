@@ -5,13 +5,11 @@ import {connect} from 'react-redux'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 
+// Generate completed hire count of each month and adds to a chart 
 class ChartCurrentYear extends Component {
   static defaultProps = {
       hires: []       
   }
-
-  
-
   render(){
     const options = {
       title: {
@@ -92,6 +90,7 @@ class ChartCurrentYear extends Component {
     }, {});
 
 
+    // Convert the set of objects to and array and sort on the month
   var imports = Object.entries(group_imports_to_months).sort()
   var Exports = Object.entries(group_exports_to_months).sort()
   
@@ -100,6 +99,7 @@ class ChartCurrentYear extends Component {
   let importData = new Array(12).fill(0)
   let exportData = new Array(12).fill(0)
 
+  // Get the count of hires made per each month by getting the array length of the second element(Array of arrays)
   for(var i=0;i<imports.length;i++){
     importData[parseInt(imports[i][0])] = imports[i][1].length
   }
