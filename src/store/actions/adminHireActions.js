@@ -214,13 +214,13 @@ export const acceptHireRequest = (id, hireRequest, customerId) => {
             type:'hire accepted',
             data:"Hire Accepted",
             link:'/User/UserManageTools',
-            c) => {
-               console.log("doc added")
+            createdAt:new Date()
+            }).then(() => {
+                console.log("doc added")
                 dispatch({type: 'Notication_Added'});
             }).catch((err) => {
                 dispatch({type: 'Notificaton_Add_ERROR', err});
             })
-
     }
 }
 
@@ -247,8 +247,10 @@ export const declineHireRequest = (id, hireRequest, customerId) => {
             type:'hire declined',
             data:"Hire Declined",
             link:'/User/UserManageTools',
-            c              console.log("doc added")
-               dispatch({type: "Notication_Added"});
+            createdAt:new Date()
+            }).then(() => {
+                console.log("doc added")
+                dispatch({type: 'Notication_Added'});
             }).catch((err) => {
                 dispatch({type: 'Notificaton_Add_ERROR', err});
             })
@@ -276,8 +278,10 @@ export const completeHire = (id) => {
             type:'hire completed',
             data:"Hire Completed",
             link:'/User/UserManageTools',
-            c              console.log("doc added")
-               dispatch({type: "Notication_Added"});
+            createdAt:new Date()
+            }).then(() => {
+                console.log("doc added")
+                dispatch({type: 'Notication_Added'});
             }).catch((err) => {
                 dispatch({type: 'Notificaton_Add_ERROR', err});
             })
