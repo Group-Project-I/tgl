@@ -9,6 +9,7 @@ import {declineHireRequest} from '../../../store/actions/adminHireActions'
 import {Spinner} from "react-activity";
 import Card from "react-bootstrap/Card";
 
+// declined hire page, A hire which is currently declined
 class ManageDeclinedHires extends Component {
     state = {
         loading: 1,

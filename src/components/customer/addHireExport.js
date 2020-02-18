@@ -7,8 +7,8 @@ import {compose} from 'redux'
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import SelectSearch from 'react-select-search'
 
+// Add export request to the system
 class AddHireExport extends Component {
     state = {
         containerType: '20',
@@ -31,14 +31,14 @@ class AddHireExport extends Component {
         loading: 1,
         redir: 0
     }
-
+// to close cost estimate popup
     handleClosePrice = () => {
         // e.preventDefault();
         this.setState({
             show: false,
         })
     }
-
+// popup to show cost estimate for the hire
     handleShowPrice = (e) => {
         e.preventDefault()
         if(this.props.pricing){
@@ -70,7 +70,7 @@ class AddHireExport extends Component {
         var tag = e.target.id+"Tag"
         document.getElementById(tag).style.display = "block"
     }
-
+    // Function to add export request to the database
     handleSubmit = (e) => {
         e.preventDefault();
         // console.log(this.state);
@@ -79,7 +79,7 @@ class AddHireExport extends Component {
             redir : 1
         })
     }
-
+// Change element type to date on click
     handleDate = (e) => {
         e.preventDefault();
         e.target.type = 'datetime-local'
@@ -87,6 +87,7 @@ class AddHireExport extends Component {
         document.getElementById(tag).style.display = "block"
     }
 
+    // Set state with selected container type
     handleContainerType = (e) => {
         if(e.target.value){
             this.setState({
@@ -203,9 +204,6 @@ class AddHireExport extends Component {
                             <Modal.Body>
                                 <Card border="primary" className="text-center">
                                     <Card.Body>
-                                        {/*<div className= { cityEdited != 'Updated Successfully' ? "red-text" : "green-text"}>*/}
-                                        {/*    {this.state.updated ? cityEdited : null}*/}
-                                        {/*</div>*/}
                                         <form >
                                             <div className="input-field row">
                                                 <h6 className='blue-text'>Container Type </h6>

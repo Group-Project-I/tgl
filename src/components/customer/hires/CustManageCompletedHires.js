@@ -11,6 +11,8 @@ import 'react-activity/dist/react-activity.css';
 import Card from "react-bootstrap/Card";
 import {Spinner} from "react-activity";
 
+// Generates a pdf view of a completed hire
+// Uses react/pdf
 class ManageCompletedHire extends Component {
 
     static defaultProps = { // <-- DEFAULT PROPS
@@ -164,9 +166,6 @@ class ManageCompletedHire extends Component {
                             <View style={styles.tableColHeader}>
                                 <Text style={styles.tableCellHeader}>Date</Text>
                             </View>
-                            {/*<View style={styles.tableColHeader}>*/}
-                            {/*    <Text style={styles.tableCellHeader}>Customer</Text>*/}
-                            {/*</View>*/}
                             <View style={styles.tableColHeader}>
                                 <Text style={styles.tableCellHeader}>Driver</Text>
                             </View>
@@ -181,9 +180,6 @@ class ManageCompletedHire extends Component {
                             <View style={styles.tableCol}>
                                 <Text style={styles.tableCell}>{moment(this.props.hire[0].completedDatetime.toDate()).format('MMMM Do YYYY, h:mm:ss a')}</Text>
                             </View>
-                            {/*<View style={styles.tableCol}>*/}
-                            {/*    <Text style={styles.tableCell}>{this.state.customer[0].firstName + ' ' + this.state.customer[0].lastName}</Text>*/}
-                            {/*</View>*/}
                             <View style={styles.tableCol}>
                                 <Text style={styles.tableCell}>{this.state.driver[0].firstName + ' ' + this.state.driver[0].lastName}</Text>
                             </View>
@@ -282,39 +278,6 @@ class ManageCompletedHire extends Component {
                             </View>
                         </View>
                     </View>
-                    {/*<View>*/}
-                    {/*    <Text style={styles.subHeading}>Customer Details</Text>*/}
-                    {/*</View>*/}
-                    {/*<View style={styles.table}>*/}
-                    {/*    <View style={styles.tableRow}>*/}
-                    {/*        <View style={styles.tableColHeader}>*/}
-                    {/*            <Text style={styles.tableCellHeader}>Customer Name</Text>*/}
-                    {/*        </View>*/}
-                    {/*        <View style={styles.tableColHeader}>*/}
-                    {/*            <Text style={styles.tableCellHeader}>Mobile No</Text>*/}
-                    {/*        </View>*/}
-                    {/*        <View style={styles.tableColHeader}>*/}
-                    {/*            <Text style={styles.tableCellHeader}>Email</Text>*/}
-                    {/*        </View>*/}
-                    {/*        <View style={styles.tableColHeader}>*/}
-                    {/*            <Text style={styles.tableCellHeader}>NIC</Text>*/}
-                    {/*        </View>*/}
-                    {/*    </View>*/}
-                    {/*    <View style={styles.tableRow}>*/}
-                    {/*        <View style={styles.tableCol}>*/}
-                    {/*            <Text style={styles.tableCell}>{this.state.customer[0].firstName + ' ' + this.state.customer[0].lastName}</Text>*/}
-                    {/*        </View>*/}
-                    {/*        <View style={styles.tableCol}>*/}
-                    {/*            <Text style={styles.tableCell}>{this.state.customer[0].mobile}</Text>*/}
-                    {/*        </View>*/}
-                    {/*        <View style={styles.tableCol}>*/}
-                    {/*            <Text style={styles.tableCell}>{this.state.customer[0].email}</Text>*/}
-                    {/*        </View>*/}
-                    {/*        <View style={styles.tableCol}>*/}
-                    {/*            <Text style={styles.tableCell}>{this.state.customer[0].nic}</Text>*/}
-                    {/*        </View>*/}
-                    {/*    </View>*/}
-                    {/*</View>*/}
                     <View>
                         <Text style={styles.subHeading}>Driver Details</Text>
                     </View>
@@ -371,9 +334,6 @@ class ManageCompletedHire extends Component {
                             <View style={styles.tableColHeader}>
                                 <Text style={styles.tableCellHeader}>Date</Text>
                             </View>
-                            {/*<View style={styles.tableColHeader}>*/}
-                            {/*    <Text style={styles.tableCellHeader}>Customer</Text>*/}
-                            {/*</View>*/}
                             <View style={styles.tableColHeader}>
                                 <Text style={styles.tableCellHeader}>Driver</Text>
                             </View>
@@ -388,9 +348,6 @@ class ManageCompletedHire extends Component {
                             <View style={styles.tableCol}>
                                 <Text style={styles.tableCell}>{moment(this.props.hire[0].completedDatetime.toDate()).format('MMMM Do YYYY, h:mm:ss a')}</Text>
                             </View>
-                            {/*<View style={styles.tableCol}>*/}
-                            {/*    <Text style={styles.tableCell}>{this.state.customer[0].firstName + ' ' + this.state.customer[0].lastName}</Text>*/}
-                            {/*</View>*/}
                             <View style={styles.tableCol}>
                                 <Text style={styles.tableCell}>{this.state.driver[0].firstName + ' ' + this.state.driver[0].lastName}</Text>
                             </View>
@@ -489,39 +446,6 @@ class ManageCompletedHire extends Component {
                             </View>
                         </View>
                     </View>
-                    {/*<View>*/}
-                    {/*    <Text style={styles.subHeading}>Customer Details</Text>*/}
-                    {/*</View>*/}
-                    {/*<View style={styles.table}>*/}
-                    {/*    <View style={styles.tableRow}>*/}
-                    {/*        <View style={styles.tableColHeader}>*/}
-                    {/*            <Text style={styles.tableCellHeader}>Customer Name</Text>*/}
-                    {/*        </View>*/}
-                    {/*        <View style={styles.tableColHeader}>*/}
-                    {/*            <Text style={styles.tableCellHeader}>Mobile No</Text>*/}
-                    {/*        </View>*/}
-                    {/*        <View style={styles.tableColHeader}>*/}
-                    {/*            <Text style={styles.tableCellHeader}>Email</Text>*/}
-                    {/*        </View>*/}
-                    {/*        <View style={styles.tableColHeader}>*/}
-                    {/*            <Text style={styles.tableCellHeader}>NIC</Text>*/}
-                    {/*        </View>*/}
-                    {/*    </View>*/}
-                    {/*    <View style={styles.tableRow}>*/}
-                    {/*        <View style={styles.tableCol}>*/}
-                    {/*            <Text style={styles.tableCell}>{this.state.customer[0].firstName + ' ' + this.state.customer[0].lastName}</Text>*/}
-                    {/*        </View>*/}
-                    {/*        <View style={styles.tableCol}>*/}
-                    {/*            <Text style={styles.tableCell}>{this.state.customer[0].mobile}</Text>*/}
-                    {/*        </View>*/}
-                    {/*        <View style={styles.tableCol}>*/}
-                    {/*            <Text style={styles.tableCell}>{this.state.customer[0].email}</Text>*/}
-                    {/*        </View>*/}
-                    {/*        <View style={styles.tableCol}>*/}
-                    {/*            <Text style={styles.tableCell}>{this.state.customer[0].nic}</Text>*/}
-                    {/*        </View>*/}
-                    {/*    </View>*/}
-                    {/*</View>*/}
                     <View>
                         <Text style={styles.subHeading}>Driver Details</Text>
                     </View>

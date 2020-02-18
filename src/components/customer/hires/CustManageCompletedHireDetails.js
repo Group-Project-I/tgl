@@ -11,6 +11,7 @@ import ReactToPrint from 'react-to-print'
 import {MdPrint} from "react-icons/md";
 import ManageCompletedHire from "./CustManageCompletedHires";
 
+// Completed hire page, A hire which is completed
 class ManageCompletedHireDetails extends Component {
     state = {
         loading: 1,
@@ -258,26 +259,6 @@ class ManageCompletedHireDetails extends Component {
                                     </div>
                                 }
                                 <br/>
-                                {/*<Card border="primary" className="text-center">*/}
-                                {/*    <Card.Header color="blue"><h5>Customer</h5></Card.Header>*/}
-                                {/*    <Card.Body>*/}
-                                {/*        <div className="row" style={{paddingTop: '40px'}}>*/}
-                                {/*            <div className="col-3">*/}
-                                {/*                <h6 className="left"><b className='blue-text'>Name: </b> {this.props.hire[0].customerName}</h6>*/}
-                                {/*            </div>*/}
-                                {/*            <div className="col-3">*/}
-                                {/*                <h6 className="left"><b className='blue-text'>Mobile: </b> {this.props.customer.filter(item => item.id === this.props.hire[0].customerId).map(a => a.mobile)[0]}</h6>*/}
-                                {/*            </div>*/}
-                                {/*            <div className="col-4">*/}
-                                {/*                <h6 className="left"><b className='blue-text'>Email: </b> {this.props.customer.filter(item => item.id === this.props.hire[0].customerId).map(a => a.email)[0]}</h6>*/}
-                                {/*            </div>*/}
-                                {/*            <div className="col-2">*/}
-                                {/*                <h6 className="left"><b className='blue-text'>NIC: </b> {this.props.customer.filter(item => item.id === this.props.hire[0].customerId).map(a => a.nic)[0]}</h6>*/}
-                                {/*            </div>*/}
-                                {/*        </div>*/}
-                                {/*    </Card.Body>*/}
-                                {/*</Card>*/}
-                                {/*<br/>*/}
                                 <Card border="primary" className="text-center">
                                     <Card.Header color="blue"><h4>Driver Details</h4></Card.Header>
                                     <Card.Body>
@@ -373,12 +354,6 @@ const mapStateToProps = (state) => {
         hires: state.firestore.ordered.hires
     }
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         completeHire: (id) => dispatch(completeHire(id))
-//     }
-// }
 
 export default compose(
     connect(mapStateToProps),

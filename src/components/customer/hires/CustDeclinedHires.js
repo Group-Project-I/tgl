@@ -8,7 +8,7 @@ import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import {Redirect, withRouter} from 'react-router-dom'
 
-
+// Filter import and export declined hires and displays them in a tab view with sorting and filtering
 class DeclinedHire extends Component {
     static defaultProps = { // <-- DEFAULT PROPS
         hires: []
