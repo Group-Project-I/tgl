@@ -51,14 +51,15 @@ class GenerateReports extends Component {
         const dateTo = moment(this.state.To)
         const dateFrom = moment(this.state.From)
         if(this.props.hires){
+            // Filter hires list according to the provided dates
             const hireList = this.props.hires.filter(item => item.hireStatus === 'completed' && moment(item.completedDatetime.toDate()).isBetween(dateFrom,dateTo))
-            // const filteredHires = hireList.filter(item => this.state.customerId ?  item.customerId === this.state.customerId : 1 && 
-            //                                         this.state.driverId ? item.driverId === this.state.driverId : 1 && 
-            //                                         this.state.vehicleId ? item.vehicleId === this.state.vehicleId : 1 && 
-            //                                         this.state.hireTypeId ? item.hireType === this.state.hireTypeId : 1)
+            // Filter hireslist based on customer if customer is specified
             const x = this.state.customerId ? hireList.filter(item => item.customerId === this.state.customerId) : hireList
+            // Filter hireslist based on driver if driver is specified
             const y = this.state.driverId ? x.filter(item => item.driverId === this.state.driverId) : x
+            // Filter hireslist based on vehicle if vehicle is specified
             const z = this.state.vehicleId ? y.filter(item => item.vehicleId === this.state.vehicleId) : y
+            // Filter hireslist based on type if type is specified
             const filteredHires = this.state.hireTypeId ? z.filter(item => item.hireType === this.state.hireTypeId) : z
 
             this.setState({
@@ -73,6 +74,7 @@ class GenerateReports extends Component {
         e.target.type = 'date'
     }
 
+    // Get only required details from the documents
     componentWillReceiveProps(nextProps) {
         
         if(this.props.customers && this.props.drivers && this.props.vehicles){

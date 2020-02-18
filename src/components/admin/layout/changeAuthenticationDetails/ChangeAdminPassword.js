@@ -18,6 +18,7 @@ class ChangeAdminPassword extends Component {
         })
     }
 
+    // Function to change the admin password, current password and new password are passed to the function
     handleSubmit = (e) => {
         e.preventDefault()
         this.props.updateAdminPassword(this.state.oldPassword, this.state.newPassword)

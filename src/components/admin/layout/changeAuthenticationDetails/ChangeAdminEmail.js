@@ -18,6 +18,7 @@ class ChangeAdminEmail extends Component {
         })
     }
 
+    // Function to change email. current password and the new email are passed to the function
     handleSubmit = (e) => {
         e.preventDefault()
         this.props.changeAdminEmail(this.state.password, this.state.newEmail)

@@ -9,28 +9,20 @@ import {compose} from 'redux'
 
 // Shows details of the vehicle along with a picture
 class VehicleProfile extends Component {
-constructor(props){
-    super(props)
-    this.state = {
-        loading: 1,
-        image:null,
-        url:'',
-        progress:0,
-        showProgressBar:false,
-        profileImage:null
+    constructor(props){
+        super(props)
+        this.state = {
+            loading: 1,
+            image:null,
+            url:'',
+            progress:0,
+            showProgressBar:false,
+            profileImage:null
+        }
+        this.handlechange = this.handlechange.bind(this)
+        this.handleupdate = this.handleupdate.bind(this)
     }
-    this.handlechange = this.handlechange.bind(this)
-    this.handleupdate = this.handleupdate.bind(this)
-}
    
-    // componentWillMount() {
-    //     if(this.state.vehicle[0]){
-    //         this.setState({
-    //             loading: 0
-    //         });
-    //     }
-  
-    // }
     
     UNSAFE_componentWillReceiveProps(nextProps) {
         //get image url from db and set the state
@@ -58,10 +50,8 @@ constructor(props){
         const {auth} = this.props
         
         const firestore = getFirestore()
-         // console.log('props')
-         // console.log(this.props)
      
-     //upload the image 
+        //upload the image 
          const uploadTask=storage.ref(`images/${image.name}`)
          .put(image)
          uploadTask.on('state_changed',
@@ -97,12 +87,6 @@ constructor(props){
         const load = this.state.loading === 0 ? (
             <div className="row">
                 <div className="col-3">
-                    {/* <img src={require('../../../../img/truck.jpg')} class="mx-auto img-fluid img-circle d-block left" alt="avatar" />
-                    <h6 class="mt-2 left">Upload a different photo</h6>
-                    <label class="custom-file">
-                        <input type="file" id="file" class="custom-file-input" />
-                        <span class="custom-file-control">Choose file</span>
-                    </label> */}
                 <div className=''>
                 <img id='myImg' src={this.state.url || require('../../../../img/truck.jpg')} class="mx-auto img-fluid img-circle d-block " alt="avatar"  style={{width:'250px'}}/>
               <label class="custom-file"><br/>
