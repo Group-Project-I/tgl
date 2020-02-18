@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {Badge} from 'react-bootstrap'
 import "react-tabs/style/react-tabs.css";
-
 // View the profile of a customer along with the display picture
 class CustomerProfile extends Component {
     constructor(props){

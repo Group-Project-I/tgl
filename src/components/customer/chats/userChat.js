@@ -21,11 +21,10 @@ export class UserChat extends React.Component{
           }   
    }
     componentDidMount() {
-        // addResponseMessage("Welcome to Trans Global Logistics!");  
-        console.log('messages-> props') 
-        console.log(this.props) 
-        console.log(this.props.customers.id) 
-    }
+ 
+        // addResponseMessage("Welcome to Trans Global Logistics!");
+      
+      }
  
     handleNewUserMessage =(newMessage)=> {
         console.log(`New message incomig! ${newMessage}`);

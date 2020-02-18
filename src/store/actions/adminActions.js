@@ -19,6 +19,8 @@ export const addVehicle = (vehicle) => {
 
 // Register customer to the system
 // A secondary auth account will be created when the administrator is adding a customer
+// Initially firebase authentication is created, then the users collection is updated with the user type
+// finally the customers collection will be updated with the user data
 export const addCustomer = (newCustomer) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
@@ -61,6 +63,8 @@ export const addCustomer = (newCustomer) => {
 
 // Register driver to the system 
 // A secondary account is created to add drivers to firebase authentication system 
+// Initially firebase authentication is created, then the users collection is updated with the user type
+// finally the drivers collection will be updated with the user data
 export const addDriver = (newDriver) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
@@ -76,7 +80,7 @@ export const addDriver = (newDriver) => {
             newDriver.password
         ).then((resp) => {
             var docRef = firestore.collection('users').doc(resp.user.uid)
-            secondaryApp.auth().signOut();
+            // secondaryApp.auth().signOut();
             return docRef.set({
                 userType: 'driver',
                 disabled: false
@@ -116,6 +120,7 @@ export const editUser = (customerId, data, collec) => {
                 return firestore.collection(collec).doc(customerId).update({
                     ...data
                 }).then(() => {
+                    // Send notification to system administrator
                     let data = {
                         to: 'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
                         from: customerId,
@@ -145,6 +150,7 @@ export const editUser = (customerId, data, collec) => {
 // Admin can disable customers or drivers from the system
 // diabled field is used to make users enable or disable 
 // No user details are deleted 
+// userid = user id, collec = collection(customer/driver), token = switch between enabling and disabling
 export const disableOrEnableUser = (userId, collec, token) => {
 
     return(dispatch, getState, {getFirebase, getFirestore}) => {
@@ -164,6 +170,7 @@ export const disableOrEnableUser = (userId, collec, token) => {
 }
 
 // Admin can disable vehicleds from the database
+// id = vehicle id, token = switch between enabling and disabling
 export const disableOrEnableVehicle = (id, token) => {
 
     return(dispatch, getState, {getFirebase, getFirestore}) => {
@@ -192,6 +199,7 @@ export const readNotification = (id) => {
 }
 
 // Add city to the pricing component
+// updated by the system administrator 
 export const addCity = (details) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
@@ -238,6 +246,8 @@ export const deleteCity = (id) => {
 }
 
 // Send message from admin to customer 
+// messages are stored in an array
+// read: id of the receiver to make unread message highlighted
 export const sendMessage = (message, senderId, receiverId) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();

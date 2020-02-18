@@ -9,8 +9,6 @@ import {getFirestore} from 'redux-firestore'
 import {firestoreConnect} from 'react-redux-firebase'  
 import {compose} from 'redux'
  
-
-
 class Profile extends Component {
     constructor(props){
         super(props)
@@ -27,7 +25,8 @@ class Profile extends Component {
     }
  
     UNSAFE_componentWillReceiveProps(nextProps) {
-    //get image url from db and set the state
+    
+        //get image url from db and set the state
             var x = nextProps.users.filter(item => item.id === this.props.auth.uid)
             var user
             x.forEach(function(obj){

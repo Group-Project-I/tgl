@@ -27,12 +27,15 @@ class SignUp extends Component {
             mobile: '',
             dob: '',
             nic: '',
+            valid:'',
             errors:{
                 email: '',
                 nic: '',
                 mobile: '',
+                dob:'',
                 password:'' ,
-                confPassword:'' 
+                confPassword:'',
+                dob: ''
         }
     }
 }   
@@ -68,26 +71,36 @@ class SignUp extends Component {
             break;  
             case 'nic': 
                 errors.nic = 
-                value.length <10 
-                ? 'NIC is too short'
-                : value.length === 10 && value[9] !== 'v'
-                    ? 'Invalid type for NIC'
+                value.length <10 || (value.length <10 && isNaN(value))
+                ? 'Invalid NIC number'
+                : value.length === 10 && value[9] !== 'v' || isNaN(value[0] ) || isNaN(value[1] ) || isNaN(value[2] ) || isNaN(value[3] ) || isNaN(value[4] ) || isNaN(value[5] ) || isNaN(value[6] ) || isNaN(value[7] ) || isNaN(value[8] )
+                    ? 'Invalid NIC number'
                     :value.length >12
                         ?'NIC is too long'
                         :''
+                var i;
+                for(i = 0; i<value.length; i++){
+                    
+                }
             break;
             case 'mobile': 
             errors.mobile = 
-                value.length < 10
-                ? 'Too short for Mobile No.(Ex: 07xxxxxxxx)'
+                value.length < 10 || isNaN(value) || value[0] != 0 || value[1] != 7
+                ? 'Invalid Mobile No.(Ex: 07xxxxxxxx)'
                 : ''
             break;
+            case 'dob':
+                errors.dob=
+                new Date(value) > Date.now()
+                ?'Invalid Date Of Birth.Check again'
+                :''
+            break
             default:
             break;
         }
 
         this.setState({errors, [name]: value}, ()=> {
-            console.log(errors)
+            // console.log(errors)
             this.setState({errors, [name]: value})
 
         })
@@ -97,8 +110,10 @@ class SignUp extends Component {
         event.preventDefault();
         // console.log(this.state);
         if(validateForm(this.state.errors)) {
-            
             console.info('Valid Form')
+            this.setState({
+                valid:'valid'
+            })
           }else{
             console.error('Invalid Form')
           }
@@ -109,6 +124,7 @@ class SignUp extends Component {
     handleDate = (e) => {
         e.preventDefault();
         e.target.type = 'date'
+        e.target.max = "2020-01-01"
     }
 
     render() {
@@ -116,6 +132,8 @@ class SignUp extends Component {
         const {errors} = this.state
 
         if (auth.uid) return <Redirect to='/signin' />
+        if(this.state.valid)return <Redirect to='/' />
+
         return (
             <div className="loginBody">
                 <div className="container">
@@ -150,8 +168,11 @@ class SignUp extends Component {
                                     }
                                     </div>
                                     <div className="input-field">
-                                        <input placeholder="Date of Birth" name='dob' onFocus={this.handleDate} type="text" id="dob" onChange={this.handleChange} required noValidate/>
+                                        <input placeholder="Date of Birth" name='dob' onFocus={this.handleDate} max={new Date()} type="text" id="dob" onChange={this.handleChange} required noValidate/>
                                     </div>
+                                    {errors.dob.length > 0 && 
+                                    <small><span className='error red-text center'>{errors.dob}</span></small>
+                                    }
                                     <div className="input-field">
                                     <input placeholder="Email" type="email" name='email' id="email" onChange={this.handleChange} required noValidate/>
                                     {errors.email.length > 0 && 

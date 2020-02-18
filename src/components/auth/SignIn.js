@@ -6,6 +6,7 @@ import {Button} from 'react-bootstrap'
 import {signIn} from '../../store/actions/authActions'
 import ForgetPassword from '../customer/authRecovery/forgetPassword'
 
+// Sign in to the system, users are redirected based on the user type of the user
 class SignIn extends Component {
     state = {
         email: '',
@@ -33,6 +34,7 @@ class SignIn extends Component {
             localStorage.setItem('userId', 'admin')
             return <Redirect to='/admin' />
         } 
+        // Prevent signin if the user is disabled and redirect to error page
         if (user.userType === 'customer' && user.disabled === false) return <Redirect to='/' />
         if (user.disabled === true) return <Redirect to='/error' />
         return (
@@ -83,7 +85,7 @@ class SignIn extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
+    // console.log(state)
     return {
         authError: state.auth.authError,
         user: state.firebase.profile,
@@ -91,6 +93,7 @@ const mapStateToProps = (state) => {
     }
 }
 
+// Function to sign in user
 const mapDispatchToProps = (dispatch) => {
     return {
         signIn: (creds) => dispatch(signIn(creds))

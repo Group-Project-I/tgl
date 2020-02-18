@@ -191,6 +191,8 @@ export const addExportHire = (exportHire) => {
 
 // Hire request is accepted by the administrator by assigning a driver 
 // Hire status is changed from request to driverPending 
+// id: hire id, hireRequest: assignment data, customerId: customer(to send notification)
+// Customer is notified once the hire is accepted
 export const acceptHireRequest = (id, hireRequest, customerId) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
@@ -225,6 +227,7 @@ export const acceptHireRequest = (id, hireRequest, customerId) => {
 }
 
 // Hire stauts is changed to declined when admin declines a hire request
+// Customer is notified if a hire is declined by the admnistrator
 export const declineHireRequest = (id, hireRequest, customerId) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
