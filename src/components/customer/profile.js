@@ -111,8 +111,8 @@ class Profile extends Component {
                 <br/><br/>
                 <strong><h1 className="blue-text">{this.props.customer.firstName + " " + this.props.customer.lastName}</h1></strong>
                 <br/><br/>
-                <h5><b className="blue-text"><MdCall/>  </b> {this.props.customer.mobile}</h5><br/><br/>
-                <br/><h5><b className="blue-text"><MdEmail/>  </b> {this.props.customer.email}</h5><br/><br/>
+                <h5><b className="blue-text"><MdCall/>  </b> {this.props.customer.mobile}</h5><br/>
+                <br/><h5><b className="blue-text"><MdEmail/>  </b> {this.props.customer.email}</h5><br/>
                 <br/><h5><b className="blue-text"><MdInsertDriveFile/>  </b> {this.props.customer.nic}</h5><br/>
                 <br/>{this.props.customer.disabled === false ? <Badge pill variant="success" className="left">Active</Badge> : <Badge pill variant="danger" className="left">Disabled</Badge> }
                 </div>

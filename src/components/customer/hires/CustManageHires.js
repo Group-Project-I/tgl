@@ -50,7 +50,15 @@ class ManageHires extends Component {
                 <div id="content"  role="main">
                     <ManageOngoingHires hire={this.props.hires.filter(item => item.id === this.props.id)}></ManageOngoingHires>
                 </div>
-            ) :  (
+            ) : this.props.hires.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "driverPending" && this.props.hires.filter(item => item.id === this.props.id ).map(a => a.hireType)[0] === "import" ? (
+                <div id="content"  role="main">
+                    <ManageHireRequests1 hire={this.props.hires.filter(item => item.id === this.props.id)}></ManageHireRequests1>
+                </div>
+            ) : this.props.hires.filter(item => item.id === this.props.id ).map(a => a.hireStatus)[0] === "driverPending" && this.props.hires.filter(item => item.id === this.props.id ).map(a => a.hireType)[0] === "export" ? (
+                <div id="content"  role="main">
+                    <ManageHireRequests2 hire={this.props.hires.filter(item => item.id === this.props.id)}></ManageHireRequests2>
+                </div>
+            ) : (
                 <div id="content"  role="main">
                     <ManageDeclinedHire hire={this.props.hires.filter(item => item.id === this.props.id)}></ManageDeclinedHire>
                 </div>

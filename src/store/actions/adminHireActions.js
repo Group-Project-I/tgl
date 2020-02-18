@@ -75,7 +75,7 @@ export const addImportHire = (importHire) => {
                     val: 'hireCompleted',
                     id: 6,
                     bg: '#f6f6f6',
-                    img: 'hhttps://img.icons8.com/color/48/000000/checked-truck.png',
+                    img: 'https://img.icons8.com/color/48/000000/checked-truck.png',
                     title: 'Hire Completed'
                 },
             }
@@ -190,7 +190,7 @@ export const addExportHire = (exportHire) => {
 
 // Hire request is accepted by the administrator by assigning a driver 
 // Hire status is changed from request to driverPending 
-export const acceptHireRequest = (id, hireRequest) => {
+export const acceptHireRequest = (id, hireRequest, customerId) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
         const cust=firestore.collection('hires').doc(id).customerId
@@ -208,12 +208,13 @@ export const acceptHireRequest = (id, hireRequest) => {
             dispatch({type: 'ERROR_UPDATING_HIRE_REQUEST', err})
         })
         firestore.collection('notifications').add({
-            to:cust,
+            to: customerId,
             from:'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
             type:'hire accepted',
             data:"Hire Accepted",
             link:'/User/UserManageTools',
-            createdAt:new Date()}).then(() => {
+            createdAt:new Date()
+        }).then(() => {
                 console.log("doc added")
                 dispatch({type: 'Notication_Added'});
             }).catch((err) => {
@@ -224,7 +225,7 @@ export const acceptHireRequest = (id, hireRequest) => {
 }
 
 // Hire stauts is changed to declined when admin declines a hire request
-export const declineHireRequest = (id, hireRequest) => {
+export const declineHireRequest = (id, hireRequest, customerId) => {
     return(dispatch, getState, {getFirebase, getFirestore}) => {
         const firestore = getFirestore();
         const cust=firestore.collection('hires').doc(id).customerId
@@ -241,7 +242,7 @@ export const declineHireRequest = (id, hireRequest) => {
             dispatch({type: 'ERROR_DECLINING_HIRE_REQUEST', err})
         })
         firestore.collection('notifications').add({
-            to:'OrA27JIucfUxewmLheSRc7dMx5s1',
+            to:customerId,
             from:'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
             type:'hire declined',
             data:"Hire Declined",

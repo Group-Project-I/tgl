@@ -28,7 +28,7 @@ const Exports = ({exportHires, history}) => {
     var data = []
 
     // eslint-disable-next-line
-    {exportHires && exportHires.map(exp =>{
+    {exportHires && exportHires.filter(item => item.hireStatus !== 'declined').map(exp =>{
         data.push({
             id: exp.id, 
             containerType: exp.containerType, 

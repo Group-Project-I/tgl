@@ -24,7 +24,7 @@ constructor(props){
 }
    
     // componentWillMount() {
-    //     if(this.props.vehicle){
+    //     if(this.state.vehicle[0]){
     //         this.setState({
     //             loading: 0
     //         });
@@ -37,12 +37,13 @@ constructor(props){
         var x = nextProps.vehicles.filter(item => item.id === this.props.id)
         var vehicle
         x.forEach(function(obj){
-            vehicle = obj.profilePic 
+            vehicle = obj.profilePic
         })
         // console.log(this.state)
         this.setState({
             url: vehicle,
-            loading: 0
+            loading: 0,
+            vehicle: Object.values(x)
         })
     }
     handlechange (e) {
@@ -114,14 +115,14 @@ constructor(props){
                 </div>
                 </div>
                 <div className="col-9">
-                    <h1>{this.props.vehicle.vehicleNo}</h1>
+                    <h1>{this.state.vehicle[0].vehicleNo}</h1>
                     <br/><br/>
-                    <h6><b className="blue-text">Trailer Number: </b> {this.props.vehicle.trailerNo}</h6>
-                    <h6><b className="blue-text">Make: </b> {this.props.vehicle.make}</h6>
-                    <h6><b className="blue-text">Model: </b> {this.props.vehicle.model}</h6>
-                    <h6><b className="blue-text">Engine No: </b> {this.props.vehicle.engineNo}</h6>
-                    <h6><b className="blue-text">Chassis No: </b> {this.props.vehicle.chassisNo}</h6>
-                    {this.props.vehicle.disabled === false ? <Badge pill variant="success" className="left">Available</Badge> : <Badge pill variant="danger" className="left">Disabled</Badge> }
+                    <h6><b className="blue-text">Trailer Number: </b> {this.state.vehicle[0].trailerNo}</h6>
+                    <h6><b className="blue-text">Make: </b> {this.state.vehicle[0].make}</h6>
+                    <h6><b className="blue-text">Model: </b> {this.state.vehicle[0].model}</h6>
+                    <h6><b className="blue-text">Engine No: </b> {this.state.vehicle[0].engineNo}</h6>
+                    <h6><b className="blue-text">Chassis No: </b> {this.state.vehicle[0].chassisNo}</h6>
+                    {this.state.vehicle[0].disabled === false ? <Badge pill variant="success" className="left">Available</Badge> : <Badge pill variant="danger" className="left">Disabled</Badge> }
                 </div>
             </div>
         ): <div><br/><br/><br/>Loading</div>

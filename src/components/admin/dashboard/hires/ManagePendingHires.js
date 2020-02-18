@@ -16,7 +16,7 @@ class ManagePendingHires extends Component {
     state = {
         loading: 1,
         freeDrivers: '',
-        redir: 0
+        redir: 0,
     }
 
     handleChange = (e) => {
@@ -27,7 +27,7 @@ class ManagePendingHires extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.acceptHireRequest(this.props.hire[0].id, this.state) 
+        this.props.acceptHireRequest(this.props.hire[0].id, this.state,this.props.hire[0].customerId) 
         // console.log(this.state)
         this.setState({
             redir : 1
@@ -36,7 +36,7 @@ class ManagePendingHires extends Component {
 
     declineHire = (e) => {
         e.preventDefault();
-        this.props.declineHireRequest(this.props.hire[0].id, this.state)
+        this.props.declineHireRequest(this.props.hire[0].id, this.state, this.props.hire[0].customerId)
         this.setState({
             redir : 1
         })
@@ -392,8 +392,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        acceptHireRequest: (id, hireRequest) => dispatch(acceptHireRequest(id, hireRequest)),
-        declineHireRequest: (id, hireRequest) => dispatch(declineHireRequest(id, hireRequest))
+        acceptHireRequest: (id, hireRequest, customerId) => dispatch(acceptHireRequest(id, hireRequest, customerId)),
+        declineHireRequest: (id, hireRequest, customerId) => dispatch(declineHireRequest(id, hireRequest, customerId))
     }
 }
 
