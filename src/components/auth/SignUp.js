@@ -27,10 +27,12 @@ class SignUp extends Component {
             mobile: '',
             dob: '',
             nic: '',
+            valid:'',
             errors:{
                 email: '',
                 nic: '',
                 mobile: '',
+                dob:'',
                 password:'' ,
                 confPassword:'' 
         }
@@ -70,18 +72,28 @@ class SignUp extends Component {
                 errors.nic = 
                 value.length <10 
                 ? 'NIC is too short'
-                : value.length === 10 && value[9] !== 'v'
-                    ? 'Invalid type for NIC'
+                : value.length === 10 
+                    ?  value[9] === 'v' || value[9] ==='V'
+                        ? ''
+                        :'Invalid type for NIC'
                     :value.length >12
                         ?'NIC is too long'
                         :''
             break;
             case 'mobile': 
-            errors.mobile = 
-                value.length < 10
+            errors.mobile =
+            isNaN(value)
+            ?'Mobile should not contain any characters' 
+            : value.length < 10
                 ? 'Too short for Mobile No.(Ex: 07xxxxxxxx)'
                 : ''
             break;
+            case 'dob':
+                errors.dob=
+                new Date(value) > Date.now()
+                ?'Invalid Date Of Birth.Check again'
+                :''
+            break
             default:
             break;
         }
@@ -97,8 +109,10 @@ class SignUp extends Component {
         event.preventDefault();
         // console.log(this.state);
         if(validateForm(this.state.errors)) {
-            
             console.info('Valid Form')
+            this.setState({
+                valid:'valid'
+            })
           }else{
             console.error('Invalid Form')
           }
@@ -116,6 +130,8 @@ class SignUp extends Component {
         const {errors} = this.state
 
         if (auth.uid) return <Redirect to='/signin' />
+        if(this.state.valid)return <Redirect to='/' />
+
         return (
             <div className="loginBody">
                 <div className="container">
@@ -151,6 +167,10 @@ class SignUp extends Component {
                                     </div>
                                     <div className="input-field">
                                         <input placeholder="Date of Birth" name='dob' onFocus={this.handleDate} type="text" id="dob" onChange={this.handleChange} required noValidate/>
+                                   {
+                                       errors.dob.length>0 &&
+                                       <small><span className='error red-text center'>{errors.dob}</span></small>
+                                   }
                                     </div>
                                     <div className="input-field">
                                     <input placeholder="Email" type="email" name='email' id="email" onChange={this.handleChange} required noValidate/>

@@ -5,9 +5,6 @@ import {readMessage} from '../../../store/actions/adminActions'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import moment from 'moment'
-import {logo} from '../../../img/profile.png'
-// import 'simplebar'
-// import 'simplebar/dist/simplebar.css'
 import {Chat,addResponseMessage,addUserMessage,badge,title} from 'react-chat-popup'
 
 export class UserChat extends React.Component{
@@ -19,7 +16,8 @@ export class UserChat extends React.Component{
             newMessage: '',
             adminId:'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
             addModelShow:false,
-            messages:''
+            messages:'',
+            name:''
           }   
    }
     componentDidMount() {
@@ -30,8 +28,16 @@ export class UserChat extends React.Component{
  
     handleNewUserMessage =(newMessage)=> {
         console.log(`New message incomig! ${newMessage}`);
+        var y=this.props.customers.filter(item => item.id === this.props.auth.uid)
+        var userName
+        y.forEach(function(obj){
+            userName = obj.firstName +obj.lastName 
+        })
+        console.log('username')
+        console.log(userName)
+
 // send the message throught the backend API
-        this.props.sendMessage(newMessage, this.props.auth.uid, this.state.adminId)
+        this.props.sendMessage(newMessage,this.props.auth.uid, this.state.adminId,userName)
        }
    
     UNSAFE_componentWillReceiveProps(nextProps) {
@@ -41,12 +47,12 @@ export class UserChat extends React.Component{
         x.forEach(function(obj){
             msgs = obj.messages
         })
-        // console.log(this.state)
-        this.setState({
+            this.setState({
             messages: msgs,
-            loading: 0
+            loading: 0,
         })
         }
+        console.log(this.state.name)    
     }
     render(){
         const {auth} =this.props
@@ -54,12 +60,9 @@ export class UserChat extends React.Component{
            <div>
                 <Chat
                 handleNewUserMessage={this.handleNewUserMessage}
-                profileAvatar={logo}
-                badge={5}
-                title='Trans Global Logistics'
-                subtitle='Welcome'
+                title ={'Trans Global Logistics'}
                 />
-                  {this.state.messages && this.state.messages.map(message => {
+                {this.state.messages && this.state.messages.map(message => {
                     message.sender === auth.uid 
                         ?addUserMessage(message.message)
                         :addResponseMessage(message.message)
@@ -71,13 +74,14 @@ const mapStateToProps =(state) => {
     console.log(state)
     return{
         auth:state.firebase.auth,
-        chats: state.firestore.ordered.chats
+        chats: state.firestore.ordered.chats,
+        customers:state.firestore.ordered.customers
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        sendMessage : (message, senderId, receiverId) => dispatch(sendMessage(message, senderId, receiverId)),
+        sendMessage : (message,senderId, receiverId,userName) => dispatch(sendMessage(message,senderId ,receiverId,userName)),
         readMessage: (messageId) => dispatch(readMessage(messageId))  
 
     }
@@ -85,6 +89,7 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
     connect(mapStateToProps,mapDispatchToProps),
     firestoreConnect([
-        {collection:'chats'}
+        {collection:'chats'},
+        {collection : 'customers'}
     ]) 
 )(UserChat)

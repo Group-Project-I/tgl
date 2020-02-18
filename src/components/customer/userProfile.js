@@ -10,30 +10,19 @@ import ResetEmial from './authRecovery/resetEmail'
 import ChangePassword from './authRecovery/changePassword'
 import {Redirect} from 'react-router-dom'
 import { Squares } from 'react-activity'
-import image from '../../img/bgImg2.jpg'
-import { Button, Card, Accordion, Row, Col} from 'react-bootstrap'
-import {TiMessages} from "react-icons/ti"
-import {FiArrowDownCircle} from "react-icons/fi"
-import {Chat} from 'react-chat-popup'
 import UserChat from '../customer/chats/userChat'
-import Particles from 'react-particles-js';
 
+// *****User Profile Page -> Display user details with profile image and tabs for profile settings*****
 class UserProfile extends Component {
 
     constructor(props){
         super(props)
-        
     }
 
     state = {
         loading: 1,
         addModelShow:false
     }
-
-    handleNewUserMessage = (newMessage) => {
-        console.log(`New message incoming! ${newMessage}`);
-        // Now send the message throught the backend API
-      }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
         
@@ -45,24 +34,23 @@ class UserProfile extends Component {
     }
     render() {
         const {auth} = this.props
-
         // let addModelClose =()=>this.setState({addModelShow:false})
 
         if (!auth.uid) return <Redirect to='/signin' />
 
      const load = this.state.loading === 0 ? (
-     <div style={{backgroundColor:' #cde7e9 '}}>
-        <div className="container-fluid" 
-        style={{backgroundColor:'#cde7e9 ' ,height:'100%',backgroundImage:'{{+Image+}}'}}
-         >
+     <div style={{backgroundColor:' #cbd1d1 '}}>
+        <div className="container-fluid" style={{backgroundColor:'#cbd1d1 ',height:'100%',backgroundImage:'{{+Image+}}'}} >
         <br/><br/>
-    {/* Display update  success message */}
+    {/* Display successfully updated  */}
         <div className="green-text center">
             <h4>{this.state.updated ? "Updated Successfully" : null}</h4>
         </div>
+
     {/* Chat component */}
         <UserChat/>
-    {/* Display user detail  */}
+
+    {/* Display user details */}
         <br/><br/><br/>
         <div className='container' style={{minHeight:'850px'}}>
         
@@ -82,16 +70,17 @@ class UserProfile extends Component {
                         <EditProfile customer={this.props.customer[0]} id={this.props.id}></EditProfile>
                         </TabPanel>
                         <TabPanel>
+                    {/* Chenge password for logging */}
                         <ChangePassword/>
                         </TabPanel>
                         <TabPanel>
+                    {/* Change user logging email */}
                         <ResetEmial/>
                         </TabPanel>
 
                     </Tabs>
 
                 </div>
-
             </div>
             </div> 
             
@@ -114,6 +103,6 @@ const mapStateToProps = (state, ownProps) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect(props => [
-        {collection: 'customers',doc: props.id}
+        {collection:'customers',doc: props.id}
     ])
 )(UserProfile)

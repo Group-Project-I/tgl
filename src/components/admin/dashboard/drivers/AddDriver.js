@@ -32,16 +32,19 @@ class AddDriver extends Component {
         errors:{
             email:'',
             nic:'',
-            licenseNo:''
+            licenseNo:'',
+            dob:'',
+            password:'',
+            mobile:''
         }
 
     }
 
     handleChange = (e) => {
-        const {name,value} = e.target
+        const {id,value} = e.target
         let errors = this.state.errors
 
-        switch(name){
+        switch(id){
             case 'email':
                 errors.email =
                 validEmailRegex.test(value)
@@ -52,12 +55,62 @@ class AddDriver extends Component {
                 errors.nic=
                 value.length <10
                 ? 'Too short for NIC'
-                : value.length ===10 && value[9] !== 'v'
+                : value.length ===10 && value[9] !== 'V'
                     ?'Invalid type for NIC'
                     :value.length >12
                         ?'Too long for NIC'
                         :''
             break
+           
+            case 'email': 
+            errors.email = 
+                validEmailRegex.test(value)
+                ? ''
+                : 'Email is not valid';
+            break;
+            case 'password': 
+            errors.password = 
+                value.length < 6
+                ? 'Password must be at least 6 characters long'
+                : ''
+            break;
+            case 'confPassword':
+                errors.confPassword=
+                value.length<6
+                ? 'Password must be at least 6 characters long'
+                : value != this.state.password
+                    ?'Password you entered does not match '
+                    :''
+            break;  
+            case 'nic': 
+                errors.nic = 
+                value.length <10 
+                ? 'NIC is too short'
+                : value.length === 10 
+                    ?  value[9] === 'v' || value[9] ==='V'
+                        ? ''
+                        :'Invalid type for NIC'
+                    :value.length >12
+                        ?'NIC is too long'
+                        :''
+            break;
+            case 'mobile': 
+            errors.mobile =
+            isNaN(value)
+            ?'Mobile should not contain any characters' 
+            : value.length < 10
+                ? 'Too short for Mobile No.(Ex: 07xxxxxxxx)'
+                : value.length>10
+                    ?'Too long for Mobile No.(Ex: 07xxxxxxxx)'
+                    :''
+            break;
+            case 'dob':
+                errors.dob=
+                new Date(value) > Date.now()
+                ?'Invalid Date Of Birth.Check again'
+                :''
+            break
+            
             case 'licenseNo' :
                 errors.licenseNo=
                 value.length<8
@@ -67,6 +120,7 @@ class AddDriver extends Component {
             
             default:
             break
+            
         }
         this.setState({
             [e.target.id]: e.target.value
@@ -113,9 +167,17 @@ class AddDriver extends Component {
                         <div className="row">
                             <div className="input-field col-6">
                                 <input placeholder="Mobile" name='mobile' type="text" id="mobile" onChange={this.handleChange} required noValidate/>
+                                {
+                               errors.mobile.length>0 && 
+                               <small><span className='error red-text center'>{errors.mobile}</span></small>
+                           }
                             </div>
                             <div className="input-field col-6">
                                 <input placeholder="Date of Birth" type="text" onFocus={this.handleDate} id="dob"  onChange={this.handleChange} required noValidate/>
+                                {
+                               errors.dob.length>0 && 
+                               <small><span className='error red-text center'>{errors.dob}</span></small>
+                           }
                             </div>
                         </div>
                         <div className="row">
@@ -144,6 +206,10 @@ class AddDriver extends Component {
                         <div className="row">
                             <div className="input-field col-6">
                                 <input placeholder="Password" type="password" id="password" name='password' onChange={this.handleChange} required noValidate/>
+                                {
+                               errors.password.length>0 && 
+                               <small><span className='error red-text center'>{errors.password}</span></small>
+                           }
                           </div>
                         </div>
                         <input type="hidden" id="userType" value="driver"/>

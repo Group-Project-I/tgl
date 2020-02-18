@@ -8,9 +8,7 @@ import {MdCall,MdEmail,MdInsertDriveFile} from "react-icons/md"
 import {getFirestore} from 'redux-firestore'
 import {firestoreConnect} from 'react-redux-firebase'  
 import {compose} from 'redux'
-
-
-
+ 
 class Profile extends Component {
     constructor(props){
         super(props)
@@ -27,7 +25,8 @@ class Profile extends Component {
     }
  
     UNSAFE_componentWillReceiveProps(nextProps) {
-    //get image url from db and set the state
+    
+        //get image url from db and set the state
             var x = nextProps.users.filter(item => item.id === this.props.auth.uid)
             var user
             x.forEach(function(obj){
@@ -111,8 +110,8 @@ class Profile extends Component {
                 <br/><br/>
                 <strong><h1 className="blue-text">{this.props.customer.firstName + " " + this.props.customer.lastName}</h1></strong>
                 <br/><br/>
-                <h5><b className="blue-text"><MdCall/>  </b> {this.props.customer.mobile}</h5><br/><br/>
-                <br/><h5><b className="blue-text"><MdEmail/>  </b> {this.props.customer.email}</h5><br/><br/>
+                <h5><b className="blue-text"><MdCall/>  </b> {this.props.customer.mobile}</h5><br/>
+                <br/><h5><b className="blue-text"><MdEmail/>  </b> {this.props.customer.email}</h5><br/>
                 <br/><h5><b className="blue-text"><MdInsertDriveFile/>  </b> {this.props.customer.nic}</h5><br/>
                 <br/>{this.props.customer.disabled === false ? <Badge pill variant="success" className="left">Active</Badge> : <Badge pill variant="danger" className="left">Disabled</Badge> }
                 </div>

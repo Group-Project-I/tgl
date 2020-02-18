@@ -44,21 +44,37 @@ export const recoverPassword =(creds) => {
 }
 
 // add messages  to the firbase collection
-export const sendMessage = (message, senderId, receiverId) => {
+export const sendMessage = (message, senderId, receiverId,name) => {
   return(dispatch, getState, {getFirebase, getFirestore}) => {
     const auth=firebase.auth();
     const firestore = getFirestore();
-    
-      firestore.collection('chats').doc(senderId).update({
+    const action=''
+    const docDB=firestore.collection('chats').doc(senderId)
+    console.log('senderId')
+
+    // firestore.collection('chats').doc(senderId) !== null
+    //  ?(firestore.collection('chats').doc(senderId).update({
+    //   read: receiverId,
+    //   finalTime: new Date(),
+    //   userName:name,
+    //   messages: firebase.firestore.FieldValue.arrayUnion({
+    //       message: message,
+    //       sender: senderId,
+    //       time: new Date()})
+    //   }) )
+    //  :(
+       firestore.collection('chats').doc(senderId).update({
         read: receiverId,
         finalTime: new Date(),
+        userName:name,
         messages: firebase.firestore.FieldValue.arrayUnion({
             message: message,
             sender: senderId,
             time: new Date()
         })
     })
-   
+    //  )
+  
 }
 }
 
@@ -78,7 +94,6 @@ export const sendInquiries =( message)=>{
           dispatch({type:'SEND_INQUIRY_ERROR',error})
         })
     }
-
 }
 // Unregistered customer can send emails by filling the contact form
 export const sendFeedback=(variables)=>{

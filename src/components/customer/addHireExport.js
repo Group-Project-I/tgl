@@ -141,17 +141,17 @@ class AddHireExport extends Component {
                         <Card.Body>
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
-                                    <p className="fadeIn animated slow" id="containerPickupAddressLine1Tag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Address Line 1</p>
+                                    <p className="fadeIn animated slow" id="containerPickupAddressLine1Tag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>Address Line 1</p>
                                     <input placeholder="Address Line 1" type="text" id="containerPickupAddressLine1" onChange={this.handleChange} required />
                                 </div>
                                 <div className="input-field col-6">
-                                    <p className="fadeIn animated slow" id="containerPickupAddressLine2Tag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Address Line 2</p>
+                                    <p className="fadeIn animated slow" id="containerPickupAddressLine2Tag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>Address Line 2</p>
                                     <input placeholder="Address Line 2" type="text" id="containerPickupAddressLine2" onChange={this.handleChange} required />
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="input-field col-6">
-                                    <p className="fadeIn animated slow" id="containerPickupCityTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>City</p>
+                                    <p className="fadeIn animated slow" id="containerPickupCityTag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>City</p>
                                     <input placeholder="City" type="text" id="containerPickupCity" onChange={this.handleChange} required />
                                 </div>
                             </div>
@@ -168,24 +168,24 @@ class AddHireExport extends Component {
                         <h5>Pick up Date and Time</h5>
                         <div className="row" style={{paddingTop: '40px'}}>
                             <div className="input-field col-6">
-                                <p className="fadeIn animated slow" id="pickupDatetimeTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Cargo Pickup Date and Time(01/25/2001 01:00:PM)</p>
+                                <p className="fadeIn animated slow" id="pickupDatetimeTag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>Cargo Pickup Date and Time(01/25/2001 01:00:PM)</p>
                                 <input placeholder="Cargo Pickup Date and Time" onFocus={this.handleDate} ref="pickup" type="text" id="pickupDatetime"  onChange={this.handleChange} required />
                             </div>
                         </div>
                         <hr/><h5>Location</h5>
                         <div className="row" style={{paddingTop: '40px'}}>
                             <div className="input-field col-6">
-                                <p className="fadeIn animated slow" id="cargoLocationAddressLine1Tag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Address Line 1</p>
+                                <p className="fadeIn animated slow" id="cargoLocationAddressLine1Tag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>Address Line 1</p>
                                 <input placeholder="Address Line 1" type="text" id="cargoLocationAddressLine1" onChange={this.handleChange} required />
                             </div>
                             <div className="input-field col-6">
-                                <p className="fadeIn animated slow" id="cargoLocationAddressLine2Tag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Address Line 2</p>
+                                <p className="fadeIn animated slow" id="cargoLocationAddressLine2Tag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>Address Line 2</p>
                                 <input placeholder="Address Line 2" type="text" id="cargoLocationAddressLine2" onChange={this.handleChange} required />
                             </div>
                         </div>
                         <div className="row">
                             <div className="input-field col-6">
-                                <p className="fadeIn animated slow" id="cargoLocationCityTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>City</p>
+                                <p className="fadeIn animated slow" id="cargoLocationCityTag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>City</p>
                                 <input placeholder="City" type="text" id="cargoLocationCity" onChange={this.handleChange} required />
                             </div>
                         </div>
@@ -244,11 +244,11 @@ class AddHireExport extends Component {
                         <hr/>
                         <div className="row" style={{paddingTop: '40px'}}>
                             <div className="input-field col-6">
-                                <p className="fadeIn animated slow" id="cargoTypeTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Cargo Type(s)</p>
+                                <p className="fadeIn animated slow" id="cargoTypeTag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>Cargo Type(s)</p>
                                 <input placeholder="Cargo Type(s)" type="text" id="cargoType" onChange={this.handleChange} required/>
                             </div>
                             <div className="input-field col-6">
-                                <p className="fadeIn animated slow" id="netWeightTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Net Weight</p>
+                                <p className="fadeIn animated slow" id="netWeightTag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>Net Weight</p>
                                 <input placeholder="Net Weight" type="text" id="netWeight" onChange={this.handleChange} required/>
                             </div>
                         </div>
@@ -269,18 +269,18 @@ class AddHireExport extends Component {
                             </div>
                             <div className="row">
                                 <div className="input-field col-6">
-                                    <p className="fadeIn animated slow" id="loadingTerminalTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Loading Terminal</p>
+                                    <p className="fadeIn animated slow" id="loadingTerminalTag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>Loading Terminal</p>
                                     <input placeholder="Loading Terminal" type="text" id="loadingTerminal" onChange={this.handleChange} required/>
                                 </div>
                             </div>
                             <hr/><h5>Vessel Details</h5>
                             <div className="row" style={{paddingTop: '40px'}}>
                                 <div className="input-field col-6">
-                                    <p className="fadeIn animated slow" id="vesselTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Vessel</p>
+                                    <p className="fadeIn animated slow" id="vesselTag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>Vessel</p>
                                     <input placeholder="Vessel" type="text" id="vessel" onChange={this.handleChange} required/>
                                 </div>
                                 <div className="input-field col-6">
-                                    <p className="fadeIn animated slow" id="loadingDatetimeTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Loading Date and Time(01/25/2000 10:00:AM)</p>
+                                    <p className="fadeIn animated slow" id="loadingDatetimeTag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>Loading Date and Time(01/25/2000 10:00:AM)</p>
                                     <input placeholder="Loading Date and Time" onFocus={this.handleDate} type="text" id="loadingDatetime" onChange={this.handleChange} required />
                                 </div>
 
@@ -294,7 +294,7 @@ class AddHireExport extends Component {
                         <Card.Body>
                     <div className="row">
                         <div className="input-field col-6">
-                            <p className="fadeIn animated slow" id="customerNameTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Customer Name</p>
+                            <p className="fadeIn animated slow" id="customerNameTag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>Customer Name</p>
                             <input placeholder="Customer Name" type="text" id="customerName" onChange={this.handleChange} required />
                         </div>
                     </div>
@@ -306,7 +306,7 @@ class AddHireExport extends Component {
                         <Card.Header><h4>Remarks</h4></Card.Header>
                         <Card.Body>
                             <div className="input-field row col-12">
-                                <p className="fadeIn animated slow" id="remarksTag" style={{display:'none',fontFamily:'Times New Roman',color:'red'}}>Mention any Additional Information(Perishable goods, Reefer temperature, Number and kind of packages etc.)</p>
+                                <p className="fadeIn animated slow" id="remarksTag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>Mention any Additional Information(Perishable goods, Reefer temperature, Number and kind of packages etc.)</p>
                                 <textarea placeholder="Mention any Additional Information(Perishable goods, Reefer temperature, Number and kind of packages etc.)" style={{ minHeight: 100 }} type="text" id="remarks" onChange={this.handleChange} />
                             </div>
                         </Card.Body>

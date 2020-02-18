@@ -8,7 +8,7 @@ import {compose} from 'redux'
 import {readNotification} from '../../store/actions/adminActions'
 import { MdNotifications, MdNotificationsActive, MdBeenhere, MdEventAvailable, MdEdit, MdPersonAdd} from "react-icons/md";
 
-import { GoIssueReopened } from "react-icons/go";
+import { GoIssueReopened } from "react-icons/go"
   
 // Links visible for the signed in user 
 export class SignedInLinks extends React.Component{
