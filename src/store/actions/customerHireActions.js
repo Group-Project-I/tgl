@@ -110,7 +110,7 @@ export const addExportHires = (exportHire) => {
             hireType: 'export',
             hireStatus: 'request',
             createAt: new Date(),
-            timeline: {
+            timeline:{
                 truckDispatched: {
                     set:1,
                     val: 'truckDispatched',

@@ -6,7 +6,6 @@ import moment from 'moment'
 import {Link, Redirect} from 'react-router-dom'
 import {Spinner} from "react-activity";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 import { Timeline, TimelineItem }  from 'vertical-timeline-component-for-react';
 import ReactToPrint from 'react-to-print'
 import {MdPrint} from "react-icons/md";
