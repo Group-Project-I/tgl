@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {Redirect} from 'react-router-dom'
-
 import {connect} from 'react-redux'
 import {addImportHires} from '../../store/actions/customerHireActions'
 import {firestoreConnect} from 'react-redux-firebase'
@@ -9,10 +8,9 @@ import {Link} from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import DatePicker from "react-datepicker/es";
 import "react-datepicker/dist/react-datepicker.css"
-import SelectSearch from 'react-select-search'
 
+// Add import request to the system
 class AddHireImport extends Component {
     state = {
         containerType: '20',
@@ -36,24 +34,15 @@ class AddHireImport extends Component {
         redir : 0,
 
     }
-
+    // to close cost estimate popup
     handleClosePrice = () => {
         // e.preventDefault();
         this.setState({
             show: false,
         })
     }
-    // handleCity = (e) => {
-    //     e.preventDefault()
-    //     if(this.props.pricing) {
-    //        // var city1 = this.props.pricing.filter(item => item.id === this.state.destinationCity.toUpperCase())
-    //         this.setState({
-    //             show: true,
-    //
-    //         })
-    //     }
-    // }
 
+    // popup to show cost estimate for the hire
     handleShowPrice = (e) => {
         e.preventDefault()
         if(this.props.pricing){
@@ -93,7 +82,7 @@ class AddHireImport extends Component {
 
     }
 
-
+    // Function to add import request to the database
     handleSubmit = (e) => {
         e.preventDefault();
 
@@ -104,42 +93,15 @@ class AddHireImport extends Component {
         })
     }
 
-    // handleCustomer = (e) => {
-    //     if(e.target.value){
-    //         const x = e.target.value.split('_')
-    //         this.setState({
-    //             customerId: x[0],
-    //             customerName: x[1]
-    //         })
-    //     }
-    // }
-    //
-    //
-    //
-    // getCustomer = (e) => {
-    //     if(this.props.customer){
-    //         const availableCustomers = this.props.customers.sort((a,b) => { return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()}).reverse();
-    //         // const currentUser = this.props.customer.profile;
-    //
-    //         this.setState({
-    //
-    //             availableCustomers: availableCustomers.filter(item => item.disabled === false)
-    //         })
-    //     }
-    // }
-
-
+// Change element type to date on click
     handleDate = (e) => {
         e.preventDefault();
         e.target.type = 'datetime-local'
-        // this.setState({
-        //     pickupDatetime: e.target.value
-        // });
         var tag = e.target.id+"Tag"
         document.getElementById(tag).style.display = "block"
     }
 
-
+    // Set state with selected container type
     handleContainerType = (e) => {
         if(e.target.value){
             this.setState({
@@ -202,7 +164,6 @@ class AddHireImport extends Component {
                                                     <div className="input-field col-6">
                                                         <p className="fadeIn animated slow" id="pickupDatetimeTag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>Container Pickup Date and Time(01/25/2001 10:00:AM)</p>
                                                         <input placeholder="Pickup Date and Time" ref="pickup" onFocus={this.handleDate} type="text" id="pickupDatetime" onChange={this.handleChange} required />
-                                                        {/*<DatePicker placeholderText="Pickup Date and Time" id="pickupDatetime"  minDate={new Date()} showTimeSelect onChange={this.handleChangePickUp}/>*/}
                                                     </div>
                                                 </div>
                                                 <hr/><h5>Location</h5>
@@ -304,9 +265,6 @@ class AddHireImport extends Component {
                                                     <Modal.Body>
                                                         <Card border="primary" className="text-center">
                                                             <Card.Body>
-                                                                {/*<div className= { cityEdited != 'Updated Successfully' ? "red-text" : "green-text"}>*/}
-                                                                {/*    {this.state.updated ? cityEdited : null}*/}
-                                                                {/*</div>*/}
                                                                 <form >
                                                                     <div className="input-field row">
                                                                         <h6 className='blue-text'>Container Type </h6>
@@ -347,13 +305,9 @@ class AddHireImport extends Component {
                                         <Card.Body>
                                             <div className="row">
                                                 <div className="input-field col-6">
-                                                    {/*<input placeholder="Customer Name" type="hidden" value="Tharinda Dilshan" id="customerName" onChange={this.handleChange} required />*/}
                                                     <p className="fadeIn animated slow" id="customerNameTag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>Customer Name</p>
                                                     <input placeholder="Customer Name" type="text" id="customerName" onChange={this.handleChange} required />
-                                                    {/*<select className="form-control" id="customerId" onFocus={this.getCustomer} onChange={this.handleCustomer}>*/}
-                                                    {/*    {this.state.availableCustomers ?  this.state.availableCustomers.map((x, i) => {return (<option value={x.id + "_" + x.firstName + " " + x.lastName} key={i}>{x.firstName + " " + x.lastName}</option>)}) : null}*/}
 
-                                                    {/*</select>*/}
                                                 </div>
                                             </div>
                                         </Card.Body>

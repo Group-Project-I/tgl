@@ -8,6 +8,8 @@ import {Spinner} from "react-activity";
 import Card from "react-bootstrap/Card";
 import { Timeline, TimelineItem }  from 'vertical-timeline-component-for-react';
 
+// Ongoing hire page, A hire which is currently in progress
+// customer can track the hire details
 class ManageOngoingHire extends Component {
     state = {
         loading: 1,
@@ -345,12 +347,6 @@ const mapStateToProps = (state) => {
         hires: state.firestore.ordered.hires
     }
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         completeHire: (id) => dispatch(completeHire(id))
-//     }
-// }
 
 export default compose(
     connect(mapStateToProps),

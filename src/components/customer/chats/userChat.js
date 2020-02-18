@@ -5,7 +5,7 @@ import {readMessage} from '../../../store/actions/adminActions'
 import {firestoreConnect} from 'react-redux-firebase'
 import {compose} from 'redux'
 import moment from 'moment'
-import {Chat,addResponseMessage,addUserMessage,badge,title} from 'react-chat-popup'
+import {Chat,addResponseMessage,addUserMessage,badge} from 'react-chat-popup'
 
 export class UserChat extends React.Component{
     

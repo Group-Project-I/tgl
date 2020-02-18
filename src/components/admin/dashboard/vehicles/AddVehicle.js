@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {addVehicle} from '../../../../store/actions/adminActions'
+import {Redirect} from 'react-router-dom'
 
 // Form to add vehicles to the system
 const validateForm = (errors) => {
@@ -25,6 +26,7 @@ class AddVehicle extends Component {
         chassisNo: '',
         remarks: '',
         visibility: '1',
+        valid:null,
         errors:{
             chassisNo:'',
             vehicleNo:'' 
@@ -63,17 +65,24 @@ class AddVehicle extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addVehicle(this.state)
         if(validateForm(this.state.errors)) {
-            
+            this.setState({
+                valid:'valid'
+            })
             console.info('Valid Form')
           }else{
+            if(this.state.valid)return <Redirect to='/admin' />
+
             console.error('Invalid Form')
           }
+          this.props.addVehicle(this.state)
+
     }
 
     render() {
         const{errors}=this.state
+        if(this.state.valid)return <Redirect to='/admin/vehicles' />
+
         return (
                 <div className="container">
                     <br/>

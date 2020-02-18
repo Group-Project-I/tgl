@@ -4,6 +4,7 @@ import moment from 'moment'
 // import {Link} from 'react-router-dom'
 import { ReactTabulator } from 'react-tabulator'
 
+// List of import requests with sorting and filtering
 const ImportRequests = ({importHireRequests, history}) => {
     if (!importHireRequests.length) return <div><br/><br/><h3>No Import Requests</h3><br/></div>
     global.moment = require("moment");
@@ -55,38 +56,6 @@ const ImportRequests = ({importHireRequests, history}) => {
                 rowClick={rowClick}
                 options={{ pagination: 'local',paginationSize: 5}}
             />
-            {/* <table className="table">
-                <thead className="thead-dark">
-                <tr>
-                    <th>Type</th>
-                    <th>Pickup Date</th>
-                    <th>Cargo Type</th>
-                    <th>Vessel Arrival Date</th>
-                    <th>Destination</th>
-                    <th>Customer</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {importHireRequests && importHireRequests.map(imp =>{
-                        return(
-                            <tr key={imp.id}>
-                                <td className="center-align">{imp.containerType}</td>
-                                <td className="center-align">{moment(imp.pickupDatetime).format('MMMM Do YYYY, h:mm:ss a')}</td>
-                                <td className="center-align">{imp.cargoType}</td>
-                                <td className="center-align">{moment(imp.vesselArrivalDatetime).format('MMMM Do YYYY, h:mm:ss a')}</td>
-                                <td className="center-align">{imp.destination}</td>
-                                <td className="center-align">{imp.customerName}</td>
-                                <td className="center-align"><Badge variant="primary" className="black-text">Request</Badge></td>
-                                <td className="center-align">
-                                    <Link to={'/admin/hirerequests/' + imp.id}><button type="button" data-toggle="modal" data-id="" className="edit-details btn btn-primary" >View</button></Link>
-                                </td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table> */}
         </div>
     )
 }
