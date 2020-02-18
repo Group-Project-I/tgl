@@ -25,6 +25,7 @@ class ManagePendingHires extends Component {
         })
     }
 
+    // Updates the hire with new details of the assignment
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.acceptHireRequest(this.props.hire[0].id, this.state,this.props.hire[0].customerId) 
@@ -34,6 +35,7 @@ class ManagePendingHires extends Component {
         })     
     }
 
+    // Decline hire request
     declineHire = (e) => {
         e.preventDefault();
         this.props.declineHireRequest(this.props.hire[0].id, this.state, this.props.hire[0].customerId)
@@ -42,6 +44,7 @@ class ManagePendingHires extends Component {
         })
     }
 
+    // Lists available drivers if driver is reassigned
     availableDrivers = (e) => {
         const dateTime = this.props.hire[0].pickupDatetime
         const ListH = this.props.hires.filter(item => item.driverId !== "" && item.hireStatus !== "completed")
@@ -60,6 +63,7 @@ class ManagePendingHires extends Component {
         }
     }
 
+    // Handles state if driver is reassigned
     handleDriver = (e) => {
         if(e.target.value){
             const y = e.target.value.split('_')
@@ -70,6 +74,7 @@ class ManagePendingHires extends Component {
         }
     }
 
+    // Lists the available vehicles if vehicle is reassigned
     availableVehicles = (e) => {    
         const dateTime = this.props.hire[0].pickupDatetime   
         const ListH = this.props.hires.filter(item => item.vehicleId !== "" && item.hireStatus !== "completed") 
@@ -89,6 +94,7 @@ class ManagePendingHires extends Component {
         }
     }
 
+    // Handles state if vehicle is reassigned
     handleVehicle = (e) => {
         if(e.target.value){
             const x = e.target.value.split('_')
@@ -99,6 +105,7 @@ class ManagePendingHires extends Component {
         }
     }
 
+    // Loads currently assigned driver and vehicle information
     componentWillReceiveProps(nextProps) {
         
         if(this.props.drivers && this.props.hires){

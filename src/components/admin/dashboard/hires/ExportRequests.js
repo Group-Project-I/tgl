@@ -3,6 +3,7 @@ import moment from 'moment'
 import { ReactTabulator } from 'react-tabulator'
 
 // List of export requests with sorting and filtering
+// List of hires with state = requests and hireType = exports are passed from manage hire requests
 const ExportRequests = ({exportHireRequests, history}) => {
     if (!exportHireRequests.length) return <div><br/><br/><h4>No Export Requests</h4></div>
 

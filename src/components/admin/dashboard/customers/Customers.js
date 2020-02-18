@@ -10,6 +10,7 @@ import { ReactTabulator } from 'react-tabulator'
 
 // List of customers registered in the system with filtering and sorting
 class Customers extends Component {
+    
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
@@ -35,7 +36,6 @@ class Customers extends Component {
             { title: "User Since", field: "createdAt", align: "center", sorter: "date", sorterParams:{format:"MMM Do YYYY"}},
             
         ];
-        // console.log('boom',this.state)
 
         var data = []
         // eslint-disable-next-line

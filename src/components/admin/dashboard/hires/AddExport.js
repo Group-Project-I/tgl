@@ -65,6 +65,11 @@ class AddExport extends Component {
     handleDate = (e) => {
         e.preventDefault();
         e.target.type = 'datetime-local'
+
+        var iso = new Date().toISOString();
+        var minDate = iso.substring(0,iso.length-8);
+        e.target.min = minDate
+
         var tag = e.target.id+"Tag"
         document.getElementById(tag).style.display = "block"
     }

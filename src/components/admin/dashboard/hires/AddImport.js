@@ -65,6 +65,17 @@ class AddImport extends Component {
     handleDate = (e) => {
         e.preventDefault();
         e.target.type = 'datetime-local'
+        var iso = new Date().toISOString();
+        var minDate = iso.substring(0,iso.length-8);
+        e.target.min = minDate
+
+        var tag = e.target.id+"Tag"
+        document.getElementById(tag).style.display = "block"
+    }
+
+    handleVesselDate = (e) => {
+        e.preventDefault();
+        e.target.type = 'datetime-local'
         var tag = e.target.id+"Tag"
         document.getElementById(tag).style.display = "block"
     }
@@ -395,7 +406,7 @@ class AddImport extends Component {
                                 </div>
                                 <div className="input-field col-6">
                                     <p id="vesselArrivalDatetimeTag" style={{display:'none',fontFamily:'Times New Roman'}}>Vessel Arrival Date and Time(01/25/2001 10:00:AM)</p>
-                                    <input placeholder="Vessel Arrival Date and Time" onFocus={this.handleDate} type="text" id="vesselArrivalDatetime" onChange={this.handleChange} required />
+                                    <input placeholder="Vessel Arrival Date and Time" onFocus={this.handleVesselDate} type="text" id="vesselArrivalDatetime" onChange={this.handleChange} required />
                                 </div>
                             </div>
                             </Card.Body>

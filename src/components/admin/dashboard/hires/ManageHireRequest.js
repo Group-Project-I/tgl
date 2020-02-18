@@ -31,6 +31,8 @@ class ManageHireRequest extends Component {
         })
     }
 
+    // Function to accept hire request 
+    // hire id, assignment information and customer id are passed to the function (customer is notified when accepted)
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.acceptHireRequest(this.props.hire[0].id, this.state, this.props.hire[0].customerId) 
@@ -40,6 +42,7 @@ class ManageHireRequest extends Component {
     }
 
     // Decline hire request
+    // hire id, assignment information and customer id are passed to the function (customer is notified when declined)
     declineHire = (e) => {
         e.preventDefault();
         this.props.declineHireRequest(this.props.hire[0].id, this.state, this.props.hire[0].customerId)
@@ -554,6 +557,7 @@ const mapStateToProps = (state) => {
     }
 }
 
+// Accepting and declining functions mapped to props
 const mapDispatchToProps = (dispatch) => {
     return {
         acceptHireRequest: (id, hireRequest, customerId) => dispatch(acceptHireRequest(id, hireRequest, customerId)),

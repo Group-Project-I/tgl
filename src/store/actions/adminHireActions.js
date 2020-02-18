@@ -27,7 +27,7 @@ export const addImportHire = (importHire) => {
             vehicleNo: importHire.vehicleNo,
             remarks: importHire.remarks,
             hireType: 'import',
-            hireStatus: 'request',
+            hireStatus: 'driverPending',
             createAt: new Date(),
             timeline: {
                 truckDispatched: {
@@ -119,7 +119,7 @@ export const addExportHire = (exportHire) => {
             vehicleNo: exportHire.vehicleNo,
             remarks: exportHire.remarks,
             hireType: 'export',
-            hireStatus: 'request',
+            hireStatus: 'driverPending',
             createAt: new Date(),
             timeline: {
                 truckDispatched: {

@@ -40,6 +40,7 @@ class AddDriver extends Component {
 
     }
 
+    // Validation for driver form
     handleChange = (e) => {
         const {id,value} = e.target
         let errors = this.state.errors
@@ -113,8 +114,8 @@ class AddDriver extends Component {
             
             case 'licenseNo' :
                 errors.licenseNo=
-                value.length<8
-                ?'Too short for license Number'
+                value.length != 8 || isNaN(value[1]) || isNaN(value[2]) || isNaN(value[3]) || isNaN(value[4]) || isNaN(value[5]) || isNaN(value[6]) || isNaN(value[7])
+                ?'Invalid License Number'
                 :''
             break
             

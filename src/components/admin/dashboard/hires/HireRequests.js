@@ -19,6 +19,8 @@ class HireRequests extends Component {
         const {auth} = this.props
         if (!auth.uid) return <Redirect to='/signin' />
 
+        // Filter hires based on hire type and status
+        // Filtered results are passed to respective displaying components 
         const importHireRequests = this.props.hires.filter(item => item.hireType === "import" && item.hireStatus === "request")
         const exportHireRequests = this.props.hires.filter(item => item.hireType === "export" && item.hireStatus === "request")
         
