@@ -17,19 +17,19 @@ class ManageOngoingHire extends Component {
         redir: 0
     }
 
-    handleChange = (e) => {
-        this.setState({
-            [e.target.id]: e.target.value
-        })
-    }
+    // handleChange = (e) => {
+    //     this.setState({
+    //         [e.target.id]: e.target.value
+    //     })
+    // }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.completeHire(this.props.hire[0].id)
-        this.setState({
-            redir : 1
-        })
-    }
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     this.props.completeHire(this.props.hire[0].id)
+    //     this.setState({
+    //         redir : 1
+    //     })
+    // }
 
     componentWillReceiveProps(nextProps) {
 
@@ -297,7 +297,7 @@ class ManageOngoingHire extends Component {
                                         <br/><br/>
                                         <div className="container" style={{alignItems: "center"}}>
 
-                                            <form onSubmit={this.handleSubmit} >
+                                            {/*<form onSubmit={this.handleSubmit} >*/}
                                                 <br/>
                                                 <Card border="primary" className="text-center">
                                                     <Card.Header color="blue"><h5>Hire Status</h5></Card.Header>
@@ -320,7 +320,7 @@ class ManageOngoingHire extends Component {
                                                         </Timeline>
                                                     </Card.Body>
                                                 </Card>
-                                            </form>
+                                            {/*</form>*/}
                                         </div>
                                     </Card.Body>
                                 </Card>

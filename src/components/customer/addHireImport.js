@@ -285,7 +285,7 @@ class AddHireImport extends Component {
                                                                                 <b className="red-text">Note that the estimated cost may subject to change. Contact the administrator for inquiries.</b>
                                                                             </div>:
                                                                             <div>
-                                                                                No cost estimation available for the provided destinaiton address. Please contact the administrator for inquiries.
+                                                                                No cost estimation available for the provided destination address. Please contact the administrator for inquiries.
                                                                             </div>
                                                                         }
                                                                     </div>
