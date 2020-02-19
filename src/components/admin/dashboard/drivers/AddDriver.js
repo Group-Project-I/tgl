@@ -123,14 +123,15 @@ class AddDriver extends Component {
     handleDate = (e) => {
         e.preventDefault();
         e.target.type = 'date'
+        e.target.max = "2020-01-01"
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
         // console.log(this.state);
-        this.props.addDriver(this.state)
+        
         if(validateForm(this.state.errors)) {
-            
+            this.props.addDriver(this.state)
             console.info('Valid Form')
           }else{
             console.error('Invalid Form')

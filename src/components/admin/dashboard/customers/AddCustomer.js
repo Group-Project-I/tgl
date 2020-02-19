@@ -67,16 +67,11 @@ class AddCustomer extends Component {
             break;  
             case 'nic': 
                 errors.nic = 
-                value.length <10 
-                ? 'NIC is too short'
-                : value.length === 10 
-                    ?  value[9] === 'v' || value[9] ==='V'
-                        ? ''
-                        :'Invalid type for NIC'
-                    :value.length >12
-                        ?'NIC is too long'
-                        :''
-            break;
+                value.length <10 || (value.length <10 && isNaN(value)) ? 'Invalid NIC number'
+                : value.length === 10 && value[9] !== 'v' || isNaN(value[0] ) || isNaN(value[1] ) || isNaN(value[2] ) || isNaN(value[3] ) || isNaN(value[4] ) || isNaN(value[5] ) || isNaN(value[6] ) || isNaN(value[7] ) || isNaN(value[8]) 
+                    ? 'Invalid NIC number'
+                    :value.length > 12 ?'NIC is too long':''
+                break
             case 'mobile': 
             errors.mobile =
             isNaN(value)
@@ -109,9 +104,9 @@ class AddCustomer extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addCustomer(this.state)
+        
         if(validateForm(this.state.errors)) {
-            
+            this.props.addCustomer(this.state)
             console.info('Valid Form')
           }else{
             console.error('Invalid Form')

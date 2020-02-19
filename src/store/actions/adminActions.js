@@ -117,9 +117,14 @@ export const editUser = (customerId, data, collec) => {
         const firestore = getFirestore();
         if(collec === 'customers'){
             firestore.collection('customers').doc(customerId).get().then((doc) => {
-                return firestore.collection(collec).doc(customerId).update({
-                    ...data
-                }).then(() => {
+                let updateData = {
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    mobile: data.mobile,
+                    dob: data.dob,
+                    nic: data.nic
+                }
+                return firestore.collection(collec).doc(customerId).update(updateData).then(() => {
                     // Send notification to system administrator
                     let data = {
                         to: 'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2',
@@ -133,6 +138,20 @@ export const editUser = (customerId, data, collec) => {
                         return firestore.collection('notifications').add(data)
                     }    
                 })
+            })
+        }else if(collec === 'drivers'){
+            firestore.collection(collec).doc(customerId).update({
+                firstName: data.firstName,
+                lastName: data.lastName,
+                email: data.email,
+                mobile: data.mobile,
+                licenseNo: data.licenseNo,
+                nic: data.nic,
+                dob: data.dob,
+            }).then(() => {
+                dispatch({type: 'DOCUMENT_UPDATED'});
+            }).catch((err) => {
+                dispatch({type: 'ERROR_UPDATING_DOCUMENT', err});
             })
         }else{
             firestore.collection(collec).doc(customerId).update({
