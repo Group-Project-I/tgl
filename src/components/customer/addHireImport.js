@@ -32,6 +32,7 @@ class AddHireImport extends Component {
         remarks: 'None',
         loading: 1,
         redir : 0,
+        added: 0
 
     }
     // to close cost estimate popup
@@ -88,7 +89,8 @@ class AddHireImport extends Component {
 
         this.props.addImportHires(this.state);
         this.setState({
-            redir : 1
+            //redir : 1
+            added:1
 
         })
     }
@@ -112,6 +114,13 @@ class AddHireImport extends Component {
                 containerType: e.target.value
             })
         }
+    }
+
+    handleVesselDate = (e) => {
+        e.preventDefault();
+        e.target.type = 'datetime-local'
+        var tag = e.target.id+"Tag"
+        document.getElementById(tag).style.display = "block"
     }
 
 
@@ -146,6 +155,9 @@ class AddHireImport extends Component {
                                 <br/>
 
                                     <form onSubmit={this.handleSubmit} autoComplete='off'>
+                                        <div className="green-text center">
+                                            <h3>{this.state.added ? "Added Successfully" : null}</h3><br/><br/>
+                                        </div>
                                         <br/>
                                         <Card border="primary" className="text-center">
                                             <Card.Header color="blue"><h4>Container Type</h4></Card.Header>
@@ -230,7 +242,7 @@ class AddHireImport extends Component {
                                                     </div>
                                                     <div className="input-field col-6">
                                                         <p className="fadeIn animated slow" id="vesselArrivalDatetimeTag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>Vessel Arrival Date and Time(01/25/2001 10:00:AM)</p>
-                                                        <input placeholder="Vessel Arrival Date and Time" onFocus={this.handleDate} type="text" id="vesselArrivalDatetime" onChange={this.handleChange} required />
+                                                        <input placeholder="Vessel Arrival Date and Time" onFocus={this.handleVesselDate} type="text" id="vesselArrivalDatetime" onChange={this.handleChange} required />
                                                     </div>
                                                 </div>
                                             </Card.Body>
