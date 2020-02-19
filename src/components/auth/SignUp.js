@@ -85,7 +85,7 @@ class SignUp extends Component {
             break;
             case 'mobile': 
             errors.mobile = 
-                value.length < 10 || isNaN(value) || value[0] != 0 || value[1] != 7
+                value.length != 10 || isNaN(value) || value[0] != 0 || value[1] != 7
                 ? 'Invalid Mobile No.(Ex: 07xxxxxxxx)'
                 : ''
             break;
@@ -114,6 +114,7 @@ class SignUp extends Component {
             this.setState({
                 valid:'valid'
             })
+            this.props.signUp(this.state)
           }else{
             console.error('Invalid Form')
           }
@@ -132,7 +133,7 @@ class SignUp extends Component {
         const {errors} = this.state
 
         if (auth.uid) return <Redirect to='/signin' />
-        if(this.state.valid)return <Redirect to='/' />
+        // if(this.state.valid)return <Redirect to='/' />
 
         return (
             <div className="loginBody">

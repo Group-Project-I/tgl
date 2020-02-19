@@ -43,8 +43,10 @@ class ManageDriver extends Component {
             <div id="content" className="container-fluid" role="main">
                 <br/><br/><br/><br/>
 
+                {/* Driver profile component */}
                 <DriverProfile driver={this.props.driver[0]} id={this.props.id}></DriverProfile>
 
+                {/* Hires, edit driver and disable driver components */}
                 <Tabs className="center">
                     <TabList className="left">
                         <Tab>Hires</Tab>

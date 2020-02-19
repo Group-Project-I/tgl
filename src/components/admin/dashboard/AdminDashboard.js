@@ -11,6 +11,7 @@ import Card from 'react-bootstrap/Card'
 
 const AdminDashboard = (props) => {
     // eslint-disable-next-line
+    // Redirect to signIn page if the user is not signed in
     const {auth} = props
     if (!localStorage.getItem('userId')) return <Redirect to='/signin' />
 

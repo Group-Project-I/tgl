@@ -4,6 +4,7 @@ import { ReactTabulator } from 'react-tabulator'
 
 
 // List of completed exports with sorting and filtering
+// Exports are passed from the hires component
 const Exports = ({exportHires, history}) => {
     if (!exportHires.length) return <div><br/><br/><h4>No Exports Available</h4></div>
 

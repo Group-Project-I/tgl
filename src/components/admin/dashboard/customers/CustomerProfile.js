@@ -3,6 +3,7 @@ import {Badge} from 'react-bootstrap'
 import "react-tabs/style/react-tabs.css";
 // View the profile of a customer along with the display picture
 class CustomerProfile extends Component {
+
     constructor(props){
         super(props)
         this.state={
@@ -11,6 +12,7 @@ class CustomerProfile extends Component {
         }
     }
    
+    // Get the passed profile pic URL into the state
     UNSAFE_componentWillReceiveProps(nextProps) {
         if(this.props.user){
             this.setState({
@@ -40,17 +42,5 @@ class CustomerProfile extends Component {
         return <div>{load}</div>
     }
 }
-// const mapStateToProps = (state) => {
-//     return {
-//         auth: state.firebase.auth,
-//         users:state.firestore.ordered.users  
-//     }
-// }
-// export default (
-//     connect(mapStateToProps),
-//     firestoreConnect([
-//         { collection:'users'}
-//     ]) 
-// )(CustomerProfile)
 
 export default (CustomerProfile)

@@ -3,7 +3,7 @@ import moment from 'moment'
 import { ReactTabulator } from 'react-tabulator'
 
 // List of import requests with sorting and filtering
-
+// Filtered imports with hire status = request are passed from the manage hire requests component
 const ImportRequests = ({importHireRequests, history}) => {
     if (!importHireRequests.length) return <div><br/><br/><h4>No Import Requests</h4></div>
 
@@ -20,6 +20,7 @@ const ImportRequests = ({importHireRequests, history}) => {
 
     var data = []
 
+    // Mapped to get only the required fields
     // eslint-disable-next-line
     {importHireRequests && importHireRequests.map(imp =>{
         data.push({

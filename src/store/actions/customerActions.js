@@ -63,16 +63,43 @@ export const sendMessage = (message, senderId, receiverId,name) => {
     //       time: new Date()})
     //   }) )
     //  :(
-       firestore.collection('chats').doc(senderId).update({
-        read: receiverId,
-        finalTime: new Date(),
-        userName:name,
-        messages: firebase.firestore.FieldValue.arrayUnion({
-            message: message,
-            sender: senderId,
-            time: new Date()
+    var docRef = firestore.collection('chats').doc(senderId)
+    docRef.get().then(function(doc){
+      if(doc.exists){
+        firestore.collection('chats').doc(senderId).update({
+          read: receiverId,
+          finalTime: new Date(),
+          userName:name,
+          messages: firebase.firestore.FieldValue.arrayUnion({
+              message: message,
+              sender: senderId,
+              time: new Date()
+          })
         })
+      }else{
+        firestore.collection('chats').doc(senderId).set({
+          read: receiverId,
+          finalTime: new Date(),
+          userName:name,
+          messages: firebase.firestore.FieldValue.arrayUnion({
+              message: message,
+              sender: senderId,
+              time: new Date()
+          })
+        })
+      }
     })
+
+      // firestore.collection('chats').doc(senderId).update({
+      //   read: receiverId,
+      //   finalTime: new Date(),
+      //   userName:name,
+      //   messages: firebase.firestore.FieldValue.arrayUnion({
+      //       message: message,
+      //       sender: senderId,
+      //       time: new Date()
+      //   })
+      // })
     //  )
   
 }

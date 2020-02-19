@@ -13,7 +13,7 @@ import {Redirect} from 'react-router-dom'
 import { Squares } from 'react-activity'
 import 'react-activity/dist/react-activity.css'
 
-// Connects components on the vehicle page 
+// Connects components on the vehicle page (vehicle profile, imports, exports, disable vehicle, edit vehicle componenets)
 
 class ManageVehicle extends Component {
     static defaultProps = { 

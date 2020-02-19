@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import Card from 'react-bootstrap/Card'
 import {updatePassword} from '../../../store/actions/authActions'
 
+// change user loging password
 class ChangePassword extends Component {
     state = {
         newPassword: '',

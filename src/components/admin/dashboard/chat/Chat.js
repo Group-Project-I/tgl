@@ -93,10 +93,7 @@ class Chat extends React.Component {
                         {/* Lists the chat list on the left hand side of the component */}
                         <div className="inbox_chat">
                             {chats && chats.map(chat =>{
-                                // var data
-                                // data = Object.values(this.state.profilePics).filter(item => item.id === chat.id).forEach(function(obj){
-                                //     data = obj.profilePic
-                                // })
+
                                 return(
                                     <div className="chat_list" id={chat.id} onClick={() => this.chatClick(chat)} onMouseDown = {() => this.chatClick(chat)} onMouseUp = {() => this.chatClick(chat)}>
                                     <div className="chat_people">

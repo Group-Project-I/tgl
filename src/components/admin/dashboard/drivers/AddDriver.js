@@ -40,6 +40,7 @@ class AddDriver extends Component {
 
     }
 
+    // Validation for driver form
     handleChange = (e) => {
         const {id,value} = e.target
         let errors = this.state.errors
@@ -50,18 +51,7 @@ class AddDriver extends Component {
                 validEmailRegex.test(value)
                 ?''
                 :'Email is not Valid'
-            break;
-            case 'nic':
-                errors.nic=
-                value.length <10
-                ? 'Too short for NIC'
-                : value.length ===10 && value[9] !== 'V'
-                    ?'Invalid type for NIC'
-                    :value.length >12
-                        ?'Too long for NIC'
-                        :''
-            break
-           
+            break;         
             case 'email': 
             errors.email = 
                 validEmailRegex.test(value)
@@ -88,8 +78,10 @@ class AddDriver extends Component {
                 ? 'NIC is too short'
                 : value.length === 10 
                     ?  value[9] === 'v' || value[9] ==='V'
-                        ? ''
-                        :'Invalid type for NIC'
+                        ? isNaN(value[0] ) || isNaN(value[1] ) || isNaN(value[2] ) || isNaN(value[3] ) || isNaN(value[4] ) || isNaN(value[5] ) || isNaN(value[6] ) || isNaN(value[7] ) || isNaN(value[8] )
+                            ?''
+                            :'Invalid type for NIC'
+                    :'Invalid type for NIC'
                     :value.length >12
                         ?'NIC is too long'
                         :''
@@ -113,8 +105,8 @@ class AddDriver extends Component {
             
             case 'licenseNo' :
                 errors.licenseNo=
-                value.length<8
-                ?'Too short for license Number'
+                value.length != 8 || isNaN(value[1]) || isNaN(value[2]) || isNaN(value[3]) || isNaN(value[4]) || isNaN(value[5]) || isNaN(value[6]) || isNaN(value[7])
+                ?'Invalid License Number'
                 :''
             break
             

@@ -1,11 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {addVehicle} from '../../../../store/actions/adminActions'
+import {Redirect} from 'react-router-dom'
 
 // Form to add vehicles to the system
-const validEmailRegex = 
-        RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
-
 const validateForm = (errors) => {
     let valid = true;
     Object.values(errors).forEach(
@@ -28,6 +26,7 @@ class AddVehicle extends Component {
         chassisNo: '',
         remarks: '',
         visibility: '1',
+        valid:null,
         errors:{
             chassisNo:'',
             vehicleNo:'' 
@@ -35,6 +34,7 @@ class AddVehicle extends Component {
 
     }
 
+    // Validations for vehicle no and chassis number
     handleChange = (e) => {
         const { name, value } = e.target
         let errors = this.state.errors
@@ -42,11 +42,11 @@ class AddVehicle extends Component {
         switch (name) {
             case 'vehicleNo': 
             errors.vehicleNo = 
-            value.length < 7
-                ? 'Too short !' 
-                : value[0] >='A' && value[0] <='Z'  
+            value.length != 7 
+                ? 'Invalid vehicle No(ex: LY-0000)' 
+                : value[0] >='A' && value[0] <='Z' && value[1] >='A' && value[1] <= 'Z' && value[2] == '-' && !isNaN(value[3]) && !isNaN(value[4]) && !isNaN(value[5]) && !isNaN(value[6])
                     ?''
-                    :'Vehicle No. is not valid!';
+                    :'Invalid vehicle No(ex: LY-0000)';
             break;
             case 'chassicNo': 
             errors.chassicNo = 
@@ -65,17 +65,25 @@ class AddVehicle extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addVehicle(this.state)
         if(validateForm(this.state.errors)) {
-            
+            this.setState({
+                valid:'valid'
+            })
             console.info('Valid Form')
+            this.props.addVehicle(this.state)
           }else{
+            if(this.state.valid)return <Redirect to='/admin' />
+
             console.error('Invalid Form')
           }
+        //   this.props.addVehicle(this.state)
+
     }
 
     render() {
         const{errors}=this.state
+        if(this.state.valid)return <Redirect to='/admin/vehicles' />
+
         return (
                 <div className="container">
                     <br/>
