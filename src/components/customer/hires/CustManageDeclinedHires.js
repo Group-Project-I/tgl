@@ -16,20 +16,20 @@ class ManageDeclinedHires extends Component {
         redir: 0
     }
 
-    handleChange = (e) => {
-        this.setState({
-            [e.target.id]: e.target.value
-        })
-    }
+    // handleChange = (e) => {
+    //     this.setState({
+    //         [e.target.id]: e.target.value
+    //     })
+    // }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.acceptHireRequest(this.props.hire[0].id, this.state)
-        // console.log(this.state)
-        this.setState({
-            redir : 1
-        })
-    }
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     this.props.acceptHireRequest(this.props.hire[0].id, this.state)
+    //     // console.log(this.state)
+    //     this.setState({
+    //         redir : 1
+    //     })
+    // }
 
     componentWillReceiveProps(nextProps) {
 
@@ -291,15 +291,15 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        acceptHireRequest: (id, hireRequest) => dispatch(acceptHireRequest(id, hireRequest)),
-        declineHireRequest: (id, hireRequest) => dispatch(declineHireRequest(id, hireRequest))
-    }
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         acceptHireRequest: (id, hireRequest) => dispatch(acceptHireRequest(id, hireRequest)),
+//         declineHireRequest: (id, hireRequest) => dispatch(declineHireRequest(id, hireRequest))
+//     }
+// }
 
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
+    connect(mapStateToProps),
     firestoreConnect(props => [
         {collection: 'hires'},
         {collection: 'customers'},

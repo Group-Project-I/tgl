@@ -20,24 +20,24 @@ class ManageCompletedHireDetails extends Component {
         pdf: false
     }
 
-    handleChange = (e) => {
-        this.setState({
-            [e.target.id]: e.target.value
-        })
-    }
+    // handleChange = (e) => {
+    //     this.setState({
+    //         [e.target.id]: e.target.value
+    //     })
+    // }
     handlePdf = (e) => {
         this.setState({
             pdf: true
         })
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.completeHire(this.props.hire[0].id)
-        this.setState({
-            redir : 1
-        })
-    }
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     this.props.completeHire(this.props.hire[0].id)
+    //     this.setState({
+    //         redir : 1
+    //     })
+    // }
 
     componentWillReceiveProps(nextProps) {
 
@@ -57,6 +57,7 @@ class ManageCompletedHireDetails extends Component {
             return <Redirect to='/User/UserManageTools' />
         }
         if(this.state.pdf){
+            // console.log(this.state.pdf)
             return <ManageCompletedHire hire={this.props.hire}></ManageCompletedHire>
         }
 
