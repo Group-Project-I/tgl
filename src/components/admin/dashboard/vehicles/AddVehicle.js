@@ -70,12 +70,13 @@ class AddVehicle extends Component {
                 valid:'valid'
             })
             console.info('Valid Form')
+            this.props.addVehicle(this.state)
           }else{
             if(this.state.valid)return <Redirect to='/admin' />
 
             console.error('Invalid Form')
           }
-          this.props.addVehicle(this.state)
+        //   this.props.addVehicle(this.state)
 
     }
 

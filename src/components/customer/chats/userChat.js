@@ -23,6 +23,9 @@ export class UserChat extends React.Component{
     componentDidMount() {
  
         // addResponseMessage("Welcome to Trans Global Logistics!");
+        this.setState({
+            messages: ''
+        })
       
       }
  
@@ -31,28 +34,32 @@ export class UserChat extends React.Component{
         var y=this.props.customers.filter(item => item.id === this.props.auth.uid)
         var userName
         y.forEach(function(obj){
-            userName = obj.firstName +obj.lastName 
+            userName = obj.firstName + " " + obj.lastName 
         })
         console.log('username')
         console.log(userName)
+        this.setState({
+            messages: ''
+        })
 
 // send the message throught the backend API
         this.props.sendMessage(newMessage,this.props.auth.uid, this.state.adminId,userName)
        }
    
     UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.chats !== this.props.chats) {
-        var x = nextProps.chats.filter(item => item.id === this.props.auth.uid)
-        var msgs
-        x.forEach(function(obj){
-            msgs = obj.messages
-        })
+        if (nextProps.chats !== this.props.chats) {
+            var x = nextProps.chats.filter(item => item.id === this.props.auth.uid)
+            var msgs
+            x.forEach(function(obj){
+                msgs = obj.messages
+            })
             this.setState({
-            messages: msgs,
-            loading: 0,
+                messages: msgs,
+                loading: 0,
         })
         }
-        console.log(this.state.name)    
+        // msgs = ''
+        console.log('test', msgs)    
     }
     render(){
         const {auth} =this.props
