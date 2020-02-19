@@ -13,6 +13,7 @@ import {MdPrint} from "react-icons/md";
 import ManageCompletedHires from './ManageCompletedHires'
 
 // Completed hire page, A hire which is completed
+// Gives options to get a print preview and PDF view
 class ViewCompletedHire extends Component {
     state = {
         loading: 1,
@@ -38,6 +39,7 @@ class ViewCompletedHire extends Component {
         
     }
 
+    // State is changed to render the pdf view
     handlePdf = (e) => {
         this.setState({
             pdf: true
@@ -49,6 +51,7 @@ class ViewCompletedHire extends Component {
         if(this.state.redir === 1){
             return <Redirect to='/admin/hires' />
         }
+        // If pdf view state is true render pdf view in new tab
         if(this.state.pdf){
             return <ManageCompletedHires hire={this.props.hire}></ManageCompletedHires>
         }

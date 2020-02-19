@@ -10,6 +10,7 @@ import 'react-activity/dist/react-activity.css';
 
 // Generates a pdf view of a completed hire 
 // Uses react/pdf
+// Both imports and exports are handled by conditioning
 class ManageCompletedHires extends Component {
 
     static defaultProps = {

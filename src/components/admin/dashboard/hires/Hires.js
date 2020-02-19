@@ -19,6 +19,7 @@ class Hires extends Component {
         const {auth} = this.props
         if (!auth.uid) return <Redirect to='/signin' />
 
+        // Filter imports and exports with hire status = completed or driverPending and pass them to viewing component (Displaying comoponent is reused by changing props)
         const importHires = this.props.hires.filter(item => item.hireType === "import" && (item.hireStatus === "completed" || item.hireStatus === "driverPending"))
         const exportHires = this.props.hires.filter(item => item.hireType === "export" && (item.hireStatus === "completed" || item.hireStatus === "driverPending"))
 

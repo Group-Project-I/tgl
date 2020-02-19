@@ -13,6 +13,7 @@ class DisableAccount extends Component {
 
     }
 
+    // Function to enable or disable users
     handleChange = (e) => {
         this.props.disableOrEnableUser(this.props.id, this.props.type, !this.state.disabled)
         this.setState({

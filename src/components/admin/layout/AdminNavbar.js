@@ -26,6 +26,7 @@ export class AdminNavbar extends Component{
     messages: ''
   }
 
+  // Gets the count of unread messages
   UNSAFE_componentWillReceiveProps(nextProps) {
     
     if(this.props.chat){
@@ -51,6 +52,7 @@ export class AdminNavbar extends Component{
 
   // Admin Navbar, counts of notifications and messages are updated through the component 
   render(){
+    // Gets the count of unread notifications
     const notifications = this.props.notifications.filter(item => item.to === 'Yk1pyMHhAQhk3PhGS6JRxcNSHdT2').sort((a, b) => new Date((b.createdAt.seconds + b.createdAt.nanoseconds/1E9)*1000) - new Date((a.createdAt.seconds + a.createdAt.nanoseconds/1E9)*1000))
     var count = 0;
     if(this.props.chat){
@@ -67,8 +69,10 @@ export class AdminNavbar extends Component{
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <Nav className="justify-content-end mr-auto" style={{ width: "85%" }}>
             <Nav.Link as={NavLink} to='/admin/addhire' style={{textDecoration: 'none'}}>+Add Hire</Nav.Link>
+
             <Nav.Link as={NavLink} style={{paddingRight:'4px'}} to={'/admin/chat/' + this.props.auth.uid}><FaEnvelope size={28}/></Nav.Link>
             <Badge badgeContent={count} primary badgeId="notifications-1" />
+            {/* Notification badge, filters notifications and adds colors based on the type */}
             <NavDropdown className="navNotif" title={notifications.length === 0 ? <MdNotifications size={28}/> : <MdNotifications size={28}/>} id="basic-nav-dropdown" disabled={!notifications.length}>
               {notifications && notifications.map(notification => {
                 return(
@@ -110,6 +114,7 @@ export class AdminNavbar extends Component{
               <NavDropdown.Item><NavLink to={'/'}><Button onClick={this.props.signOut}>Logout</Button></NavLink></NavDropdown.Item>
             </NavDropdown>
 
+              {/* Modal view to change email and password */}
             <Modal show={this.state.show} onHide={this.handleClose} size="md" backdrop={false} aria-labelledby="contained-modal-title-vcenter" centered style={{overflow:'unset'}}>
               <Modal.Header closeButton>
                 <Modal.Title>Change Email/Password</Modal.Title>

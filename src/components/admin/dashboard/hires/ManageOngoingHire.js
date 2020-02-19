@@ -11,7 +11,7 @@ import Card from 'react-bootstrap/Card'
 import { Timeline, TimelineItem }  from 'vertical-timeline-component-for-react';
 
 // Ongoing hire page, A hire which is currently in progress
-// Admin can mark the hire as completed once it is completed 
+// Admin can mark the hire as completed once it is completed (Notification is sent by the driver)
 class ManageOngoingHire extends Component {
     state = {
         loading: 1,
@@ -25,6 +25,7 @@ class ManageOngoingHire extends Component {
         })
     }
 
+    // Hire status is updated to completed from driverPending once the hire is completed
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.completeHire(this.props.hire[0].id) 

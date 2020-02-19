@@ -6,6 +6,7 @@ import {editCity, deleteCity} from '../../../../store/actions/adminActions'
 // Edit hire charges for a given city
 class EditCity extends Component {
     state = {
+        id: '',
         import20ft: '',
         import40ft: '',
         export20ft: '',

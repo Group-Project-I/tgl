@@ -4,6 +4,7 @@ import { ReactTabulator } from 'react-tabulator'
 
 
 // List of imports completed with sorting and filtering
+// Imports are passed from hires component
 const Imports = ({importHires, history}) => {
     if (!importHires.length) return <div><br/><br/><h4>No Imports Available</h4></div>
     global.moment = require("moment");

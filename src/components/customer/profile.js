@@ -105,14 +105,13 @@ class Profile extends Component {
                         this.state.showProgressBar ? <progress value={this.state.progress} max='100'/>:null
                     }
                 </div>
-                <br/><br/><br/>
-                <div className='row' >
-                <br/><br/>
+                <br/>
+                <div>
                 <strong><h1 className="blue-text">{this.props.customer.firstName + " " + this.props.customer.lastName}</h1></strong>
-                <br/><br/>
-                <h5><b className="blue-text"><MdCall/>  </b> {this.props.customer.mobile}</h5><br/>
-                <br/><h5><b className="blue-text"><MdEmail/>  </b> {this.props.customer.email}</h5><br/>
-                <br/><h5><b className="blue-text"><MdInsertDriveFile/>  </b> {this.props.customer.nic}</h5><br/>
+                <br/>
+                <h5><b className="blue-text"><MdCall/>  </b> {this.props.customer.mobile}</h5>
+                <br/><h5><b className="blue-text"><MdEmail/>  </b> {this.props.customer.email}</h5>
+                <br/><h5><b className="blue-text"><MdInsertDriveFile/>  </b> {this.props.customer.nic}</h5>
                 <br/>{this.props.customer.disabled === false ? <Badge pill variant="success" className="left">Active</Badge> : <Badge pill variant="danger" className="left">Disabled</Badge> }
                 </div>
                </div>

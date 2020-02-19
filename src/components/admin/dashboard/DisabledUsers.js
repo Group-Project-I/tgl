@@ -37,7 +37,7 @@ class ManageCustomer extends Component {
         const drivers = this.props.drivers
         const vehicles = this.props.vehicles
         
-        
+        // Filter disabled customers, drivers and vehicles and pass them to relevant component 
         const load = this.state.loading === 0 ? (
             <div id="content" className="container-fluid" role="main">
                 <br/><br/><br/><br/>
