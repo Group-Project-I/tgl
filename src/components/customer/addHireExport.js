@@ -29,7 +29,8 @@ class AddHireExport extends Component {
         customerName: '',
         remarks: 'None',
         loading: 1,
-        redir: 0
+        redir: 0,
+        added: 0
     }
 // to close cost estimate popup
     handleClosePrice = () => {
@@ -76,7 +77,8 @@ class AddHireExport extends Component {
         // console.log(this.state);
         this.props.addExportHires(this.state);
         this.setState({
-            redir : 1
+            //redir : 1
+            added: 1
         })
     }
 // Change element type to date on click
@@ -98,6 +100,14 @@ class AddHireExport extends Component {
             })
         }
     }
+
+    handleVesselDate = (e) => {
+        e.preventDefault();
+        e.target.type = 'datetime-local'
+        var tag = e.target.id+"Tag"
+        document.getElementById(tag).style.display = "block"
+    }
+
     componentWillReceiveProps(nextProps) {
 
         if(this.props.customers && this.props.drivers){
@@ -126,6 +136,9 @@ class AddHireExport extends Component {
                             {/*<hr className="bg-dark mb-4"/>*/}
                                     </Card.Header>
                 <form onSubmit={this.handleSubmit} autoComplete='off'>
+                    <div className="green-text center">
+                        <h3>{this.state.added ? "Added Successfully" : null}</h3><br/><br/>
+                    </div>
                     <br/>
                     <Card border="primary" className="text-center">
                         <Card.Header color="blue"><h4>Container Type</h4></Card.Header>
@@ -282,7 +295,7 @@ class AddHireExport extends Component {
                                 </div>
                                 <div className="input-field col-6">
                                     <p className="fadeIn animated slow" id="loadingDatetimeTag" style={{display:'none',fontFamily:'Times New Roman',color:'black'}}>Loading Date and Time(01/25/2000 10:00:AM)</p>
-                                    <input placeholder="Loading Date and Time" onFocus={this.handleDate} type="text" id="loadingDatetime" onChange={this.handleChange} required />
+                                    <input placeholder="Loading Date and Time" onFocus={this.handleVesselDate} type="text" id="loadingDatetime" onChange={this.handleChange} required />
                                 </div>
 
                             </div>
