@@ -73,18 +73,25 @@ class AddDriver extends Component {
                     :''
             break;  
             case 'nic': 
-                errors.nic = 
-                value.length <10 
-                ? 'NIC is too short'
-                : value.length === 10 
-                    ?  value[9] === 'v' || value[9] ==='V'
-                        ? isNaN(value[0] ) || isNaN(value[1] ) || isNaN(value[2] ) || isNaN(value[3] ) || isNaN(value[4] ) || isNaN(value[5] ) || isNaN(value[6] ) || isNaN(value[7] ) || isNaN(value[8] )
-                            ?''
-                            :'Invalid type for NIC'
-                    :'Invalid type for NIC'
-                    :value.length >12
-                        ?'NIC is too long'
-                        :''
+                // errors.nic = 
+                // value.length <10 
+                // ? 'NIC is too short'
+                // : value.length === 10 
+                //     ?  value[9] === 'v' || value[9] ==='V'
+                //         ? isNaN(value[0] ) || isNaN(value[1] ) || isNaN(value[2] ) || isNaN(value[3] ) || isNaN(value[4] ) || isNaN(value[5] ) || isNaN(value[6] ) || isNaN(value[7] ) || isNaN(value[8] )
+                //             ?''
+                //             :'Invalid type for NIC'
+                //     :'Invalid type for NIC'
+                //     :value.length >12
+                //         ?'NIC is too long'
+                //         :''
+                if(value.length === 10 && !isNaN(value[0] ) && !isNaN(value[1] ) && !isNaN(value[2] ) && !isNaN(value[3] ) && !isNaN(value[4] ) && !isNaN(value[5] ) && !isNaN(value[6] ) && !isNaN(value[7] ) && !isNaN(value[8] ) && value[9] === 'v' ){
+                    errors.nic = ''
+                }else if(value.length === 12 && !isNaN(value[0] ) && !isNaN(value[1] ) && !isNaN(value[2] ) && !isNaN(value[3] ) && !isNaN(value[4] ) && !isNaN(value[5] ) && !isNaN(value[6] ) && !isNaN(value[7] ) && !isNaN(value[8] ) && !isNaN(value[9] ) && !isNaN(value[10] ) && !isNaN(value[11] ) ){
+                    errors.nic = ''
+                }else{
+                    errors.nic = 'Invalid NIC'
+                }
             break;
             case 'mobile': 
             errors.mobile =
