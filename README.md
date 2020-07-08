@@ -1,5 +1,17 @@
 Live site : https://trans-global-logistics-969a7.firebaseapp.com/
 
+
+## Screenshots
+
+![Annotation 2020-07-08 131514](https://user-images.githubusercontent.com/43146932/86892572-1133ab80-c11e-11ea-9256-5fdff7f2a241.png)
+
+![screencapture-trans-global-logistics-969a7-firebaseapp-admin-hires-weAA9HcRvXOHlS8Y2FLN-2020-07-08-13_16_25](https://user-images.githubusercontent.com/43146932/86892728-3fb18680-c11e-11ea-9a86-70981ed6ac70.png)
+
+![Annotation 2020-07-08 131857](https://user-images.githubusercontent.com/43146932/86892639-26103f00-c11e-11ea-9e73-078749c86d9d.png)
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
