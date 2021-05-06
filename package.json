@@ -11,7 +11,7 @@
     "emailjs-com": "^2.4.1",
     "firebase": "^6.6.2",
     "formik": "^2.0.3",
-    "highcharts": "^7.2.1",
+    "highcharts": "^9.0.0",
     "highcharts-react-official": "^2.2.2",
     "jquery": "^3.4.1",
     "material-design-icons": "^3.0.1",
